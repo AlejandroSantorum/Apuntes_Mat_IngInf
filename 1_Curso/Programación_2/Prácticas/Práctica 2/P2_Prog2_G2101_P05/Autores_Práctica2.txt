@@ -1,0 +1,10 @@
+Autores: Alejandro Santorum Varela y David Cabornero Pascual
+Pareja 5
+Práctica 2
+Fecha: 20/03/2017
+
+Observación: en las carpetas de los proyectos (P2_E1, P2_E2, P2_E3, P2_E4)
+solo se encutran los ficheros .h y .c de cada uno de los ejercicios propuestos, junto
+con su correspondiente Makefile y el fichero de texto "grafo.txt" que se corresponde con
+el grafo 1 expuesto en moodle para la práctica 1. Todo esto es suficiente para arrancar cada uno de los
+cuatro programas desde la terminal de Linux/Windows para su calificación.

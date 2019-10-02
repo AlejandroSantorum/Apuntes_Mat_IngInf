@@ -1,0 +1,6 @@
+[111, first][222, second]
+Son iguales? Sí
+Id del primer nodo: 111
+Nombre del segundo nodo es: second
+[111, first][111, first]
+Son iguales? No
