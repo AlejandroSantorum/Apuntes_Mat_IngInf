@@ -1,0 +1,122 @@
+#   Proyecto de Programacion
+# 	Escuela Politecnica Superior - UAM
+# 	Fecha: septiembre 2010
+#
+
+#=============================================================
+# Entorno de desarrollo y opciones
+#=============================================================
+# Compilador
+CC=cc
+# Opciones de compilacion
+## -g: genera informacion de depuracion. Eliminar en la version final
+## -Wall: indica que se muestren todas las advertencias al compilar 
+CFLAGS=-g -Wall
+# Opciones de enlazado
+## Indican el directorio donde localizar las bibliotecas
+LDFLAGS=-L./
+# Directorio en el que se encuentra el proyecto
+## Sirve para la generacion del archivo de distribución
+DIR=ejemplo_makefile
+
+#=============================================================
+# Archivos que componen el proyecto
+#=============================================================
+## Nombre de los ejecutables separados por espacio
+EJECUTABLES=hola adios
+
+#=============================================================
+# Construccion de los ejecutables
+#=============================================================
+## Nombre de los ejecutables separados por espacio
+## El objetivo autores se ejecuta despues de haber generado todos 
+## los ejecutables
+all: $(EJECUTABLES) autores
+
+## Ejecutable hola.  
+## Se genera a partir de enlazar hola.o, frases.o y animo.o
+## hola.o contiene el programa principal ya que hola.c contiene la funcion main
+## frases.o y animo.o son dos modulos que contienen funcionen que se emplean en hola.c
+hola:  hola.o frases.o animo.o
+	@echo Generando hola ...
+	$(CC) $(CFLAGS) -o hola hola.o frases.o animo.o
+
+## Ejecutable adios.  
+## Se genera a partir de los objetos includos en la biblioteca libejemplo.a
+## Las bibliotecas estaticas (*.a) permiten agrupar distintos archivos objetos (*.o)
+## en un unico archivo (vease el objetivo libejemplo.a). 
+## Es una manera alternativa de crear el ejecutable. Podria haberse creado de 
+## manera similar al ejecutable hola ($(CC) $(CFLAGS) -o adios adios.o frases.o animo.o)
+adios:  adios.o libejemplo.a
+	@echo Generando adios ...
+	$(CC) $(CFLAGS) -o adios adios.o $(LDFLAGS) -lejemplo
+
+#=============================================================
+# Generacion .o
+#=============================================================
+## Por cada archivo .c se genera un .o
+## Un archivo .o depende del archivo .c y de todos los .h propios 
+## que se incluyan en el .c
+hola.o: frases.h animo.h hola.c
+	@echo Compilando hola.c ...
+	$(CC) $(CFLAGS) -c hola.c
+
+adios.o: frases.h animo.h adios.c
+	@echo Compilando adios.c ...
+	$(CC) $(CFLAGS) -c adios.c
+
+frases.o: frases.h frases.c
+	@echo Compilando frases.c ...
+	$(CC) $(CFLAGS) -c frases.c	
+
+animo.o: animo.h animo.c
+	@echo Compilando animo.c ...
+	$(CC) $(CFLAGS) -c animo.c	
+
+#=============================================================
+# Crea una biblioteca estatica que contine los .o
+#=============================================================
+## Este objetivo permite crear una biblioteca estatica que engloba a los .o
+## No es obligatorio realizarlo. Se ha incluido como ejemplo. Permite 
+## englobar multiples .o en un solo fichero facilitando las tareas de 
+## mantenimiento: a) Al enlazar solo es necesario incluir un archivo (.a)
+## b) si se crean nuevos archivos *.o solo es necesario añadir al archivo .a
+## c) al distribuir el codigo objeto unicamente es necesario enviar un archivo
+## El nombre de un biblioteca siempre tiene que empezar por lib
+libejemplo.a: frases.o animo.o
+	@echo Modificando libreria libejemplo.a ...
+	ar -r libejemplo.a frases.o animo.o
+	
+#=============================================================
+# Crea un archivo tgz para distribuir el codigo
+#=============================================================
+## Crea un archivo .tgz eliminando previamente el codigo objeto
+dist: limpia
+	cd .. ; tar cvzf $(DIR).tgz $(DIR)
+
+#=============================================================
+# Limpia fichero temporales
+#=============================================================
+limpia:
+	rm -rf *\.o *\.a $(EJECUTABLES)
+
+#=============================================================
+# Mensaje que aparecen al ejecutar MAKE, y que ayuda a identificar los
+# autores del trabajo. 
+#=============================================================
+autores:
+	@ echo "--------------------------------------------------------------"
+	@ echo "Practica XXXX desarrollado por el equipo YYYYY compuesto por  "
+	@ echo "Apellidos1, Nombre1; Apellidos2, Nombre2 y Apellidos3, Nombre3"
+	@ echo "--------------------------------------------------------------"
+
+#=============================================================
+# Ayuda
+#=============================================================
+ayuda:	
+	@echo Uso: make [Objetivo]
+	@echo "make \t\t Make all"
+	@echo "make hola \t Crea el ejecutable hola"
+	@echo "make adios \t Crea el ejecutable adios"
+	@echo "make dist \t Genera el archivo de distribucion .tgz"
+	@echo "make limpia \t Limpia los ficheros temporales"
