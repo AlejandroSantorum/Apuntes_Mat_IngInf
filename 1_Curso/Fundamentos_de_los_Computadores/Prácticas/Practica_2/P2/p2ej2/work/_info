@@ -1,0 +1,242 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/P2/p2ej2
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+VIenBbHCS4]?GSEjVI=O_01
+04 8 10 work p2ej1_tb behavioral 1
+=1-c03fd5f05ee7-58107979-204-1758
+Z1 o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+Z2 OL;O;10.2e;57
+Z3 dC:/Users/eps/Desktop/P2/p2ej2
+!s110 1477474681
+T_opt1
+Z4 !s110 1477476816
+VEKPYEEzO=3Bo86jB]IMBa0
+04 8 10 work p2ej2_tb behavioral 1
+=1-c03fd5f05ee7-581081d0-1b3-14ec
+R1
+n@_opt1
+R2
+Em2_1e_mxilinx_p2ej2
+Z5 w1477476810
+Z6 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z7 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z8 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z9 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+R3
+Z10 8p2ej2.vhf
+Z11 Fp2ej2.vhf
+l0
+L28
+VOU=AUC6BlEIK<MI76?S@32
+Z12 OL;C;10.2e;57
+31
+Z13 !s110 1477476815
+Z14 !s108 1477476815.705000
+Z15 !s90 -reportprogress|300|-explicit|-93|p2ej2.vhf|
+Z16 !s107 p2ej2.vhf|
+Z17 o-explicit -93
+Z18 tExplicit 1
+!s100 2`COT8QoAaU<@<V57_Q@o2
+!i10b 1
+!i111 0
+Abehavioral
+R6
+R7
+R8
+R9
+DEx4 work 19 m2_1e_mxilinx_p2ej2 0 22 OU=AUC6BlEIK<MI76?S@32
+l63
+L36
+Vo<cE<XXBcQB0T=mMkASj20
+R12
+31
+R13
+R14
+R15
+R16
+R17
+R18
+!s100 McIB1]e97QHTmQQ8M9KYJ1
+!i10b 1
+!i111 0
+Em4_1e_mxilinx_p2ej2
+R5
+R6
+R7
+R8
+R9
+R3
+R10
+R11
+l0
+L91
+V[2MO8hnFdQDPC?1m=9J;I1
+R12
+31
+R13
+R14
+R15
+R16
+R17
+R18
+!s100 2aT;?J22N6N7nF3ETA<181
+!i10b 1
+!i111 0
+Abehavioral
+R6
+R7
+R8
+R9
+DEx4 work 19 m4_1e_mxilinx_p2ej2 0 22 [2MO8hnFdQDPC?1m=9J;I1
+l125
+L102
+VGCUKoH@@aGFh>CnBil;Z41
+R12
+31
+R13
+R14
+R15
+R16
+R17
+R18
+!s100 B;A6iIc]MLd2g9cKUI5>A0
+!i10b 1
+!i111 0
+Ep2ej1_tb
+Z19 w1476893044
+R6
+R7
+R8
+R9
+R3
+Z20 8G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej1_tb.vhd
+Z21 FG:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej1_tb.vhd
+l0
+L17
+VbePCn]GUYea<4h?V<]_L12
+R12
+31
+Z22 !s110 1477474963
+Z23 !s108 1477474963.679000
+Z24 !s90 -reportprogress|300|-explicit|-93|G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej1_tb.vhd|
+Z25 !s107 G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej1_tb.vhd|
+R17
+R18
+!s100 9R^fJ2GP=7RC:Io[5AIXL3
+!i10b 1
+!i111 0
+Abehavioral
+R6
+R7
+R8
+R9
+DEx4 work 8 p2ej1_tb 0 22 bePCn]GUYea<4h?V<]_L12
+l48
+L20
+V:fT7:2k>]i_6c8WfI9AIi3
+R12
+31
+R22
+R23
+R24
+R25
+R17
+R18
+!s100 PVho@9a>FLjM`fIZ:YEJ70
+!i10b 1
+!i111 0
+Ep2ej2
+R5
+R6
+R7
+R8
+R9
+R3
+R10
+R11
+l0
+L156
+V9gD`U1L]X6gjellcLn_K73
+R12
+31
+R13
+R14
+R15
+R16
+R17
+R18
+!s100 TJ`H>i^C<bTmj`:LMgSji3
+!i10b 1
+!i111 0
+Abehavioral
+R6
+R7
+R8
+R9
+DEx4 work 5 p2ej2 0 22 9gD`U1L]X6gjellcLn_K73
+l230
+L166
+VL5ZmiOdhJ_niU9aVk2=c?3
+R12
+31
+R13
+R14
+R15
+R16
+R17
+R18
+!s100 ^VLM_OYk5iJQ1?RNRd6LG0
+!i10b 1
+!i111 0
+Ep2ej2_tb
+Z26 w1476895662
+R6
+R7
+R8
+R9
+R3
+Z27 8../../../Downloads/testbenches/p2ej2_tb.vhd
+Z28 F../../../Downloads/testbenches/p2ej2_tb.vhd
+l0
+L20
+V5N74D>hIU0enIF`<kJ3ek2
+R12
+31
+R4
+Z29 !s108 1477476816.055000
+Z30 !s90 -reportprogress|300|-explicit|-93|../../../Downloads/testbenches/p2ej2_tb.vhd|
+Z31 !s107 ../../../Downloads/testbenches/p2ej2_tb.vhd|
+R17
+R18
+!s100 8P>D[E>:WDfoWC60^ggjG0
+!i10b 1
+!i111 0
+Abehavioral
+R6
+R7
+R8
+R9
+DEx4 work 8 p2ej2_tb 0 22 5N74D>hIU0enIF`<kJ3ek2
+l47
+L22
+V2AS7?]7zUo?Y>JK>7e4@C1
+R12
+31
+R4
+R29
+R30
+R31
+R17
+R18
+!s100 [XZ[9==Xka5Hod[?Z_@K_0
+!i10b 1
+!i111 0

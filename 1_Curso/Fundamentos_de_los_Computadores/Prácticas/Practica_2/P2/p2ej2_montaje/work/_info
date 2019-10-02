@@ -1,0 +1,190 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/P2/p2ej2_montaje
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+!s110 1477918261
+VjTEZN5=>d<EI]P7PE6]`i0
+04 16 10 work p2ej2_montaje_tb behavioral 1
+=1-c03fd5f061d9-58173e32-1b2-5dc
+o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+OL;O;10.2e;57
+Em2_1e_mxilinx_p2ej2_montaje
+Z1 w1477918239
+Z2 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z3 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z4 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+Z6 dC:/Users/eps/Desktop/P2/p2ej2_montaje
+Z7 8p2ej2_montaje.vhf
+Z8 Fp2ej2_montaje.vhf
+l0
+L28
+VUF=4]Z`:ROcBF5^Vh:34S2
+Z9 OL;C;10.2e;57
+31
+Z10 !s110 1477918256
+Z11 !s108 1477918254.890000
+Z12 !s90 -reportprogress|300|-explicit|-93|p2ej2_montaje.vhf|
+Z13 !s107 p2ej2_montaje.vhf|
+Z14 o-explicit -93
+Z15 tExplicit 1
+!s100 i0WObMn4iBlWmPSVKkg><3
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 27 m2_1e_mxilinx_p2ej2_montaje 0 22 UF=4]Z`:ROcBF5^Vh:34S2
+l63
+L36
+VYlXb_9`9I<HF>LUP[z]Z11
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 dhJ6cb1=hg7IU9gTd`2=Y1
+!i10b 1
+!i111 0
+Em4_1e_mxilinx_p2ej2_montaje
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+l0
+L91
+VOnG`mnN`hWa6eWL52Y^Sk2
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 jBVPVK4agRQ[^UHIj1[R^1
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 27 m4_1e_mxilinx_p2ej2_montaje 0 22 OnG`mnN`hWa6eWL52Y^Sk2
+l125
+L102
+Vf<IKUJR0^]_6`S[c8W`PV1
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 S7hV7k^b[75GzU@<EOlBM3
+!i10b 1
+!i111 0
+Ep2ej2_montaje
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+l0
+L156
+Vf>nmV9zhVbP]KeY_8cb:X3
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 0S^kLYSjU6_Jb98JIfB6[1
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 13 p2ej2_montaje 0 22 f>nmV9zhVbP]KeY_8cb:X3
+l225
+L166
+VeQ2G1<dlAe0VSO5PzO^8<2
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 2YCMAFgWa5^ghl8E@42JU2
+!i10b 1
+!i111 0
+Ep2ej2_montaje_tb
+Z16 w1476952890
+R2
+R3
+R4
+R5
+R6
+Z17 8G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej2_montaje_tb.vhd
+Z18 FG:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej2_montaje_tb.vhd
+l0
+L21
+V=@U^KX0X?EgmXSKk3=akl0
+R9
+31
+R10
+Z19 !s108 1477918256.312000
+Z20 !s90 -reportprogress|300|-explicit|-93|G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej2_montaje_tb.vhd|
+Z21 !s107 G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej2_montaje_tb.vhd|
+R14
+R15
+!s100 ZWf;S4cCETadM8c]4X=Ih0
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 16 p2ej2_montaje_tb 0 22 =@U^KX0X?EgmXSKk3=akl0
+l49
+L24
+VEhNfAFemg4lem5SBXF:<X2
+R9
+31
+R10
+R19
+R20
+R21
+R14
+R15
+!s100 OBh;=E:g9<^z6V;?AB_E53
+!i10b 1
+!i111 0

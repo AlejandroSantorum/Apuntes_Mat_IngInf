@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<generated_project xmlns="http://www.xilinx.com/XMLSchema" xmlns:xil_pn="http://www.xilinx.com/XMLSchema">
+
+  <!--                                                          -->
+
+  <!--             For tool use only. Do not edit.              -->
+
+  <!--                                                          -->
+
+  <!-- ProjectNavigator created generated project file.         -->
+
+  <!-- For use in tracking generated file and other information -->
+
+  <!-- allowing preservation of process status.                 -->
+
+  <!--                                                          -->
+
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
+
+  <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
+
+  <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="p2ej2.xise"/>
+
+  <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_CMD" xil_pn:name="p2ej1_tb.fdo"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="p2ej2.vhf"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_CMD" xil_pn:name="p2ej2_tb.fdo"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_LOG" xil_pn:name="vsim.wlf"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="work"/>
+  </files>
+
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1477474675" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1477474675">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1477476305" xil_pn:in_ck="4944153030738788906" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1477476305">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../../../Downloads/testbenches/p2ej2_tb.vhd"/>
+      <outfile xil_pn:name="G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej1_tb.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1477476305" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="8811571657930958100" xil_pn:start_ts="1477476305">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1477476811" xil_pn:in_ck="159783335086127" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-5465812223409040436" xil_pn:start_ts="1477476809">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="p2ej2.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1477476308" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="6387009279745047040" xil_pn:start_ts="1477476308">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1477476811" xil_pn:in_ck="-4300142152193726721" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1477476811">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../../../Downloads/testbenches/p2ej2_tb.vhd"/>
+      <outfile xil_pn:name="G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej1_tb.vhd"/>
+      <outfile xil_pn:name="p2ej2.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1477476812" xil_pn:in_ck="-4300142152193726721" xil_pn:name="TRAN_MSimulateBehavioralModel" xil_pn:prop_ck="-2353282809756103323" xil_pn:start_ts="1477476811">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="p2ej2_tb.fdo"/>
+      <outfile xil_pn:name="vsim.wlf"/>
+      <outfile xil_pn:name="work"/>
+    </transform>
+  </transforms>
+
+</generated_project>

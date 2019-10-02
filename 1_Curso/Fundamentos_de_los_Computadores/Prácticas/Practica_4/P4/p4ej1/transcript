@@ -1,0 +1,96 @@
+# Reading C:/modeltech64_10.2e/tcl/vsim/pref.tcl
+# //  ModelSim SE-64 10.2e Jun 20 2014 
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {p4ej2_tb.fdo}
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity p4ej1
+# -- Compiling architecture BEHAVIORAL of p4ej1
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity M2_1B1_MXILINX_p4ej2
+# -- Compiling architecture BEHAVIORAL of M2_1B1_MXILINX_p4ej2
+# -- Compiling entity M2_1_MXILINX_p4ej2
+# -- Compiling architecture BEHAVIORAL of M2_1_MXILINX_p4ej2
+# -- Compiling entity FTCLEX_MXILINX_p4ej2
+# -- Compiling architecture BEHAVIORAL of FTCLEX_MXILINX_p4ej2
+# -- Compiling entity CB4CLED_MXILINX_p4ej2
+# -- Compiling architecture BEHAVIORAL of CB4CLED_MXILINX_p4ej2
+# -- Compiling entity p4ej1_MUSER_p4ej2
+# -- Compiling architecture BEHAVIORAL of p4ej1_MUSER_p4ej2
+# -- Compiling entity p4ej2
+# -- Compiling architecture BEHAVIORAL of p4ej2
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package VCOMPONENTS
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity p4ej2_tb
+# -- Compiling architecture testbench_arch of p4ej2_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.p4ej2_tb
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading unisim.vcomponents
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.p4ej2_tb(testbench_arch)#1
+# Loading work.p4ej2(behavioral)#1
+# Loading work.p4ej1_muser_p4ej2(behavioral)#1
+# Loading unisim.fdc(fdc_v)#1
+# Loading unisim.and2(and2_v)#1
+# Loading unisim.and3b2(and3b2_v)#1
+# Loading unisim.and2b2(and2b2_v)#1
+# Loading unisim.or2(or2_v)#1
+# Loading unisim.and2b1(and2b1_v)#1
+# Loading work.cb4cled_mxilinx_p4ej2(behavioral)#1
+# Loading work.ftclex_mxilinx_p4ej2(behavioral)#1
+# Loading work.m2_1_mxilinx_p4ej2(behavioral)#1
+# Loading unisim.xor2(xor2_v)#1
+# Loading unisim.fdce(fdce_v)#1
+# Loading work.m2_1b1_mxilinx_p4ej2(behavioral)#1
+# Loading unisim.vcc(vcc_v)#1
+# Loading unisim.and4(and4_v)#1
+# Loading unisim.and4b4(and4b4_v)#1
+# Loading unisim.and3(and3_v)#1
+# Loading unisim.and3b3(and3b3_v)#1
+# Loading unisim.gnd(gnd_v)#1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: eps  Hostname: 5B-11-64-151  ProcessID: 3236
+# 
+#           Attempting to use alternate WLF file "./wlftmxw5r1".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftmxw5r1
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+run -all
+# Causality operation skipped due to absence of debug database file

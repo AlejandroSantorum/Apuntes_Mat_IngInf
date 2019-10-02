@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<generated_project xmlns="http://www.xilinx.com/XMLSchema" xmlns:xil_pn="http://www.xilinx.com/XMLSchema">
+
+  <!--                                                          -->
+
+  <!--             For tool use only. Do not edit.              -->
+
+  <!--                                                          -->
+
+  <!-- ProjectNavigator created generated project file.         -->
+
+  <!-- For use in tracking generated file and other information -->
+
+  <!-- allowing preservation of process status.                 -->
+
+  <!--                                                          -->
+
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
+
+  <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
+
+  <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="p3ej1a.xise"/>
+
+  <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_CMD" xil_pn:name="p3ej1a.fdo"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="p3ej1a.vhf"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_CMD" xil_pn:name="p3ej1a_tb.fdo"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_LOG" xil_pn:name="vsim.wlf"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="work"/>
+  </files>
+
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1478857062" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1478857062">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1478857062" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1478857062">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="G:/Practica 3/Testbenches/p3ej1a_tb.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1478857268" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-4514245597747948619" xil_pn:start_ts="1478857268">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1478857269" xil_pn:in_ck="5274256485344720" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="7161658642944975981" xil_pn:start_ts="1478857268">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="p3ej1a.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1478857065" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="7857122827164519809" xil_pn:start_ts="1478857065">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1478857065" xil_pn:in_ck="5274256485348150" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1478857065">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="G:/Practica 3/Testbenches/p3ej1a_tb.vhd"/>
+      <outfile xil_pn:name="p3ej1a.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1478877211" xil_pn:in_ck="5274256485348150" xil_pn:name="TRAN_MSimulateBehavioralModel" xil_pn:prop_ck="-2353282809756103323" xil_pn:start_ts="1478877210">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="p3ej1a_tb.fdo"/>
+      <outfile xil_pn:name="vsim.wlf"/>
+      <outfile xil_pn:name="work"/>
+    </transform>
+  </transforms>
+
+</generated_project>

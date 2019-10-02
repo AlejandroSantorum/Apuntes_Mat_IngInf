@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<generated_project xmlns="http://www.xilinx.com/XMLSchema" xmlns:xil_pn="http://www.xilinx.com/XMLSchema">
+
+  <!--                                                          -->
+
+  <!--             For tool use only. Do not edit.              -->
+
+  <!--                                                          -->
+
+  <!-- ProjectNavigator created generated project file.         -->
+
+  <!-- For use in tracking generated file and other information -->
+
+  <!-- allowing preservation of process status.                 -->
+
+  <!--                                                          -->
+
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
+
+  <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
+
+  <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="p2ej2_montaje.xise"/>
+
+  <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="p2ej2_montaje.vhf"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_CMD" xil_pn:name="p2ej2_montaje_tb.fdo"/>
+  </files>
+
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1477918022" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1477918021">
+      <status xil_pn:value="SuccessfullyRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1477918022" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1477918022">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej2_montaje_tb.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1477918022" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-6215133569513823807" xil_pn:start_ts="1477918022">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1477918240" xil_pn:in_ck="9154959349868118844" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-6466516082938934663" xil_pn:start_ts="1477918238">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="p2ej2_montaje.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1477918024" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-9000339934104783859" xil_pn:start_ts="1477918024">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1477918240" xil_pn:in_ck="9154959349868122274" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1477918240">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Practica 2/testbenches/p2ej2_montaje_tb.vhd"/>
+      <outfile xil_pn:name="p2ej2_montaje.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1477918246" xil_pn:in_ck="9154959349868122274" xil_pn:name="TRAN_MSimulateBehavioralModel" xil_pn:prop_ck="-2353282809756103323" xil_pn:start_ts="1477918240">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="p2ej2_montaje_tb.fdo"/>
+    </transform>
+  </transforms>
+
+</generated_project>

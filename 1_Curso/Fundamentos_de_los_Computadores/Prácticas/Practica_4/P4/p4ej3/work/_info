@@ -1,0 +1,196 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/P4/p4ej3
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+!s110 1481109587
+V^EXeWKzSn<:mROTTI<RhN0
+04 8 14 work p4ej3_tb testbench_arch 1
+=1-c03fd5f05b86-5847f051-32b-214
+o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+OL;O;10.2e;57
+Ememoria
+Z1 w1481109567
+Z2 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z3 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z4 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+Z6 dC:/Users/eps/Desktop/P4/p4ej3
+Z7 8Memoria.vhf
+Z8 FMemoria.vhf
+l0
+L28
+V58gSY?Y];4b6JhOnbPCPA0
+Z9 OL;C;10.2e;57
+31
+Z10 !s110 1481109583
+Z11 !s108 1481109582.535000
+Z12 !s90 -reportprogress|300|-explicit|-93|Memoria.vhf|
+Z13 !s107 Memoria.vhf|
+Z14 o-explicit -93
+Z15 tExplicit 1
+!s100 n7zAS0eU4cR=QbQ=PW]P60
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 7 memoria 0 22 58gSY?Y];4b6JhOnbPCPA0
+l67
+L43
+VdQjoAYC6j@jEV?goF=HN22
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 1YfH@Y[o7Bnbmh9GzW_[P1
+!i10b 1
+!i111 0
+Ememoria_muser_p4ej3
+R1
+R2
+R3
+R4
+R5
+R6
+Z16 8p4ej3.vhf
+Z17 Fp4ej3.vhf
+l0
+L28
+V@CJb@HQ<IN1jS3n<BFd1z0
+R9
+31
+R10
+Z18 !s108 1481109583.424000
+Z19 !s90 -reportprogress|300|-explicit|-93|p4ej3.vhf|
+Z20 !s107 p4ej3.vhf|
+R14
+R15
+!s100 8I>N0SR`1<<_GjVEa@G4<1
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 19 memoria_muser_p4ej3 0 22 @CJb@HQ<IN1jS3n<BFd1z0
+l67
+L43
+V3fF1a@eAWl943S?n0gZY72
+R9
+31
+R10
+R18
+R19
+R20
+R14
+R15
+!s100 IAZb@ZeC@ke049lW4]2jX1
+!i10b 1
+!i111 0
+Ep4ej3
+R1
+R2
+R3
+R4
+R5
+R6
+R16
+R17
+l0
+L155
+Vk>C3F6[=NHT0Vz9Nm@;1`1
+R9
+31
+R10
+R18
+R19
+R20
+R14
+R15
+!s100 WJ;g2a9aT1FWcdAgK>iH51
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 5 p4ej3 0 22 k>C3F6[=NHT0Vz9Nm@;1`1
+l198
+L164
+VzTbECS@YNz8[?lHBoEJVD2
+R9
+31
+R10
+R18
+R19
+R20
+R14
+R15
+!s100 B91BQh67iz2365o3CS;SM2
+!i10b 1
+!i111 0
+Ep4ej3_tb
+Z21 w1479479462
+Z22 DPx4 ieee 18 std_logic_unsigned 0 22 @_jbHPR7i^Jh?`2fDCO`m3
+Z23 DPx4 ieee 15 std_logic_arith 0 22 I`lKR?Ob>E^B_e2VdVLiQ0
+Z24 DPx4 ieee 16 std_logic_textio 0 22 E=LR>a2bb_I?VV>QDdAdh3
+R3
+R4
+R5
+R2
+R6
+Z25 8G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej3_tb.vhd
+Z26 FG:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej3_tb.vhd
+l0
+L15
+Vmk@MF`D?5?RPR9VYia?5L0
+R9
+31
+R10
+Z27 !s108 1481109583.705000
+Z28 !s90 -reportprogress|300|-explicit|-93|G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej3_tb.vhd|
+Z29 !s107 G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej3_tb.vhd|
+R14
+R15
+!s100 A:2o@k?Vz68CGl@]heLHD2
+!i10b 1
+!i111 0
+Atestbench_arch
+R22
+R23
+R24
+R3
+R4
+R5
+R2
+DEx4 work 8 p4ej3_tb 0 22 mk@MF`D?5?RPR9VYia?5L0
+l43
+L18
+VjI]D[Q9Bz8nOQ17cD?6e71
+R9
+31
+R10
+R27
+R28
+R29
+R14
+R15
+!s100 IT51gg>KIJAcGWiTzhI;z2
+!i10b 1
+!i111 0

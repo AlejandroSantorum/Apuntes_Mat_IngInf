@@ -1,0 +1,114 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/P3/p3ej1a
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+VSl?7R1^l@lO`TO1G^6>PC1
+04 6 10 work p3ej1a behavioral 1
+=1-d850e6d18201-58259186-1d0-6ec
+Z1 o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+Z2 OL;O;10.2e;57
+Z3 dC:/Users/eps/Desktop/P3/p3ej1a
+!s110 1478857097
+T_opt1
+VSd:J4135b=XDHjG[`S2O@2
+04 9 10 work p3ej1a_tb behavioral 1
+=1-d850e6d18201-5825923c-c5-1278
+R1
+n@_opt1
+R2
+R3
+!s110 1478857276
+Ep3ej1a
+Z4 w1478857064
+Z5 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z6 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z7 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z8 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+R3
+Z9 8p3ej1a.vhf
+Z10 Fp3ej1a.vhf
+l0
+L28
+VlE7ecaf=?hUDkZA[ekX0X1
+Z11 OL;C;10.2e;57
+31
+Z12 !s110 1478877214
+Z13 !s108 1478877214.645000
+Z14 !s90 -reportprogress|300|-explicit|-93|p3ej1a.vhf|
+Z15 !s107 p3ej1a.vhf|
+Z16 o-explicit -93
+Z17 tExplicit 1
+!s100 5JYP>@m?EMm6n`9CZn_l;2
+!i10b 1
+!i111 0
+Abehavioral
+R5
+R6
+R7
+R8
+DEx4 work 6 p3ej1a 0 22 lE7ecaf=?hUDkZA[ekX0X1
+l59
+L37
+VYH^OWI3cZgL7j?_YOYkTb2
+!s100 =QJn24YnDiH:1<@MR12RW3
+R11
+31
+R12
+R13
+R14
+R15
+R16
+R17
+!i10b 1
+!i111 0
+Ep3ej1a_tb
+Z18 w1478198066
+R5
+R6
+R7
+R8
+R3
+Z19 8G:/Practica 3/Testbenches/p3ej1a_tb.vhd
+Z20 FG:/Practica 3/Testbenches/p3ej1a_tb.vhd
+l0
+L9
+ViDF<e?:`jFX5:ZWD1V6GD0
+!s100 4UXKcg9mVLZJUaidbgW3F0
+R11
+31
+Z21 !s110 1478877215
+!i10b 1
+Z22 !s108 1478877214.957000
+Z23 !s90 -reportprogress|300|-explicit|-93|G:/Practica 3/Testbenches/p3ej1a_tb.vhd|
+Z24 !s107 G:/Practica 3/Testbenches/p3ej1a_tb.vhd|
+!i111 0
+R16
+R17
+Abehavioral
+R5
+R6
+R7
+R8
+Z25 DEx4 work 9 p3ej1a_tb 0 22 iDF<e?:`jFX5:ZWD1V6GD0
+l38
+L12
+Z26 V369zO@jH8<m4hGe=>dPzG1
+Z27 !s100 B0g9NJGmTPeU9f0[e@A_S3
+R11
+31
+R21
+!i10b 1
+R22
+R23
+R24
+!i111 0
+R16
+R17

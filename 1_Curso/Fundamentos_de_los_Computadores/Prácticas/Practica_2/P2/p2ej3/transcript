@@ -1,0 +1,67 @@
+# Reading C:/modeltech64_10.2e/tcl/vsim/pref.tcl
+# //  ModelSim SE-64 10.2e Jun 20 2014 
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {p2ej3_tb.fdo}
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity M2_1_MXILINX_p2ej3
+# -- Compiling architecture BEHAVIORAL of M2_1_MXILINX_p2ej3
+# -- Compiling entity M2_1E_MXILINX_p2ej3
+# -- Compiling architecture BEHAVIORAL of M2_1E_MXILINX_p2ej3
+# -- Compiling entity M8_1E_MXILINX_p2ej3
+# -- Compiling architecture BEHAVIORAL of M8_1E_MXILINX_p2ej3
+# -- Compiling entity D3_8E_MXILINX_p2ej3
+# -- Compiling architecture BEHAVIORAL of D3_8E_MXILINX_p2ej3
+# -- Compiling entity p2ej3
+# -- Compiling architecture BEHAVIORAL of p2ej3
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity p2ej3_tb
+# -- Compiling architecture behavioral of p2ej3_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.p2ej3_tb
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.p2ej3_tb(behavioral)#1
+# Loading work.p2ej3(behavioral)#1
+# Loading work.d3_8e_mxilinx_p2ej3(behavioral)#1
+# Loading unisim.and4(and4_v)#1
+# Loading unisim.and4b1(and4b1_v)#1
+# Loading unisim.and4b2(and4b2_v)#1
+# Loading unisim.and4b3(and4b3_v)#1
+# Loading work.m8_1e_mxilinx_p2ej3(behavioral)#1
+# Loading work.m2_1e_mxilinx_p2ej3(behavioral)#1
+# Loading unisim.and3(and3_v)#1
+# Loading unisim.and3b1(and3b1_v)#1
+# Loading unisim.or2(or2_v)#1
+# Loading unisim.muxf5_l(muxf5_l_v)#1
+# Loading unisim.muxf6(muxf6_v)#1
+# Loading work.m2_1_mxilinx_p2ej3(behavioral)#1
+# Loading unisim.and2b1(and2b1_v)#1
+# Loading unisim.and2(and2_v)#1
+# Loading unisim.vcc(vcc_v)#1
+# Loading unisim.gnd(gnd_v)#1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Note: Fin de simulación, verifique errores
+#    Time: 320 ns  Iteration: 0  Instance: /p2ej3_tb

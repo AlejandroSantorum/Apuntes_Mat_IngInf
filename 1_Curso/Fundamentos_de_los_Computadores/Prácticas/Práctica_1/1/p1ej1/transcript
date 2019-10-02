@@ -1,0 +1,49 @@
+# Reading C:/modeltech64_10.2e/tcl/vsim/pref.tcl
+# //  ModelSim SE-64 10.2e Jun 20 2014 
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {P1EJ1_tb.fdo}
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity p1ej1
+# -- Compiling architecture BEHAVIORAL of p1ej1
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity P1EJ1_tb
+# -- Compiling architecture behavioral of P1EJ1_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.P1EJ1_tb
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.p1ej1_tb(behavioral)#1
+# Loading work.p1ej1(behavioral)#1
+# Loading unisim.and4(and4_v)#1
+# Loading unisim.and3(and3_v)#1
+# Loading unisim.or4(or4_v)#1
+# Loading unisim.inv(inv_v)#1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Causality operation skipped due to absence of debug database file

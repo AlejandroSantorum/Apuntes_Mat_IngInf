@@ -1,0 +1,435 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/P4/p4ej1
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+V9b:LcE77K9B33ffZ633CW2
+Z1 04 8 14 work p4ej1_tb testbench_arch 1
+=1-c03fd5f05f3d-583583ac-159-1688
+Z2 o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+Z3 OL;O;10.2e;57
+Z4 dC:/Users/eps/Desktop/P4/p4ej1
+!s110 1479902124
+T_opt1
+VY?P:SMcCUKBmKY8]B2anb1
+R1
+=1-c03fd5f05f3d-583eb832-d5-1278
+R2
+n@_opt1
+R3
+R4
+!s110 1480505394
+T_opt2
+Z5 !s110 1480507066
+V32]CVGnfRi]CL6]f97oFZ1
+04 8 14 work p4ej2_tb testbench_arch 1
+=1-c03fd5f05f3d-583ebeba-12f-1688
+R2
+n@_opt2
+R3
+Ecb4cled_mxilinx_p4ej2
+Z6 w1480507059
+Z7 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z8 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z9 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z10 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+R4
+Z11 8p4ej2.vhf
+Z12 Fp4ej2.vhf
+l0
+L219
+V7_@Yg<a>2ZiG`WfHVUE`C1
+Z13 OL;C;10.2e;57
+31
+Z14 !s110 1480507065
+Z15 !s108 1480507065.461000
+Z16 !s90 -reportprogress|300|-explicit|-93|p4ej2.vhf|
+Z17 !s107 p4ej2.vhf|
+Z18 o-explicit -93
+Z19 tExplicit 1
+!s100 [TegiHYX06Ce0oJ4V48V91
+!i10b 1
+!i111 0
+Abehavioral
+R7
+R8
+R9
+R10
+DEx4 work 21 cb4cled_mxilinx_p4ej2 0 22 7_@Yg<a>2ZiG`WfHVUE`C1
+l349
+L237
+Vi385RJ]cbdLJX]JUF?94N2
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 0GagNO?TXHLGCg1JPL5^f0
+!i10b 1
+!i111 0
+Eftclex_mxilinx_p4ej2
+R6
+R7
+R8
+R9
+R10
+R4
+R11
+R12
+l0
+L144
+VfnKf]@=cMU8DO1B?b=1>V1
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 Y^RnmIzcG2EEkO9eYCoTN1
+!i10b 1
+!i111 0
+Abehavioral
+R7
+R8
+R9
+R10
+DEx4 work 20 ftclex_mxilinx_p4ej2 0 22 fnKf]@=cMU8DO1B?b=1>V1
+l188
+L155
+VcT;Gh[1Pi^?N<JFc]h1gb1
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 5MaonC2HF>il=aRBC`:FU0
+!i10b 1
+!i111 0
+Em2_1_mxilinx_p4ej2
+R6
+R7
+R8
+R9
+R10
+R4
+R11
+R12
+l0
+L86
+VHV=4XUn;STNe:>ONCAVY=2
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 _;_`8j13[7N`=UdnURz8S2
+!i10b 1
+!i111 0
+Abehavioral
+R7
+R8
+R9
+R10
+DEx4 work 18 m2_1_mxilinx_p4ej2 0 22 HV=4XUn;STNe:>ONCAVY=2
+l118
+L93
+VFHcf[hPP]Wz9`To9XNh@A1
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 aGB7o0ldc]1CQz4AF9LZj1
+!i10b 1
+!i111 0
+Em2_1b1_mxilinx_p4ej2
+R6
+R7
+R8
+R9
+R10
+R4
+R11
+R12
+l0
+L28
+VcJ]WTJ9SM4Aa=jC_[9G2@3
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 ]CjY@Sd<;c^l1MhZDlQNg3
+!i10b 1
+!i111 0
+Abehavioral
+R7
+R8
+R9
+R10
+DEx4 work 20 m2_1b1_mxilinx_p4ej2 0 22 cJ]WTJ9SM4Aa=jC_[9G2@3
+l60
+L35
+VkJVb1O7hUMWNU=0;2UH?;2
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 PEYX_[FhT1RlOl?[N^HN>3
+!i10b 1
+!i111 0
+Ep4ej1
+Z20 w1480505387
+R7
+R8
+R9
+R10
+R4
+Z21 8p4ej1.vhf
+Z22 Fp4ej1.vhf
+l0
+L28
+V41@:l`a<JUhdn=PQXP0C23
+R13
+31
+R14
+Z23 !s108 1480507065.133000
+Z24 !s90 -reportprogress|300|-explicit|-93|p4ej1.vhf|
+Z25 !s107 p4ej1.vhf|
+R18
+R19
+!s100 O]3RiVhD]f]<ff;L9P^NZ1
+!i10b 1
+!i111 0
+Abehavioral
+R7
+R8
+R9
+R10
+DEx4 work 5 p4ej1 0 22 41@:l`a<JUhdn=PQXP0C23
+l96
+L37
+VOj`GHILNEj=:J9H7EceWB2
+R13
+31
+R14
+R23
+R24
+R25
+R18
+R19
+!s100 3Ddg:[ZIn>72J8:NfO84:0
+!i10b 1
+!i111 0
+Ep4ej1_muser_p4ej2
+R6
+R7
+R8
+R9
+R10
+R4
+R11
+R12
+l0
+L474
+VSSDi^fD`PlZIKG7>QOTan3
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 jeOJhP@Y1zgFDc]V7>D5<3
+!i10b 1
+!i111 0
+Abehavioral
+R7
+R8
+R9
+R10
+DEx4 work 17 p4ej1_muser_p4ej2 0 22 SSDi^fD`PlZIKG7>QOTan3
+l542
+L483
+VmWP[`VINmQCmK4>340<H41
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 Lig[e3a?bhSX@LkO@Nz8R0
+!i10b 1
+!i111 0
+Ep4ej1_tb
+Z26 w1479379120
+Z27 DPx4 ieee 18 std_logic_unsigned 0 22 @_jbHPR7i^Jh?`2fDCO`m3
+Z28 DPx4 ieee 15 std_logic_arith 0 22 I`lKR?Ob>E^B_e2VdVLiQ0
+Z29 DPx4 ieee 16 std_logic_textio 0 22 E=LR>a2bb_I?VV>QDdAdh3
+R8
+R9
+R10
+R7
+R4
+Z30 8G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej1_tb.vhd
+Z31 FG:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej1_tb.vhd
+l0
+L16
+VLhDm8Hdi;ijf@77DC@U^[1
+R13
+31
+Z32 !s110 1480505410
+Z33 !s108 1480505410.055000
+Z34 !s90 -reportprogress|300|-explicit|-93|G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej1_tb.vhd|
+Z35 !s107 G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej1_tb.vhd|
+R18
+R19
+!s100 WP;2f`_g]Y@IFU[>DMI0Y1
+!i10b 1
+!i111 0
+Atestbench_arch
+R27
+R28
+R29
+R8
+R9
+R10
+R7
+DEx4 work 8 p4ej1_tb 0 22 LhDm8Hdi;ijf@77DC@U^[1
+l44
+L19
+VYoUR04M>6l4BfW]7KJR0a2
+R13
+31
+R32
+R33
+R34
+R35
+R18
+R19
+!s100 PMP^jE^b@3UDgO?7ZLCiC3
+!i10b 1
+!i111 0
+Ep4ej2
+R6
+R7
+R8
+R9
+R10
+R4
+R11
+R12
+l0
+L632
+V?0jzchRTLZE2>JZ4og:bj1
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 4_6m0]QeMnhKYI4PF@FSn1
+!i10b 1
+!i111 0
+Abehavioral
+R7
+R8
+R9
+R10
+DEx4 work 5 p4ej2 0 22 ?0jzchRTLZE2>JZ4og:bj1
+l704
+L641
+VaPk2KQNb00NmdOR^aDCA33
+R13
+31
+R14
+R15
+R16
+R17
+R18
+R19
+!s100 g1JHhF[kEmF`KD1T04`D53
+!i10b 1
+!i111 0
+Ep4ej2_tb
+Z36 w1479385502
+R27
+R28
+R29
+R8
+R9
+R10
+R7
+R4
+Z37 8G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej2_tb.vhd
+Z38 FG:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej2_tb.vhd
+l0
+L15
+Vm4ZIEkmTQLbXTEKNzUQMj2
+R13
+31
+R5
+Z39 !s108 1480507065.913000
+Z40 !s90 -reportprogress|300|-explicit|-93|G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej2_tb.vhd|
+Z41 !s107 G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej2_tb.vhd|
+R18
+R19
+!s100 Ta654_aJFD=zcCL]MM0E:3
+!i10b 1
+!i111 0
+Atestbench_arch
+R27
+R28
+R29
+R8
+R9
+R10
+R7
+DEx4 work 8 p4ej2_tb 0 22 m4ZIEkmTQLbXTEKNzUQMj2
+l43
+L18
+V@Mo0daOfULHUKSU57i_m90
+R13
+31
+R5
+R39
+R40
+R41
+R18
+R19
+!s100 V<_[DP:i;b<M_ejEN=24]3
+!i10b 1
+!i111 0

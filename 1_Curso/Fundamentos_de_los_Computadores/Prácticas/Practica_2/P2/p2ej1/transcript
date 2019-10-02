@@ -1,0 +1,59 @@
+# Reading C:/modeltech64_10.2e/tcl/vsim/pref.tcl
+# //  ModelSim SE-64 10.2e Jun 20 2014 
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {p2ej1_tb.fdo}
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity OR6_MXILINX_p2ej1
+# -- Compiling architecture BEHAVIORAL of OR6_MXILINX_p2ej1
+# -- Compiling entity D4_16E_MXILINX_p2ej1
+# -- Compiling architecture BEHAVIORAL of D4_16E_MXILINX_p2ej1
+# -- Compiling entity p2ej1
+# -- Compiling architecture BEHAVIORAL of p2ej1
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity p2ej1_tb
+# -- Compiling architecture behavioral of p2ej1_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.p2ej1_tb
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.p2ej1_tb(behavioral)#1
+# Loading work.p2ej1(behavioral)#1
+# Loading work.d4_16e_mxilinx_p2ej1(behavioral)#1
+# Loading unisim.and5b3(and5b3_v)#1
+# Loading unisim.and5b2(and5b2_v)#1
+# Loading unisim.and5b1(and5b1_v)#1
+# Loading unisim.and5(and5_v)#1
+# Loading unisim.and5b4(and5b4_v)#1
+# Loading work.or6_mxilinx_p2ej1(behavioral)#1
+# Loading unisim.or4(or4_v)#1
+# Loading unisim.or3(or3_v)#1
+# Loading unisim.fmap(fmap_v)#1
+# Loading unisim.vcc(vcc_v)#1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Note: Fin de simulación, verifique errores
+#    Time: 160 ns  Iteration: 0  Instance: /p2ej1_tb

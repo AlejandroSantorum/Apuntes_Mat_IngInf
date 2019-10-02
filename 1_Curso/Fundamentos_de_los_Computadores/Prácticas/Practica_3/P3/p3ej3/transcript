@@ -1,0 +1,78 @@
+# Reading C:/modeltech64_10.2e/tcl/vsim/pref.tcl
+# //  ModelSim SE-64 10.2e Jun 20 2014 
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {p3ej3_tb.fdo}
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity M2_1_MXILINX_p3ej3
+# -- Compiling architecture BEHAVIORAL of M2_1_MXILINX_p3ej3
+# -- Compiling entity FTCLEX_MXILINX_p3ej3
+# -- Compiling architecture BEHAVIORAL of FTCLEX_MXILINX_p3ej3
+# -- Compiling entity CD4CLE_MXILINX_p3ej3
+# -- Compiling architecture BEHAVIORAL of CD4CLE_MXILINX_p3ej3
+# -- Compiling entity p3ej3
+# -- Compiling architecture BEHAVIORAL of p3ej3
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity p3ej3_tb
+# -- Compiling architecture behavioral of p3ej3_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.p3ej3_tb
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.p3ej3_tb(behavioral)#1
+# Loading work.p3ej3(behavioral)#1
+# Loading work.cd4cle_mxilinx_p3ej3(behavioral)#1
+# Loading work.ftclex_mxilinx_p3ej3(behavioral)#1
+# Loading work.m2_1_mxilinx_p3ej3(behavioral)#1
+# Loading unisim.and2b1(and2b1_v)#1
+# Loading unisim.or2(or2_v)#1
+# Loading unisim.and2(and2_v)#1
+# Loading unisim.xor2(xor2_v)#1
+# Loading unisim.fdce(fdce_v)#1
+# Loading unisim.and4b2(and4b2_v)#1
+# Loading unisim.gnd(gnd_v)#1
+# Loading unisim.vcc(vcc_v)#1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: eps  Hostname: 5B-11-64-151  ProcessID: 4312
+# 
+#           Attempting to use alternate WLF file "./wlftj73eqe".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftj73eqe
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_1/Q0
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_1/Q1
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_1/Q2
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_1/Q3
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_2/Q0
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_2/Q1
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_2/Q2
+add wave -position end  sim:/p3ej3_tb/UUT/XLXI_2/Q3
+restart
+run -all

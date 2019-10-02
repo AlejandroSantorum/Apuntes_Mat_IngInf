@@ -1,0 +1,108 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/1/p1ej3b
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+!s110 1476441000
+VTRTcdOcaYNW]@h@X5cXA63
+04 9 10 work p1ej3b_tb behavioral 1
+=1-c03fd5f05f3d-5800b3a7-271-e6c
+o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+OL;O;10.2e;57
+Ep1ej3b
+Z1 w1476440993
+Z2 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z3 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z4 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+Z6 dC:/Users/eps/Desktop/1/p1ej3b
+Z7 8p1ej3b.vhf
+Z8 Fp1ej3b.vhf
+l0
+L28
+VK8DA8cbj:lIl:U]o7e^Dd0
+Z9 OL;C;10.2e;57
+31
+Z10 !s110 1476440998
+Z11 !s108 1476440998.627000
+Z12 !s90 -reportprogress|300|-explicit|-93|p1ej3b.vhf|
+Z13 !s107 p1ej3b.vhf|
+Z14 o-explicit -93
+Z15 tExplicit 1
+!s100 DkKUk[f::Gnko4U48UWb22
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 6 p1ej3b 0 22 K8DA8cbj:lIl:U]o7e^Dd0
+l63
+L36
+VgEI>;5d9BS@`:UlBh_YVb1
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 QHQfzj9C:AcF^QHJ2UTdG0
+!i10b 1
+!i111 0
+Ep1ej3b_tb
+Z16 w1469528180
+R2
+R3
+Z17 DPx4 ieee 18 std_logic_unsigned 0 22 @_jbHPR7i^Jh?`2fDCO`m3
+Z18 DPx4 ieee 15 std_logic_arith 0 22 I`lKR?Ob>E^B_e2VdVLiQ0
+R4
+R5
+R6
+Z19 8G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3b_tb.vhd
+Z20 FG:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3b_tb.vhd
+l0
+L17
+VR8^mj3^_1;8SoSa[lN1oA1
+R9
+31
+Z21 !s110 1476440999
+Z22 !s108 1476440999.001000
+Z23 !s90 -reportprogress|300|-explicit|-93|G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3b_tb.vhd|
+Z24 !s107 G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3b_tb.vhd|
+R14
+R15
+!s100 ^^dR`XB]<6giz@_Zi8mml0
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R17
+R18
+R4
+R5
+DEx4 work 9 p1ej3b_tb 0 22 R8^mj3^_1;8SoSa[lN1oA1
+l45
+L21
+VPeiYZF?ORkagZ=Hk^=SN=1
+R9
+31
+R21
+R22
+R23
+R24
+R14
+R15
+!s100 ]15gdoi3k^iaGRZ14ZXZ:3
+!i10b 1
+!i111 0

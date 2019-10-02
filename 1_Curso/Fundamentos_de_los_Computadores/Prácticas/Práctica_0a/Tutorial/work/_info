@@ -1,0 +1,108 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/Practicas 0a/Tutorial
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+!s110 1474453483
+V;Y6]Bc;mfMz^e6m_<Mz5B0
+04 10 10 work circuitotb behavioral 1
+=1-c03fd5f05f3d-57e25fe9-2ce-18a4
+o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+OL;O;10.2e;57
+Ecircuito
+Z1 w1474453472
+Z2 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z3 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z4 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+Z6 dC:/Users/eps/Desktop/Practicas 0a/Tutorial
+Z7 8circuito.vhf
+Z8 Fcircuito.vhf
+l0
+L28
+V39K7z8iHe=Mk@I7METk9=1
+Z9 OL;C;10.2e;57
+31
+Z10 !s110 1474453479
+Z11 !s108 1474453478.599000
+Z12 !s90 -reportprogress|300|-explicit|-93|circuito.vhf|
+Z13 !s107 circuito.vhf|
+Z14 o-explicit -93
+Z15 tExplicit 1
+!s100 ZZAcze>[8U=n<3nj?n0nf2
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 8 circuito 0 22 39K7z8iHe=Mk@I7METk9=1
+l82
+L36
+VM?QRIbOT7I7G3gb<ihUW13
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!s100 Y]BK7D60?OVLzA[_OYL_M2
+!i10b 1
+!i111 0
+Ecircuitotb
+Z16 w1380710290
+R2
+R3
+Z17 DPx4 ieee 18 std_logic_unsigned 0 22 @_jbHPR7i^Jh?`2fDCO`m3
+Z18 DPx4 ieee 15 std_logic_arith 0 22 I`lKR?Ob>E^B_e2VdVLiQ0
+R4
+R5
+R6
+Z19 8CircuitoTb.vhd
+Z20 FCircuitoTb.vhd
+l0
+L24
+V=V11i<^RbACJ<k0<e66PQ1
+R9
+31
+R10
+Z21 !s108 1474453479.561000
+Z22 !s90 -reportprogress|300|-explicit|-93|CircuitoTb.vhd|
+Z23 !s107 CircuitoTb.vhd|
+R14
+R15
+!s100 chRn8n@n=7iLG>id<C9X82
+!i10b 1
+!i111 0
+Abehavioral
+R2
+R3
+R17
+R18
+R4
+R5
+DEx4 work 10 circuitotb 0 22 =V11i<^RbACJ<k0<e66PQ1
+l50
+L29
+Vh^dfKdzfDlkCSD4^<zUaa2
+R9
+31
+R10
+R21
+R22
+R23
+R14
+R15
+!s100 IinEj9[m1eB;=6BdEA4NX2
+!i10b 1
+!i111 0

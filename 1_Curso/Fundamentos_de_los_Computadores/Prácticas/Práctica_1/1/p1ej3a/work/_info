@@ -1,0 +1,109 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dC:/Users/eps/Desktop/1/p1ej3a
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+VWE^d72i8KHX5iW>chHld23
+04 9 10 work p1ej3a_tb behavioral 1
+=1-c03fd5f05fe7-57ff53cb-295-f0c
+o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+OL;O;10.2e;57
+Z1 dC:/Users/eps/Desktop/1/p1ej3a
+!s110 1476350925
+Ep1ej3a
+Z2 w1476350894
+Z3 DPx6 unisim 11 vcomponents 0 22 GSe5`g9<H?BhoL6KEg9iZ3
+Z4 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z5 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z6 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+R1
+Z7 8p1ej3a.vhf
+Z8 Fp1ej3a.vhf
+l0
+L28
+VQS4[jeNE:i;`K5j6DB>3Y3
+Z9 OL;C;10.2e;57
+31
+Z10 !s110 1476438954
+Z11 !s108 1476438954.585000
+Z12 !s90 -reportprogress|300|-explicit|-93|p1ej3a.vhf|
+Z13 !s107 p1ej3a.vhf|
+Z14 o-explicit -93
+Z15 tExplicit 1
+!s100 _n=z`e6lM8Shn=QI^enOh0
+!i10b 1
+!i111 0
+Abehavioral
+R3
+R4
+R5
+R6
+DEx4 work 6 p1ej3a 0 22 QS4[jeNE:i;`K5j6DB>3Y3
+l102
+L36
+V<I9fkQXUa07IEUg29zKlb3
+!s100 2`WRzgE`Om9HRIZ<BBolb1
+R9
+31
+R10
+R11
+R12
+R13
+R14
+R15
+!i10b 1
+!i111 0
+Ep1ej3a_tb
+Z16 w1469527990
+R3
+R4
+Z17 DPx4 ieee 18 std_logic_unsigned 0 22 @_jbHPR7i^Jh?`2fDCO`m3
+Z18 DPx4 ieee 15 std_logic_arith 0 22 I`lKR?Ob>E^B_e2VdVLiQ0
+R5
+R6
+R1
+Z19 8G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3a_tb.vhd
+Z20 FG:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3a_tb.vhd
+l0
+L17
+V^?i<]EbgT07RTZLNA[J9C3
+!s100 ^:oSEETz;^JKn^lLoUVPm0
+R9
+31
+Z21 !s110 1476438955
+!i10b 1
+Z22 !s108 1476438955.038000
+Z23 !s90 -reportprogress|300|-explicit|-93|G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3a_tb.vhd|
+Z24 !s107 G:/---/Universidad/1 CURSO/Fundamentos de los Computadores/Prácticas/Práctica 1/Testbench/p1ej3a_tb.vhd|
+!i111 0
+R14
+R15
+Abehavioral
+R3
+R4
+R17
+R18
+R5
+R6
+Z25 DEx4 work 9 p1ej3a_tb 0 22 ^?i<]EbgT07RTZLNA[J9C3
+l45
+L21
+Z26 VEZ5j:Th]DA02Cfcl^iTOL0
+Z27 !s100 DTio;2b[^H`J:bbBWQSIc3
+R9
+31
+R21
+!i10b 1
+R22
+R23
+R24
+!i111 0
+R14
+R15

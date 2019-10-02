@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<generated_project xmlns="http://www.xilinx.com/XMLSchema" xmlns:xil_pn="http://www.xilinx.com/XMLSchema">
+
+  <!--                                                          -->
+
+  <!--             For tool use only. Do not edit.              -->
+
+  <!--                                                          -->
+
+  <!-- ProjectNavigator created generated project file.         -->
+
+  <!-- For use in tracking generated file and other information -->
+
+  <!-- allowing preservation of process status.                 -->
+
+  <!--                                                          -->
+
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
+
+  <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
+
+  <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="p4ej3.xise"/>
+
+  <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="Memoria.vhf"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="p4ej3.vhf"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_MODELSIM_CMD" xil_pn:name="p4ej3_tb.fdo"/>
+  </files>
+
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1481109566" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1481109566">
+      <status xil_pn:value="SuccessfullyRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1481109566" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1481109566">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej3_tb.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1481109566" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-632599427087802761" xil_pn:start_ts="1481109566">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1481109568" xil_pn:in_ck="617618972295350632" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-8469803562074066129" xil_pn:start_ts="1481109566">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <outfile xil_pn:name="Memoria.vhf"/>
+      <outfile xil_pn:name="p4ej3.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1481109568" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="6387009364983118915" xil_pn:start_ts="1481109568">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1481109568" xil_pn:in_ck="776810363794052852" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1481109568">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <outfile xil_pn:name="G:/--/Fundamentos de los Computadores/Prácticas/Practica 4(final)/Testbenches/p4ej3_tb.vhd"/>
+      <outfile xil_pn:name="Memoria.vhf"/>
+      <outfile xil_pn:name="p4ej3.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1481109573" xil_pn:in_ck="776810363794052852" xil_pn:name="TRAN_MSimulateBehavioralModel" xil_pn:prop_ck="-2353282809756103323" xil_pn:start_ts="1481109568">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <outfile xil_pn:name="p4ej3_tb.fdo"/>
+    </transform>
+  </transforms>
+
+</generated_project>

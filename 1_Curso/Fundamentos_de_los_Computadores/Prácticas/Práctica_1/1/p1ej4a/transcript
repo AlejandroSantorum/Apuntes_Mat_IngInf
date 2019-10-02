@@ -1,0 +1,82 @@
+# Reading C:/modeltech64_10.2e/tcl/vsim/pref.tcl
+# //  ModelSim SE-64 10.2e Jun 20 2014 
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {P1EJ4b_tb.fdo}
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity p1ej4a
+# -- Compiling architecture BEHAVIORAL of p1ej4a
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity p1ej4a_MUSER_p1ej4b
+# -- Compiling architecture BEHAVIORAL of p1ej4a_MUSER_p1ej4b
+# -- Compiling entity p1ej4b
+# -- Compiling architecture BEHAVIORAL of p1ej4b
+# Model Technology ModelSim SE-64 vcom 10.2e Compiler 2014.06 Jun 20 2014
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package VCOMPONENTS
+# -- Compiling entity P1EJ4b_tb
+# -- Compiling architecture behavioral of P1EJ4b_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.P1EJ4b_tb
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading uni# Causality operation skipped due to absence of debug database file
+rk.p1ej4b(behavioral)#1
+# Loading work.p1ej4a_muser_p1ej4b(behavioral)#1
+# Loading unisim.xor3(xor3_v)#1
+# Loading unisim.or3(or3_v)#1
+# Loading unisim.and2(and2_v)#1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: eps  Hostname: 5B-11-64-151  ProcessID: 5396
+# 
+#           Attempting to use alternate WLF file "./wlft5895kh".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlft5895kh
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run -all
