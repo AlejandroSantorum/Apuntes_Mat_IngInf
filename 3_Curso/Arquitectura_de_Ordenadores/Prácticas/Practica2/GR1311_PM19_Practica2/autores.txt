@@ -1,0 +1,10 @@
+Alejandro Santorum Varela - alejandro.santorum@estudiante.uam.es
+David Cabornero Pascual - david.cabornero@estudiante.uam.es
+Grupo 1311
+Pareja PM19
+Práctica 2
+30/10/2018
+
+Observaciones: no se indicaba ningún formato para la entrega, por
+lo que se ha optado por denominar a la carpeta de la entrega como
+"GR1311_PM19_Practica2".
