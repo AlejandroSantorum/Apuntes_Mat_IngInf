@@ -1,0 +1,17 @@
+Autores:
+	Alejandro Santorun Varela - alejandro.santorum@estudiante.uam.es
+	David Cabornero Pascual - david.cabornero@estudiante.uam.es
+Pareja 4
+Fecha: 13/12/2018
+Práctica 3
+COMENTARIOS: Se incluye una fichero .pcap de una prueba realizada antes de la entrega, con fragmentacion incluida.
+
+
+· ICMP y echo/ping dentro de la red local: Realizado -> Se ha comprobado su correctitud con Wireshark
+· ICMP y echo/ping en un equipo no adyacente: Realizado -> Se ha comprobado su correctitud con Wireshark
+· Formación correcta de un paquete UDP dentro de la red local: Realizado -> Se ha comprobado su correctitud con Wireshark
+· Envío y Recepción de un paquete UDP en un equipo no adyacente (externo a la LAN): Realizado -> Se ha comprobado su correctitud con Wireshark
+· Envío y Recepción de paquetes UDP que hayan sufrido fragmentación: Realizado -> Se ha comprobado su correctitud con Wireshark
+· Implementación del bit DF: Realizado -> Se ha comprobado su correctitud con Wireshark
+· Lectura de datos para paquetes UDP desde archivo: Realizado -> Se ha comprobado su correctitud con Wireshark
+· Impresión de tramas enviadas por pantalla en hexadecimal : Realizado -> Se puede ver en la terminal que cada vez que el modulo ETH inyecta en la red se imprime la traza inyectada por pantalla

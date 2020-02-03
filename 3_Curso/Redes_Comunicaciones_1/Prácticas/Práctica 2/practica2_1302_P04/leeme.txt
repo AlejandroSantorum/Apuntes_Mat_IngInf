@@ -1,0 +1,21 @@
+Autores:
+	Alejandro Santorun Varela - alejandro.santorum@estudiante.uam.es
+	David Cabornero Pascual - david.cabornero@estudiante.uam.es
+Pareja 4
+Fecha: 11/11/2018
+Práctica 2
+COMENTARIOS: se añade un informe de la práctica llamado "InformeP2.pdf" en el que se
+incluyen todos los comentarios sobre el código y unos ejemplos de ejecución del programa.
+Además, se añade un fichero .pcap llamdo "ejemplo.pcap" con el que se ha realizado una comprobación
+del programa de captura de tráfico en vivo y del cual se han extraído varios pantallazos incluidos
+en el informe. Puede utilizar este fichero para comprobar la correctitud del informe y/o programa. 
+
+
+· Captura desde interfaz de red: Realizado -> Se ha comprobado su correctitud con Wireshark y se incluyen pantallazos en el informe
+· Información de nivel 2: Realizado -> Comprobar informe y/o programa
+· Información de nivel 3 (General): Realizado -> Comprobar informe y/o programa
+· Información de nivel 3 (Opciones): Realizado -> Avanzamos el puntero uint8_t *pack saltándonos ese campo
+· Información de nivel 4: Realizado -> Comprobar informe y/o programa
+· Campo desplazamiento/offset: Realizado -> Si no es igual a cero no se analiza el nivel 4, porque no está presente en ese paquete
+· Análisis de tráfico cruzado: Realizado -> Se muestran solo los protocolos especificados. Comprobar en el propio programa y/o informe
+· Filtro de paquetes: Realizado -> Se aportan pruebas en el informe de que funcionan los 4 filtros. Puede comprobarse con el programa aportado

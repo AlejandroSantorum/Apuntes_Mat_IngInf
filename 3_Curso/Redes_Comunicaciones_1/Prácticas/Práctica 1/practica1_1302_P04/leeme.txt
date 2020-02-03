@@ -1,0 +1,17 @@
+Autores:
+	Alejandro Santorun Varela - alejandro.santorum@estudiante.uam.es
+	David Cabornero Pascual - david.cabornero@estudiante.uam.es
+Pareja 4
+Fecha: 17/10/2018
+Práctica 1
+Comentarios: se añade un informe de la práctica llamado "InformeP1.pdf" en el que se
+incluyen todos los comentarios sobre el código, y otro documento "practica1.pdf"
+en el que se recogen los ejercicios de captura de tráfico de la primera semana.
+
+· Normativa de entrega cumplida en su totalidad: Realizado -> el enunciado ha sido leído varias veces
+· Contar paquetes de una traza: Realizado -> Se ha comprobado su correctitud con Wireshark
+· Contar paquetes de la interfaz de red: Realizado -> Coinciden con el ID auxiliar que le hemos añadido con el último paquete analizado
+· Almacenar en una traza el tráfico capturado en vivo: Realizado -> Se ha comprobado su correctitud con la ayuda de Wireshark, repitiendo el proceso con varios paquetes
+· Modificar fecha correctamente: Realizado -> Comprobado viendo la ejecución del propio programa
+· Imprimir los N primeros bytes: Realizado -> Además se comprueba el tamaño de N con snaplen y con el tamaño real del paquete
+· Ejercicios de captura de tráfico: Realizado -> comprobar documento "practica1.pdf"
