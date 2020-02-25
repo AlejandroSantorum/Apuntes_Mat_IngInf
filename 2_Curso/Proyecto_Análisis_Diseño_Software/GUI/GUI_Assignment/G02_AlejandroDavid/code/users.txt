@@ -1,0 +1,10 @@
+Rol;NIF;Full Name;Password;Credit Card Number
+O;51999111X;Garcia Serrano, Ana Maria;pezEspada;9999666633330000
+D;55555111Z;Perez Lopez, Jose Luis;NoSeSaBe;7777222288885555
+OD;54444111D;Martin Garcia, Ana Maria;olvidame;9999555599996666
+OD;X1130055;Lopez, Mary;secreta;111133337777222
+O;landlord;Cabornero Pascual, David;landlord;1111999988887777
+D;renter;Rajoy Garcia, Mariano;renter;1111222233334444
+OD;lr;Superman, Jorge;lr;9999888877776666
+D;blockedID;Wick, Jhon;blocked;1234567890123456
+D;blockedID2;Escobar, Paco;blocked;2123

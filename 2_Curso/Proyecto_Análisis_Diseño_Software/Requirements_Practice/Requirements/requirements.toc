@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Purpose of the system}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Scope of the system}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Objectives and success criteria of the project}{4}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Definitions, acronyms, and abbreviations}{4}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Definitions}{4}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}Acronyms}{5}{subsubsection.1.4.2}
+\contentsline {subsubsection}{\numberline {1.4.3}Abbreviations}{5}{subsubsection.1.4.3}
+\contentsline {section}{\numberline {2}System Description}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Functional Requirements}{5}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Non-Registered User or Public User}{5}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Registered User}{5}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Manager}{6}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}Non-functional Requirements}{6}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Usability}{6}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Reliability}{6}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Performance}{6}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Supportability}{6}{subsubsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.5}Implementation}{7}{subsubsection.2.2.5}
+\contentsline {section}{\numberline {3}Use Cases}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Use Case diagram}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Use Case descriptions}{8}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Use Case: Register an apartment}{8}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Use Case: Create offer}{8}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Use Case: Rent an apartment}{9}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Use Case: Comment}{10}{subsubsection.3.2.4}
+\contentsline {section}{\numberline {4}Mockups}{11}{section.4}
