@@ -1,12 +1,12 @@
-Autores de varios de los ejercicios que se exponen en este directorio:
-	· Alejandro Santorum Varela - alejandro.santorum@gmail.com
-	· Sergio Galán Martín - sergio.galanm@estudiante.uam.es
-	· Mario García Pascual - mario.garciapascual@estudiante.uam.es
-	· David Cabornero Pascual - david.cabornero@estudiante.uam.es
+Autores de varios de los ejercicios que se exponen en este directorio:<br>
+	· Alejandro Santorum Varela (@AlejandroSantorum)- alejandro.santorum@gmail.com<br>
+	· Sergio Galán Martín (@sergamar) - sergio.galanm@estudiante.uam.es<br>
+	· Mario García Pascual (@mariogp) - mario.garciapascual@estudiante.uam.es<br>
+	· David Cabornero Pascual (@DCabornero) - david.cabornero@estudiante.uam.es<br>
 
--------------------------------------------------------------------------
-Authors of several exercises that can be found in this directory:
-	· Alejandro Santorum Varela - alejandro.santorum@gmail.com
-	· Sergio Galán Martín - sergio.galanm@estudiante.uam.es
-	· Mario García Pascual - mario.garciapascual@estudiante.uam.es
-	· David Cabornero Pascual - david.cabornero@estudiante.uam.es
+-------------------------------------------------------------------------<br>
+Authors of several exercises that can be found in this directory:<br>
+	· Alejandro Santorum Varela (@AlejandroSantorum) - alejandro.santorum@gmail.com<br>
+	· Sergio Galán Martín (@sergamar) - sergio.galanm@estudiante.uam.es<br>
+	· Mario García Pascual (@mariogp) - mario.garciapascual@estudiante.uam.es<br>
+	· David Cabornero Pascual (@DCabornero) - david.cabornero@estudiante.uam.es<br>
