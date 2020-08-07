@@ -1,0 +1,7 @@
+n,A=3,2
+coefs=[randint(-A,A) for _ in xrange(n+1)]
+P=0
+for a in coefs: 
+	P*=x
+	P+=a
+	P.expand();P.solve(x);P.factor();coefs

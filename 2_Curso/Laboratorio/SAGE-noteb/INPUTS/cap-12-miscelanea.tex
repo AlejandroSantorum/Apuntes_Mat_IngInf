@@ -1,0 +1,734 @@
+
+En este \'ultimo cap\'{\i}tulo, especie de caj\'on de sastre (?`caj\'on 
+desastre?),  se incluyen ejercicios sobre temas sueltos que no encajan el los 
+previos pero que creemos interesantes. No suele ser posible cubrirlos todos 
+durante el curso y, de hecho,  esperamos ir a\~nadiendo otros nuevos en cursos 
+sucesivos y cada curso seleccionar algunos.
+
+
+
+
+\section{Aut\'omatas celulares}
+
+%%Unodimensionales y bidimensionales RHG -- aleatoriedad cripto ---
+%%Juego vida--avalanchas 
+%%Hormigas
+%%Peces 
+%%RHG
+
+%%CREADO 22-05-2013/11:10
+Los aut\'omatas celulares consisten en un tablero, una configuraci\'on inicial 
+del tablero y unas reglas que determinan como se pasa de una configuraci\'on a 
+la siguiente, es decir, determinan la {\itshape evoluci\'on temporal} del 
+aut\'omata. El tablero puede ser $1$-dimensional, $2$-dimensional, etc., y cada 
+casilla, que debe estar coloreada para distinguirla de las vecinas, puede ser 
+de 
+un color elegido entre ile$k$ posibles, aunque frecuentemente $k=2$. Las reglas de 
+evoluci\'on del aut\'omata dependen, para cada casilla,  de los colores que 
+presentan las casillas vecinas. 
+
+El aspecto quiz\'a m\'as interesante en los aut\'omatas celulares es que, 
+aunque 
+su evoluci\'on est\'a totalmente determinada por el tablero inicial y las 
+reglas 
+de evoluci\'on, y por tanto es un sistema completamente determinista, puede 
+generar comportamientos complejos que muestran cierta (pseudo-)aleatoriedad. 
+
+Otro aspecto interesante es que algunos aut\'omatas celulares muestran un 
+{\itshape comportamiento reversible}, en el sentido de que la situaci\'on en el 
+momento actual no s\'olo determina el comportamiento futuro sino tambi\'en el 
+pasado. Como las leyes f\'{\i}sicas fundamentales son reversibles, el estudio 
+de 
+estos modelos merece la pena.
+
+Puedes leer sobre la teor\'{\i}a de los aut\'omatas celulares en 
+\href{http://150.244.21.37/PDFs/MISCE/ca-review.pdf}{este art\'{\i}culo}. 
+
+\subsection{El Juego de la Vida}
+
+Se trata de un aut\'omata celular bidimensional, que simula, hasta cierto 
+punto, 
+ la evoluci\'on de una {\itshape colonia de bacterias.} Puedes verlo en 
+funcionamiento pinchando en el enlace en la esquina superior izquierda de esta  
+\href{http://www.ibiblio.org/lifepatterns/}{p\'agina web.}
+
+Tambi\'en puedes leer sobre el juego y algunas de las configuraciones iniciales 
+m\'as interesantes en 
+\href{http://150.244.21.37/PDFs/MISCE/Conway_life.pdf}{este art\'{\i}culo de la Wikipedia}. 
+
+
+\begin{enumerate}
+ \item Se trata de un juego con cero jugadores. El juego comienza en una
+configuraci\'on inicial y evoluciona solo.
+ \item Se juega en un tablero, como de ajedrez,  infinito con casillas vivas,
+que ser\'an las blancas,  y casillas muertas las negras. La configuraci\'on
+inicial, que suele tener un n\'umero finito de casillas vivas,  es arbitraria
+(no la del tablero de ajedrez), y en cada etapa del juego las casillas pueden
+permanecer en su estado o cambiar al otro de acuerdo con reglas precisas. 
+ \item Las reglas que determinan el estado de una casilla en la etapa siguiente
+dependen del estado en esa etapa de las ocho casillas vecinas: dos en
+horizontal, dos en vertical y cuatro en las diagonales. Concretamente son las
+siguientes:
+ \begin{enumerate}
+  \item Una casilla viva con menos (estricto) de dos vecinos vivos muere, de 
+{\itshape aburrimiento}, en la
+siguiente fase .
+  \item Una casilla viva con dos o tres vecinos vivos se mantiene viva en la
+siguiente fase.
+  \item Una casilla viva con m\'as de tres vecinos vivos muere debido al
+{\itshape stress que le causa su intensa vida social}.
+  \item Una casilla muerta con exactamente tres vecinos vivos cambia a viva en
+la siguiente fase porque {\itshape los tres vecinos vivos (!entre los tres, dos 
+s\'olo
+no pueden!) han procreado}.
+ \end{enumerate}
+
+ {\sc N\'otese}, y es importante para entender el proceso, que la
+actualizaci\'on entre una fase y la siguiente se hace {\itshape de golpe} en 
+todo el
+tablero, es decir, si cuando pasamos de la etapa $n$ a la $n+1$ hemos cambiado
+una casilla de muerta a viva ese cambio no influye en el resultado final en la
+etapa $n+1$ que s\'olo depende del estado final en la etapa $n$. 
+ 
+ En particular, la observaci\'on anterior obliga a mantener en memoria el estado
+del tablero en la fase $n$ mientras vamos actualizando un tablero inicielmente
+completamente muerto hasta obtener el estado $n+1$.  Podemos representar el
+estado del tablero en cada fase mediante una matriz de ceros y unos.
+ 
+ 
+\item En la pr\'actica hay que hacer que el tablero sea finito para poderlo
+manejar en el ordenador, y  vamos a usar {\itshape condiciones de 
+per\'iodicidad en el
+borde}: cada casilla en el borde, por ejemplo en el lateral de la izquierda,
+tiene cinco vecinos hacia el interior del tablero y los otros tres son los que,
+pegados al lateral de la derecha, ocupan posiciones sim\'etricas de la casilla
+en cuesti\'on y sus dos vecinos en vertical. 
+
+Decimos que el juego se est\'a desarrollando en un {\itshape tablero toroidal}.
+ 
+\item La idea de este juego es, claramente, que las reglas permitan estudiar la
+evoluci\'on en el tiempo de una {\itshape colonia de casillas}, simulando 
+organismos
+vivos,  que {\itshape nacen, se reproducen  y mueren},  pero tambi\'en se 
+autoorganizan en
+{\itshape organismos pluricelulares} que pueden incluso {\itshape desplazarse} 
+por el tablero.
+ 
+
+\item Sorprende la enorme riqueza de comportamientos que se ha obtenido, pero
+todav\'{\i}a sorprende m\'as que el juego es una {\itshape m\'aquina universal 
+de
+Turing} , lo que significa, m\'as o menos, que cualquier problema para el que
+existe una soluci\'on algor\'{\i}tmica (i.e. problema que se puede resolver en
+un ordenador) se puede resolver dentro del juego de la vida. Por ejemplo, es
+posible codificar dos enteros binarios dentro de una configuraci\'on inicial de
+forma que en un n\'umero finito de fases se alcance un estado, que ya no
+var\'{\i}a,  y en el que se puede leer la suma o el producto de los enteros.
+\end{enumerate}
+
+
+\begin{ejer}
+ 
+{\sc Programar} el juego de la vida usando estas instrucciones:
+
+\begin{enumerate}
+\item Conviene crear una funci\'on {\tt vecinos((n,m))} que devuelva los ocho
+vecinos de cada casilla $(n,m)$ teniendo en cuenta que el tablero es un toro.
+\item Una funci\'on {\tt siguiente(M)} que tome como argumento una matriz
+cuadrada {\tt M}, $N\times N$ de ceros y unos,  correspondiente a la fase $N$
+del tablero y devuelva la matriz correspondiente a la fase $n+1$. 
+\item Una funci\'on {\tt itera\_hasta(siguiente,M,T)} que reciba como argumentos
+la funci\'on {\tt siguiente},  la matriz del estado inicial del tablero $M$ y el
+n\'umero de iteraciones $T$,  y devuelva una lista con entradas los primeros $T$
+estados del tablero.
+\item Representaci\'on gr\'afica:
+\begin{verbatim}
+ v = map(matrix_plot,itera_hasta(siguiente,M,20))
+ animate(v).show(delay=50,iterations=10)
+\end{verbatim}
+
+\end{enumerate}
+
+\end{ejer}
+
+En esta hoja de {\sage} puedes ver una soluci\'on
+\href{http://localhost:8080/home/admin/??}{\tt 121-MISCE-vida.sws}.
+
+\subsection{Aut\'omatas celulares 1-dimensionales}
+
+En este ejercicio vamos a estudiar una familia de aut\'omatas celulares de 
+dimensi\'on uno. El {\itshape juego de la vida} es un aut\'omata celular de 
+dimensi\'on dos y, por tanto, algo m\'as complicado que los que veremos en este 
+ejercicio. El dato principal es una lista de ceros y unos que representar\'a el 
+estado inicial del aut\'amata. En el juego de la vida, en lugar de una lista 
+como estado inicial usamos una matriz.
+
+El estudio sistem\'atico, mediante ordenador, de los aut\'omatas celulares fue 
+comenzado por Stephen Wolfram\footnote{Seg\'un informaci\'on obtenida en Internet, quiz\'a no totalmente fiable, el personaje {\itshape Sheldon Cooper} en la serie {\itshape The big bang theory}  est\'a basado directamente en la vida real de Wolfram.}, creador del programa de c\'alculo simb\'olico, 
+rival de {\sage}, Mathematica. Wolfram ha escrito un tocho de unas $1200$ 
+p\'aginas, {\itshape A new kind of science}, que aunque un poco 
+megaloman\'{\i}aco a veces, es,  sin embargo,  bastante interesante. La familia 
+de aut\'omatas considerada en este ejercicio fu\'e definida y estudiada por 
+\'el en los $80$. 
+
+\begin{ejer}
+\begin{enumerate} 
+\item Define  una funci\'on de {\sage} {\tt vecinos(k,L)} que para cada entero 
+$k$ entre $0$ y $len(L)-1$ devuelva la $3$-upla  formada por el elemento de 
+$L$ anterior a {\tt L[k]}, el elemento {\tt L[k]} y el siguiente a {\tt L[k]}, 
+teniendo en cuenta que el siguiente al \'ultimo debe ser el primero y el 
+anterior al primero debe ser el \'ultimo. 
+\item Consideramos  la lista de las $8$  $3$-uplas de ceros y unos que podemos 
+formar:
+\[T=[(0, 0, 0),
+ (1, 0, 0),
+ (0, 1, 0),
+ (1, 1, 0),
+ (0, 0, 1),
+ (1, 0, 1),
+ (0, 1, 1),
+ (1, 1, 1)].
+ \]
+
+\item Cada entero  $0\le k \le 255$ se puede escribir en binario con $8$ bits 
+(rellenando con ceros cuando haga falta). Dado un tal entero $k$ le podemos 
+hacer corresponder, de esta manera,  una lista $B(k)$ de $8$ ceros o unos.
+\item Define   una función de {\sage}  que reciba como argumento un entero 
+$0\le 
+k\le 255$ y devuelva un diccionario $D(k)$ con claves las $3$-uplas de las 
+lista 
+$T$ y, para cada $3$-upla tome valor el cero o uno que ocupa el mismo lugar en 
+la lista $B(k)$ del apartado anterior. Observa que el orden en que hemos 
+definido la lista $T$ de $3$-uplas influye en el diccionario obtenido. 
+\item Define  una función de {\sage}  {\tt siguiente(L,k)} que reciba como 
+argumentos una lista $L$ de ceros o unos y un entero $0\le k\le 255$ y devuelva 
+otra lista de la misma longitud que $L$  que en el lugar $i$ tenga el valor que 
+el diccionario $D(k)$ asigna a la $3$-upla de vecinos de {\tt L[i]}. Esta 
+función es la que determina la evoluci\'on en el tiempo del aut\'omata.
+\item Define  una función {\tt evolucion(L,k,N)} que devuelva la lista de 
+listas, de longitud $N+1$,  que se obtiene al iterar, $N$ veces,  la función 
+{\tt siguiente} partiendo del valor dado de $L$, es decir, debe devolver la 
+lista
+\[
+[L,siguiente(L),siguiente(siguiente(L)),\dots,siguiente^N(L)].
+\]
+
+\item Podemos transformar la lista devuelta por {\tt evolucion(L,k,N)} en una 
+matriz con $N+1$ filas y $len(L)$ columnas, y representar gr\'aficamente la 
+matriz usando {\tt matrix\_plot}. Obtener esas representaciones gr\'aficas para 
+los valores $k=18,30,50,110$, $N=256$ y la lista $L$ inicial formada por $128$ 
+ceros, un uno y otros $128$ ceros. Observa las diferencias en las 
+características de los gr\'aficos obtenidos.
+
+ 
+ \end{enumerate}
+\end{ejer}
+
+
+
+
+
+\section{Percolaci\'on}
+
+%%Cambios fase -- valores criticos RHG
+
+
+Se llama {\itshape teor\'{\i}a de la percolaci\'on} a una serie de modelos 
+matem\'aticos que tratan de captar los aspectos importantes de la situaci\'on 
+real de un l\'{\i}quido que se filtra a trav\'es de un material poroso. La 
+teor\'{\i}a forma parte de la teor\'{\i}a de la Probabilidad, ya que un 
+ingrediente fundamental es una probabilidad $p$ fijada, y la misma en todos los 
+puntos,  de que  el l\'{\i}quido se filtre de un punto a un punto vecino. 
+
+
+Es interesante que la percolaci\'on, como modelo matem\'atico, presenta 
+{\itshape fen\'omenos cr\'{\i}ticos}. Se puede demostrar matem\'aticamente, 
+pero tambi\'en estudiar experimentalmente en el ordenador, que existe un valor 
+cr\'{\i}tico $p_c$ de la probabilidad que define el modelo tal que si $p\le 
+p_c$ no se produce con casi total seguridad percolaci\'on hasta infinito, 
+mientras que si $p>p_c$ se produce con casi total seguridad percolaci\'on hasta 
+infinito. Esto hace que el estudio de la percolaci\'on sea, en cierta medida, 
+semejante al estudio de los cambios de fase de la materia en f\'{\i}sica 
+(congelaci\'on, evaporaci\'on, etc.), para los que tambi\'en existen 
+temperaturas cr\'{\i}ticas que separan los diferentes estados. 
+
+Puedes leer m\'as sobre la percolaci\'on  en
+\href{http://150.244.21.37/PDFs/MISCE/percolation.pdf}{este art\'{\i}culo}.
+\par
+\bigskip
+\par
+{\sc Descripci\'on del problema:}
+
+
+\begin{enumerate}
+\item Consideramos el ret\'{\i}culo $L$ formado por los puntos de coordenadas 
+enteras, a los que llamamos nodos de $L$, en el plano $\mathbb{R} \times 
+\mathbb{R}$ junto con los segmentos que unen cada uno de esos puntos a los 
+adyacentes. Cada nodo $(n, m)$ tiene
+cuatro adyacentes, o vecinos, $(n-1, m),\  (n, m-1),\  (n + 1, m)$  y $(n, m 
++ 1).$
+\item Fijamos un n\'umero real $p\in (0, 1)$ y para cada uno de los cuatro 
+vecinos del origen $(0, 0)$ lanzamos una moneda trucada con probabilidad $p$ de 
+obtener cara y, en caso de obtener cara, decimos que un l\'{\i}quido que se 
+genera en el
+origen ha {\itshape percolado} al nodo en cuesti\'on.
+\item Este proceso se repite para cada nodo al que el l\'{\i}quido ha 
+percolado, 
+y se trata de analizar los valores de
+$p$ para los que el l\'{\i}quido {\itshape percola hasta infinito}.
+\item Se puede considerar que \'este es un modelo de un l\'{\i}quido que se 
+filtra a trav\'es de un s\'olido poroso, con {\itshape porosidad}
+controlada por la probabilidad $p$, y tratamos de averiguar si el l\'{\i}quido 
+{\itshape transpasa} o no. Por supuesto es un modelo matem\'atico muy 
+idealizado 
+y, por ejemplo, en {\itshape la realidad} el s\'olido no ser\'a infinito.
+\item  Tambi\'en puede verse como un modelo de la transmisi\'on de una 
+enfermedad contagiosa, que comienza en $(0, 0)$ y cuya probabilidad de contagio 
+de una persona enferma a sus {\itshape pr\'oximas} es $p.$
+\item  ?`Se podr\'{\i}a estudiar mediante un modelo similar la propagaci\'on de 
+los incendios forestales? La dificultad radicar\'{\i}a en que la probabilidad 
+de 
+propagaci\'on de un punto a los pr\'oximos deber\'a depender de las condiciones 
+locales (existencia de material combustible, viento en cada momento, 
+orograf\'{\i}a, etc.) cerca del punto, y no parece f\'acil determinarla.
+
+\end{enumerate}
+
+\begin{ejer}
+Programamos la percolaci\'on en un ret\'{\i}culo de cuadrados seg\'un las 
+siguientes indicaciones:
+\begin{enumerate}
+\item Debemos mantener dos listas que ir\'an variando a lo largo del proceso, 
+que podemos suponer que se desarrolla en instantes de tiempo sucesivos:
+\begin{enumerate}
+\item Una de todos los nodos a los que el l\'{\i}quido ha percolado hasta ese 
+momento, a la que podemos llamar {\tt nodos\_visitados.}
+\item Otra de los nodos alcanzados en el instante anterior, a la que podemos 
+llamar {\tt nodos\_alcanzados.}
+\end{enumerate}
+\item Inicialmente, {\tt nodos\_visitados=nodos\_alcanzados=[(0,0)]}, pero, por 
+ejemplo, puede ocurrir que en el siguiente instante tengamos {\tt 
+nodos\_visitados=[(0,0),(1,0),(0,-1)]} y, por tanto, {\tt 
+nodos\_alcanzados=[(1,0),(0,-1)].}
+\item Entonces, la moneda se lanza, en cada instante, desde cada uno de los 
+nodos alcanzados en el instante previo y, seg\'un el resultado, se actualiza la 
+otra lista a\~nadi\'endole los nodos a los que el l\'{\i}quido ha percolado y 
+que no estaban ya en ella.
+\item  El proceso para {\itshape naturalmente} si en un instante no hay 
+percolaci\'on desde ninguno de los nodos alcanzados, pero
+para valores de $p$ altos debemos esperar que el l\'{\i}quido siga percolando 
+indefinidamente y debemos parar el proceso nosotros.
+\item  Podemos pararlo limitando el n\'umero veces que se va a repetir el 
+intento de percolar, o bien parando el 
+programa cuando se obtengan puntos con coordenadas mayores que un l\'{\i}mite 
+prefijado. Es claro que no podemos determinar, usando el ordenador, si se va a 
+producir {\itshape percolaci\'on hasta infinito} o no, pero variando estos 
+l\'{\i}mites podemos hacernos una muy buena idea.
+\item  Una variante del programa permitir\'{\i}a visualizar el resultado:
+\begin{enumerate}
+ \item Definimos una matriz $M$ , de tama\~no $(2N + 1)\times (2N + 1)$ con 
+filas y columnas indexadas por enteros entre $0$ y
+$2N$ (ambos inclusive) que va a consistir \'unicamente de ceros o unos.
+ \item Cada vez que se {\itshape visita} un nodo $(n, m)$ hacemos que la 
+entrada 
+$M[n + N, m + N ]$  de la matriz sea un $1$, y los
+nodos no visitados quedan representados por un cero en la matriz.
+
+\item En este caso, para parar la percolaci\'on, no a\~nadimos a la lista de 
+nodos alcanzados aquellos nodos que, aunque
+el l\'{\i}quido hubiera percolado a ellos, est\'en fuera del cuadrado $[-N, N 
+]\times [-N, N ].$
+
+\item Podemos visualizar el resultado usando la instrucci\'on {\tt 
+matrix\_plot(M).}
+\end{enumerate}
+\end{enumerate}
+%\end{enumerate}
+Una vez que hemos conseguido que el programa funcione, debemos estudiar, en 
+funci\'on del valor de $0< p< 1$, cu\'ando se produce percolaci\'on hasta 
+infinito. Es claro que si $p$ es peque\~na no la habr\'a  mientras que si es 
+p\'oxima a $1$ deber\'{\i}a producirse, ya que, para cada nodo alcanzado 
+sorteamos $4$ veces para ver si percola a alguno de los nodos vecinos. La 
+probabilidad de que no percole a ninguno sabemos que vale $(1-p)^4$, y 
+ser\'{\i}a muy peque\~na.
+
+Debemos esperar entonces que en alg\'un valor $p_c$  de $p$ se produzca el 
+cambio de comportamiento: para $p<p_c$ el l\'{\i}quido no percola hasta 
+infinito mientras que para $p>p_c$ s\'{\i} lo hace. Decimos que $p_c$ es la 
+{\itshape probabilidad cr\'{\i}tica}, y nos interesa, en primer lugar, 
+determinarla experimentalmente.
+\end{ejer}
+
+
+
+\section{Ley de Benford}
+
+La {\itshape Ley de Benford} se origin\'o como una observaci\'on emp\'{\i}rica, 
+con el siguiente contenido:
+
+{\itshape Decimos que una sucesi\'on cumple la Ley de Benford si la frecuencia 
+del d\'{\i}gito $i$ como d\'{\i}gito dominante en los t\'erminos de la 
+sucesi\'on es, con muy buena aproximaci\'on,  $B[i]:=log_{10}(1+\frac{1}{i+1})$.
+}
+
+Puedes leer un poco m\'as sobre la ley en 
+\href{http://150.244.21.37/PDFs/MISCE/benford.pdf}{este art\'{\i}culo}.
+
+\begin{ejer}
+
+\begin{enumerate}
+\item Define una función de {\sage}  $frecuencia\_fib(N)$ que tenga como 
+argumento un entero $N$ y devuelva la lista de frecuencias de cada uno de los 
+d\'{\i}gitos (1,2,3,4,5,6,7,8,9) como d\'{\i}gito dominante (i.e. el primero 
+por la izquierda) de los n\'umeros en la sucesi\'on de Fibonacci que empezando 
+en $1$  tiene  longitud $N$. Representa  gr\'aficamente las frecuencias 
+obtenidas. 
+\item Denotemos por $F$ la lista que devuelve $frecuencia\_fib(20000)$. 
+Compara, usando una funci\'on de {\sage}, los valores $F[i]$ con los números  
+$B[i]:=log_{10}(1+\frac{1}{i+1})$.  
+
+\item Modifica la funci\'on del apartado $1)$ para calcular las mismas 
+frecuencias pero para la sucesi\'on de potencias $2^j$ con $j$ recorriendo los 
+enteros en el intervalo $[1,N]$. ?`Qu\'e observas al calcular las frecuencias 
+con $N=20000$?
+\item Modifica  la función del apartado $1)$ para calcular las mismas 
+frecuencias pero para la sucesión de enteros en el intervalo $[1,N]$, y también 
+para la sucesión de  cuadrados  $j^2$ con $j$ recorriendo los enteros en el 
+intervalo $[1,N]$. ?`Qu\'e  observas al calcular las frecuencias con $N=20000$?
+\item La {\itshape Ley de Benford} se cumple para muchas sucesiones generadas 
+mediante una expresi\'on matem\'atica (no para todas), y para muchas sucesiones 
+de datos num\'ericos obtenidos del mundo real, por ejemplo, mediante 
+estad\'{\i}sticas. ?`Cu\'al puede ser la   diferencia fundamental entre 
+sucesiones que cumplen bien la Ley de Benford y las que la cumplen medio bien o 
+no la cumplen?
+
+\end{enumerate}
+\end{ejer}
+
+
+
+
+
+
+
+
+
+%%\section{Dirichlet}
+
+%%Mediante paseos aleatorios 
+%%http://en.wikipedia.org/wiki/Discrete_Laplace_operator
+%%http://www.math.uchicago.edu/~may/VIGRE/VIGRE2011/REUPapers/Guan.pdf
+%%http://www.math.uchicago.edu/~lawler/reu.pdf pag23
+\section{Tratamiento de im\'agenes}
+
+Una aplicaci\'on interesante del \'Algebra Lineal consiste en usar la 
+descomposici\'on en valores singulares (SVD) para la compresi\'on de 
+im\'agenes. Intentamos reducir el tama\~no de un archivo que contiene una 
+imagen 
+sin una gran p\'erdida de calidad. 
+
+La descomposici\'on en valores singulares de una matriz $m\times n$, con 
+entradas reales,  $A$ consiste en la factorizaci\'on 
+\[A=U\cdot \Lambda V^T,\]
+\noindent con $U$ y $V$ matrices cuadradas ortogonales (i.e. con inversa igual 
+a la transpuesta), y $\Lambda$ una matriz $m\times n$ con ceros fuera de la 
+diagonal principal.  Los elementos no nulos de $\Lambda$ son los llamados 
+{\itshape valores singulares} de $A$, y son las ra\'{\i}ces cuadradas positivas 
+de los valores propios de la matriz sim\'etrica $A\cdot A^T$, que por ser 
+sim\'etrica es diagonalizable. 
+
+Puedes leer sobre la descomposici\'on y sus aplicaciones en
+\href{http://150.244.21.37/PDFs/MISCE/SVD2.pdf}{este art\'{\i}culo}, y 
+\href{http://150.244.21.37/PDFs/MISCE/SVD1.pdf}{en las notas} de Eugenio Hern\'andez sobre el 
+tema.  
+
+
+Adem\'as puedes consultar la
+hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 125-MISCE-imagenes.sws}, 
+que contiene ejemplos en los que se aplica esta t\'ecnica. 
+
+%%\section{FFT}
+%%%???????????????????????????????????????????????????%%%%%%%%%%%%%%%
+
+
+
+\section{Sistemas polinomiales de ecuaciones}
+Como bien sabemos, los sistemas lineales de ecuaciones, con coeficientes en un 
+cuerpo, se pueden resolver siempre sin salir del cuerpo de coeficientes. El 
+m\'etodo est\'andar es la {\itshape reducci\'on gaussiana+sustituci\'on}, que 
+se puede programar f\'acilmente y resuelve de manera exacta los sistemas 
+lineales con coeficientes en los racionales o en un cuerpo finito\footnote{Es 
+cierto que podemos encontrar las soluciones en un cuerpo finito de  un sistema 
+de ecuaciones simplemente probando todas las posibles soluciones, pero si el 
+cuerpo finito es grande, o el n\'umero de variables enorme, este m\'etodo de 
+fuerza bruta no ser\'a el mejor posible.}.
+
+Frecuentemente nos encontramos en la necesidad de resolver sistemas de 
+ecuaciones no lineales, por ejemplo polinomiales o transcendentes (i.e. senos, 
+cosenos, exponenciales, logaritmos, etc.) , y la triste realidad es que {\sc no 
+existen m\'etodos generales de soluci\'on}. En cada caso tratamos de resolverlo 
+usando alg\'un {\itshape truco}, que puede servir en ese ejemplo y quiz\'a en 
+unos pocos similares. 
+
+Sin embargo, en el caso de sistemas de ecuaciones polinomiales en varias 
+variables es posible adaptar la reducci\'on gaussiana para aproximarnos de 
+manera sistem\'atica a algo parecido a una soluci\'on. De hecho, el m\'etodo, 
+que se conoce como  de {\itshape bases de Gr\"obner}, utiliza ideas que 
+proceden del algoritmo de reducci\'on gaussiana junto con otras que proceden 
+del algoritmo de Euclides para el m\'aximo com\'un divisor.  
+
+Supongamos dado un sistema de ecuaciones polinomiales
+
+%\begin{equation}\label{sis-eq}
+ \begin{align*}\label{sis-eq}
+  F_1(x_1,x_2,&\dots,x_m)=0\\
+  F_2(x_1,x_2,&\dots,x_m)=0\\
+  \vdots &  \\
+  F_n(x_1,x_2,&\dots,x_m)=0
+ \end{align*}
+%\end{equation}
+
+\noindent con los $F_i$ polinomios de grado $k_i$ en las $m$ variables. La 
+teor\'{\i}a de  bases de Gr\"obner nos permite obtener un sistema de ecuaciones 
+con las mismas soluciones que el dado, pero con una estructura {\itshape 
+escalonada}. Concretamente, si suponemos que el sistema (\ref{sis-eq}) tiene un 
+n\'umero finito de soluciones, obtenemos un sistema 
+
+\begin{align*}%%\label{sis-eq-r}
+  G_1(x_1,x_2,&\dots,x_m)=0\\
+  G_2(x_1,x_2,&\dots,x_m)=0\\
+  \vdots &  \\
+  G_N(&x_m)=0
+ \end{align*}
+
+\noindent que tiene el mismo conjunto de soluciones que (\ref{sis-eq}), pero 
+una ecuaci\'on, la \'ultima, con una s\'ola inc\'ognita. En las otras 
+ecuaciones pueden no aparecer algunas de las variables, pero si {\sc 
+supi\'eramos resolver} la ecuaci\'on polinomial con una sola inc\'ognita 
+$G_N(x_m)=0$, podr\'{\i}amos sustituir sus soluciones en las otras ecuaciones y 
+obtendr\'{\i}amos  sistemas de ecuaciones con $m-1$ inc\'ognitas. De esta 
+manera 
+podr\'{\i}amos, en principio, resolver el sistema original. 
+
+El problema es que tampoco sabemos resolver ecuaciones polinomiales en una 
+\'unica variable: sabemos que una ecuaci\'on polinomial en una variable de 
+grado $k$ tiene $k$ ra\'{\i}ces complejas, contadas con su multiplicidad, pero 
+\'unicamente podr\'{\i}amos, en general, calcular sus valores aproximados con 
+un cierto n\'umero de d\'{\i}gitos prefijado. El problema es siempre la 
+continuidad de los n\'umeros reales, necesitamos infinitos decimales para 
+determinar un real no racional, frente a la finitud de la memoria RAM del 
+ordenador. 
+
+\subsection{Bases de Gr\"obner en \sage}
+Usamos como cuerpo de coeficientes el de los n\'umeros racionales. 
+\begin{enumerate}
+ \item Comenzamos definiendo el anillo de polinomios en varias variables en el 
+que vamos a operar:
+ \begin{lstlisting}
+  R = PolynomialRing(QQ,3,'xyz',order='lp')
+ \end{lstlisting}
+
+ \noindent $R$ es el anillo de polinomios con coeficientes racionales en tres 
+variables $x,y,z.$ El \'ultimo par\'ametro indica c\'omo se ordenan los 
+monomios, y como no entramos en los detalles de la teor\'{\i}a no nos interesa.
+ 
+ 
+ \item Definimos el sistema de ecuaciones:
+ \begin{lstlisting}
+x,y,z = R.gens()
+J = (2*x^2+y^2+z^2,x^2+2*y^2+z^2,x^2+y^2+2*z^2)*R
+ \end{lstlisting}
+ 
+\noindent que corresponde al sistema de ecuaciones
+\begin{align*}\notag
+  2x^2+y^2+z^2&=0,\\
+  x^2+2y^2+z^2&=0,\\
+  x^2+y^2+2z^2&=0.
+ \end{align*}
+
+Este sistema puede ser resuelto f\'acilmente {\itshape a mano}, pero en general 
+los sistemas de ecuaciones cuadr\'aticas son dif\'{\i}ciles, y se puede 
+demostrar que,  en un cierto sentido,  contienen toda la dificultad de los 
+sistemas de ecuaciones de grados arbitrarios.
+
+ \item C\'alculo de la base de Gr\"obner:
+ 
+ \begin{lstlisting}
+  B = J.groebner_basis();B
+ \end{lstlisting}
+
+ \begin{Output}
+[x^2, y^2, z^2]
+\end{Output}
+
+Vemos que la \'unica soluci\'on del sistema es $(0,0,0)$ con una cierta 
+multiplicidad que podr\'{\i}amos definir y calcular usando la base de Gr\"obner.
+
+\item Otro ejemplo:
+
+\begin{lstlisting}
+x,y,z = R.gens()
+J2 = (2*x^2+y^2+z^2+y*z,x^2+2*y^2+z^2+x*z,2*x^2+y^2+2*z^2+x*y)*R
+B2 = J2.groebner_basis();B2
+\end{lstlisting}
+\noindent que corresponde al sistema de ecuaciones, algo m\'as complicado, 
+\begin{align*}\notag
+  2x^2+y^2+z^2+yz&=0,\\
+  x^2+2y^2+z^2+xz&=0,\\
+  x^2+y^2+2z^2+xy&=0.
+ \end{align*}
+ 
+ La base de Gr\"obner calculada es 
+ \[\left[x^{2} + \frac{1}{2} y^{2} + \frac{1}{2} y z + \frac{1}{2} z^{2}, x
+y -  y z + z^{2}, x z + \frac{3}{2} y^{2} - \frac{1}{2} y z +
+\frac{1}{2} z^{2}, y^{3} - \frac{4}{5} z^{3}, y^{2} z - \frac{1}{10}
+z^{3}, y z^{2} + \frac{1}{10} z^{3}, z^{4}\right]\]
+\noindent y vemos que tiene una ecuaci\'on en una \'unica variable $z^4=0$, con 
+soluci\'on $z=0$. En este caso es f\'acil, partiendo de que toda soluci\'on 
+tiene la coordenada $z$ igual a cero, terminar de calcular todas las 
+soluciones. 
+ 
+\item Puede ocurrir que la base de Gr\"obner calculada no tenga ninguna 
+ecuaci\'on en una sola variable. Se demuestra que esto \'unicamente puede 
+ocurrir si el sistema original tiene infinitas soluciones complejas. Por 
+ejemplo, si la base de Gr\"obner contiene un polinomio en dos variables 
+$G_N(x_{m-1},x_m)=0$ basta ver que elegida  una de las infinitas soluciones 
+complejas de esta ecuaci\'on en dos variables, que forman lo que llamamos 
+{\itshape una curva algebraica plana con ecuaci\'on  $G_N(x_{m-1},x_m)=0$}, da 
+lugar a una soluci\'on del sistema original en la que las \'ultimas dos 
+coordenadas vienen dadas por las coordenadas de la soluci\'on elegida de la 
+ecuaci\'on en dos variables. 
+
+En este caso dir\'{\i}amos que la soluci\'on del sistema de ecuaciones original 
+es una curva. 
+
+\item La teor\'{\i}a de las bases de Gr\"obner no s\'olo permite aproximarnos a 
+la resoluci\'on de sistemas de ecuaciones polinomiales de grados arbitrarios, 
+sino que es la base para los c\'alculos efectivos, con ordenador, en 
+Geometr\'{\i}a algebraica que es el estudio de conjuntos, curvas superficies, 
+etc., dados como soluciones de sistemas de ecuaciones polinomiales. 
+ 
+ 
+\end{enumerate}
+
+\section{Ejercicios}
+
+\begin{ejer}
+
+En este ejercicio vamos a simular un acuario  de acuerdo a las siguientes 
+reglas:
+\begin{enumerate}
+\item El acuario es un cubo $[0,N]\times[0,N]\times[0,N]$. Cada pez puede moverse en cada 
+instante de tiempo incrementando, o decrementando,  una unidad una s\'ola de 
+las coordenadas del punto,  con coordenadas enteras,  que ocupa. Si el punto 
+tiene una de las coordenadas $0$ \'o $N$ el pez s\'olo puede moverse hacia el 
+interior del acuario. Los movimientos de cada  pez son aleatorios y 
+equiprobables entre todas las posibilidades de movimiento que tiene. En lugar 
+de referirnos a puntos con coordenadas enteras los llamaremos {\itshape celdas} 
+, y los pensamos como peque\~nos cubitos que dividen el acuario. Cada celda 
+tiene $6$ celdas vecinas, que son a las que se pueden desplazar los peces.
+\item Hay dos tipos de peces, $A$ y $B$ con $A$ un pez grande que  come  peces 
+chicos de tipo  $B$. Los peces tienen sexo $M$ o bien $H$.
+\item Los peces peque\~nos comen {\itshape placton}. El plancton no se mueve y 
+cada $t_P$ períodos de tiempo coloniza cada una de las celdas vecinas con 
+probabilidad $p_1$. Es decir, para cada una de las $6$ celdas vecinas pondremos 
+una unidad de plancton si la moneda trucada ha salido $1$. Una celda puede 
+tener varias unidades de plancton hasta llegar a un límite de saturación $S$.
+\item Un pez peque\~no que llega a una celda que tiene plancton se queda en 
+ella hasta que se acaba. En cada per\'{\i}odo de tiempo cada pez peque\~no 
+come, si en la celda hay,  una unidad de plancton. Si en una celda que tiene 
+plancton hay m\'as peces peque\~nos que plancton se sortea qu\'e peces comen. 
+\item Un pez peque\~no que no ha comido durante $t_B$ unidades de tiempo muere 
+(inanición). Un pez grande que no ha comido durante $t_A$ unidades de tiempo 
+muere (inanición).  Un pez peque\~no vive durante $T_B$ unidades de tiempo 
+(muerte natural) y uno grande durante $T_A$ (muerte natural).
+\item Cuando un pez grande llega a una celda en la que hay peces peque\~os se 
+puede comer uno con probabilidad $p_{A,B}$ y si no se lo come el pez peque\~no 
+puede moverse, en el siguiente momento de tiempo,   a otra celda. Un pez grande 
+que llega a una celda en la que hay peces peque\~nos se queda en ella hasta que 
+ya no hay. En cada per\'{\i}odo de tiempo un pez grande s\'olo se puede comer a 
+uno chico. Si en una celda hay m\'as peces grandes que peces peque\~nos se 
+sortea cu\'ales de los grandes van a tener la posibilidad de comer. 
+\item Cuando dos peces del mismo tipo y distinto sexo llegan a una misma celda 
+producen descendencia de tamaños $D_A$ o $D_B$, la mitad de cada sexo. Si el 
+pez está al borde de la inanición prefiere comer, si es posible, antes de 
+reproducirse.
+\item En el acuario hay inicialmente $n_A$ peces de tipo $A$, $n_B$ peces del 
+tipo $B$ y $n_P$ unidades de plancton. La distribución inicial se puede hacer 
+aleatoriamente y el número de peces de cada sexo debe ser igual.
+\item Si en alg\'un momento del desarrollo del programa necesitas m\'as reglas 
+puedes añadirlas, pero debes formularlas de la forma m\'as clara posible. El 
+modelo se puede complicar todav\'{\i}a más, por ejemplo debe ser interesante 
+permitir que los peces act\'uen de manera {\itshape inteligente} moviéndose no 
+a una celda vecina aleatoriamente sino a la que contenga m\'as alimento (o 
+mayor posibilidad de reproducirse).
+\end{enumerate}
+\end{ejer}
+
+Una vez programado el modelo hay que estudiar el comportamiento a largo plazo 
+dependiendo de los par\'ametros, y sobre todo buscar valores iniciales que no 
+producen la extinci\'on.
+
+\begin{ejer}
+ En este ejercicio definimos un aut\'omata celular que
+simula avalanchas, por ejemplo de nieve o de arena. Las reglas son como sigue:
+  
+  \begin{enumerate}%%[label=\textbf{\arabic*}]
+  \item El estado del sistema en el momento $t,\ t=0,1,2,3,\dots,$ se representa
+como una matriz $N\times N$, a la que llamamos,  por ejemplo,  $M(t)$. Los dos
+\'{\i}ndices de la matriz var\'{\i}an entre $0$ y $N-1$,  con entradas
+$M(t)_{ij}$ enteros no negativos. Esta matriz representa un {\itshape tablero} 
+con
+$N^2$ casillas, y el entero $M(t)_{ij}$ es el n\'umero de {\itshape granos de 
+arena} en
+la casilla de la fila $i$-\'esima y columna $j$-\'esima.
+\item En este tablero cada casilla, por ejemplo $(i,j)$,  menos las del borde, 
+tiene $4$ casillas vecinas: $(i+1,j),(i,j+1),(i-1,j),(i,j-1).$
+\item Hemos definido un entero $K$ al que llamamos {\itshape valor 
+cr\'{\i}tico}. Supondremos que $K\ge 4.$
+\item Para \label{ev}pasar de $M(t)$ a $M(t+1)$:
+Se revisa cada una de las casillas y si
+$M(t)_{ij}>K$ hacemos $M(t+1)_{ij}=M(t)_{ij}-4$ e incrementamos en una unidad el
+entero de cada uno de los vecinos de nuestra casilla. Hay que tener presente que
+si la casilla es del borde tiene menos de $4$ vecinos, y hay que tratar ese caso
+con cuidado. 
+Si $M(t)_{ij}\le K$ hacemos $M(t+1)_{ij}=M(t)_{ij}.$
+\item \label{ini}Generamos el estado inicial $M(0)$ considerando un tablero que
+tiene en cada casilla un entero aleatorio del intervalo $[K+1,2K]$ y le
+aplicamos el procedimiento del apartado anterior, de forma reiterada,  hasta que
+la matriz ya no cambie. La matriz obtenida, que tiene en todas sus casillas un
+entero menor o igual a $K$, ser\'a el estado inicial. 
+
+\item \label{avalan}Para producir avalanchas primero generamos un estado inicial
+$M(0)$ de la matriz,   elegimos una casilla al azar y le a\~nadimos un cierto
+n\'umero de granos de arena, por ejemplo $I$, y, finalmente, iteramos  el
+procedimiento del apartado {\ref{ev})} hasta que la matriz ya no var\'{\i}e. 
+
+ \end{enumerate}
+ 
+ 
+ 
+ \begin{enumerate}
+  \item  {\sc Define} una funci\'on {\tt evoluci\'on(M,N,K)}, con $M$
+una matriz $N\times N$ con entradas enteros no negativos y $K$ un entero, el
+valor cr\'itico. La funci\'on debe implementar el procedimiento descrito en el
+apartado  {\ref{ev}}, y, suponiendo que $M$ es el estado del tablero en el
+momento $t$,  devolver el tablero en el $t+1.$ 
+  
+  \item  {\sc Define} una funci\'on {\tt ini(N,K)}, que implemente el
+procedimiento descrito en el apartado {\ref{ini}}, y, por tanto, devuelva una
+matriz que tiene en todas sus casillas un entero menor o igual a $K$. {\sc
+Comprueba} que la matriz resultante de ejecutar {\tt ini(10,5)} tiene todas sus
+entradas en el intervalo $[0,5].$
+
+\item  {\sc Define} una funci\'on {\tt avalancha(N,K,I)}, que
+implemente el procedimiento descrito en el apartado {\ref{avalan}} y devuelva el
+estado final de la matriz y la diferencia entre el estado inicial y el final.
+Esa diferencia nos permitir\'a visualizar el lugar en el que se ha producido la
+avalancha y su intensidad. 
+
+{\sc Trata} de obtener, variando los par\'ametros $N,K$ e $I$, avalanchas
+{\itshape grandes}.
+\end{enumerate}
+\end{ejer}

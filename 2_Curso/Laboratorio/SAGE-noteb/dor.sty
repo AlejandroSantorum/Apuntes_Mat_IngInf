@@ -1,0 +1,107 @@
+%%%%% DOR.sty
+\spanishdecimal{.}
+\usepackage{textcomp}
+\setcounter{tocdepth}{2}
+\def\monta|#1|{\embedfile{INPUTS/#1.tex}\input{INPUTS/#1.tex}}%%DOR
+\def\montan|#1|{\embedfile{INPUTS/NOTAS/#1.tex}\input{INPUTS/NOTAS/#1.tex}}%%DOR
+\newcounter{ejemp}[section]
+\newenvironment{ejem}{\refstepcounter{ejemp}\noindent\textbf{Ejemplo
+  \theejemp.} }{\smallskip }
+\newcounter{ejerc}[chapter]
+\newenvironment{ejer}[1][Ejercicio]{\setcounter{temp}{0}
+\refstepcounter{ejerc}
+\noindent\textbf{#1 \theejerc. }\sl }{\normalfont\medskip }
+
+\newif\ifresuelto
+\resueltotrue
+
+\newenvironment{sol}[1]{\ifresuelto{\small\color{blue}\noindent{\sc
+Solución.-}\ #1}\fi}{\ifresuelto{
+\hfill\rule { 6pt } { 6pt } \medskip }\fi}
+
+\def\sage{Sage}
+
+\newtheorem{tma}{Teorema}
+
+\newif\ifpantalla
+\pantallafalse
+%\pantallatrue
+
+\newcommand{\almargen}[1]{\footnotemark%
+\marginpar{\small\flushleft\textsuperscript{\thefootnote}
+#1\endflushleft }%
+}
+
+\ifpantalla{\global\let\footnote\almargen
+\global\addtolength{\textwidth}{100pt}
+}\fi
+
+%%%%% Lectura de la lista de palabras clave
+\input{SagePython.keys}
+%%%% Para añadir, editar el fichero SagePython.keys
+
+\renewcommand{\lstlistingname}{Listado}
+\lstset{language={[Sage]Python},
+upquote=true,extendedchars=true,inputencoding=utf8,%
+keywordstyle=\bfseries\color{NavyBlue},%
+stringstyle=\ttfamily,%
+mathescape=true,
+tabsize=6,
+numbers=none,numberstyle=\tiny,
+columns=spaceflexible,
+backgroundcolor=\color{LightYellow},
+linewidth=.85\textwidth,showstringspaces=false}
+\newcommand{\codigo}[2][]{\lstinputlisting[#1]{codigos/#2.cod}}
+
+\lstnewenvironment{Output}
+{\everymath{\displaystyle}\mbox{}\\*[-2.5\baselineskip]
+\lstset{upquote=true,extendedchars=true,inputencoding=utf8,%
+numbers=none,basicstyle=\color{NavyBlue},
+backgroundcolor=\color{white},language={},
+mathescape=true,stringstyle=\ttfamily}}{}
+
+\newcommand{\CodigoOut}[5][]{
+\newline\begin{minipage}{1\textwidth}
+\codigo[numbers=none,linerange=#3-#4]{#2}
+\mbox{}\\*[-2.5\baselineskip]
+\codigo[numbers=none,basicstyle=\color{NavyBlue},
+ linerange=#5-#1,backgroundcolor=\color{white}]{#2}
+\end{minipage}
+}
+
+\newcommand{\GrafOut}[2][]{\mbox{}\newline
+\mbox{}\hskip1\parindent\begin{minipage}{.36\textwidth}
+\ilustra[#1]{#2}
+\end{minipage}
+}
+
+\graphicspath{{./imagenes/}}
+\newcommand{\boton}[1]{\colorbox[gray]{.75}
+{\scriptsize\!\lstinline[language={}]|#1|\!}}
+\newcommand{\Boton}[1]{\colorbox{RoyalBlue}
+{\scriptsize\!\lstinline[basicstyle=\color{white}]|#1|\!}}
+\newcommand{\icono}[1]{\colorbox[gray]{.75}
+{\sc\scriptsize\!\lstinline[basicstyle=\color{blue}]|#1|\!}}
+\newcommand{\link}[2][blue]{\textcolor{#1}
+{\scriptsize\lstinline[language={}]|#2|}}
+\newcommand{\ilustra}[2][.85]{
+\centerline{\includegraphics[width=#1\textwidth]{#2.png}}}
+
+\newcommand{\ilustrax}[2][.85]{
+\centerline{\includegraphics[angle=180,width=#1\textwidth]{#2.png}}}
+
+\newcounter{temp}
+\renewcommand{\labelitemi}{$\circ$}
+\def\letra{\refstepcounter{temp}\text{\rm(\alph{temp})\,\,}}
+
+%%%% Mejorar
+%%% se usa para acentuar en códigos
+\def\laI{i}
+\def\laN{n}
+\newcommand{\X}[1]{\def\aux{#1}%
+	\def\ac{\'}%
+	\ifx\aux\laI{\gdef\aux{\i}}\fi
+	\ifx\aux\laN{\gdef\aux{n}\gdef\ac{\~}}\fi
+	\textit{\ac\aux}}
+%%%%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,591 @@
+%%RHG
+
+%%CREADO 22-05-2013/11:10
+%%MODIFICADO 05-06-2013/16:23
+
+Para poder utilizar la criptograf\'{\i}a RSA con seguridad es crucial:
+\begin{enumerate}
+ \item Poder comprobar de manera eficiente si un n\'umero muy grande es primo o
+no. Es esto lo que nos permite encontrar los dos primos muy grandes $p$ y $q$
+cuyo producto forma parte de la clave p\'ublica del usuario. 
+
+En la pr\'actica {\sc no} hace falta una demostraci\'on matem\'atica completa de
+que los enteros $p$ y $q$ son primos, y basta con lo que llamamos {\itshape
+criterios probabil\'{\i}sticos de primalidad}, como el de Miller-Rabin.
+\item Convencerse de que, en el estado actual de la tecnolog\'{\i}a, no es
+posible factorizar el entero $n$ en un tiempo razonable. Todo entero $n$ se
+puede factorizar probando posibles divisores hasta llegar a $\sqrt{n}$, pero
+para $n$ muy grande el tiempo requerido ser\'{\i}a tan grande que no
+tendr\'{\i}a ning\'un sentido intentarlo.
+ \end{enumerate}
+
+En este cap\'{\i}tulo, que complementa el cap\'{\i}tulo \ref{tn1}, estudiamos un criterio
+sencillo, pero muy \'util,  de primalidad y un par de algoritmos de
+factorizaci\'on de enteros. Para completar la imagen, tambi\'en tratamos los
+mismos problemas para polinomios en una variable con coeficientes enteros o
+racionales.
+
+
+
+
+
+\section{?`C\'omo encontrar primos muy grandes? Miller-Rabin (1980)}
+El teorema peque\~no de Fermat afirma que si $n$ es un primo entonces
+$a^{n-1}\equiv 1\mod\  n$ para cada entero $a$ primo con $n$. Si encontramos un
+$a$, primo con $n$, tal que el resto de dividir $a^{n-1}$ entre $n$ no es $1$
+podemos estar seguros de que $n$ {\sc no} es primo.
+
+Sin embargo, hay n\'umeros que son compuestos pero verifican que $a^{n-1}\equiv
+1\mod\  n$ para cada entero $a$ primo con $n$, es decir, que son compuestos
+pero se comportan como primos para el teorema peque\~no de Fermat. Estos
+n\'umeros se llaman {\itshape de Carmichael}.
+
+\bigskip
+
+\begin{ejer}
+Escribe c\'odigo, lo m\'as eficiente posible,  que, dado un
+entero $N$,  devuelva una lista
+de los enteros de Carmichael menores que $N$.
+\end{ejer}
+
+
+
+El test de Miller-Rabin est\'a muy relacionado con el teorema peque\~no de
+Fermat, pero es un  ``test probabil\'{\i}stico'' que puede demostrar que un
+n\'umero compuesto lo es con una probabilidad tan grande como queramos, 
+por ejemplo $0{.}999999999999$. Si el test  no puede probar que el n\'umero es
+compuesto podemos estar ``casi seguros'' de que es primo, y se usa
+en criptograf\'{\i}a como si lo fuera. El test se basa en dos teoremas:
+
+{\itshape
+
+\begin{enumerate}\renewcommand{\labelenumi}{{\upshape\theenumi.}}
+ \item Sea $n$ un n\'umero primo, tal que $n-1=2^sd$ con $d$ impar, y $a$ un
+entero primo con $n$. Entonces, o bien $a^d\equiv 1 \mod\  n$, o bien
+ hay un entero $r$  en $\{0,1,2,\dots,s-1\}$ tal que  $a^{2^rd}\equiv -1 \mod\ 
+n$. Si encontramos un $a$ primo con $n$ tal que no se cumple ninguna de las dos
+condiciones, 
+ podemos estar seguros de que el n\'umero $n$ es compuesto, y decimos que  el
+entero  $a$ es un
+``testigo'' de la no primalidad de $n$.
+ \item Si $n\ge 3$ es impar y compuesto entonces el conjunto $\{1,2,\dots,n-1\}$
+contiene a lo m\'as $(n-1)/4$ enteros que son primos con $n$ y no son testigos
+de que $n$ es compuesto.
+ \end{enumerate}
+}
+
+Supongamos que queremos ``probar'' que $n$ es primo. Elegimos al azar un entero
+$a$ en el conjunto  $\{1,2,\dots,n-1\}$, si resulta que $a$ no es un testigo se
+ha producido un hecho 
+que ten\'{\i}a probabilidad menor que $1/4$. Si repetimos $t$ veces la
+elecci\'on al azar de $a$ y nunca encontramos un testigo se ha producido un
+hecho de probabilidad $(1/4)^t$ que 
+podemos hacer tan peque\~na como queramos tomando $t$ suficientemente grande, y
+$1-(1/4)^t$ es la probabilidad de que si el n\'umero es compuesto Miller-Rabin
+lo detecte.  
+
+Cada vez que ejecutamos el test de Miller-Rabin, que depende de las elecciones al azar de los enteros $a$, podemos obtener resultados diferentes. Si el resultado es que el entero es compuesto, podemos estar totalmente seguros de que lo es, en cambio si el resultado obtenido es que el entero  es primo s\'olo tenemos una probabilidad, que puede ser todo lo pr\'oxima a $1$ como queramos, de que realmente lo sea.  
+
+{\sc En el cap\'{\i}tulo \ref{prob} veremos los rudimentos de la teor\'{\i}a de la probabilidad,} de forma que si  encuentras dificultad para entender las l\'{\i}neas b\'asicas del argumento de Miller-Rabin, excluyendo la demostraci\'on de los dos teoremas citados,  debes volver a leerlo despu\'es de haber pasado por ese cap\'{\i}tulo.
+
+\bigskip
+
+\pagebreak[3]
+
+\begin{ejer}
+\begin{enumerate}
+\item Escribe c\'odigo para aplicar el test de Miller-Rabin a un entero $n$ que
+detecte n\'umeros compuestos con probabilidad $p$ fijada. Debes, entonces,
+programar
+una funci\'on {\tt miller-rabin(n,p)}, que dado un 
+entero $N$,  devuelva una lista
+de los enteros de Carmichael menores que $N$.
+\item Escribe otra funci\'on que, dada la probabilidad $p$,  busque enteros,
+dentro de un rango fijado {\itshape a priori},  que pasen el test de
+Miller-Rabin con probabilidad $p$, es decir,
+Miller-Rabin con esa $p$ los declare primos, pero sean compuestos. Cuando $p$ es
+muy pr\'oximo a $1$, esta funci\'on devolver\'a probablemente una lista
+vac\'{\i}a. 
+\item Intenta aplicar el test de Miller-Rabin a un producto de dos primos muy
+grandes. 
+\item Usa Miller-Rabin para buscar el primo m\'as grande que es menor que
+$2^{400}$.
+\end{enumerate}
+\bigskip
+
+Puedes ver una soluci\'on de estos ejercicios en la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/?/}{\tt 2?-TNUME-miller-rabin.sws}.
+\end{ejer}
+
+\subsection{AKS}
+
+En 2002 se descubri\'o primer  test de primalidad (AKS)  para 
+n\'umeros enteros $n$ para el que el tiempo de ejecuci\'on es menor que 
+polinomial en $n$. El 
+algoritmo no es, ni mucho menos, tan complicado como cabr\'{\i}a esperar y 
+puedes lee sobre \'el en 
+
+\href{http://150.244.21.37/PDFs/TNUME/primality_v6.pdf}{el art\'{\i}culo original} o bien en 
+\href{http://150.244.21.37/PDFs/TNUME/AKS.pdf}{este otro divulgativo}. 
+
+Los algoritmos cuya tiempo 
+de ejecuci\'on es polinomial en el tama\~no de los datos son, en principio, los 
+algoritmos que es posible implementar de manera eficiente. Sin embargo, puede 
+ocurrir que los coeficientes, sobre todo el coeficiente del t\'ermino de mayor 
+grado,  del polinomio sean tan grandes que el algoritmo no sea \'util en la  
+pr\'actica. Esto es lo que pasa, de momento, con el test AKS de primalidad. 
+
+
+
+
+
+
+
+\section{?`C\'omo factorizar un entero grande?}
+
+\subsection{Fermat}
+
+En este ejercicio vamos a estudiar un m\'etodo de factorizaci\'on de
+enteros debido a {\itshape Pierre de Fermat}. El m\'etodo se basa en que si
+podemos escribir un entero $n>2$ en la forma $n=x^2-y^2$, con $x$ e $y$ enteros
+positivos, podemos con seguridad factorizar $n=(x+y)(x-y)$ que ser\'a una
+factorizaci\'on no trivial de $n$ si $x-y>1.$ Adem\'as,  es claro que $x^2$ debe
+ser mayor que $n$, de forma que podemos empezar a probar posibles valores
+(enteros) de $x$
+ empezando en \lstinline|ceil(sqrt($n$))| y aumentando de uno en uno. Si para un 
+$x$
+dado encontramos que $x^2-n$
+es un cuadrado habremos encontrado una soluci\'on de la ecuaci\'on $n=x^2-y^2$
+y, por tanto, una factorizaci\'on, que puede ser trivial.
+
+Supongamos que $n=c\cdot d$ es una factorizaci\'on no trivial con $c\ge d$ y que
+$n$ es impar. Entonces $c$ y $d$ son impares y 
+\[n=c\cdot d=\Big(\frac{c+d}{2}\Big)^2-\Big(\frac{c-d}{2}\Big)^2,\]
+\noindent de forma que la factorizaci\'on puede ser obtenida por el m\'etodo de
+Fermat. En consecuencia, si el m\'etodo produce la factorizaci\'on trivial,
+$n=n\cdot 1$, entonces el n\'umero $n$ es con seguridad primo.
+
+\
+
+\pagebreak[3]
+
+\begin{ejer}
+  \begin{enumerate}
+   \item\label{brut}  {\sc Define una funci\'on} {\tt bruta(n)} que
+encuentre una factorizaci\'on no trivial de $n$, si es que existe, y si no
+existe devuelva la trivial.  El m\'etodo debe consistir en  probar la
+divisibilidad entre los enteros menores o iguales a $\sqrt{n}.$  La funci\'on
+debe devolver los dos factores de $n$, $c$ y $d$,  y la diferencia $n-c\cdot d$.
+
+{\sc Es claro}  que esta funci\'on ser\'a eficiente si el n\'umero $n$ tiene
+factores primos peque\~nos, pero muy ineficiente si todos sus  factores son muy
+grandes.  Por ejemplo, si el n\'umero es de la forma $p^2$ con $p$ un primo muy
+grande, este algoritmo debe llegar hasta la prueba final para encontrar la
+factorizaci\'on $p^2=p\cdot p.$
+  
+ \item   {\sc Define una funci\'on} {\tt fermat(n)} que implemente el
+m\'etodo de factorizaci\'on de Fermat y devuelva los dos
+factores de $n$, $c$ y $d$, y la diferencia $n-c\cdot d$.
+  
+  {\sc Tambi\'en debe ser claro}  que esta funci\'on encuentra  pronto una
+soluci\'on si hay una factorizaci\'on $n=c\cdot d,\ c\ge d$ con $c$ no demasiado
+distante de $\sqrt{n}.$ {\sc Vemos entonces} que los dos m\'etodos son
+complementarios: donde uno es menos eficiente el otro lo es m\'as. 
+ \begin{comment}
+ \item  (1 punto) {\sc Modifica la funci\'on} {\tt fermat(n)}, definiendo una
+variante {\tt fermat2(n)}, que muestre ({\tt print}) todas las ``casi
+soluciones'', $c,d$, determinadas por $x$ enteros crecientes, empezando en {\tt
+ceil(sqrt(n))},  con el correspondiente   $y:=\sqrt{x^2-n}$ no entero. 
+  
+ Ejecuta tu programa ************** ?`Qu\'e observas?
+ \end{comment}
+ 
+ \item  Parece una buena idea, dado que los m\'etodos son
+complementarios,  mezclarlos: 
+ {\sc Define una funci\'on} {\tt fermat\_bruta(n,B)} tal que 
+ \begin{enumerate}
+ \item Aplique el m\'etodo de Fermat desde {\tt ceil(sqrt(n))} hasta $B$ ($B$
+debe ser mayor que {\tt ceil(sqrt(n))}). Si encuentra una factorizaci\'on la
+debe devolver.
+ \item Si Fermat no ha funcionado, use el m\'etodo del apartado \ref{brut},
+probando con enteros del intervalo 
+$[2,$\lstinline|ceil|$(B-\sqrt{B^2-n})]$. ?`Por qu\'e es
+suficiente probar con estos enteros?
+ \end{enumerate}
+ 
+  Supongamos que queremos factorizar enteros que son el producto de dos primos.
+{\sc Estudia}, en funci\'on de los valores de~$B$, los casos
+  \begin{enumerate}
+   \item \lstinline|$n$=nth_prime(396741)*nth_prime(236723)=18954671729831| en 
+el
+que los dos primos difieren en $2451674$.
+   \item \lstinline|$n$=nth_prime(3967741)*nth_prime(2367)=1415121961361| en el
+que los dos primos difieren en $67266400$.
+  \end{enumerate}
+Para poder ver las diferencias conviene imprimir alg\'un texto que nos avise de
+que el m\'etodo de Fermat no ha encontrado soluci\'on  y la funci\'on est\'a
+aplicando el segundo m\'etodo.
+ \end{enumerate}
+ 
+ \end{ejer}
+%% \end{enumerate}
+Puedes ver una soluci\'on de estos ejercicios en la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/?/}{\tt 2?-TNUME-fermat.sws}.
+  
+  
+  %RHG
+
+%CREADO 22-05-2013/11:10
+%MODIFICADO 05-06-2013/16:23
+
+
+
+\subsection{Pollard $p-1$ (1974)}							
+				
+
+El algoritmo $p-1$ de Pollard sirve para factorizar enteros $n$ impares 
+que tienen un factor primo $p$ tal que $p-1$, que es compuesto, tiene factores
+primos no demasiado grandes. Necesita una cota {\itshape a priori}, $B$, del
+tama\~no de los primos que aparecen en la factorizaci\'on de $p-1$. Es decir, si
+$n$ es compuesto y  tiene un factor 
+primo  $p$ tal que todos los factores primos de $p-1$ son menores  que $B$ el
+algoritmo puede encontrar  un factor no trivial de $n$. 
+\begin{enumerate}
+ \item Se comienza eligiendo un  entero $M$ tal que $p-1$ sea con seguridad un
+divisor de $M$. Como no conocemos la factorizaci\'on en primos de $p-1$ debemos
+tomar como $M$ el producto de todos los primos menores que $B$ con exponentes
+mayores que los exponentes con los que aparecen en la factorizaci\'on de $p-1$.
+Por ejemplo, si $p-1=2^{k_1}\cdot 3^{k_2}\dots p_i^{k_i}\dots $ y como $p-1<n$,
+podemos afirmar con seguridad que 
+$k_2\cdot \log(2)< \log(n)$ y, en general $k_i<\log(n)/\log(p_i)= 
+\log_{p_i}(n)$.
+Estas cotas, que son bastante m\'as grandes de lo necesario, s\'olo dependen de
+$n$ y los primos $p_i$ y se verifica que $p-1$ divide a~$M$.
+
+\item Gracias al teorema peque\~no de Fermat, podemos afirmar que 
+$a^M \equiv 1\mod p$ para todo $a$ que sea primo con $p$. Elegimos entonces un 
+$a$ primo con
+$n$, y por tanto primo con $p$, y debe verificarse que $p$ tambi\'en divide a
+$a^M-1$ y, por tanto, $p$ debe dividir al m\'aximo com\'un divisor de $a^M-1$ y
+$n$. 
+\item El m\'aximo com\'un divisor de $a^M-1$ y $n$ es un divisor de $n$, que es
+lo que busc\'abamos, y nos sirve si es diferente de $n$.
+La ventaja enorme es que, como debemos saber, se puede calcular m\'odulo $n$.
+\item Si el algoritmo no encuentra un factor $n$, podemos probar con diferentes
+valores de $a$, por ejemplo haciendo un cierto n\'umero de elecciones aleatorias
+para $a$, y si todav\'{\i}a no encontramos un factor  podemos incrementar $B$. 
+\item El problema es que si repetimos con diferentes valores de $a$ o
+incrementamos la cota $B$ el tiempo de ejecuci\'on del programa aumenta, y puede
+ocurrir que tarde tanto como lo que tardar\'{\i}a un programa que probara los
+posibles divisores menores que la ra\'{\i}z cuadrada de $n$ (el m\'etodo
+``bestia'').  A pesar de sus limitaciones, el m\'etodo es bastante eficiente y 
+ha
+dado lugar a toda una serie de refinamientos que son los actualmente en
+uso para factorizar enteros grandes.
+\item Por supuesto, antes de intentar factorizar $n$ debemos estar convencidos
+de que es compuesto, por ejemplo aplic\'andole Miller-Rabin. 
+\end{enumerate}
+
+\bigskip
+
+\pagebreak[3]
+
+\begin{ejer}
+\begin{enumerate} 
+\item Implementa el algoritmo de Pollard y comprueba su funcionamiento en un 
+n\'umero razonable de casos.
+
+\item El algoritmo $p-1$ funciona bien  cuando $n$ tiene un
+factor primo $p$ tal que $p-1$ s\'olo tiene primos menores que un $B$ y todos
+los dem\'as factores de $n$ son grandes respecto al correspondiente $M.$ Trata 
+de 
+comprobar experimentalmente esta afirmaci\'on.
+\end{enumerate}
+\end{ejer}
+
+Puedes ver una soluci\'on de estos ejercicios en la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/?/}{\tt 2?-TNUME-pollard.sws}.
+
+
+
+
+
+
+
+
+\section{Irreducibilidad y factorizaci\'on de polinomios}
+
+%%RHG Brillhart %%% Ciliberto libro%%%%%%%%%%
+
+%\section{Sumas de cuadrados}
+%%%RHG n=x^2+y^2  
+
+%\section{Fracciones continuas}
+%%%BLM?????
+%%%Libro Phillips
+%%%Libro Hardy-W
+
+El anillo de polinomios $k[x]$ en una variable con coeficientes en un cuerpo $k$
+tiene propiedades algebraicas muy similares a las del anillo de los enteros.
+Aparte de que existen una suma y un producto verificando las propiedades que
+definen {\itshape un anillo}, existe tambi\'en en los dos una divisi\'on con
+resto, o divisi\'on euclidiana. 
+
+
+Nos interesan en este momento los polinomios con coeficientes n\'umeros
+racionales, que podemos transformar en polinomios con coeficientes enteros sin
+m\'as que multiplicar por el m\'{\i}nimo com\'un m\'ultiplo de todos los
+denominadores que aparecen en los coeficientes. 
+
+
+Los polinomios con coeficientes enteros no tienen, en general, divisi\'on con
+resto, pero la mayor simplicidad de los coeficientes tiene algunas ventajas al
+estudiar su irreducibilidad o factorizaci\'on.
+
+\subsection{Polinomios con coeficientes racionales}
+Supondremos las siguientes definiciones y resultados, que deber\'{\i}an ser
+conocidos gracias a la asignatura {\itshape Conjuntos y N\'umeros}:
+
+\begin{enumerate}
+ \item Un anillo $D$ se dice que es un {\itshape dominio} si $a\cdot b =0,\ a,b
+\in D$ implica $a=0$ \'o $b=0$. 
+ 
+ \item Un elemento $a\in D$ se dice que es {\itshape invertible} si existe otro
+$b\in D$ tal que $a\cdot b =1.$ El $b$ mencionado, el {\itshape inverso} de $a$,
+ se suele denotar mediante $a^{-1}.$
+
+\item Se dice que un elemento $a\in D$ {\itshape divide} a otro $b\in D$, con la
+notaci\'on $a\mid b$,  si existe un un tercero $c\in d$ tal que $a\cdot c=b.$
+ 
+\item Un elemento, no invertible, $a$ en un dominio $D$ se dice {\itshape
+primo} si $a\mid b\cdot c$    implica  $a \mid  b$ \'o  $ a \mid c$.
+
+\item Un elemento, no invertible, $a \in D$  se dice {\itshape irreducible}  si 
+$a=b\cdot c$  implica
+que $b$ o $c$ es invertible.
+
+ \item El anillo de polinomios en una variable,  con coeficientes en un cuerpo
+$k$ cualquiera, es un dominio $k[x]$ en el que existe divisi\'on con resto y el
+grado del polinomio resto es menor que el grado del divisor.
+
+\item En $k[x]$ los elementos invertibles son los polinomios constantes
+distintos del cero, y los elementos primos son los mismos que los irreducibles. 
+
+Todo polinomio en $k[x]$ es el producto de un n\'umero finito de polinomios
+primos, que, adem\'as, son \'unicos salvo el orden de los factores  y el
+producto por elementos invertibles.
+ \end{enumerate}
+ 
+\subsection{Polinomios con coeficientes enteros}
+
+En este caso tambi\'en hay que recordar algunas definiciones y resultados:
+\begin{enumerate}
+\item Los polinomios con coeficientes enteros, $\mathbb{Z}[x]$  forman un
+dominio. Las definiciones de elemento invertible, divisibilidad, elemento primo
+y elemento irreducible se pueden aplicar sin cambio. Los \'unicos elementos
+invertibles son $\pm 1.$
+
+\item Se llama {\itshape  contenido}, $c(p(x))$,  de
+un polinomio $p(x)$ con coeficientes en $\mathbb{Z}$  al $MCD$  de los
+coeficientes de $p(x)$. Un polinomio $p(x)$ tal que $c(p(x))=1$ se dice
+{\itshape primitivo.}
+
+\item Sea $p(x)\in \mathbb{Z}[x]$ un polinomio primitivo de grado $>0$. Entonces
+$p(x)$ es irreducible en 
+ $\mathbb{Z}[x]$ si y s\'olo si lo es en $\mathbb{Q}[x]$. Adem\'as, los
+polinomios primitivos e irreducibles son los mismos que los primitivos y primos.
+ 
+ \item Todo polinomio con coeficientes enteros es el producto de un entero, su
+contenido,  y un n\'umero finito de polinomios primitivos y primos
+(irreducibles). Esta descomposici\'on es \'unica salvo el orden de los
+factores. 
+ 
+\end{enumerate}
+
+ Estos resultados nos garantizan que podemos estudiar la irreducibilidad y
+factorizaci\'on de polinomios con coeficientes racionales usando el polinomio
+con coeficientes enteros que se obtiene multiplicando el polinomio por el MCM de
+los denominadores de los coeficientes.
+ 
+ 
+ 
+ 
+ 
+ 
+ \subsection{Polinomios en {\sage}}
+ 
+ %%\begin{enumerate}
+  \begin{enumerate}
+ \item Para definir el anillo de polinomios en una variable sobre los racionales
+usamos
+\begin{lstlisting}
+ A.<x>=QQ[]
+\end{lstlisting}
+\noindent en el que la variable se llama $x$ y el anillo $A$. 
+
+Si queremos el anillo con coeficientes enteros usamos $\tt ZZ$ en lugar de $\tt
+QQ.$
+\item Definimos dos, o m\'as,  polinomios  en la forma 
+\begin{lstlisting}
+F,G=x^4+1,x-7
+\end{lstlisting}
+
+\noindent y operamos con ellos usando los s\'{\i}mbolos habituales para la suma
+y el producto:
+\begin{lstlisting}
+expand(F+G)
+H = expand(F^2*G^2)
+HH = factor(H)
+\end{lstlisting}
+La segunda l\'{\i}nea expande el producto, aplicando la propiedad distributiva,
+y la tercera factoriza.
+El resultado de una factorizaci\'on es una lista de pares ordenados, cada par
+est\'a formado por un factor y su multiplicidad. 
+\item El m\'etodo \lstinline|P.quo_rem(Q)|, con $P$ y $Q$ polinomios en una
+variable,  devuelve el cociente y el resto de la divisi\'on con resto de $P$ 
+entre
+$Q$.
+
+\item Dada una lista de pares de n\'umeros racionales ($[(1,2),(2,7),(-1,3)]$)
+tal que las primeras coordenadas son todas diferentes,  la instrucci\'on
+\begin{lstlisting}
+ A.lagrange_polynomial([(1,2),(2,7),(-1,3)])
+\end{lstlisting}
+\begin{Output}
+ 11/6*x^2 - 1/2*x + 2/3
+\end{Output}
+\noindent devuelve el polinomio de menor grado tal que los puntos de la lista
+pertenecen a su gr\'afica. El grado del polinomio devuelto es igual al n\'umero 
+de
+pares que deben estar en la gr\'afica menos $1$. Se llama a este polinomio el 
+{\itshape interpolador de
+Lagrange}, y su c\'alculo, planteado como la resoluci\'on de un sistema lineal
+de ecuaciones, ya fue tratado en la secci\'on *****.  
+
+
+\end{enumerate}
+
+  
+  
+\subsection{Factorizaci\'on de Kronecker}\label{kron}
+Comenzamos describiendo el algoritmo:
+\begin{enumerate}
+ \item Supongamos dado un polinomio $p(x)$ con coeficientes enteros que podemos
+suponer primitivo. Si se verifica $q(x)\mid p(x)$ para alg\'un polinomio $q(x)$,
+necesariamente se cumplir\'a tambi\'en $q(n)\mid p(n)$ para todo entero $n$.
+Esta es la base del m\'etodo de Kronecker.
+\item Supongamos que el grado de $q(x)$ es $m$. Sean $x_0, x_1,\dots,x_m$
+enteros distintos, que podemos suponer para simplificar los c\'alculos que son
+los enteros distintos y menores en valor absoluto que podemos elegir ($0,\pm
+1,\pm 2,\dots$).
+
+Llamemos $X_i$ al conjunto de todos los divisores, positivos y negativos, de
+$p(x_i)$ y sea $X$ el producto cartesiano de los $X_i$. Lo importante aqu\'{\i}
+es que $X$ es un conjunto finito.
+
+\item Para cada elemento $\mathbf{b}:=(b_0,b_1,\dots,b_m)$ de $X$ podemos
+determinar un polinomio interpolador que toma en los $x_i$ el valor~$b_i$ y es
+un candidato a divisor $q_{\mathbf{b}}(x)$ de $p(x)$. Dividimos $p(x)$ entre
+$q_{\mathbf{b}}(x)$ para averiguar si efectivamente es un divisor o no. 
+
+Si resulta ser un divisor repetimos el procedimiento usando el cociente en lugar
+de $p(x)$. 
+\item Hay que repetir todo el proceso anterior para cada posible grado $1\le m
+\le n$, pero en todo caso \'unicamente hay que efectuar un n\'umero finito de
+pruebas. 
+\item Al final del proceso habremos encontrado expl\'{\i}citamente una
+factorizaci\'on de $p(x)$ en $\mathbb{Z}[x]$ o habremos demostrado que~$p(x)$ es
+irreducible.
+\end{enumerate}
+
+
+El algoritmo generaliza el que utilizamos para calcular las ra\'{\i}ces
+racionales de un polinomio con coeficientes racionales. De~hecho, si s\'olo
+probamos posibles factores de grado $1$ en el algoritmo de Kronecker obtenemos
+el que sirve para encontrar ra\'{\i}ces racionales.
+
+
+Aunque demuestra que el problema de factorizar un polinomio con coeficientes
+racionales puede ser resuelto en un n\'umero finito de pasos, no es de gran
+utilidad pr\'actica porque en cuanto el grado de $p(x)$ es alto el n\'umero de
+polinomios $q(x)$ que hay que probar si dividen a $p(x)$ es enormemente alto.
+
+Sistemas como {\sage} utilizan algoritmos mucho m\'as sofisticados, que, en
+general,  se basan en estudiar las factorizaciones de los polinomios que se
+obtienen reduciendo los coeficientes m\'odulo una potencia de un primo.
+
+\
+
+\begin{ejer}
+ Implementa el algoritmo de Kronecker y estudia sus l\'{\i}mites. Compara los
+resultados con el m\'etodo de factorizaci\'on de polinomios que se incluye en
+{\sage}.
+\end{ejer}
+
+Puedes ver una soluci\'on de este ejercicio en la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/?/}{\tt 2?-TNUME-kronecker.sws}.
+
+
+\subsection{Criterio de irreducibilidad de Brillhart}
+
+Si un polinomio con coeficientes enteros $P(x)$ toma para un cierto entero $m$
+un valor primo ($P(m)=p$ con $p$ primo) parece poco probable que el polinomio
+pueda ser reducible: si lo fuera,  $P(x)=P_1(x)\cdot P_2(x)$, tendr\'{\i}a que
+verificarse $P_1(m)=\pm 1$ o bien $P_1(m)=\pm p.$ El criterio de Brillhart nos
+suministra una condici\'on suficiente para que, teniendo un valor primo, el
+polinomio sea irreducible. 
+
+
+Dado un polinomio con coeficientes enteros 
+\[P(x):= a_0+a_1x+a_2x^2+\dots+a_nx^n,\]
+\noindent definimos
+\[M:=\text{Max}_{0\le i\le n-1}\Big\{\frac{\vert a_i\vert}{\vert 
+a_n\vert}\Big\}.\]
+
+Tenemos entonces
+\begin{center}
+\fcolorbox{black}{LightYellow}{\parbox{0.95\textwidth}{\itshape (Criterio de 
+Brillhart) Supongamos que existe un $m\in \mathbb{Z}$, $m\ge M+2$, 
+tal que $P(m)$ es primo. Entonces el polinomio $P(x)$ es irreducible en
+$\mathbb{Z}[x]$.}}
+\end{center}
+
+Puedes ver una demostraci\'on del criterio de Brillhart en su 
+\href{http://150.244.21.37/PDFs/TNUME/brillhart.pdf}{art\'{\i}culo original.} No es dif\'{\i}cil,
+y es muy recomendable.  
+
+\par\medskip\par
+
+\begin{ejer}
+\begin{enumerate}
+\item  Define una funci\'on de {\sage} que reciba como argumentos un polinomio
+con coeficientes  enteros $P(x)$ y un entero  $N_0$ y devuelva {\tt True} si
+existe un entero  $m$, menor que $N_0$ y mayor que $M+1$,  tal que $P(m)$ es
+primo. 
+\item Queremos estudiar hasta qu\'e punto el criterio de Brillhart nos permite
+decidir si un polinomio con coeficientes enteros es irreducible. Para eso
+queremos estimar, por ejemplo, la fracci\'on $B(N,N_0)/I(N)$ con $I(N)$ el
+n\'umero de polinomios enteros de grado $5$, con coeficientes entre $-N$ y $N$, 
+primitivos e irreducibles,  y $B(N,N_0)$ el n\'umero de los que podemos probar
+que son irreducibles usando Brillhart con $m\le N_0$. Es interesante tratar de
+ver si esa fracci\'on se estabiliza cuando hacemos crecer $N$ y $N_0$. 
+
+Este problema puede ser atacado usando el tipo de paralelismo {\itshape
+vergonzante} que incluye {\sage} (ver la secci\'on ****).
+
+\end{enumerate}
+
+\end{ejer}
+
+Puedes ver una soluci\'on de estos ejercicios en la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/?/}{\tt 2?-TNUME-brillhart.sws}.
+
+  
+  
+  
+
+
+
+
+
+

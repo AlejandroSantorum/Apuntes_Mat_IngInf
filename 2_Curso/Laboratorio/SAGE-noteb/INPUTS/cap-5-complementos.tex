@@ -1,0 +1,899 @@
+
+En este cap\'{\i}tulo se recogen peque\~nas introducciones a algunos temas,
+relativos a la programaci\'on, m\'as avanzados. Algunos de ellos los usaremos
+alguna vez a lo largo del curso, y otros no los usaremos pero nos parece
+conveniente que se sepa de su existencia. Concretamente,
+\begin{enumerate}
+ \item Se discuten brevemente los cambios entre bases de los {\sc sistemas de
+numeraci\'on}.  Puede ser innecesario si se ha visto el tema en el Bachillerato.
+\item {\sc Trucos:} en esta secci\'on se recogen algunas ideas para programar
+que, posiblemente, son reutilizables. Esperamos que pueda ir creciendo a lo
+largo del curso.
+\item {\sc Fuerza bruta:} cuando no se nos ocurre algo mejor siempre podemos
+intentar un m\'etodo de {\itshape fuerza bruta}. En problemas finitos, o que
+podamos aproximar mediante un problema finito,  ser\'a posible este tipo de
+tratamiento,  aunque seguramente muy poco eficiente.
+\item {\sc C\'alculo en paralelo:}  {\sage} dispone de un procedimiento b\'asico
+para ejecutar en paralelo bucles \lstinline|for| en m\'aquinas con varios
+n\'ucleos. No es verdadero paralelismo porque no hay {\itshape comunicaci\'on}
+entre
+los n\'ucleos, pero en condiciones favorables nos puede ahorrar tiempo de
+espera.
+
+\item{\sc Eficiencia:} se discute la forma de medir tiempos de ejecuci\'on y uso
+de la memoria RAM, junto con m\'etodos, Cython y numpy, para mejorar
+dram\'aticamente la eficiencia del c\'alculo num\'erico en \sage. Hay que tener
+en cuenta que los tiempos de c\'alculo que obtenemos al evaluar la eficiencia
+dependen mucho de la m\'aquina que estemos usando.
+
+Esta secci\'on intenta resumir el contenido de parte del 
+\href{
+http://verso.mat.uam.es/~pablo.angulo/doc/laboratorio/bloqueII.html}
+{Bloque II} en las notas de Pablo Angulo mencionadas en el Pr\'ologo.
+ 
+ 
+ \item{\sc Iteradores:} por \'ultimo, dentro de la subsecci\'on sobre la memoria
+RAM,  se mencionan los {\itshape iteradores} o
+{\itshape generadores} como m\'etodos para ahorrar RAM en la ejecuci\'on de
+bucles.
+\end{enumerate}
+
+
+\section{Sistemas de numeraci\'on}\label{bases-num}
+
+
+
+Elegida una base $b\ge 2$, podemos representar los n\'umeros enteros como
+``polinomios'' en $b$ con coeficientes los d\'{\i}gitos en base $b$, es decir,
+s\'{\i}mbolos que representan los enteros entre cero y $b-1$. Si $b\le 10$ se
+utilizan los d\'{\i}gitos decimales habituales, y si $b>10$ se utilizan a
+continuaci\'on letras. As\'{\i} por ejemplo, si la base $b$ es $16$
+los d\'{\i}gitos son 
+\[0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,\]
+\noindent con $A$ representando el d\'{\i}gito en base $16$ que corresponde al
+decimal  $10$, $B$ el que corresponde al $11$, etc.
+
+Un n\'umero entero escrito en base $16$ puede ser $7C041F$ que corresponde al
+n\'umero en base $10$
+\[15+1\cdot 16^1+4\cdot 16^2+0\cdot 16^3+12\cdot 16^4+7\cdot 16^5=8127519.\]
+
+Es claro que usando una base m\'as grande se consigue una notaci\'on mucho m\'as
+compacta. 
+
+Las expresiones que representan un entero en una base dada no son
+verdaderos polinomios porque la variable ha sido sustituida por la base del
+sistema de numeraci\'on,  y los coeficientes no son arbitrarios sino {\itshape
+d\'{\i}gitos} menores que la base.
+
+Sin embargo, las operaciones entre polinomios, suma, multiplicaci\'on y
+divisi\'on con resto,  y entre enteros en una base de numeraci\'on $b$ son  
+esencialmente las mismas. As\'{\i}, por ejemplo, el algoritmo para efectuar la
+divisi\'on con resto es pr\'acticamente el mismo para polinomios y para
+n\'umeros enteros. 
+
+Una explicaci\'on m\'as detallada, con algunos ejercicios, de este basunto puede encontrarse en este
+\href{http://150.244.21.37/PDFs/COMPL/StmasNumeracion.pdf}{documento}.
+
+\subsection{Cambios de base}
+Habitualmente usamos el sistema de numeraci\'on decimal, con base $b=10$, pero
+podr\'{\i}amos usar cualquier otro, y en computaci\'on se usan, sobre todo, los
+sistemas binario ($b=2$), octal ($b=8$) y hexadecimal ($b=16$).
+
+Los cambios de base de numeraci\'on son simples, y los hacemos pasando a
+trav\'es de la base $10$:
+\begin{enumerate}
+ \item Un entero escrito en base $b$, $a_na_{n-1}a_{n-2}\dots a_1a_0$ se pasa a
+base $10$ evaluando en base $10$ su correspondiente  polinomio en la variable
+$b$
+ \[a_n\cdot b^{n}+a_{n-1}\cdot b^{n-1}+ a_{n-2}\cdot b^{n-2}+\dots+a_1\cdot
+b+a_0.\]
+ 
+ Hemos visto un ejemplo con $b=16$ al comienzo de esta secci\'on.
+ 
+ \item Al rev\'es, si tenemos un entero $N$ en base $10$ y lo queremos pasar a
+base $b$, es decir, escribirlo en la forma 
+ \[a_n\cdot b^{n}+a_{n-1}\cdot b^{n-1}+ a_{n-2}\cdot b^{n-2}+\dots+a_1\cdot
+b+a_0,\]
+ \noindent debemos, en primer lugar dividir $N$ entre $b$ y el resto es el
+d\'{\i}gito de las unidades $a_0$ en base $b$. Esto se debe a que podemos
+escribir 
+ \[a_n\cdot b^{n}+\dots+a_1\cdot b+a_0=b\cdot (a_n\cdot
+b^{n-1}+\dots+a_1)+a_0.\]
+ 
+ Para calcular el segundo d\'{\i}gito $a_1$ debemos,  dividir el primer cociente
+$a_n\cdot b^{n-1}+\dots+a_1$ entre la base $b$ y el resto es $a_1.$ Continuamos
+en la misma forma hasta llegar a un cociente menor que $b$, y en ese momento el
+proceso necesariamente para y hemos obtenido la expresi\'on en base $b$ de $N$.
+ 
+\end{enumerate}
+
+
+
+\subsection{Sistemas de numeraci\'on en \sage}
+
+
+En \sage\ podemos obtener los d\'{\i}gitos en una base $b$ de un entero decimal
+$D$ mediante la instrucci\'on \lstinline|(D).digits(base=b)| que devuelve una
+lista de los d\'{\i}gitos ordenados seg\'un potencias decrecientes de $b$, es
+decir, el primer elemento de la lista es el d\'{\i}gito con exponente de $b$
+m\'as alto. 
+
+Las instrucciones \lstinline|bin(D)|, \lstinline|oct(D)| y \lstinline|hex(D)|
+devuelven cadenas de caracteres con la expresi\'on de $D$ en las bases $2$, $8$
+y
+$16$.
+
+Para convertir un entero en base $b$ a decimal podemos usar
+\lstinline|ZZ('expresion en base b',b)|, con el n\'umero en base $b$ entre
+comillas porque debe ser una cadena de caracteres. Entonces, por ejemplo, 
+\lstinline|ZZ(hex(D),16)| debe devolver $D$.
+
+
+
+\subsection{La prueba del $9$ y otros trucos similares}
+
+
+En el sistema de numeraci\'on decimal es f\'acil calcular el resto de la
+divisi\'on de un entero entre $9$ sin hacer la división. Ocurre que todas las
+potencias de $10$
+tienen resto uno al dividir entre $9$ (comprobarlo). Entonces, el resto de
+dividir entre $9$ el entero~$D$ es el mismo que el resto de
+dividir entre $9$ la suma de las cifras decimales de $D$. Podemos así calcular
+ese
+resto sumando las cifras y cada vez que superamos $9$, volver a sumar las cifras
+de esa suma, hasta que dejemos de superar $9$:
+\begin{lstlisting}
+k=2312348912498
+suma=sum(k.digits())
+while suma>9:
+    print suma,
+    suma=sum(suma.digits())
+suma, suma==k%9
+\end{lstlisting}
+\begin{Output}
+	56 11
+	(2, True)
+\end{Output}
+
+Cualquier operaci\'on aritm\'etica entre enteros, por ejemplo una divisi\'on con
+resto $D=d\cdot c+r$,  se puede comprobar r\'apidamente cambiando cada entero
+$z$ por su resto $[z]$  al dividir entre $9$ (``tomando clases de restos
+m\'odulo $9$'') para obtener que debe ser $[D]=[d]\cdot [c]+[r].$ Si esta
+\'ultima igualdad no se cumple podemos asegurar que la divisi\'on est\'a mal
+hecha, mientras que el rec\'{\i}proco no es siempre cierto.
+
+
+El mismo argumento nos permite calcular el resto de la divisi\'on de un entero
+$D$ entre $3$ (o $9$) como el resto de la divisi\'on entre $3$ (o $9$) de la
+suma de sus cifras.
+
+
+\section{Trucos}
+
+En esta secci\'on se recogen algunos {\itshape trucos} de programaci\'on
+\'utiles, es decir reutilizables,  y, tambi\'en, hay  enlaces a otras zonas del
+documento en las
+que se pueden encontrar otros. 
+
+En la hoja de {\sage} \href{http://sage.mat.uam.es:8888/home/pub/8/}{\tt
+51-COMPL-trucos.sws} puedes ver algunos ejemplos relacionados con esta
+secci\'on.
+
+
+
+\subsection{Potencias} \label{potencias}
+Queremos calcular, en la forma m\'as eficiente posible, una cierta  potencia
+$a^n$  de un entero $a$. Multiplicando sin m\'as efec\-tua\-r\'{\i}amos $n-1$
+productos, y querr\'{\i}amos reducir el n\'umero de productos para tratar de
+acortar el tiempo de c\'alculo.
+
+
+Una forma de hacerlo es expresando el exponente en ``base $2$'', es decir, como
+una suma de potencias de $2$, para obtener 
+\[a^n=a^{2^{n_0}+2^{n_1}+\dots+2^{n_k}}=a^{2^{n_0}}\cdot a^{2^{n_1}}\dots
+a^{2^{n_k}}.\]
+
+Una vez que hayamos calculado las potencias $a^{2^{n_i}}$ bastar\'a efectuar
+$k-1$ productos para terminar el c\'alculo.
+
+?`C\'omo calcular de manera eficiente potencias de la forma $a^{2^{k}}$? 
+
+Basta observar que 
+
+\[a^{2^{k}}=((...(((a^2)^2)^2)^{\dots})^2,\]
+
+\noindent donde el n\'umero de veces que se eleva al cuadrado es exactamente
+$k.$  En consecuencia, podemos calcular $a^{2^{k}}$ con s\'olo $k$ productos: el
+primero para elevar $a$ al cuadrado, el segundo para elevar $a^2$ al cuadrado, 
+etc.
+
+El n\'umero total de multiplicaciones para calcular $a^n$ ser\'{\i}a
+$(\sum\limits_{i=0}^{k} n_i)+k-1$. El n\'umero m\'aximo de multiplicaciones que
+tenemos que hacer, suponiendo  que el exponente $n$ es un n\'umero de $N$ bits
+(i.e. se expresa en base dos con $N$ ceros o unos), es el que corresponde al del
+$n$
+que se expresa en base $2$ como $N$ unos ($n= 2^N-1$), y resulta ser  
+\[0+1+2+3+\dots +(N-1)+N-1=\frac{N(N-1)}{2}+N-1.\]
+
+Esta idea puede expresarse mediante un programa recursivo bastante sencillo
+
+\begin{lstlisting}[columns=spaceflexible]
+def potencia(a,k):
+    if k==0:
+        return 1
+    elif k %2 == 0:
+        b = potencia(a,k/2)
+        return (b*b)
+    else:
+        b = potencia(a,(k-1)/2)
+        return (a*b*b)
+\end{lstlisting}
+\label{potencias}
+
+Si el exponenente $k$ es una potencia de $2$ el programa nunca entra en el
+\lstinline|else|, y vemos que este programa recursivo est\'a
+implementando las ideas de la discusi\'on anterior. 
+
+Es f\'acil comprobar que este programa es much\'{\i}simo m\'as eficiente que uno
+que fuera acumulando los productos parciales en una variable, y en cada vuelta
+del bucle multiplicara el valor acumulado por $a$. Por ejemplo, este programa
+puede, en un ordenador de sobremesa est\'andar, elevar $77$ al exponente
+$2^{30}$ en $152$ segundos, mientras que el que usa el acumulador no termin\'o
+el
+c\'alculo en $12$ horas. El motivo tiene que ser que el algoritmo para
+multiplicar n\'umeros grandes (?`cu\'al es?) es muy eficiente de forma que es
+much\'{\i}simo  mejor hacer pocas multiplicaciones, aunque sean de n\'umeros muy
+grandes, que hacer muchas multiplicaciones, del orden de mil millones, de un
+n\'umero grande, el que est\'a en la variable que va acumulando los resultados
+parciales, por uno  peque\~no como $77$.
+
+
+El algoritmo es especialmente eficiente cuando lo que nos interesa es calcular,
+sin calcular $a^k$, el resto (\lstinline|a^k%m|) de la divisi\'on de $a^k$ entre
+un entero $m$. En ese caso podemos efectuar todas las operaciones {\itshape
+m\'odulo $m$}, es decir, cada vez que al operar superamos $m$ podemos quedarnos
+con el resto de dividir entre $m$.  
+ 
+\begin{lstlisting}[columns=spaceflexible]
+def potencia_mod(a,k,m):
+    if k==0:
+        return 1
+    elif k%2 == 0:
+        b = potencia_mod(a,k/2,m)
+        return (b*b)%m
+    else:
+        b = potencia_mod(a,(k-1)/2,m)
+        return (a*b*b)%m
+\end{lstlisting}
+
+
+Esta {\itshape aritm\'etica m\'odulo $m$} no
+sobrecarga tanto los recursos del ordenador como la aritm\'etica entera con
+n\'umeros grandes, y as\'{\i} es posible calcular en $176$ segundos 
+ \begin{center}
+ \lstinline|potencia_mod(7777^(1234),2^(157),10991^(987654)+1)|
+ \end{center}
+ \noindent en el que elevamos un entero que tiene unas $4800$ cifras decimales a
+otro que tiene $47$ m\'odulo un entero que tiene unos cuatro millones de
+cifras. ?`C\'omo se calcula el n\'umero de cifras decimales que tiene un
+n\'umero de la forma $a^n$? ?`Cu\'antas cifras decimales tiene el entero 
+\[(7777^{1234})^{2^{157}}?\]
+
+En {\sage} podemos usar la instrucci\'on \lstinline|power_mod(a,n,m)| para
+calcular, por un procedimiento que debe ser\footnote{Tarda pr\'acticamente lo
+mismo en hacer el c\'alculo anterior.}  el mismo que usa
+\lstinline|potencia_mod(a,n,m)|, el resto de dividir $a^n$ entre $m$.
+
+
+
+Esta operaci\'on, elevar un entero grande a un exponente grande m\'odulo otro
+entero tambi\'en grande, es, como veremos en el cap\'{\i}tulo \ref{cript}, 
+usado en criptograf\'{\i}a para encriptar mensajes, mientras que la
+operaci\'on inversa, el {\itshape logaritmo discreto}, es decir el c\'alculo del
+exponente $n$ tal que $a^n$ m\'odulo $m$ es un entero prefijado $M$, es clave
+para romper el sistema que encripta mediante potencias. . 
+
+
+\subsection{Listas binarias}
+Supongamos que queremos iterar sobre todas las listas binarias, ceros o unos, de
+longitud $k$. Sabemos que el n\'umero de tales listas es  $2^k.$  Una manera es
+{\itshape anidar} $k$ bucles \lstinline|for| con la variable en cada uno de
+ellos
+tomando valor $0$ \'o $1$. \'Esto no es pr\'actico si $k$ es grande, y no es
+factible si queremos que $k$ sea un par\'ametro en una funci\'on de \sage. 
+
+Una alternativa es generar la  lista de todas las listas binarias de longitud
+$k$ e iterar sobre ella, lo que se puede hacer f\'acilmente usando el m\'etodo
+\lstinline|digits(base=2)|. 
+
+Concretamente, se puede usar un c\'odigo como el siguiente
+
+\begin{lstlisting}[columns=spaceflexible]
+def funcion(k):
+     L = []
+     for m in srange(2^k):
+	  L.append(m.digits(base=2,padto=k))
+     for L1 in L:
+	  ....
+	  ....
+\end{lstlisting}
+donde el primer bucle genera la lista de todas las listas binarias de
+longitud $k$ y el segundo itera sobre los elementos de esa lista un bloque de
+instrucciones que no se ha escrito. 
+
+
+?`Para qu\'e nos puede servir este truco? Intenta escribir, sistem\'aticamente, 
+todos los polinomios de grado $<k$ con coeficientes en
+$\mathbb{Z}_j=\{0,1,2,\dots,j-1\}$ sin usar el truco y us\'andolo.
+
+\subsection{Archivos binarios}
+Un archivo de texto con $N$ caracteres ocupa $8N$ bits, ceros o unos, o, lo que
+es lo mismo, $N$ bytes. Cada caracter se codifica como una cadena de $8$ bits
+usando el \href{http://en.wikipedia.org/wiki/ASCII}{c\'odigo ASCII}.
+
+Entonces, si generamos una cadena binaria de $N$ bits, $N$ ceros o unos, y la
+guardamos en un archivo obtendremos uno de $8N$ bits ($N$ bytes), ya que los
+ceros o unos los trata como un caracter cualquiera, el cero se representa en
+binario como $00110000$ y el uno como $00110001$.
+
+Para comprimir archivos, con m\'etodos como {\tt .zip}, necesitamos que un
+archivo que contenga $N$ bits ocupe $N$ bits, y no $8N$ bits. El truco para
+conseguir esto consiste en dividir el archivo en trozos de $8$ bits y escribir
+al archivo {\sc no los $8$ ceros o unos} sino el caracter que corresponde a los
+$8$ bits en ASCII. De esta forma lo que realmente se escribe al archivo es la
+cadena de bits original y el archivo resultante ocupa $N$ bits o $N/8$ bytes. 
+
+\subsection{La Enciclopedia de sucesiones de enteros}
+
+La \href{https://oeis.org/}{{\itshape  Enciclopedia de sucesiones de enteros}}
+es un {\itshape lugar web}\footnote{Originalmente se public\'o en papel.} que
+permite acceder y buscar dentro de una inmensa base de datos de sucesiones de
+n\'umeros enteros. 
+
+En particular, permite, en ocasiones,  identificar n\'umeros reales de los que
+hemos calculado las primeras cifras decimales usando el ordenador, sin m\'as
+que escribir las cifras decimales que creemos seguras del
+n\'umero real buscado, separadas por comas,   en la ventana que encontramos en
+la p\'agina de acceso. 
+
+
+La Enciclopedia permite identificar sucesiones  de enteros, no
+s\'olo de d\'igitos, como por ejemplo, la sucesi\'on de Fibonacci y es
+enormemente \'util al realizar {\itshape experimentos matem\'aticos.}
+ 
+
+
+
+\subsection{Enlaces a otras zonas del documento}
+
+
+
+\begin{enumerate}
+ \item \hyperlink{conj}{Usando conjuntos} podemos eliminar elementos repetidos
+en una lista:
+primero convertimos la lista $L$  en conjunto mediante 
+ \lstinline|A=set(L)|, y a continuaci\'on el conjunto en lista mediante
+\lstinline|L1=list(A)|. 
+
+\item Veremos ejemplos en los que es rentable calcular un n\'umero entero muy
+grande pasando a trav\'es de los n\'umeros reales. Uno t\'ipico se encuentra al
+calcular un n\'umero de Fibonacci muy grande sin calcular los anteriores (ver la
+secci\'on \ref{fibon}).
+ 
+ \item Usando logaritmos podemos calcular, ver la secci\'on \ref{log},  el
+n\'umero de cifras que tendr\'a
+en una base de numeraci\'on dada $b$ un n\'umero de la forma $a^k$,  sin
+necesidad de calcular $a^k$. Tambi\'en usando logaritmos es posible calcular
+la {\itshape cifra dominante} de un entero de la forma $a^k$, es decir, su
+primer d\'{\i}gito por la izquierda, sin necesidad de calcular $a^k$. 
+
+\item Por supuesto,  podemos calcular de manera eficiente la cifra de las
+unidades de $a^k$, en una base cualquiera $b$,  mediante la instrucci\'on 
+\lstinline|potencia_mod(a,k,b)| que hemos visto en esta secci\'on. ?`C\'omo
+podr\'iamos calcular la segunda cifra por la derecha o la tercera?
+
+\item Hemos visto al menos dos ejemplos, \hyperref[mergesort]{\tt mergesort}, y
+en la definici\'on de la funci\'on \lstinline|potencia|
+en esta misma secci\'on, en los que
+el problema se presta a un tratamiento recursivo especialmente eficiente. 
+
+Esto ocurre porque  en cada llamada recursiva a la propia funci\'on  se divide
+el tama\~no de los datos por dos, y se consigue as\'{\i} que la profundidad del
+\'arbol recursivo de llamadas sea del orden de \lstinline|log($n$,base=2)| con
+$n$
+el entero que ``mide el tama\~no de los datos'', por ejemplo,  si el dato es una
+lista, como en \lstinline|mergesort|,  $n$ ser\'{\i}a su longitud, y en
+la funci\'on \lstinline|potencia|~$n$ ser\'{\i}a el exponente que, en este caso,
+tambi\'en
+hemos llamado $n$.
+
+\item En la secci\'on del cap\'{\i}tulo \ref{estr-dat} dedicada a los 
+\hyperref[diccionarios]{diccionarios} se explica c\'omo se pueden usar los
+diccionarios de {\sage} para estructurar la informaci\'on de forma que las
+b\'usquedas sean r\'apidas. El procedimiento es similar a la ordenaci\'on
+{\itshape lexicogr\'afica} de las palabras en un diccionario de papel, que es
+lo que nos permite encontrar una palabra concreta r\'apidamente.  
+
+\item {\sc  ?`Continuar\'a?}
+\end{enumerate}
+
+
+\section{Fuerza bruta}\label{bruta}
+
+En muchos problemas matem\'aticos  tenemos
+que encontrar, en un cierto conjunto $X$, un elemento $x$ que cumple una
+cierta propiedad $P$. 
+
+Si $X$ es finito, podemos construirlo en el ordenador,  y resolver el problema
+recorriendo el conjunto hasta que encontremos un elemento que cumple $P$.
+Decimos que este m\'etodo para resolver el problema es de {\itshape fuerza
+bruta}. 
+
+Por ejemplo, en criptograf\'{\i}a podemos haber interceptado un mensaje que
+sabemos que ha sido encriptado con un cierto m\'etodo que conocemos. Entonces
+``conocemos'' el conjunto finito de todas las posibles claves para
+desencriptarlo
+y, en teor\'{\i}a, podemos ir probando todas hasta que encontremos  una clave
+tal que al desencriptar con ella se obtenga un mensaje legible. Es~claro que
+cualquier sistema criptogr\'afico debe tener un conjunto de claves posibles tan
+grande que sea imposible desencriptar mediante fuerza bruta. Este m\'etodo puede
+funcionar en algunos casos, pero, \hyperref[onetime]{como veremos} hay sistemas
+criptogr\'aficos que son inmunes a \'el.
+
+
+Como m\'etodo es claro que es bastante ``bruto'', no tenemos que pensar mucho
+para aplicarlo, y,  por otra parte, est\'a limitado por el tama\~no m\'aximo de
+los $X$ que podamos manejar en nuestro ordenador. Puede ser que el $X$ que nos
+interese sea demasiado grande para que pueda caber en la memoria RAM, o bien que
+el proceso de comprobar si $x$ cumple la propiedad $P$ requiera demasiado
+tiempo, de forma que el tiempo total de c\'alculo pudiera ser demasiado grande,
+meses o a\~nos,  para que nos interese estudiar el problema as\'{\i}.
+
+
+El problema de la RAM se resuelve en parte usando {\bf iteradores}, que recorren
+los elementos del conjunto $X$ ``uno a uno'' sin construir en RAM el conjunto
+completo. Si es posible construir los elementos de $X$ usando iteradores nos
+quedar\'{\i}a, en muchos casos, s\'olo el segundo problema cuya soluci\'on es
+armarnos de paciencia o bien tratar de {\itshape paralelizar} el problema.
+
+En los ordenadores que estamos usando, mi experiencia es que suele ser viable
+tratar estructuras de datos, por ejemplo listas, de un tama\~no del orden de
+$10^6$, pero suelen aparecer problemas cuando se llega a $10^7$.
+
+
+
+\section{C\'alculo en paralelo}
+Las m\'aquinas que tenemos actualmente en el Laboratorio disponen de un
+procesador con dos n\'ucleos ($2$ {\itshape cores}), lo que significa que
+{\itshape
+en teor\'{\i}a} pueden realizar c\'alculos usando los dos al mismo tiempo en
+la mitad del tiempo. De hecho, gracias a una t\'ecnica llamada {\itshape
+hyperthreading},  el sistema operativo de la m\'aquina cree que tiene cuatro
+n\'ucleos con cada n\'ucleo f\'{\i}sico soportando dos virtuales, pero, como
+debemos esperar,  los tiempos que se obtienen calculando con cuatro son
+pr\'acticamente iguales a los que se obtienen con dos.
+
+Veremos al menos un par de ejemplos de c\'alculo en paralelo, uno en un ejemplo
+de ataque mediante fuerza bruta de un sistema criptogr\'afico (cap\'{\i}tulo
+\ref{cript})  y el otro el c\'alculo aproximado de \'areas planas usando puntos
+aleatorios (cap\'{\i}tulo \ref{prob}). 
+
+
+
+
+
+
+Es claro que la mayor parte de los programas pasan casi todo su tiempo
+ejecutando bucles y podemos paralelizar un bucle dividiendo su rango
+en tantos trozos como n\'ucleos  y mandando un trozo a cada n\'ucleo. Sin
+embargo:
+
+\begin{enumerate}
+ \item Al dividir el trabajo entre los n\'ucleos es posible, dependiendo del
+problema,  que varios  necesiten los mismos datos, o bien
+ que un n\'ucleo necesite en alg\'un momento resultados que calcula otro.
+Aparece entonces un problema {\itshape log\'{\i}stico} serio: los n\'ucleos
+pueden tener que comunicarse entre ellos,  y si se organiza mal es posible que
+haya muchos n\'ucleos esperando que les llegue informaci\'on que necesitan para
+continuar su trozo del  c\'alculo.
+
+
+
+\item En m\'aquinas {\itshape multicore} el problema de la comunicaci\'on se
+resuelve
+usando zonas de memoria RAM compartida por todos los n\'ucleos ({\itshape shared
+memory}). El {\itshape software} estándar para controlar el acceso a la memoria
+compartida se llama {\bf OpenMP}.
+
+
+\item Tambi\'en se puede hacer c\'alculo paralelo en {\itshape clusters} de
+ordenadores
+que se comunican envi\'andose mensajes a trav\'es de la red local. Esto es
+bastante m\'as complicado que el caso anterior, y se hace usando un protocolo
+llamado {\bf MPI} del que existen varias implementaciones.
+
+\item Hay bucles completamente {\itshape imparalelizables}, por ejemplo, si cada
+vuelta del bucle necesita el resultado de la anterior. 
+?`Se~te ocurre alg\'un ejemplo?
+
+Si dividimos el trabajo entre los n\'ucleos, en uno de esos casos
+imparalelizables,  puede ocurrir que s\'olo uno pueda calcular en cada momento y
+los otros van a estar esperando a que les llegue su turno. El tiempo de
+ejecuci\'on va a ser igual o mayor que si ejecutamos el bucle en un s\'olo
+n\'ucleo. 
+
+
+\item Algoritmos matem\'aticos complejos pueden ser muy dif\'{\i}ciles de
+paralelizar, de manera que sistemas como {\sage} utilizan casi siempre un
+\'unico
+n\'ucleo. Si el c\'alculo es muy largo podemos observar, usando el
+{\itshape System
+monitor}\footnote{\texttt{Aplicaciones/Herramientas del sistema/Monitor del
+sistema}}, que el n\'ucleo en uso va cambiando de tiempo en
+tiempo. Eso lo hace el sistema operativo, no {\sage}, para evitar el
+sobrecalentamiento del procesador. 
+
+
+
+\item Bucles que pueden ser divididos en trozos completamente independientes
+pueden siempre ejecutarse en paralelo, pero es conocido como {\itshape
+paralelismo vergonzante} para indicar que para practicarlo no es necesario
+pensar mucho. 
+
+{\sage} dispone de una implementaci\'on de esta clase de paralelismo y es lo
+\'unico que veremos en este curso sobre el asunto.
+
+
+\item Incluso el paralelismo vergonzante tiene un problema: el tiempo que tarda
+uno de los n\'ucleos en ejecutar una vuelta del bucle puede depender del
+tama\~no de los datos, y en tales casos el n\'umero de vueltas que asignamos a
+cada n\'ucleo puede ser distinto ya que tenemos que  {\itshape equilibrar  la
+carga que soporta cada
+n\'ucleo}. Veremos alg\'un ejemplo de esta situaci\'on a continuaci\'on, junto
+con un truco que permite, en ocasiones, equilibrar la carga f\'acilmente.
+\end{enumerate}
+
+Consideremos, por ejemplo un problema en el que debemos elevar al cuadrado un
+gran n\'umero de matrices, de tama\~no creciente $m$,   con entradas enteros
+aleatoriamente elegidos. Haciendo el c\'alculo en un \'unico n\'ucleo obtenemos,
+por ejemplo, un tiempo
+\begin{lstlisting}
+def elevar2_m(m):
+	L = [randint(0,1000) for i in srange(m*m)]
+	M = matrix(ZZ,m,m,L)
+	return M*M
+
+time LL = map(elevar2_m,srange(1,200))
+\end{lstlisting}
+\begin{Output}
+	Time: CPU 22.98 s, Wall: 23.27 s
+\end{Output}
+En este ejemplo, el tama\~no de las matrices var\'{\i}a entre $1\times 1$ y
+$199\times 199.$  En una m\'aquina con $4$ n\'ucleos podemos utilizarlos todos
+mediante
+
+
+\begin{lstlisting}
+@parallel(4)
+def cuadrado(L):
+	map(elevar2_m,L)
+time LL =
+list(cuadrado([srange(1,50),srange(50,100),srange(100,150),srange(150,200)]))
+\end{lstlisting}
+\begin{Output}
+	Time: CPU 0.13 s, Wall: 14.79 s
+\end{Output}
+
+En este reparto de la carga el primer n\'ucleo tiene que tratar con matrices de
+tama\~no mucho menor y, por tanto, acabar\'a antes su tarea. La carga est\'a muy
+desequilibrada. El tiempo de c\'alculo es el que se obtiene para el n\'ucleo que
+m\'as tarda, es decir el que calcula con tama\~nos entre $150$ y $200.$
+
+\begin{lstlisting}
+@parallel(4)
+def cuadrado(L):
+	map(elevar2_m,L)
+L1 = [m for m in xrange(1,200) if m%4 == 0]
+L2 = [m for m in xrange(1,200) if m%4 == 1]
+L3 = [m for m in xrange(1,200) if m%4 == 2]
+L4 = [m for m in xrange(1,200) if m%4 == 3]
+time LL = list(cuadrado([L1,L2,L3,L4]))
+\end{lstlisting}
+\begin{Output}
+	Time: CPU 0.02 s, Wall: 5.82 s
+\end{Output}
+
+Mediante este truco conseguimos que la carga se equilibre, los cuatro n\'ucleos
+tardan m\'as o menos lo mismo y ese es el tiempo total resultante. 
+
+Puedes comprobar lo anterior, los tiempos por supuesto dependen del ordenador que estemoa usando, en la hoja 
+\href{http://sage.mat.uam.es:8888/home/pub/9/}{\tt 52-COMPL-paralelo.sws}.
+
+%%%PARA LUEGO%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%Concretamente, estos ejemplos est\'an en las hojas 
+%%\href{http://sage.mat.uam.es:8888/home/pub/11/}{\tt
+%%84-CRIPT-matricial-fuerzabruta.sws} y
+%%\href{http://sage.mat.uam.es:8888/home/pub/10/}{\tt
+%%104-PROBA-pi-paralelo.sws}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{Eficiencia}
+
+Debemos tratar de escribir programas {\sc sint\'acticamente correctos}, es
+decir, que el int\'erprete de Python acepte como v\'alidos y no muestre mensajes
+de error, y {\sc sem\'anticamente correctos}, es decir, que calculen lo que
+pretendemos calcular. Es claro que un programa que no cumple estas dos
+condiciones no nos sirve.
+
+
+Pero adem\'as,  nuestros programas deben ser {\sc eficientes}, no deben tardar
+m\'as tiempo
+del necesario ni utilizar m\'as memoria RAM de la necesaria. En esta secci\'on
+discutimos algunos aspectos de la posible mejora en la eficiencia de nuestros
+programas.
+
+
+
+
+
+Una de las  reglas b\'asicas, que ya discutimos en la secci\'on \ref{cont},  es
+que {\sc debemos calcular el m\'{\i}nimo
+necesario para poder responder}  a la pregunta que nos hacemos: si queremos
+calcular la longitud
+de una lista en lugar de calcular la lista completa y, una vez est\'a en
+memoria, calcular su longitud debemos usar un ``contador'' que se incrementa
+seg\'un vamos calculando elementos que deber\'{\i}amos a\~nadir a la lista pero
+sin generar la lista. 
+
+De la misma forma, si queremos calcular la suma (producto) de una serie de
+n\'umeros es mejor irlos sumando (multiplicando) en un ``acumulador'' que
+generar la lista
+completa y luego sumar (multiplicar). 
+ 
+ \subsection{Control del tiempo}\label{time}
+
+Para empezar, podemos usar la instrucción \lstinline|time| al comienzo de una
+l\'{\i}nea de c\'odigo en la que se ejecute una funci\'on propia de {\sage} o
+definida por nosotros. Al mostrarnos la respuesta también muestra dos
+tiempos: el tiempo de CPU y el llamado {\itshape Wall time} que corresponde al
+tiempo transcurrido desde que empez\'o el c\'alculo hasta que termin\'o. No
+coinciden necesariamente, aunque si somos el \'unico usuario y no estamos
+ejecutando otros programas aparte de {\sage} pr\'acticamente coincidir\'an,  
+porque el ordenador puede dedicar algo del tiempo de CPU a otras labores no
+relacionadas con nuestro c\'alculo.
+
+
+
+
+En segundo lugar tenemos la instrucci\'on \lstinline|timeit|, que se ejecuta en
+la
+forma 
+\lstinline|timeit('instruccion')|, y difiere de \lstinline|time| en que ejecuta
+la
+instrucci\'on
+varias veces y devuelve un promedio. La instrucci\'on admite varios par\'ametros
+(averiguar con la ayuda interactiva para \lstinline|timeit|) que controlan el
+n\'umero de
+repeticiones, etc.
+
+Por \'ultimo, \lstinline|cProfile| produce un resultado mucho m\'as detallado
+que nos
+permite saber 
+c\'omo se distribuye el tiempo total de c\'alculo entre las distintas funciones
+que se ejecutan dentro de nuestro programa. 
+
+
+
+Se invoca el {\tt profiler} mediante
+
+\begin{lstlisting}
+import cProfile, pstats
+cProfile.runctx("funcion(n,m,...)", globals(), locals(), DATA + "Profile.prof")
+s = pstats.Stats(DATA + "Profile.prof")
+s.strip_dirs().sort_stats("time").print_stats()
+\end{lstlisting}
+y hay un par de ejemplos de su uso en la hoja de {\sage} 
+\href{http://sage.mat.uam.es:8888/home/pub/10/}{\tt
+53-COMPL-eficiencia-tiempo.sws} que acompa\~na
+esta subsecci\'on.
+
+
+
+
+
+
+
+\subsection{Control de la RAM}
+
+Programas que construyen grandes estructuras de datos, por ejemplo listas
+enormes, pueden llegar a saturar la memoria RAM de la m\'aquina en la que
+estemos trabajando. Se pueden ver los incrementos en el uso de RAM mediante la
+instrucci\'on 
+\lstinline|get_memory_usage()| que nos devuelve la cantidad de memoria RAM, en
+megabytes (MB), que est\'a en uso en el momento en que se invoca. 
+
+Us\'andola, como en la hoja 
+\href{http://sage.mat.uam.es:8888/home/pub/11/}{\tt 54-COMPL-eficiencia-ram.sws}
+que acompa\~na
+esta subsecci\'on,  podemos ver los
+incrementos en memoria RAM al generar grandes estructuras de datos.
+
+
+\subsubsection{Iteradores}\label{iter}
+\begin{enumerate}
+\item Muchas estructuras de datos son {\itshape iterables}, es decir, podemos
+crear un bucle \lstinline|for| que recorra uno por uno los elementos de la
+estructura
+de datos y para cada uno de esos elementos ejecute un bloque de instrucciones.
+Todas las estructuras de datos b\'asicas, que vimos en el cap\'{\i}tulo
+\ref{estr-dat}, listas, tuplas, cadenas de caracteres, conjuntos y diccionarios,
+son iterables. 
+
+Sin embargo, esta forma de iterar funciona creando en memoria la estructura de
+datos completa y, a continuaci\'on, 
+recorri\'endola. Si, por ejemplo,  la lista es enorme va a ocupar una gran
+cantidad de memoria RAM, y crearla y recorrerla puede ser un procedimiento muy
+ineficiente.
+
+\item Estos inconvenientes se resuelven en parte con los {\itshape iteradores} o
+{\itshape generadores}, que en lugar de crear la estructura de datos en memoria
+para luego iterar sobre ella,  van generando elementos de uno en uno y cada vez
+que tienen uno ejecutan el bloque de instrucciones del bucle sobre \'el. 
+
+Es claro que esta forma de iterar debe ser mucho m\'as eficiente, al menos en
+t\'erminos de memoria RAM. 
+
+
+\item  El iterador b\'asico  es \lstinline|xsrange(k)| que genera enteros de la
+lista
+\lstinline|srange(k)| de uno en uno. Si por ejemplo definimos %
+\lstinline|gen = xsrange(10^8)|,  no se crea la lista sino \'unicamente el
+generador 
+\lstinline|gen|, y
+ejecutando varias veces \lstinline|gen.next()| podemos ir viendo  los enteros
+sucesivos {\tt 0,1,2,...}. 
+
+ 
+ Iteramos sobre un generador de la misma manera que sobre una lista: %
+ \lstinline|for j in xsrange(10^7):....|
+ 
+ \item \label{iter2}Es posible crear nuevos generadores usando la sintaxis
+breve para bucles:
+ \begin{lstlisting}[numbers=none]
+ gen2 = (f(x) for x in xsrange(10^8) if Condition)
+ \end{lstlisting}
+\noindent que produce un generador nuevo, a partir del b\'asico 
+\lstinline|xsrange(10^8)|, y filtrado por la condici\'on booleana {\tt
+Condition}.
+N\'otese
+que el generador va delimitado por par\'entesis en lugar de corchetes. 
+ 
+ \end{enumerate}
+
+
+
+\subsection{Cython}\label{cython}
+
+Python no se compila al lenguaje de m\'aquina, sino que se interpreta (i.e. se
+va traduciendo a lenguaje de m\'aquina sobre la marcha al irse ejecutando),  lo
+que hace que, en general, c\'odigo escrito en Python se ejecute mucho m\'as
+lentamente que c\'odigo escrito en  lenguajes que se compilan. 
+
+Sin embargo, modificando muy poco c\'odigo escrito en Python es posible
+compilarlo autom\'aticamente a trav\'es de  C, con lo que se consiguen mejoras
+impresionantes en su eficiencia. Cuando un programa se compila, por ejemplo en
+C, es 
+necesario que el c\'odigo reserve expl\'{\i}citamente   la memoria que se va
+a utilizar durante el c\'alculo. 
+Para eso existen \hyperref[tipos]{\itshape tipos de datos} predefinidos que
+ocupan cantidades prefijadas de memoria RAM. 
+
+
+\lstinline|cython| traduce c\'odigo escrito en Python a C y, una vez que se
+declaran los
+tipos de las variables, consigue mejoras importantes en el rendimiento. Para
+usarlo dentro de {\sage} basta escribir en la primera l\'{\i}nea de  la celda 
+\lstinline|%cython| y declarar los tipos de las variables. Por ejemplo
+
+\begin{lstlisting}
+%cython
+def cuadrado(double x):
+    cdef int a=1
+    return x*x+a
+\end{lstlisting}
+\noindent define una  funci\'on de \lstinline|cython| en la que \lstinline$x$
+est\'a declarada como un
+real de doble precisi\'on y \lstinline$a$ como un entero. Los tipos m\'as usados
+son
+\lstinline|int| para enteros, \lstinline|long| para enteros grandes,
+\lstinline|float| para decimales y \lstinline|double| para decimales de
+precisi\'on doble. 
+
+
+
+Cuando el programa incluye adem\'as listas o matrices grandes es conveniente, y
+se consiguen enormes mejoras adicionales,  usar los correspondientes objetos de
+\lstinline|numpy| en lugar de los propios de {\sage}. 
+
+
+Pueden verse algunos ejemplos de estas mejoras en las hojas 
+\href{http://sage.mat.uam.es:8888/home/pub/12/}{\tt 55-COMPL-cython.sws} y 
+\href{http://sage.mat.uam.es:8888/home/pub/13/}{\tt
+56-COMPL-planeta-cython.sws}. En la primera se discute la manera de conseguir
+grandes cantidades de n\'umeros aleatorios de manera eficiente, es decir, usando
+librer\'{\i}as de funciones compiladas en $C$, y volveremos sobre este asunto en
+el cap\'{\i}tulo \ref{prob}, Probabilidad,  en el que ser\'a crucial.
+
+En la segunda se simula, usando m\'etodos elementales, el movimiento de un
+planeta alrededor del Sol de acuerdo a las Leyes de Newton. Si te interesan
+los detalles de este asunto puedes leer, y es absolutamente recomendable,  este
+\href{http://150.244.21.37/PDFs/MISCE/Feynman-V1-Ch09-Newtons-Laws.pdf}{cap\'{\i}tulo en el libro
+de F\'{\i}sica de Feynman.} 
+
+
+
+
+
+
+\subsection{Numpy}
+Python dispone de un número grande de m\'odulos adicionales que ampl\'{\i}an sus
+capacidades y resuelven algunos de sus problemas. \lstinline|numpy| est\'a
+dise\~nado
+para
+permitir operaciones muy r\'apidas con listas y matrices, de hecho con {\itshape
+arrays} de cualquier dimensi\'on, y permite, en conjunci\'on con Cython, 
+utilizar Python (y {\sage}), en C\'alculo Num\'erico. 
+
+En este curso veremos muy poco C\'alculo Num\'erico ya que hay una asignatura
+espec\'{\i}fica en el segundo cuatrimestre, y adem\'as en ella se utiliza Matlab
+en lugar de {\sage}, pero ser\'{\i}a perfectamente factible utilizar la
+combinaci\'on {\sage}+cython+\lstinline|numpy| para conseguir los mismos
+resultados
+que con
+Matlab\footnote{Matlab, al contrario que {\sage}, no es un programa gratuito
+sino bastante caro y es la Universidad quien paga las licencias que nos permiten
+usarlo en el Laboratorio. Adem\'as, el motor de c\'alculo de Matlab consiste en 
+librer\'{\i}as para \'Algebra Lineal,  muy optimizadas,  que est\'an en el
+dominio
+p\'ublico hace mucho tiempo.} en cuanto a eficiencia. 
+
+Para poder usar \lstinline|numpy| dentro de {\sage} debemos evaluar una celda
+con el
+contenido \lstinline|import numpy as np|, y una vez hecho esto una l\'inea como 
+\lstinline|A = np.array([[1,2],[1,1]])| define la matriz $A$ como una matriz de
+\lstinline|numpy|. Una vez que definimos una lista o matriz como de
+\lstinline|numpy|, las
+operaciones que hagamos con ella ser\'an operaciones de \lstinline|numpy| y, por
+tanto, muy optimizadas.
+
+La sintaxis de \lstinline|numpy| es algo diferente a la de {\sage}, por ejemplo
+\lstinline|A*A| para matrices de \lstinline|numpy| es el producto elemento a
+elemento
+mientras que el producto de matrices se obtiene mediante \lstinline|A.dot(A)|,
+y, en este curso no usaremos sistem\'aticamente, aunque quiz\'a s\'{\i}
+puntualmente, \lstinline|numpy|  para el c\'alculo con matrices.
+
+En la hoja 
+\href{http://sage.mat.uam.es:8888/home/pub/14/}{\tt 57-COMPL-numpy.sws}
+se pueden ver un par de ejemplos que comparan los tiempos de ejecuci\'on de
+c\'odigos que utilizan \lstinline|numpy| con c\'odigos similares que no lo
+utilizan.
+
+
+Un ejemplo m\'as se encuentra en la hoja 
+\href{http://sage.mat.uam.es:8888/home/pub/15/}{\tt
+58-COMPL-fractal-cython-numpy.sws}, que contiene un programa escrito por Pablo
+Angulo, dedicada a la obtenci\'on de gr\'aficas de conjuntos fractales, y en
+particular del conjunto de Mandelbrot.
+
+Puedes leer la 
+\href{http://en.wikipedia.org/wiki/Mandelbrot_set}{p\'agina de la Wikipedia}
+sobre el conjunto de Mandelbrot y 
+\href{http://en.wikipedia.org/wiki/Fractal}{esta otra} sobre la noci\'on general
+de conjunto fractal.  Adem\'as en la wiki de Sagemath puede encontrarse 
+\href{http://wiki.sagemath.org/interact/fractal}{esta p\'agina}, en la que hay
+varios ejemplos de construcci\'on de fractales con {\sage}, junto con ejemplos
+sobre c\'omo hacer las gr\'aficas interactivas.

@@ -1,0 +1,183 @@
+
+\documentclass[landscape,10pt,oneside,oldfontcommands]{memoir} %%Para pantalla
+
+\usepackage[utf8]{inputenc}
+\usepackage{embedfile}
+\usepackage{xypic}
+\usepackage{listings}%%% DOR
+\usepackage[spanish]{babel}
+\usepackage{framed,graphicx}
+\usepackage{amsmath,amssymb,amsthm,verbatim}%%%,savetrees}
+\usepackage[pdftex,pdfnewwindow=true]{hyperref}
+\usepackage[dvipsnames*,svgnames]{xcolor}
+\usepackage{mfpic}
+\usepackage{mathrsfs,textcomp}
+\usepackage{dor}
+
+\newtheorem{Tma}{Teorema}
+%%\DeclareUnicodeCharacter{00A0}{~}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    filecolor={green!50!black},
+    urlcolor={blue!80!black}
+}
+
+
+\setlength{\FrameSep}{4pt}
+\setcounter{maxsecnumdepth}{3}
+
+\newcommand\HRule{\noindent\rule{\linewidth}{1.5pt}}
+\makeatletter
+    \renewcommand\part{%
+      \if@openright
+        \cleardoublepage
+      \else
+        \clearpage
+      \fi
+      \thispagestyle{empty}%
+      \if@twocolumn
+        \onecolumn
+        \@tempswatrue
+      \else
+        \@tempswafalse
+      \fi
+      \null\vfil
+      \secdef\@part\@spart}
+\makeatother
+
+\usemetapost
+\usemplabels
+
+
+
+
+\setstocksize{6in}{8in}
+\settrimmedsize{6in}{8in}{*}
+\settrims{0pt}{0pt}
+\settypeblocksize{5.0in}{7.6in}{*}
+\setulmargins{0.5in}{*}{*}
+\setlrmargins{0.2in}{*}{*}
+\checkandfixthelayout
+\newcommand{\destaca}[1]{{\color{red}\mathbf{#1}}}
+
+
+
+\begin{document}
+\frontmatter
+
+\begin{titlingpage}
+\vspace*{\stretch{3}}
+\HRule
+\begin{flushright}
+{\LARGE \sffamily RHG DOR}\\
+ \hspace{1cm} \\
+ {\sffamily \bfseries \Huge Laboratorio}
+\end{flushright}
+\HRule
+\vspace*{\stretch{2}}
+\large
+\begin{center}
+{\sc Madrid 2017}
+\end{center}
+\end{titlingpage}
+
+\begin{KeepFromToc}
+  \tableofcontents
+\end{KeepFromToc}
+
+
+
+\chapter*{Pr\'ologo}
+\monta|prologo|
+\mainmatter
+
+\part{Fundamentos}
+
+\chapter{Introducci\'on}\label{intro}
+\thispagestyle{empty}
+\monta|cap-1-interface-jupyter|
+%\section{Notas personales}
+%\montan|notas-cap1|
+
+\chapter{SAGE como calculadora avanzada}
+\thispagestyle{empty}
+\monta|cap-2-calculadora|
+%\section{Notas personales}
+%\montan|notas-cap2|
+
+
+\chapter{Estructuras de datos}\label{estr-dat}
+\thispagestyle{empty}
+\monta|cap-3-estructuras_datos|
+%\section{Notas personales}
+%\montan|notas-cap3|
+
+\chapter{T\'ecnicas de programaci\'on}\label{prog}
+\thispagestyle{empty}
+\monta|cap-4-programacion|
+%\section{Notas personales}
+%\montan|notas-cap4|
+\begin{comment}
+\chapter{Complementos}
+\thispagestyle{empty}
+\monta|cap-5-complementos|
+%\section{Notas personales}
+%\montan|notas-cap5|
+
+\part{Aplicaciones}
+
+\chapter{Teoría de números}\label{tn1}
+\monta|cap-6-tnumeros1|
+%%\section{Notas personales}
+%%\montan|notas-cap6|
+
+
+\chapter{Aproximaci\'on}\label{aprox}
+\monta|cap-7-aproximacion|
+%%\section{Notas personales}
+%%\montan|notas-cap7|
+
+
+
+
+\chapter{Criptograf\'{\i}a}\label{cript}
+\monta|cap-8-cripto|
+%\section{Notas personales}
+%\montan|notas-cap8|
+
+\chapter{M\'as teor\'{\i}a de n\'umeros}
+\monta|cap-9-tnumeros2|
+%\section{Notas personales}
+%%\montan|notas-cap9|
+
+\chapter{Matem\'atica discreta}\label{discr}
+\monta|cap-10-discreta|
+%\section{Notas personales}
+%%\montan|notas-cap10|
+
+
+
+
+\chapter{Probabilidad}\label{prob}
+\monta|cap-11-probabilidad|
+%\section{Notas personales}
+%%\montan|notas-cap11|
+
+
+\chapter{Miscel\'anea}
+\monta|cap-12-miscelanea|
+%\section{Notas personales}
+%%\montan|notas-cap12|
+
+
+\end{comment}
+
+
+\begin{appendices}
+\chapter{Recursos}
+ \monta|bibliografia|
+\end{appendices}
+\end{document}
+

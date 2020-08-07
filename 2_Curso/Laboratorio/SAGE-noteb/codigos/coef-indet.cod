@@ -1,0 +1,28 @@
+puntos=[(-2, 26), (-1, 4), (1, 8), (2, -2)]
+m=len(puntos)
+filas=[]
+for P in puntos:
+	fila=[]
+	for j in range(m):
+		fila.append(P[0]^j)
+	fila.append(P[1])
+	filas.append(fila)
+A_ampliada=matrix(QQ,filas)
+show(A_ampliada)
+A_ampliada.echelonize()
+A_ampliada;A_ampliada.column(m)
+######
+coefs=list(A_ampliada.column(-1))
+coefs.reverse()
+P=0
+for k in coefs:
+	P=P*x+k
+P;P.expand();all([P(Q[0])==Q[1] for Q in puntos])
+####
+	-((3*x - 2)*x - 5)*x + 4
+	-3*x^3 + 2*x^2 + 5*x + 4
+	True
+####
+equis=[Q[0] for Q in puntos]
+xm,xM=min(equis),max(equis)
+points(puntos)+plot(P,(x,xm,xM),figsize=5)

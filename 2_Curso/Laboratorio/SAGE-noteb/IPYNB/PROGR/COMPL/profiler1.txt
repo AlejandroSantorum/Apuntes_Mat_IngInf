@@ -1,0 +1,36 @@
+         64455471 function calls in 195.559 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+ 30333033  101.802    0.000  134.253    0.000 misc.py:431(is_prime)
+     3033   57.859    0.019  195.498    0.064 <ipython-input-1-b0f3e13a31f4>:1(g)
+ 30333033   32.451    0.000   32.451    0.000 {method 'is_prime' of 'sage.rings.integer.Integer' objects}
+  3742736    3.070    0.000    3.070    0.000 {len}
+     3034    0.149    0.000    0.326    0.000 {sage.arith.srange.srange}
+     3034    0.105    0.000    0.174    0.000 sequence.py:88(Sequence)
+        1    0.053    0.053  195.551  195.551 <ipython-input-2-bf7c5e6078f4>:1(g2)
+     3034    0.021    0.000    0.027    0.000 sequence.py:413(__init__)
+    15250    0.019    0.000    0.019    0.000 {isinstance}
+     6068    0.007    0.000    0.007    0.000 {sage.structure.element.canonical_coercion}
+     3034    0.006    0.000    0.009    0.000 quotient_ring.py:309(is_QuotientRing)
+       81    0.004    0.000    0.004    0.000 {method 'send' of 'zmq.backend.cython.socket.Socket' objects}
+     3034    0.003    0.000    0.003    0.000 sequence.py:731(universe)
+     3034    0.003    0.000    0.003    0.000 {sage.rings.polynomial.multi_polynomial_ring_generic.is_MPolynomialRing}
+     3034    0.003    0.000    0.003    0.000 {sage.structure.element.parent}
+       80    0.001    0.000    0.007    0.000 iostream.py:361(write)
+       81    0.001    0.000    0.005    0.000 iostream.py:180(schedule)
+        1    0.000    0.000  195.559  195.559 <ipython-input-3-572a18ac1c56>:1(g3)
+       30    0.000    0.000    0.000    0.000 {method 'count' of 'list' objects}
+       80    0.000    0.000    0.001    0.000 {method 'decode' of 'str' objects}
+       81    0.000    0.000    0.000    0.000 {posix.urandom}
+       80    0.000    0.000    0.000    0.000 {_codecs.utf_8_decode}
+       81    0.000    0.000    0.000    0.000 threading.py:986(isAlive)
+       80    0.000    0.000    0.000    0.000 utf_8.py:15(decode)
+       80    0.000    0.000    0.000    0.000 iostream.py:285(_is_master_process)
+       81    0.000    0.000    0.000    0.000 iostream.py:89(_event_pipe)
+       80    0.000    0.000    0.000    0.000 iostream.py:298(_schedule_flush)
+       80    0.000    0.000    0.000    0.000 {posix.getpid}
+       81    0.000    0.000    0.000    0.000 threading.py:570(isSet)
+        1    0.000    0.000  195.559  195.559 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}

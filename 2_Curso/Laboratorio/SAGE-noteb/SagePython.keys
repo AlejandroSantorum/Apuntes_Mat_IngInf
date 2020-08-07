@@ -1,0 +1,60 @@
+%%%% Ir añadiendo palabras clave del lenguaje
+%%%% separadas por comas y en orden alfabético
+\lstdefinelanguage[LaTeX]{TeX}{language=TeX,
+morekeywords={begin,cap,color,cup,equation,frac,green,pmatrix}}
+\lstdefinelanguage[Sage]{Python}{language=Python,
+morekeywords={%
+adjoint,add,all,ambient_vector_space,%
+any,append,arange,array,as,assume,assumptions,
+basis,basis_matrix,%
+bool,%
+CC,cdef,CDF,ceil,coeffs,column,columns,%
+Combinations,ComplexField,%
+csc,csch,coordinates,cos,cosh,cot,coth,count,%
+cProfile,cross_product,cython,%
+degree,derivative,det,dict,digits,dim,divisors,dot,dot_product,double,%
+e,echelon_form,echelonize,%
+exact_rational,expand,expand_log,expand_rational,expand_trig,extend,%
+factor,factorial,fibonacci,finance,find,find_root,floor,forget,%
+gcd,get_memory_usage,GF,
+histogram,%
+I,identity_matrix,implicit_plot3d,implicit_plot,%
+ind,index,inner_product,inner_product_matrix,%
+insert,integral,integrate,intersection,inverse,%
+is_prime,items,%
+join,%
+keys,%
+lagrange_polynomial,left,left_hand_side,lhs,len,%
+limit,line2d,line3d,line,list,log,%
+matrix,min,max,meshgrid,%
+N,n,negation,next,next_prime,norm,nth_prime,numerical_approx,numerical_integral,%
+parametric_plot,parametric_plot3d,parent,pairwise_product,Permutations,plot,%
+plot_histogram,plot3d,point,point2d,point3d,points,%
+polynomial,PolynomialRing,pop,prime_range,primes,print_stats,pstats,
+power_mod,%
+QQ,QQbar,quo_rem,randint,random,RDF,RealField,%
+random_element,range,rank,remove,reverse,%
+right,right_hand_side,right_kernel,rhs,RR,rref,%
+roots,round,row,rows,runctx,%
+set,show,%
+simplify,simplify_exp,simplify_factorial,simplify_full,%
+simplify_log,simplify_radical,simplify_rational,simplify_trig,%
+sin,sinh,sec,sech,solve,sort,sort_stats,split,%
+SR,sqrt,srange,Stats,str,strip_dirs,%
+subspace,subspace_with_basis,subtract_from_both_sides,sum,%
+tan,tanh,time,timeit,TimeSeries,trace,transpose,tuple,type,%
+xgcd,xrange,xsrange,%
+und,union,update,%
+values,var,vector,VectorSpace,%
+zip,ZZ%
+window_width,window_height,forward,back,left,right,radians,speed,%
+pos,heading,setposition,penup,pendown,setheading,pencolor,pensize,%
+cython,numpy,%
+int,long,float,%
+True,False,%
+iterahasta,ini,condicionparada%
+}}
+%%%%% Las que siguen son palabras clave, de otro categoría,
+%%%% que también interesaría resaltar, pero de distinta manera
+%% figsize,pointsize,axes,Infinity,True,False,max_points,dir,%
+%% pi,golden_ratio,color,thickness,linestyle

@@ -1,0 +1,917 @@
+
+La Criptograf\'{\i}a, o m\'as en general la Teor\'{\i}a de c\'odigos 
+(compresores, correctores, criptopgr\'aficos), es una de las aplicaciones m\'as 
+importantes de las Matem\'aticas al mundo real.  En el caso de la 
+Criptograf\'{\i}a se trata, en gran parte, de una aplicaci\'on de la 
+teor\'{\i}a de n\'umeros, una parte de las Matem\'aticas que antes de llegar 
+esta aplicaci\'on se consideraba {\itshape absolutamente pura.}
+
+
+Para encriptar\footnote{Usamos como equivalentes los t\'erminos {\itshape encriptar} y {\itshape cifrar}, {\itshape desencriptar} y {\itshape descifrar}.} un mensaje utilizamos una {\itshape clave}, perteneciente a un cierto conjunto $\mathscr{K}_c$,  y un {\itshape algoritmo}  que,  para cada mensaje y cada clave,  nos da un mensaje encriptado. Adem\'as, para cada clave de encriptado necesitamos una clave de desencriptado, perteneciente a un cierto conjunto $\mathscr{K}_d$, de forma que ambos conjuntos de claves deber\'{\i}an ser biyectivos mediante una biyecci\'on expl\'{\i}citamente conocida. En el cap\'{\i}tulo \ref{discr} se recuerdan algunas nociones b\'asicas, que deben ser conocidas gracias a la asignatura {\sc Conjuntos y n\'umeros},  sobre los diversos tipos de funciones. 
+
+
+
+Por supuesto, necesitamos tambi\'en un algoritmo de desencriptado, que para cada mensaje encriptado y cada clave de desencriptado devuelva el mensaje original. En muchos casos el algoritmo de desencriptado es el mismo que el de encriptado. 
+
+
+La seguridad de un sistema criptogr\'afico no debe residir en mantener secreto el algoritmo de encriptado, ya que si un m\'etodo de encriptado se le ocurre a una persona tambi\'en se le puede ocurrir a otra, sino en claves, que en parte o totalmente deben mantenerse secretas, pertenecientes a un espacio de claves enorme, cuanto m\'as grande m\'as seguro es el sistema,  y elegidas aleatoriamente, veremos en el cap\'{\i}tulo \ref{prob} c\'omo hacerlo,  dentro de \'el.  
+
+
+
+\section{Codificaci\'on}
+
+Un texto, como los que queremos cifrar,  es una cadena de caracteres y las
+funciones  $\Phi$ y $\Xi$,  que cifran y descifran, deber\'{\i}an
+ser definidas mediante operaciones matem\'aticas, es decir mediante ciertas
+{\itshape f\'ormulas}, ya que operando directamente sobre las cadenas de
+caracteres s\'olo podemos realizar, de forma c\'omoda, operaciones muy simples, 
+ como {\itshape
+cambiar la A por la M, la B por la Z, etc.}
+
+
+
+Entonces, es necesario para definir de manera sencilla y sistem\'atica las
+funciones del sistema criptogr\'afico, cambiar las cadenas de caracteres por
+n\'umeros, por ejemplo enteros, o quiz\'a por cadenas de bits. A esta fase
+previa al cifrado se le llama {\sc codificaci\'on.} 
+
+La codificaci\'on puede verse como una funci\'on biyectiva $\phi$ del conjunto
+de mensajes $\mathscr{M}$ en un cierto conjunto ``num\'erico'', por ejemplo
+podr\'{\i}a ser el conjunto de enteros m\'odulo un $N$ muy grande
+$\mathbb{Z}_N.$  Denotamos mediante $\mathscr{N}$ y $\mathscr{NC}$ estos
+``conjuntos de n\'umeros'', el de los mensajes antes de encriptar y el de los
+mensajes encriptados. 
+
+Entonces, la funci\'on $\Phi$ es la composici\'on de la funci\'on que
+codifica $\phi$, multiplicada por la identidad en las claves, con la verdadera
+funci\'on que encripta $\Gamma$, definida mediante procesos matem\'aticos, y, si
+queremos enviar un mensaje de texto, la composici\'on con una tercera funci\'on
+$\varphi$, tambi\'en biyectiva,  que {\sc descodifica}, es decir, transforma el
+``n\'umero'' que obtuvimos al encriptar en una cadena de caracteres:
+
+\begin{equation}\notag
+\xymatrix{
+\mathscr{M}\times \mathscr{K}_c\ar[r]^{\Phi}\ar[d]^{\phi\times
+1}&\mathscr{MC}\\
+\mathscr{N}\times \mathscr{K}_c\ar[r]^{\Gamma}&\mathscr{NC}\ar[u]^{\varphi}\\
+}
+\end{equation}
+
+La funci\'on $\Xi$ tambi\'en puede escribirse como una composici\'on de una
+funci\'on que codifica, multiplicada por la identidad en el conjunto de claves
+$\mathscr{K}_d$, con la funci\'on que descifra y con la que descodifica. Es claro que un sistema criptogr\'afico es de utilidad si para cualquiere mensaje que encriptemos usando una cierta clave de encriptado podemos desencriptarlo usando la correspondiente clave de desencriptado. En todos los ejemplos sobre los que trabajaremos tendremos que comprobar que se cumple esta condici\'on al menos para un mensaje suficientemente largo. 
+
+
+La codificaci\'on depende de la forma en que vayamos a cifrar, y por tanto puede
+variar de un sistema criptogr\'afico a otro.  Debemos entender que {\sc
+codificar} un texto, de forma que, por ejemplo, lo transformamos en una cadena
+de ceros y unos, {\sc no} es lo mismo que {\sc cifrarlo}: el texto codificado
+puede ser ilegible en principio, pero basta tener una idea del sistema de
+codificaci\'on que se us\'o para poder leerlo. En particular, la codificaci\'on 
+no utiliza claves.
+
+Puedes ver varios ejemplos de codificaciones en la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/21/}{\tt 81-CRIPT-codificacion.sws}
+
+\section{Criptoan\'alisis}
+
+Antes de pasar a describir en detalle algunos sistemas criptogr\'aficos conviene
+describir dos m\'etodos b\'asicos del llamado {\it criptoan\'alisis}, es decir,
+el estudio de los m\'etodos para romper sistemas criptogr\'aficos.
+
+\begin{enumerate}
+ \item Como el conjunto de posibles claves es finito, es, en principio,  posible
+ir probando claves hasta obtener un texto legible. Se llama a esto ``un ataque
+mediante fuerza bruta''. Podemos hacer  muy dif\'{\i}cil, imposible, un ataque
+de fuerza bruta haciendo enorme el espacio de claves. 
+Hay que tener en cuenta
+que un sistema seguro puede dejar de serlo si se dan grandes mejoras en el
+{\itshape hardware} o el {\itshape software} utilizados para romperlo.
+ 
+ \item Algunos sistemas criptogr\'aficos cl\'asicos pod\'{\i}an ser atacados
+mediante
+an\'alisis estad\'{\i}sticos del texto encriptado, estudiando las frecuencias de
+las letras, de los pares de letras, etc.
+
+El texto encriptado puede, para algunos sistemas criptogr\'aficos primitivos,
+contener todav\'{\i}a alguna informaci\'on acerca del texo legible que puede
+ser extra\'{\i}da.
+\end{enumerate}
+
+\section{Criptograf\'{\i}a cl\'asica}
+
+En esta secci\'on describiremos algunos sistemas cl\'asicos de cifrado que
+cubren en parte la historia de la Criptograf\'{\i}a hasta el comienzo del siglo
+XX.
+
+
+\subsection{Cifra de C\'esar}
+
+Es quiz\'a el sistema criptogr\'afico m\'as antiguo, y m\'as simple,  que se
+conoce:
+
+\begin{enumerate}
+ \item Cada una de las $26$ letras se codifica como un entero m\'odulo $26$.
+Esta asignaci\'on puede ser abitraria, pero normalmente la hacemos en orden: la
+`A' al cero, la `B' al uno, etc. Un mensaje se codifica codificando sus letras
+en orden. 
+ \item El conjunto de claves para encriptar $\mathscr{K}_c$ y el de claves para
+desencriptar $\mathscr{K}_c$ son el mismo, e igual a los enteros m\'odulo~$26$.
+ \item El conjunto $\mathscr{N}$ es $\bigcup_{1\le n\le N}\mathbb{Z}_{26}^n$,
+con
+$N$ la longitud m\'axima de los mensajes.
+ \item Supongamos elegida una clave $k\in \mathbb{Z}_{26}$. El encriptado se
+hace letra a letra y consiste simplemente en sumar, siempre m\'odulo $26$, la
+codificaci\'on de la letra con la clave. 
+ \item Se descodifica, letra a letra por ejemplo, con la inversa de la funci\'on
+que codifica.
+ \item La clave para desencriptar un mensaje encriptado con la clave $k$ es
+$26-k$.
+% , ya que sumar $26$ m\'odulo $26$ es lo mismo que  sumar $0$.
+ \end{enumerate}
+
+Es muy f\'acil romper el sistema de C\'esar probando las posibles claves, y
+parando cuando se encuentre un texto legible. Aparte de este ataque de {\itshape
+fuerza bruta}, el sistema de C\'esar tambi\'en puede ser atacado f\'acilmente,
+siempre que dispongamos de un texto encriptado suficientemente grande,  mediante
+an\'alisis de frecuencias de las letras en el texto encriptado y comparaci\'on
+con las frecuencias de las letras en la lengua del mensaje. 
+
+Veremos ejemplos de todo esto en la hoja de {\sage} 
+\href{http://sage.mat.uam.es:8888/home/pub/22/}{\tt 82-CRIPT-cesar-vigenere.sws}.
+ 
+ 
+ 
+ 
+ 
+ \subsection{Cifrado de permutaci\'on}
+
+ La funci\'on ``sumar $k$'' de $\mathbb{Z}_{26}$ en s\'{\i} mismo es una
+biyecci\'on, y la debilidad del sistema de C\'esar reside en que \'unicamente
+hay $26$ funciones de esta clase, y una de ellas no sirve.  Se puede mejorar
+algo la seguridad del sistema usando una biyecci\'on arbitraria de
+$\mathbb{Z}_{26}$ en s\'{\i} mismo como clave, ya que hay 
+\[26!=403291461126605635584000000\]
+\noindent  biyecciones de $\mathbb{Z}_{26}$ en s\'{\i} mismo. Elegida una tal
+biyecci\'on $\phi$, que podemos
+pensar como una biyecci\'on del alfabeto $\mathscr{A}$ en s\'{\i} mismo (no hace
+falta codificaci\'on),
+simplemente cambiamos cada letra $*$ del mensaje  por $\phi(*)$ para obtener el
+mensaje encriptado. Por supuesto, para desencriptar usamos la biyecci\'on
+inversa. 
+
+
+
+No es imposible un ataque de fuerza bruta, pero
+ya ser\'{\i}a m\'as costoso. Sin embargo, este sistema puede ser atacado
+mediante an\'alisis de frecuencias porque cada letra se encripta siempre
+mediante la misma letra, de forma que la letra m\'as frecuente en la lengua del
+mensaje original se encripta siempre por la misma, que pasa a ser la m\'as
+frecuente del mensaje encriptado, etc.  
+
+
+En la \'epoca en que se usaban estos sistemas criptogr\'aficos, el an\'alisis de
+frecuencias permit\'{\i}a descifrar algunos de los caracteres, pero tambi\'en se
+usaba la habilidad para rellenar crucigramas del criptoanalista para completar
+la informaci\'on  que suministraba el an\'alisis de frecuencias.
+ 
+ 
+ \subsubsection{Oscurecimiento de las frecuencias}\label{oscurecer}
+ Supongamos un sistema como el cifrado de permutaci\'on, f\'acilmente atacable
+mediante an\'alisis de frecuencias. Podemos ``oscurecer'' las frecuencias de las
+letras mediante el siguiente truco: en lugar de 26 caracteres usamos, por
+ejemplo, un alfabeto de  $100$ s\'{\i}mbolos, y a una letra, por ejemplo $E$, 
+cuya frecuencia en la lengua que usamos es, por ejemplo, $12\%$ le asignamos
+$12$ s\'imbolos, eligiendo al azar uno entre los doce cada vez que nos
+encontramos  una $E$. 
+
+De esta forma conseguimos que cada uno de los $100$
+s\'{\i}mbolos de nuestro alfaberto extendido tenga una frecuencia de un $1\%$ y
+el texto encriptado ya no tiene informaci\'on relevante acerca de la frecuencia
+de cada uno de sus s\'{\i}mbolos. A\'un as\'{\i}, todav\'{\i}a queda
+informaci\'on relevante, y explotable,  acerca de los pares, y tripletas, de
+letras.
+ 
+\subsection{Cifra de Vigenere}
+ 
+ Para mejorar el sistema de C\'esar, de Vigenere  invent\'o un sistema en el que
+se utiliza una clave de C\'esar distinta seg\'un la posici\'on que ocupa el
+caracter en el texto. 
+
+\
+
+Una manera simple de describirlo es 
+\begin{enumerate}
+\item Elegimos una palabra de cierta longitud que ser\'a la clave, por ejemplo
+`CIRUELA'.
+\item Pensamos que el texto est\'a todo en una sola l\'{\i}nea y escribimos
+debajo la palabra clave repetida sin espacios  hasta que sobrepasamos la
+longitud del texto.
+
+
+
+\item Cada letra  del texto se encripta mediante C\'esar usando 
+como clave  la posici\'on en el alfabeto de la letra de la palabra clave que 
+tiene debajo.
+
+\end{enumerate}
+ 
+ Si usamos palabras clave de longitud $k$, el espacio de claves tiene $26^k$
+posibles claves. Es razonable, aunque esto hace m\'as
+dif\'{\i}cil recordarla,  que la palabra clave no sea una existente. Haciendo
+$k$ suficientemente grande, podemos conseguir espacios de claves enormes a costa
+de complicar el mantenimiento o transmisi\'on de las claves. 
+
+Como veremos en las hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 83-CRIPT-vigenere-frec.sws}
+el sistema de  Vigenere puede ser atacado, mediante an\'alisis de frecuencias, 
+si disponemos de suficiente texto encriptado, pero cuanto  mayor sea la 
+longitud 
+de la clave 
+necesitaremosmos m\'as cantidad de texto encriptado.
+
+\subsection{Cifrado matricial}
+
+
+Otra variante del sistema de C\'esar consiste en usar {\itshape biyecciones
+afines} de $\mathbb{Z}_{26}$ en s\'{\i} mismo, es decir funciones $f(x):=a\cdot
+x +b$, con $a$ invertible y $b$ arbitrario en $\mathbb{Z}_{26}$.  Esto no mejora
+casi la seguridad del sistema de C\'esar, ya que sigue habiendo muy pocas
+biyecciones afines, pero la idea se puede generalizar para resolver este
+problema. 
+
+Basta usar transformaciones afines $f(\mathbf{X}):=\mathbf{A}\cdot
+\mathbf{X} +\mathbf{b}$ con $\mathbf{A}$ una matriz $n\times n$ invertible con
+entradas en $\mathbb{Z}_{26}$, y $\mathbf{X}$ y $\mathbf{b}$ vectores en
+$\mathbb{Z}_{26}^n$. Es cierto que $\mathbb{Z}_{26}$ no es un cuerpo, de forma 
+que
+$\mathbb{Z}_{26}^n$ no es un espacio vectorial, pero sigue siendo v\'alido que 
+una
+matriz $\mathbf{A}$ con entradas en 
+ $\mathbb{Z}_{26}^n$ es invertible si y s\'olo si su determinante es distinto de
+cero.
+
+\begin{enumerate}
+ \item Los mensajes se codifican letra a letra usando el mismo sistema que en
+C\'esar.
+ \item Cada mensaje se divide en trozos, bloques,  de $n$ caracteres, y cada
+trozo queda codificado mediante un vector en $\mathbb{Z}_{26}^n$. Si~el \'ultimo
+trozo no llega a $n$ caracteres se a\~naden al final las zetas que hagan falta.
+
+\item Se encripta usando la funci\'on af\'{\i}n biyectiva
+$f(\mathbf{X}):=\mathbf{A}\cdot
+\mathbf{X} +\mathbf{b}$, y, en consecuencia, se desencripta mediante
+$g(\mathbf{Y}):=\mathbf{A}^{-1}\cdot(
+\mathbf{Y} -\mathbf{b})$, con todas las operaciones realizadas m\'odulo $26$.
+ \end{enumerate}
+
+ Tomando $n$ suficientemente grande se consigue que el espacio de posibles
+claves sea muy grande, y adem\'as,  como cada letra se encripta de distinta
+manera dependiendo de las otras letras que est\'an en su mismo bloque,   las
+frecuencias de las letras quedan muy alteradas y no parece \'util un an\'alisis
+de frecuencias. 
+
+Sin embargo, si conseguimos $n+1$ vectores  en $\mathbb{Z}_{26}^n$ y los  $n+1$
+vectores que les corresponden mediante la transformaci\'on af\'{\i}n, y siempre
+que los $n+1$ vectores formen un sistema de referencia af\'{\i}n (i.e. restando
+uno de ellos a los restantes $n$ se obtiene un conjunto linealmente
+independiente),  se puede obtener la transformaci\'on af\'{\i}n, es decir la
+clave\footnote{La informaci\'on necesaria, texto sin encriptar y el
+correspondiente texto encriptado,  se podr\'{\i}a obtener mediante agentes
+dobles, que,  al menos en las pel\'{\i}culas, siempre existen.}. 
+
+
+En la hoja de {\sage} 
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 
+84-CRIPT-matricial-fuerzabruta.sws}
+puedes encontrar un ejemplo de uso de este m\'etodo, usando matrices $2\times 
+2$, junto con un ataque mediante {\itshape fuerza bruta}, posible porque el 
+espacio de claves no es muy grande,  usando un diccionario. 
+
+
+
+Podr\'{\i}amos pensar en hacer m\'as seguro este sistema usando una clave
+distinta para encriptar cada bloque, cada vector, pero esto complica
+much\'{\i}simo la log\'{\i}stica de las claves y es m\'as simple, e igual de
+seguro,  usar el sistema tratado en la siguiente subsecci\'on.
+
+
+
+
+
+
+
+
+
+
+
+\subsection{One time pad}
+
+Este es un sistema muy simple y para el que se puede demostrar matem\'aticamente
+que, siempre que los malos\footnote{Es claro que, seamos quienes seamos, los
+malos siempre son los otros.} no nos roben las claves,  es absolutamente seguro.
+
+ \begin{enumerate}
+ 
+\item  En este sistema criptogr\'afico {\sc la clave}, la misma para encriptar y
+desencriptar, es una cadena inmensa de ceros y unos generada aleatoriamente. Por
+ejemplo, podemos suponer que la clave se guarda en un DVD de 4.7GB (Gigabytes)
+y, por tanto, consiste en $4.7\times 8\times 10^9$ ceros o unos. Al afirmar que 
+la clave
+se ha generado aleatoriamente queremos decir que la probabilidad de un uno es la
+misma que la de un cero, de forma que en cada subcadena suficientemente larga
+aproximadamente la mitad ser\'an ceros, y el resto unos. 
+
+
+El emisor y el receptor del mensaje tienen una copia de la clave, el DVD, que,
+por supuesto, deben mantener en secreto. 
+
+\item Para encriptar un mensaje debemos
+\begin{enumerate}
+ \item {\sc Codificarlo en binario:} Suponemos que el mensaje est\'a formado por
+una \'unica cadena, sin espacios, usando $26$ letras may\'usculas. Como
+$26<2^5=32$ podemos usar una palabra binaria de $5$ bits para representar cada
+letra del alfabeto.
+
+Si el mensaje ten\'{\i}a $N$ letras queda codificado mediante una cadena
+binaria de $5\times  N$ bits ($5\times  N$ ceros o unos).
+
+\item {\sc Encriptarlo:}  tomamos los primeros
+$5\times N$ bits de la clave y encriptamos cada bit del mensaje sum\'andole el
+bit que ocupa el mismo lugar en la clave mediante la regla
+\[0+0=0;0+1=1=1+0;1+1=0.\]
+
+{\sc Le quitamos a la clave}, el emisor y el receptor,  los $5\times  N$ bits ya
+usados. El siguiente mensaje que se encripte usar\'a entonces bits de la clave
+original a partir del que ocupa el lugar $5\times  N$.
+
+\item {\sc Descodificarlo:} Hemos obtenido  una cadena binaria de longitud
+$5\times  N$ que podemos descodificar para obtener un texto  que
+enviar\'{\i}amos. Observa que para
+codificar s\'olo necesitamos conocer la palabra binaria que codifica cada letra,
+pero para poder descodificar necesitamos usar un alfabeto de $32$
+caracteres, de forma que a toda palabra binaria de $5$ bits le corresponda, de
+forma biun\'{\i}voca,  uno de los caracteres del alfabeto.  
+
+Supondremos entonces que el alfabeto es 
+\[\mathcal{A}='ABCDEFGHIJKLMNOPQRSTUVWXYZ:;,\#\$\\@'\]
+
+\end{enumerate}
+\end{enumerate}
+ 
+ \begin{ejer}
+ 
+ {\sc Debes} operar en cada momento con listas o cadenas de caracteres seg\'un
+te convenga, y, por tanto, puedes necesitar conversiones entre listas y cadenas
+de caracteres.
+ 
+ \begin{enumerate}
+  \item Genera una clave de  longitud $10^6$ (no debes mostrar por
+pantalla el resultado). Divide la clave en $10$ trozos de la misma longitud y
+determina, para cada trozo, la diferencia entre el n\'umero de ceros que hay en
+el trozo y el n\'umero que deber\'{\i}a haber. 
+
+\item  Escribe funciones para codificar y descodificar un texto, en el
+alfabeto ampliado de $32$ caracteres $\mathcal{A}$. La primera debe devolver, si
+$N$ es el n\'umero de letras del texto,  una cadena binaria de longitud $5\times
+N$ y la segunda debe ser la inversa de la primera. Comprueba, sobre el texto
+dado en la hoja de SAGE que \textcolor{red}{se adjunta}, que las funciones son 
+inversas una de la
+otra.  
+
+
+\item Escribe una funci\'on para encriptar un texto ya codificado en
+binario. ?`C\'omo se desencripta un texto encriptado mediante este
+sistema? Encripta  el texto propuesto en la hoja de SAGE que se
+adjunta, obteniendo un texto en el alfabeto $\mathcal{A}$, y desencr\'{\i}ptalo
+para recuperar el texto original.
+
+\item  ?`Por qu\'e es importante no reutilizar trozos de la clave ya
+usados? Indica tu opini\'on {\sc razonada} sobre la seguridad de este sistema
+criptogr\'afico. 
+
+En particular, ?`podr\'{\i}a tener \'exito un ataque ``mediante fuerza bruta''
+con diccionario? 
+
+\item  El modo como se encripta se puede describir como ``suma en
+binario sin llevar''. Podr\'{\i}amos pensar en cambiar el sistema para efectuar
+las sumas ``llevando'', de forma que $1+1$ deja un cero en la columna en la que
+estamos pero a\~nade un uno a la siguiente columna. 
+  
+ ?`Le ves alg\'un problema a esta modificaci\'on del sistema original? {\sc En
+este ejercicio debes  empezar}
+resolviendo  algunos ejemplos peque\~nos en papel, y si tienes claro que el
+m\'etodo funciona correctamente puedes tratar de implementarlo mediante una
+funci\'on que encripte y una que desencripte.
+ \end{enumerate}
+ \end{ejer}
+
+ Puedes ver una soluci\'on en la hoja de {\sage} 
+ \href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 88-CRIPT-one-time-pad.sws}.
+ 
+ \subsection{En resumen}
+ 
+ La evoluci\'on en el tiempo de los sistemas criptogr\'aficos cl\'asicos les ha
+llevado a
+ \begin{enumerate}
+  \item Incrementar el tama\~no del conjunto de claves para
+hacer inviable un ataque de ``fuerza bruta''. Un ejemplo es el paso de la cifra
+de C\'esar a la  de Vigenere. 
+
+\item Evitar un ataque mediante an\'alisis de frecuencias, tratando de no
+encriptar las mismas letras de la misma manera.  En~el sistema de  Vigenere, si
+la longitud de la clave era $k$, ten\'{\i}amos $k$ maneras de encriptar cada
+letra,  pero vimos que dividiendo el texto en $k$ trozos era posible, siempre
+que dispusi\'eramnos de suficiente texto encriptado,  aplicar un an\'alisis de
+frecuencias y romperlo.
+
+El remedio a este problema es hacer $k$ al menos tan grande como la longitud del
+texto a encriptar, y ese es el origen del {\itshape ``One time pad''}, que es
+un sistema que podemos demostrar que, si se usa bien,  es totalmente seguro. 
+\end{enumerate}
+
+
+
+
+
+\section{Clave p\'ublica: RSA}
+
+La idea de la criptograf\'{\i}a de clave p\'ublica es sencilla: cada usuario del
+sistema debe tener dos claves: una clave p\'ublica y una clave privada. La clave
+p\'ublica se usa para encriptar un mensaje dirigido a ese usuario, mientras que
+la clave privada, que s\'olo \'el debe conocer, se usa para descifrar un mensaje
+que se ha cifrado usando la clave p\'ublica del usuario.  
+
+Por supuesto, las dos claves no ser\'an independientes, pero debe estar
+garantizado, hasta donde sea posible, que el conocimiento de la clave p\'ublica
+{\sc no} permita obtener la clave privada. 
+
+
+
+\begin{enumerate}
+ \item El sistema de encriptaci\'on RSA es de clave p\'ublica: se encripta un
+mensaje para el usuario $A$ usando la clave p\'ublica de $A$, y $A$ desencripta
+el mensaje usando su clave privada. Cada usuario debe tener una clave p\'ublica
+y una privada. 
+ \item La seguridad de RSA radica en que la clave p\'ublica de cada usuario
+depende del producto de dos n\'umeros primos muy grandes, diferentes para cada
+usuario, mientras que la clave privada de cada usuario depende de los dos primos
+cuyo producto forma parte de su clave p\'ublica.
+ 
+ Si los primos son muy grandes su producto lo es m\'as, y basta que ese producto
+sea mucho m\'as grande que los mayores enteros que podemos factorizar con la
+tecnolog\'{\i}a actual para que, de momento, RSA sea seguro.
+ 
+ \item Lo primero es codificar el mensaje como un entero al que podemos aplicar
+operaciones aritm\'eticas para encriptarlo.  Supongamos que queremos codificar
+mensajes de longitud $N$ escritos en un alfabeto de $32$ letras, las del
+alfabeto castellano con signos de puntuaci\'on y ``espacio''.  Mensajes posibles
+hay $32^N$ y podemos representar cada uno de ellos, $\mathcal{M}$, como un 
+entero
+$C(\mathcal{M})$ de $N$ cifras en base de numeraci\'on $32$: Para cada letra del
+mensaje, por ejemplo  la letra $i$-\'esima suponiendo que es la $j$-\'esima del
+alfabeto,   a\~nadimos el sumando $j\cdot 32^i$ al entero $C(\mathcal{M})$. 
+ 
+ \item El entero m\'as grande que podemos escribir as\'i es 
+ \[M_{N}:=31+31\cdot 32+31\cdot 32^2+\dots+31\cdot 32^{N-1}.\]
+ Esta correspondencia entre mensajes, no tienen que tener
+significado, de longitud $N$ y enteros entre $0$ y $M_{N}$ es biyectiva. Esta 
+correspondencia
+codifica, que no encripta, los mensajes.
+ 
+ \item  Supongamos que $A$ elige como parte de su clave p\'ublica un entero $n$ 
+que
+ha construido multiplicando dos primos muy grandes. Necesitamos que $M_{N}$ sea
+menor que $n$ de forma que podemos ver cada mensaje $m:=C(\mathcal{M})$ como un
+elemento $[m]$ de $\mathbb{Z}_n$ (un resto $[m]$ m\'odulo $n$). 
+ 
+ \item Dado $n$ y sus factores primos $p$ y $q$, calculamos el n\'umero
+$\phi(n)=(p-1)\cdot (q-1)$ de clases de restos invertibles m\'odulo~$n$, con
+$\phi$  la ``funci\'on de Euler''. Una propiedad importante de $\phi$, el
+teorema de Fermat-Euler,  es que, para todo elemento $[m]$ en $\mathbb{Z}_n$ tal
+que $m$ es primo con $n$, se verifica 
+ $[m]^{\phi(n)}=[1]$.
+ 
+\item  La {\sc clave p\'ublica} de $A$ est\'a formada por $n$ y un entero $e$
+tal que su clase $[e]$ m\'odulo $\phi(n)$  
+  sea invertible, es decir, tal que existe un entero $d$ verificando $e\cdot
+d=1+k\cdot \phi(n)$ para un cierto entero $k$. Sabemos que tales enteros $e$ son
+los que son primos con $\phi(n)$. 
+ 
+\item  La {\sc clave privada} de $A$ consiste en el entero $d$, que debe
+mantenerse secreto. El usuario $A$ conoce los primos $p$ y $q$, porque ha
+generado $n$ multiplic\'andolos, y elegido $e$ puede calcular f\'acilmente $d$
+usando el teorema de Bezout.
+ 
+\item Denotemos por $m$ el entero que codifica el mensaje $\mathcal{M}$, es
+decir  $m:=C(\mathcal{M})$.
+
+Podemos suponer que el mensaje codificado $m$ es primo con $n$, porque si no lo
+fuera siempre podr\'{\i}amos a\~nadir espacios, sin estropear el mensaje,  hasta
+conseguir un mensaje con codificaci\'on un entero primo con $n$.  
+
+\item Para {\sc encriptar} $\mathcal{M}$ empezamos calculando el entero
+$m:=C(\mathcal{M})$, y simplemente elevamos $[m]$ al exponente  $e$ en
+$\mathbb{Z}_n$. Para encriptar un mensaje con destino a $A$ necesitamos la clave
+p\'ublica $(n,e)$  de $A$ completa.
+ 
+ \item El resultado $[m]^e$ puede que no est\'e en el conjunto de clases de
+restos que son imagen de un mensaje de $N$ letras, pero podemos  ajustar $N$ de
+forma que entre $M_{N}$ y $M_{N+1}$ haya suficientes claves p\'ublicas para
+todos los usuarios potenciales del sistema. 
+ 
+ Entonces, podemos volver a escribir $[m]^e$ como un mensaje de texto, pero uno
+de $N+1$ letras. Este \'ultimo mensaje es el que enviamos.
+ 
+ \item {\sc Desencriptado:} En primer lugar representamos el mensaje recibido
+como un entero de $N+1$ cifras en base $32$. Si conocemos $n$,  $[m]^e$ y $d$
+podemos recuperar $[m]$ mediante
+ 
+\[([m]^e)^d=[m]^{e\cdot d}=[m]^{1+k\cdot \phi(n)}=[m]\cdot
+([m]^{\phi(n)})^k=[m]\cdot [1]=[m].\]
+
+Este c\'alculo prueba que el encriptado de mensajes $m$, tales que $m$ es primo
+con $n$, es inyectivo.
+\item Para terminar hay que  decodificar $m$, es decir, hay que transformar $m$
+en un mensaje de texto de $N$ letras, escribiendo $m$ en base $32$ y cambiando
+las cifras resultantes por letras del alfabeto. 
+
+\item Aunque se conozcan $n$ y $e$, sin factorizar $n$ no es posible calcular
+$\phi(n)$, de forma que no se puede calcular el inverso, $d$, de $e$ m\'odulo
+$\phi(n)$ que hace falta para desencriptar.
+
+\item En la pr\'actica, los primos $p$ y $q$ deben ser muy grandes, por ejemplo
+m\'as de $200$ cifras, y deben cumplir algunas condiciones adicionales como, por
+ejemplo, no estar pr\'oximos. 
+
+\item Encriptar mensajes largos usando RSA con claves seguras, por ejemplo
+claves de $2048$ bits, es bastante costoso en tiempo de ordenador. Entonces, RSA
+no sirve  para encriptar la comunicaci\'on, mediante p\'aginas web de, por
+ejemplo, un cliente con su banco.
+
+Lo que se hace, por ejemplo cuando la direcci\'on a la que conectamos empieza 
+por {\tt
+https://}, es usar RSA  para intercambiar, de manera segura,  claves de otro
+sistema de encriptado, t\'ipicamente basado directamente en operaciones
+binarias,  m\'as r\'apido pero menos seguro. Esas claves, que no son claves
+p\'ublicas,  s\'olo se utilizan una vez,  de forma que no se compromete mucho la
+seguridad.
+
+
+\end{enumerate}
+
+Puedes ver una soluci\'on de este ejercicio en la hoja de {\sage}
+Puedes ver la soluci\'on en el archivo de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 85-CRIPT-rsa.sws}.
+
+\section{Otro sistema de clave p\'ublica: MH}
+
+
+\begin{enumerate}
+
+\item Una sucesi\'on, finita o infinita, de n\'umeros enteros positivos
+$a_1,a_2,a_3,\dots$ se dice que es ``supercreciente'' si para todo $n>1$ 
+verifica
+$a_n>\sum\limits_{i<n}a_i.$
+
+\item  Define una funci\'on de SAGE que compruebe si una sucesi\'on finita de
+enteros positivos dada es supercreciente o no. La~funci\'on debe tener como
+argumento la lista de enteros de la sucesi\'on $[a_1,a_2,\dots,a_n]$.
+\item Define  otra funci\'on que genere una sucesi\'on supercreciente de
+longitud $n$  de acuerdo a la siguiente regla: fijamos otro entero positivo  $N$
+y elegimos el t\'ermino $a_j$ de la sucesi\'on aleatoriamente en el intervalo
+$(\sum_{i<j}a_i,\sum_{i<j}a_i+N]$ (el t\'ermino $a_1$ estar\'a en el
+intervalo $[1,N]$). Esta segunda funci\'on nos interesa para disponer de
+suficientes ejemplos de sucesiones supercrecientes sin tener que generarlos a
+mano. Comprueba que algunos de los ejemplos generados por la segunda funci\'on
+son supercrecientes seg\'un la primera.
+\item Dados una sucesi\'on supercreciente $[a_1,a_2,\dots,a_n]$ y un entero
+positivo $A$ queremos saber si $A$ es la suma de algunos de los enteros de la
+sucesi\'on, es decir, si existe una solución de la ecuaci\'on 
+\begin{equation}\label{superc}
+A=\sum_1^n
+x_i\cdot a_i
+\end{equation}
+\noindent con todos los $x_i$ iguales a $0$ o a $1$. 
+\item En primer lugar
+implementamos un m\'etodo de ``fuerza bruta'', para lo que comenzamos generando 
+la
+lista de todas las listas de ceros y unos de longitud $n$:
+\begin{lstlisting}
+def listas(K):
+    L = []
+    for k in srange(2^K):
+       L.append(k.digits(base=2,padto=K))
+    return L 
+\end{lstlisting}
+
+Usando esta funci\'on, define una, con par\'ametros la lista de t\'erminos de
+una sucesi\'on supercreciente y el entero $A$,  que busque, recorriendo la lista
+de listas,  y devuelva, si la encuentra, una soluci\'on de (\ref{superc}).
+¿Siempre hay soluci\'on?
+
+\item\label{alg} Finalmente, busquemos una soluci\'on mediante un algoritmo
+m\'as eficiente, que debes implementar:
+\begin{enumerate}
+\item  Si $A\ge a_n$ entonces $x_n$ debe ser uno, y en caso contrario debe ser
+cero (¿por qu\'e?).
+\item    Para calcular $x_{n-1}$ repite el argumento cambiando $A$ por
+$A-x_n\cdot a_n$ y $[a_1,a_2,\dots,a_n]$ por $[a_1,a_2,\dots,a_{n-1}]$.
+\item     Repitiendo podemos calcular todos los $x_i$, y si existe una
+soluci\'on el algoritmo la encuentra y es \'unica. Debe ser claro que este
+algoritmo s\'olo funciona para sucesiones supercrecientes.
+\end{enumerate}
+A continuaci\'on se explican los detalles de un m\'etodo de 
+criptograf\'{\i}a de clave p\'ublica, debido a Merkle y Hellman, 
+y~basado en la dificultad de resolver,
+por fuerza bruta ya que no se conoce otro m\'etodo,  una ecuaci\'on como 
+ (\ref{superc}) cuando la sucesi\'on de coeficientes no es supercreciente y el
+n\'umero de inc\'ognitas es muy grande. 
+\item Cada usuario elige una sucesi\'on supercreciente $[a_1,a_2,\dots,a_N]$, 
+de la misma longitud $N$ para todos, un entero $m>2a_N$ y otro entero $w$ primo
+con $m$. Estos datos son su clave privada.
+\item Cada usuario calcula la sucesi\'on $[b_1,b_2,\dots,b_N]$ haciendo
+$b_i:=w\cdot a_i \%m$ y esa nueva sucesi\'on ser\'a su clave p\'ublica.
+\item Cada letra de un mensaje a encriptar se sustituye por la representaci\'on
+binaria del correspondiente  entero entre  $0$ y  $25.$
+\item El mensaje es ahora una cadena  de ceros y unos que se divide en bloques
+de longitud $N$. Para cada uno de esos bloques $x_1,x_2,\dots,x_N$ se encripta
+mediante 
+\[c:=\sum_1^N b_i\cdot x_i\]
+de forma que el mensaje encriptado es una lista de n\'umeros enteros. 
+\item Para desencriptar el bloque $c$ se usa el inverso $\overline{w}$ de $w$
+m\'odulo $m$ y se calcula 
+\[v:=\overline{w}\cdot c=\sum \overline{w}\cdot b_i\cdot x_i\equiv\sum a_i\cdot
+x_i\mod m.\]
+\noindent pero, como la sucesi\'on de los $a_i$ es supercreciente, se verifica
+que la suma de todos los $a_i$ es menor que $2\cdot a_N$ y, por tanto menor que
+$m$. 
+Entonces $v$, no s\'olo es congruente con $\sum a_i\cdot x_i$ m\'odulo $m$ sino
+que,  es igual como n\'umero entero a $\sum a_i\cdot x_i$.
+\item Para terminar de desencriptar basta usar, ya que la sucesi\'on es
+supercreciente,  el algoritmo que aparec\'{\i}a en el punto \ref{alg} de esta 
+misma secci\'on.
+\end{enumerate}
+
+Se ha demostrado (Shamir, 1982) que este m\'etodo no es totalmente seguro, y se
+han propuesto algunas variantes que, de momento, se consideran seguras.
+
+\
+
+\begin{ejer}
+Programar el encriptado y desencriptado usando este m\'etodo. 
+\end{ejer}
+Puedes ver una soluci\'on en la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 87-CRIPT-mhellman.sws}.
+
+\section{Firma digital}
+\begin{enumerate}
+ \item Un sistema de {\sc firma digital} debe servir para que el receptor de un
+mensaje, por ejemplo de correo electr\'onico,  pueda  comprobar que
+\begin{enumerate}
+ \item el mensaje no ha sido alterado durante su transmisi\'on. El correo
+electr\'onico viaja,  desde el ordenador del emisor hasta el del receptor, a
+trav\'es de un cierto n\'umero, que puede ser grande,  de servidores  de correo
+electr\'onico intermedios. 
+ \item que el mensaje realmente procede de la persona que afirma que lo ha
+enviado. No es dif\'{\i}cil enviar mensajes de correo electr\'onico en los que
+aparece como direcci\'on de correo electr\'onico del emisor una direcci\'on que
+no es nuestra. Se~llama a esta pr\'actica {\itshape ``email spoofing''.}
+\end{enumerate}
+
+ \item Mediante un sistema criptogr\'afico de clave p\'ublica, como RSA,  es
+f\'acil implementar un sistema de firma digital.
+
+\item Si queremos firmar un mensaje $\mathcal{M}$ lo primero que hacemos es
+calcular un ``n\'umero resumen'' ({\itshape hash}) del mensaje,  que hemos 
+escrito
+como un archivo de texto. Por ejemplo, en una terminal de Linux podemos usar un
+comando como \verb=md5sum <nombre del archivo>= y 
+obtenemos un n\'umero hexadecimal de $32$ cifras que ``resume'' el mensaje. 
+
+No es posible que la funci\'on que asocia a cada archivo su hash sea inyectiva
+ya que el n\'umero de mensajes, de tama\~no razonable,  posibles es
+much\'{\i}simo mayor que $16^{32}$. Sin embargo, la funci\'on se dise\~na de
+forma que sea pr\'acticamente imposible generar un mensaje con significado, y
+con el significado que queremos, y con el mismo hash que un mensaje dado.
+
+\item Encriptamos el hash del mensaje {\sc con nuestra clave privada} y
+a\~nadimos el hash encriptado al final del mensaje, que podemos ya enviar, 
+encript\'andolo para su destinatario o no.
+ 
+ \item El receptor debe desencriptar el mensaje con su clave privada, si estaba
+encriptado,  desencriptar el hash que estaba al final usando la {\sc clave
+p\'ublica del emisor} y comprobar que el hash del mensaje recibido, despu\'es de
+quitarle la \'ultima l\'{\i}nea, coincide con el hash que hemos obtenido al
+desencriptar la \'ultima l\'{\i}nea. 
+
+\item Si coincide vemos que la \'unica manera en que el mensaje puede haber sido
+falsificado es por alguien que conoce la clave privada del supuesto emisor.
+Queda claro entonces que alguien que conozca nuestra clave privada no s\'olo
+puede desencriptar nuestros mensajes sino que adem\'as puede suplantarnos en la
+red. 
+ \end{enumerate}
+
+\bigskip
+
+
+\begin{ejer}
+Enviar, a la direcci\'on de correo del profesor, un mensaje
+encriptado y firmado que contenga en una \'unica l\'{\i}nea 
+\begin{enumerate}
+ \item el n\'umero $n$ de tu clave p\'ublica seguido de una $G$.
+ \item el exponente $e$ de tu clave p\'ublica seguido de otra $G$.
+ \item el hash {\tt md5sum} del archivo cuyo \'unico contenido es 
+la  l\'{\i}nea descrita en los dos puntos anteriores. Es importante que el
+archivo no debe tener l\'{\i}neas en blanco a continuaci\'on de la l\'{\i}nea
+prescrita, y debe ser un archivo de puro texto, generado por ejemplo con {\tt
+Kwrite} o {\tt emacs}. 
+ %%\end{enumerate}
+El sistema criptogr\'afico que vamos a usar va a permitir enviar hasta $64$
+caracteres de un alfabeto formado por los s\'{\i}mbolos 
+\[\{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G\}\]
+\noindent con los dieciseis primeros los d\'{\i}gitos hexadecimales y la $G$ el
+separador. En consecuencia, el entero $n$ de las claves p\'ublicas debe estar
+comprendido entre $16^{64}$ y $16^{65}$. 
+\item La clave p\'ublica del profesor es 
+\[n=713631423636250759802822662524882010142212499466855333247864128528383524853183,\]
+\[e=268435457. \] 
+ \end{enumerate}
+\end{ejer}
+
+%%mochila RHG
+
+%\section{C\'odigos compresores}
+
+
+
+\section{Ejercicios}
+ \begin{ejer}
+ 
+ Sea $p$ un entero primo, y consideramos el conjunto $\mathbb{Z}_{p}^{*}$ de
+clases de restos m\'odulo $p$, distintas de la clase nula,  con la operaci\'on
+de multiplicaci\'on.  Una forma de encriptar mensajes, bastante parecida a RSA,
+consiste en representar el mensaje como un entero $M$  en $\mathbb{Z}_{p}^{*}$,
+con $p$ muy grande y, elegido un $e \in \mathbb{Z}_{p}^{*}$  tal que 
+$MCD(e,p-1)=1$, 
+encriptar el mensaje como el elemento $M^e$ de
+$\mathbb{Z}_{p}^{*}$.  Para desencriptar hace falta calcular el inverso
+multiplicativo $d$ de $e$ modulo $p-1$, es decir $d\cdot e=1+k\cdot(p-1)$,  ya
+que,  gracias al teorema pequeño de Fermat,  $(M^e)^d=M$ en
+$\mathbb{Z}_{p}^{*}$.  El entero $e$ es la clave de cifrado y $d$ es la de
+descifrado.
+
+En este ejercicio queremos ver que si un atacante consigue conocer un mensaje
+$M$ y su correspondiente mensaje cifrado $MC:=M^e$   puede extraer mucha
+informaci\'on sobre la clave $e$ con cierta facilidad. A lo largo del ejercicio
+hay que efectuar un mont\'on de veces operaciones del tipo $M^e$ m\'odulo $p$,
+que deben hacerse en la forma m\'as eficiente posible para que la cosa marche
+razonablemente bien (ver la funci\'on \lstinline|power_mod| de {\sage} o la
+secci\'on ***). 
+
+ \begin{enumerate}
+  \item  El orden de un elemento $M \in \mathbb{Z}_{p}^{*}$   es el menor entero
+positivo $n$ tal que $M^n=1$ m\'odulo $p$.    Define una función $orden(M,p)$
+que calcule el orden de $M$ m\'odulo $p$.
+  \item   Volvemos a nuestro problema de, dados $M$ y $MC$,  calcular $e^\prime$
+tal que $M^{e^{\prime}}=MC=M^{e}$. Un primer enfoque, fuerza bruta,  consiste en
+elevar $M$ a exponentes sucesivos,  siempre realizando los c\'alculos m\'odulo
+$p$ , empezando en $1$ hasta encontrar $MC$. Define una funci\'on de {\sage} 
+\lstinline|fuerza_bruta(p, M,MC)|  que devuelva el exponente $e^{\prime}$
+calculado en la forma indicada.
+ \item    Hay un m\'etodo mejor:
+\begin{enumerate}
+ \item    Comenzamos generando una lista, $L$, con los elementos $M^j$ de
+$\mathbb{Z}_{p}^{*}$ con $0\le j<$\lstinline|ceil|$(\sqrt{p})$ 
+(recordad que \lstinline$ceil(x)$ es el menor entero mayor que el decimal $x$).
+ \item    Calculamos $m=M^{-c}$ (con $c=$\lstinline|ceil|$(\sqrt{p})$)  en 
+$\mathbb{Z}_{p}^{*}$.
+    Calculamos los elementos $m_i=MC\cdot m^{i }$ (en  $\mathbb{Z}_{p}^{*}$),
+comenzando en $i=0$ y aumentando $i$ de uno en uno, y parando el proceso cuando
+encontramos un elemento $m_{i_{0}}$ que ya está en la lista $L$, y, por tanto es
+de la forma $M^{j_{0}}$. De la igualdad \[MC\cdot m^{i_0 }=M^{j_{0}}\] \noindent
+podemos despejar $MC=M^{c\cdot i_0+j_0}$, y, por tanto, el exponente
+$e^{\prime}$ que hay que devolver es $c\cdot i_0+j_0$, módulo $p-1$  debido al
+teorema pequeño de Fermat.
+\end{enumerate}
+
+El algoritmo descrito se llama {\itshape baby step-giant step}. Define una
+función de SAGE \lstinline|baby_giant(p, M,MC)| que lo implemente.
+
+\item Ni $fuerza\_bruta$ ni $baby\_giant$ devuelven necesariamente el
+exponente $e$ que es la clave, sino un exponente $e^{\prime}$ tal que
+$M^{e^{\prime}}=MC=M^{e}$. Como $M^{e^{\prime}}=M^{e}$ lo que podemos afirmar es
+que $M^{e^{\prime}-e}=1$, y, por tanto, que $e^{\prime}-e$ es un m\'ultiplo del
+orden de $M$. Esto significa que no hemos averiguado la clave $e$ pero si su
+clase de restos m\'odulo el orden de $M$. Con~esta informaci\'on es mucho m\'as
+sencillo desencriptar otro mensaje encriptado con la clave $e$ mediante 
+{\itshape fuerza
+bruta}, es decir,  simplemente probando con elementos de la clase de restos que
+hemos determinado en lugar de probar con todos los enteros entre $2$ y $p-2$.
+
+\item Queremos comprobar que las dos funciones son correctas, es decir, que
+para una cierto n\'umero de primos $p$,  mensajes~$M$ y exponentes $e$, cuando
+calculamos \lstinline|fuerza_bruta(p,M,M^$e$)|, o
+\lstinline|baby_giant(p,M,M^$e$)|, siempre obtenemos un $e^{\prime}$ con la
+propiedad
+$M^{e^{\prime}}=M^e=MC$.  Efect\'ua esas comprobaciones tomando 
+\lstinline$p=next_prime(10^j)$, $j=3,4,5,6$, para cada $p$ de los anteriores
+\lstinline$M=randint(2,p-1)$ y $e$  un elemento aleatorio de la lista 
+\begin{lstlisting}
+P=[j for  j  in srange(2,p-1)  if gcd($e$,p-1)==1].
+\end{lstlisting}
+
+\item  Ahora queremos comparar los tiempos de c\'alculo de las dos funciones.
+Comprueba, con los mismos datos del apartado anterior, que
+\lstinline|baby_giant| es m\'as
+eficiente que \lstinline|fuerza_bruta|.  Es importante, en estas comparaciones
+de
+tiempos, que las dos funciones usen el mismo conjunto de par\'ametros, y como
+algunos de los par\'ametros son aleatorios conviene generar primero,  para cada
+$j$, los par\'ametros $(p,M,M^e)$  y luego comparar tiempos us\'andolos.
+
+Se recomienda, aunque no es imprescindible,  hacer los apartados $3$ y $4$
+mediante funciones de {\sage}, por ejemplo que dependan del  par\'ametro $j$, 
+lo que
+permitir\'{\i}a modificar f\'acilmente las comprobaciones.
+\end{enumerate}
+\end{ejer}
+
+
+
+\begin{ejer}
+
+El algoritmo {\itshape baby step-giant step}, del que se trata en el ejercicio 
+anterior, es uno entre varios de los propuestos para resolver el problema que 
+se conoce como el {\itshape c\'alculo del logaritmo discreto:}  dados $M$ y 
+$MC=M^{e}$,  calcular $e^\prime$
+tal que $M^{e^{\prime}}=MC$ en $\mathbb{Z}_{p}^{*}$. 
+
+En esta  
+\href{http://en.wikipedia.org/wiki/Discrete_logarithm}{p\'agina de la 
+Wikipedia} se discute el problema del logaritmo discreto, para el que no se 
+conoce  soluci\'on en que el tiempo de c\'alculo dependa 
+polinomialmente del  tama\~no de los datos, y se presentan otros  algoritmos 
+para resolverlo. Este ejercicio consiste en seleccionar alguno, quiz\'a todos 
+ellos,  de estos algoritmos y programarlo. 
+
+\end{ejer}
+
+\begin{ejer}
+
+ Implementar el cifrado y descifrado del siguiente  sistema de {\tt
+autoclave}: la clave es una letra, por ejemplo $H$, y se cifra el mensaje 
+cifrando la primera letra con C\'esar y clave $H$, para la segunda letra se usa 
+C\'esar con clave la primera letra del mensaje, etc. Para descifrar basta 
+conocer la primera clave, en este caso la $H$. ?`Es seguro??`Cómo se haría un 
+{\tt autovigenere}? ?`Ser\'{\i}a mucho m\'as seguro que el Vigenere 
+est\'andar  que hemos estudiado?
+\end{ejer}
+
+\begin{ejer}
+
+Supongamos que tenemos una clave muy secreta, un entero,  que queremos que 
+s\'olo se pueda conocer con la informaci\'on de que disponen, entre todos, $k$ 
+miembros cualesquiera de un grupo de $n$ personas. Es decir, queremos dar a 
+cada uno de los $n$ miembros de una comisi\'on  una subclave diferente de forma 
+que con $k$ subclaves cualesquiera se pueda obtener la clave total. 
+
+En la pr\'actica, es posible implementar este m\'etodo de forma que la clave da 
+acceso a un ordenador, o a un sistema inform\'atico, pero los miembros de la 
+comisi\'on nunca llegan a conocerla y las subclaves est\'an contenidas en 
+tarjetas criptogr\'aficas de las que es muy dif\'{\i}cil extraer la 
+informaci\'on. De esa manera ninguno de los miembros de la comisi\'on conoce 
+realmente ni la clave ni las subclaves. 
+
+Una soluci\'on interesante a este problema es 
+\href{http://en.wikipedia.org/wiki/Shamir's_Secret_Sharing}{el m\'etodo de 
+Shamir}, que utiliza de forma muy astuta un \hyperref[pol-int]{polinomio 
+interpolador}.  Lee la descripci\'on del m\'etodo e implem\'entala mediante una 
+funci\'on que reciba el secreto y los enteros $n$ y $k$,  y nos devuelva las 
+$n$ claves parciales. 
+
+Si $k-1$ de los miembros de la comisi\'on deciden hacer trampa, ?`tendr\'{\i}an 
+alguna ventaja para intentar un ataque de fuerza bruta por conocer $k-1$ 
+subclaves?
+\end{ejer}
+
+\begin{ejer}
+
+El PIN de las tarjetas de cr\'edito consiste habitualmente en un entero de $4$ 
+d\'{\i}gitos que los bancos dicen no conocer. ?`C\'omo puede funcionar?
+
+El banco genera dos primos muy grandes, $p$ y $q$, y los multiplica obteniendo 
+$n=p\cdot q$.  Entonces graba en la banda, o el chip, de la tarjeta 
+el n\'umero $p$ y todo el n\'umero $q$ menos sus \'ultimas $4$ cifras, que 
+ser\'an el PIN. 
+
+Una vez hecho esto, olvida los primos $p$ y $q$ pero mantiene su producto $n$, 
+de forma que cuando reconstruimos, usando el PIN y la tarjeta los enteros $p$ y 
+$q$, el banco puede multiplicarlos y comparar con el $n$ que guarda. El banco 
+puede no conocer el PIN  porque para obtener $p$ y $q$ hay que factorizar $n$. 
+
+
+Define una funci\'on que genere el par de primos $p$ y $q$ de tal forma que 
+{\sage} no pueda factorizar su producto en un tiempo  de, digamos, treinta 
+minutos. 
+\end{ejer}

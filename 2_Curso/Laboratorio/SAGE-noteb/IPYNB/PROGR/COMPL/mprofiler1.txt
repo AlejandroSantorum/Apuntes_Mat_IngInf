@@ -1,0 +1,10 @@
+Filename: foo.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+     1   3376.5 MiB      0.0 MiB   def cadena(N):
+     2   3376.8 MiB      0.2 MiB       C1 = 'ESTA ES NUESTRA CADENA DE PRUEBA '
+     3   3376.8 MiB      0.0 MiB       C = ''
+     4   3376.8 MiB      0.0 MiB       for j in range(N):
+     5   3376.8 MiB      0.0 MiB           C += C1*100
+     6   3376.8 MiB      0.0 MiB       return C

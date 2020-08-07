@@ -1,0 +1,21 @@
+         22669 function calls in 0.045 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    11229    0.020    0.000    0.031    0.000 misc.py:431(is_prime)
+       10    0.012    0.001    0.045    0.005 <ipython-input-6-dd82a10cc655>:1(numero_primos)
+    11229    0.011    0.000    0.011    0.000 {method 'is_prime' of 'sage.rings.integer.Integer' objects}
+       11    0.001    0.000    0.002    0.000 {sage.arith.srange.srange}
+       11    0.001    0.000    0.001    0.000 sequence.py:88(Sequence)
+       11    0.000    0.000    0.000    0.000 sequence.py:413(__init__)
+       55    0.000    0.000    0.000    0.000 {isinstance}
+       22    0.000    0.000    0.000    0.000 {sage.structure.element.canonical_coercion}
+       44    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.045    0.045 <ipython-input-6-dd82a10cc655>:7(lista_num_gem)
+       11    0.000    0.000    0.000    0.000 quotient_ring.py:309(is_QuotientRing)
+       11    0.000    0.000    0.000    0.000 sequence.py:731(universe)
+       11    0.000    0.000    0.000    0.000 {sage.rings.polynomial.multi_polynomial_ring_generic.is_MPolynomialRing}
+       11    0.000    0.000    0.000    0.000 {sage.structure.element.parent}
+        1    0.000    0.000    0.045    0.045 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}

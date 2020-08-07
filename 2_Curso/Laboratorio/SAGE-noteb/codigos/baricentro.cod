@@ -1,0 +1,22 @@
+var('x y a b')
+cte=1 ## Cambiar 1 por 0 si la recta es vectorial
+sol_ab=solve([a*xx+b*yy+cte==0 for xx,yy in [A,B_C]], a,b, solution_dict=True)[0]
+ecu_medianaA(x,y)=sol_ab[a]*x+sol_ab[b]*y+cte
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+cte=1 ## Cambiar 1 por 0 si la recta es vectorial
+sol_ab=solve([a*xx+b*yy+cte==0 for xx,yy in [C,A_B]], a,b, solution_dict=True)[0]
+ecu_medianaC(x,y)=sol_ab[a]*x+sol_ab[b]*y+cte
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+xs=[P[0] for P in [A,B,C]]
+ys=[P[1] for P in [A,B,C]]
+x0,x1=min(xs),max(xs)
+y0,y1=min(ys),max(ys)
+medianaA=implicit_plot(ecu_medianaA,(x,x0,x1),(y,y0,y1))+points([A,B_C])
+medianaC=implicit_plot(ecu_medianaC,(x,x0,x1),(y,y0,y1))+points([C,A_B])
+(triangulo+medianaA+medianaC).show(frame=False)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Bari=solve([ecu_medianaA,ecu_medianaC],x,y,solution_dict=True)[0]
+print (Bari[x],Bari[y])
+Baricentro==vector((Bari[x],Bari[y]))
+	(-1/6, 3/2)
+	True

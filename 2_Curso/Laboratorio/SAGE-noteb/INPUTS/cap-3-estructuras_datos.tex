@@ -1,0 +1,1159 @@
+
+Muchos de los programas que elaboramos sirven para transformar y analizar
+datos que creamos o recibimos. En este resumen se revisan  las
+estructuras de
+datos que llamamos {\tt lista, tupla, cadena de caracteres, conjunto y
+diccionario.} Una
+característica común a todos estos tipos es que son {\sc iterables,} es decir,
+\label{iterable}
+que para
+todos ellos tiene
+sentido hacer un bucle \lstinline|for|  como
+\begin{lstlisting}[numbers=none]
+for item in <estructura_de_datos>:
+	........
+\end{lstlisting}
+
+Nos referimos a estas  estructura de datos con el nombre gen\'erico de
+{\itshape contenedor}, o m\'as precisamente {\itshape contenedor iterable.}
+
+
+
+
+
+
+Otra cualidad común de los contenedores iterables  es la de poder comprobar
+f\'acilmente si un
+dato está o
+no en ellas. Basta utilizar la partícula \lstinline|in|, de manera que
+\begin{lstlisting}
+dato in <estructura_de_datos>
+\end{lstlisting} 
+adquiere valor \lstinline|True| o \lstinline|False|.
+
+Por último, la función \lstinline|len()| nos informa del número de datos en
+cualquiera de  estas estructuras. 
+
+Existen, en Python, otros tipos de estructuras de datos m\'as sofisticados pero en este curso nos bastar\'a con los mencionados. Puedes consultar \href{http://interactivepython.org/runestone/static/pythonds/index.html}{esta p\'agina} para obtener m\'as informaci\'on. 
+
+
+\section{Datos b\'asicos: tipos}
+
+Algunos lenguajes de programaci\'on, por ejemplo $C$, obligan a declarar
+expl\'{\i}citamente de qu\'e tipo es cada variable. As\'{\i} por ejemplo, en $C$
+hay tipos como
+\begin{enumerate}
+ \item {\tt long} para almacenar enteros, que deben pertenecer  al
+intervalo\footnote{Este rango depende del compilador de $C$ utilizado, pero el
+indicado es el habitual.} \[[-2147483648,2147483648]\].
+\label{tipos}
+Cada entero, de tipo {\tt long},  utiliza $32$ bits en la memoria del
+ordenador. 
+
+\item{\tt float} para n\'umeros decimales, de hasta $8$ cifras decimales,
+pertenecientes al intervalo \[[1.175494351\cdot 10^{-38},3.402823466\cdot
+10^{38}].\]
+
+Cada decimal, de tipo {\tt float},  utiliza $32$ bits en la memoria del
+ordenador. 
+
+\item{\tt double} para n\'umeros decimales de mayor precisi\'on, dieciseis
+cifras decimales,  que los dados por {\tt float}, concretamente, pertenecientes
+al intervalo
+\[[2.2250738585072014\cdot 10^{-308},1.7976931348623158\cdot 10^{308}].\]
+
+Cada decimal, de tipo {\tt double},  utiliza $64$ bits en la memoria del
+ordenador. 
+\item {\tt char} en los que se almacenan los caracteres del c\'odigo ASCII, las
+letras y s\'{\i}mbolos de puntuaci\'on.
+
+Cada car\'acter, tipo {\tt char}, utiliza $8$ bits en la memoria. 
+\end{enumerate}
+
+
+La declaraci\'on de tipos es importante porque hace posible la compilaci\'on
+del programa, es decir la conversi\'on del c\'odigo en un ejecutable que puede
+funcionar de manera totalmente independiente.  Para ese funcionamiento
+independiente, en otro ordenador en el que no est\'an necesariamente  ni el
+c\'odigo ni el compilador de $C$, es esencial que el ejecutable contenga toda
+la informaci\'on sobre la gesti\'on de la memoria RAM, que es lo que explica la
+necesidad de la declaraci\'on de tipos.  El compilador traduce el c\'odigo $C$ a
+c\'odigo m\'aquina del procesador que tenga el ordenador que usamos, de forma
+que el ejecutable funcionar\'a en cualquier otro ordenador con ese procesador. 
+
+
+En {\sage}, y en Python, no es necesario declarar los tipos de las variables
+debido a que el c\'odigo no se compila, sino que se {\itshape interpreta}: el
+c\'odigo se va traduciendo, por el {\itshape int\'erprete de Python},  a
+lenguaje m\'aquina {\itshape sobre la marcha}, y es el int\'erprete el que se
+ocupa de la gesti\'on de la memoria RAM. La ejecuci\'on de c\'odigo en
+lenguajes interpretados es, en general, mucho m\'as lenta que en lenguajes
+compilados, pero en cambio es mucho m\'as c\'omodo programar en Python ({\sage})
+que en $C$.
+
+
+En {\sage} los datos tienen tipos, aunque no hay que declararlos, y se pueden
+producir {\itshape errores de tipo (Type error)}. Por ejemplo, si intentamos
+factorizar un n\'umero decimal, se producir\'a un tal error.  
+
+
+
+
+
+Los objetos b\'asicos en {\sage}, a partir de los que se construyen objetos
+complejos, son similares a los de $C$: enteros, decimales, caracteres. Dado el
+enfoque de {\sage} hacia las matem\'aticas, hay otros tipos de datos, n\'umeros
+racionales o complejos, que tambi\'en podemos considerar b\'asicos.
+
+Cuando nos encontramos con un error de tipo, al aplicar una funci\'on de
+{\sage} a un cierto objeto $A$, podemos evaluar \lstinline|A.type()| o
+\lstinline|type(A)|, lo que nos informar\'a del tipo que tiene el objeto $A$.
+Analizando la documentaci\'on sobre la funci\'on podremos darnos cuenta de que
+esa funci\'on concreta no se puede aplicar a los objetos del tipo de $A$, y
+quiz\'a deberemos cambiar la definici\'on de $A$. 
+
+\label{enteros}
+
+Hay dos tipos diferentes de enteros: los enteros de Python y los enteros de
+{\sage}. La \'unica diferencia, en la pr\'actica,  es que no es posible aplicar
+a los enteros de Python los m\'etodos disponibles para los enteros de {\sage}.
+Por ejemplo, los enteros de {\sage} tienen el m\'etodo \lstinline|.digits()|,
+que nos devuelve una lista ordenada de los d\'{\i}gitos del entero, mientras que
+si intentamos aplicar este m\'etodo a un entero de Python obtenemos un error de
+tipo.  
+
+En este
+cap\'{\i}tulo veremos la forma de crear estructuras de datos complejas, que
+contienen objetos b\'asicos de alguno de los tres tipos, o bien otras
+estructuras de datos.  As\'{\i}, por ejemplo, podemos pensar una matriz como
+una lista que contiene listas de la misma longitud,  que ser\'an las filas de la
+matriz. Estas construcciones tienen, \hyperref[unhash]{como veremos}, algunas
+restricciones, y as\'{\i}, por ejemplo, no podemos crear un conjunto cuyos
+elementos sean listas. 
+
+
+
+
+\section{Listas}
+
+En este curso {\sc usaremos sobre todo listas y matrices} como estructuras de
+datos, y las otras estructuras de datos servir\'an sobre todo en situaciones
+particulares en las que necesitaremos un contenedor m\'as especializado.
+
+
+\begin{enumerate}
+ \item Definimos una lista separando sus elementos por comas y delimitando el
+principio y
+el final de la lista con corchetes cuadrados:
+\begin{lstlisting}[numbers=none]
+L = [1,2,3,4,5]
+type(L), len(L), L
+\end{lstlisting}
+\begin{Output}
+	(<type 'list'>, 5, [1, 2, 3, 4, 5])
+\end{Output}
+
+El nombre \lstinline|L| queda asignado a la lista \lstinline|[1,2,3,4,5]|. 
+\item Podemos cambiar, en una lista $L$ existente, el elemento con \'{\i}ndice
+$i$ reasignando su valor mediante \lstinline|L[i]=\dots|. Por ejemplo
+\lstinline|L[1]=7| transforma la lista
+$L$ del apartado anterior en $[1,7,3,4,5]$.
+\item Usaremos la notación \emph{slice} 
+para el acceso a sublistas. Si \lstinline|L| es una lista que ya ha sido
+definida, 
+\begin{itemize}
+ \item seleccionamos el elemento de índice {\tt j} (o lugar {\tt j+1}) en
+\lstinline|L|
+con \lstinline|L[j]|;\footnote{Esto se debe a que {\tt
+Sage}, y {\tt Python},  llaman elemento {\tt 0} de las listas al primero.}
+
+\item seleccionamos con \lstinline|L[j:k:d]|, la sublista formada por los
+elementos de
+índices $j,j+d,j+2d,..., j+\ell d<k$. Si~no se
+especifica el tercer argumento, los \emph{saltos} son de uno en uno. La ausencia
+de
+alguno de los dos primeros argumentos, manteniendo los dos
+puntos de separación, indica que su valor es el más extremo (primero o último).
+\begin{lstlisting}
+L=[0,1,2,3,4,5,6,7,8,9,10,11,12]
+print (L[3], L[1:5:2], L[6:10], L[11:], L[:4], L[::3])
+\end{lstlisting}
+
+\begin{Output}
+	(3,[1, 3],[6, 7, 8, 9],[11, 12],[0, 1, 2, 3],[0, 3, 6, 9, 12])
+\end{Output}
+
+\end{itemize}
+\item El signo \lstinline|+| concatena listas
+\begin{lstlisting}
+[1,3,5]+[2,4,6] 
+\end{lstlisting}
+\begin{Output}
+	[1, 3, 5, 2, 4, 6]
+\end{Output}
+
+\item Se abrevia la concatenación  \lstinline|k| veces de una misma lista
+\lstinline|L|
+con \lstinline|k*L|. 
+
+
+\end{enumerate}
+\subsection{Métodos y funciones con listas}
+
+\begin{enumerate}
+
+\item Al aplicar un método a un contenedor tipo \lstinline|lista|, este cambia.
+Esta es una
+característica distintiva de una lista: es un contenedor de datos
+\emph{mutable}.
+
+\begin{itemize}
+\item El constructor \lstinline|list()| nos permite crear una copia exacta de
+una lista.
+\begin{lstlisting}
+L=[1,2,3,4,5]
+LL=list(L)
+L.append(12)
+L,LL
+\end{lstlisting}
+\begin{Output}
+	([1, 2, 3, 4, 5, 12], [1, 2, 3, 4, 5])
+\end{Output}
+
+\item Por ejemplo,  \lstinline|L.sort()| cambia la lista \lstinline$L$ de 
+n\'umeros
+enteros por la lista ordenada pero mantiene el nombre \lstinline$L$. Si m\'as 
+adelante, en
+nuestro programa,  necesitamos usar otra vez la lista \lstinline$L$ original es 
+preciso
+generar una copia mediante \lstinline|LL=list(L)|, o bien primero generar la
+copia \lstinline$LL$ y ordenar \lstinline$LL$ manteniendo \lstinline$L$ con su 
+valor original.
+
+En particular, una asignaci\'on como \lstinline|LL = L.sort()| no crea la lista
+\lstinline$LL$ aunque s\'{\i} ordena \lstinline$L$.
+
+\item En general, si se \emph{alimenta} de cualquier otro contenedor iterable,
+se crea una
+lista con sus elementos. El siguiente ejemplo, que usa una cadena de caracteres,
+se
+entenderá mejor al leer la siguiente sección. Lo incluimos para ilustrar el uso
+de otro
+tipo de
+datos iterable:
+\begin{lstlisting}
+Letras=list('ABCDE')
+Letras
+\end{lstlisting}
+\begin{Output}
+	['A', 'B', 'C', 'D', 'E']
+\end{Output}
+
+
+\item La función \lstinline|srange()| permite crear listas de
+\hyperref[enteros]{enteros de
+{\sage}.}
+En python se usa la función \lstinline|range()|, que devuelve
+\hyperref[enteros]{enteros de Python,}
+a los que
+no son aplicables los métodos de {\sage}. 
+\begin{itemize}
+ \item \lstinline|srange(j,k,d)|: devuelve los números entre \lstinline|j|
+(inclusive) y
+\lstinline|k|
+(exclusive), pero contando de \lstinline|d| en \lstinline|d| elementos. A~pesar
+de que el
+uso más extendido es con números enteros, los números \lstinline|j, k|  y
+\lstinline|d|
+pueden ser enteros o no.
+\end{itemize}
+Abreviaturas:
+\begin{itemize}
+ \item \lstinline|srange(k)|: devuelve \lstinline|srange(0,k,1)|. Si, en
+particular,
+\lstinline|k|
+es un natural, devuelve los naturales entre \lstinline|0| (inclusive) y
+\lstinline|k|
+(exclusive); y si \lstinline|k| es
+negativo, devuelve una lista vacía.
+ \item \lstinline|srange(j,k)|: devuelve la lista \lstinline|srange(j,k,1)|. Si,
+en
+particular, \lstinline|j| y \lstinline|k| son enteros, devuelve los enteros
+entre 
+\lstinline|j| (inclusive) hasta el anterior a \lstinline|k|. 
+\item \lstinline|[a..b]| es equivalente a  \lstinline|srange(a,b+1)|.
+\end{itemize}
+
+\item El método \lstinline|.reverse()| cambia la lista por la resultante de
+reordenar sus elementos dándoles completamente la vuelta.
+\begin{lstlisting}
+L=[2,3,5,7,11]
+LL=list(L)
+L.reverse()
+L, LL
+\end{lstlisting}
+\begin{Output}
+	([11, 7, 5, 3, 2], [2, 3, 5, 7, 11])
+\end{Output}
+
+\item Con \lstinline|.append()| se añade un nuevo elemento, y solo uno, al final
+de la
+lista. Como método, cambia la lista. Así, \lstinline|L.append(5)| equivale a
+\lstinline|L=L+[5]| (o \lstinline|L+=[5]|). Para ampliar con más de un elemento,
+existe
+el método \lstinline|.extend()|.
+
+\item Si los elementos de la lista son comparables, se pueden ordenar, de menor
+a mayor,
+con el método \lstinline|.sort()|.
+
+\item \lstinline|sum|{\tt(<lista\_numérica>)} \footnote{Esta notación, que
+usaremos
+frecuentemente, indica el tipo de objetos a los que podemos aplicar la función
+\lstinline|sum()|, en este caso  a los objetos de tipo {\tt lista de números} y
+solo
+a tales listas. Cuando la aplicamos, por ejemplo \lstinline|sum([1,2,3])|, no
+escribimos los angulitos sino solo una lista, \lstinline|[1,2,3]| o el nombre,
+por
+ejemplo \lstinline|L|, de una lista de números.} calcula la suma de los
+elementos de
+la lista, que deben ser números. 
+
+
+\item Listamos, para finalizar, métodos referentes a un elemento concreto y una
+lista: el número de apariciones se averigua con el método \lstinline|.count()|;
+información sobre la primera aparición la ofrece \lstinline|.index()|; 
+se puede borrar con métodos como \lstinline|.pop()| o \lstinline|.remove()|; 
+y se añade en una posición determinada con \lstinline|.insert()|. La ayuda
+interactiva, 
+\lstinline|(| tras el nombre del método y \texttt{tabulador}, nos amplia esta
+información.
+
+\end{itemize}
+\end{enumerate}
+
+\subsection{Otras listas}
+Muchos métodos y funciones de sage devuelven listas como producto final de su
+evaluación,
+o, al menos, información fácilmente utilizable para generar una lista.
+Terminamos esta
+sección con varios de estos ejemplos.
+\begin{itemize}
+\item {\itshape List comprehension.} Más que un método o función, es una manera
+abreviada
+de creación de listas. Por su especial sintaxis, en ocasiones es 
+difícil de entender en una primera lectura. En general, se utiliza para generar
+listas
+aplicando cierta transformación sobre otra lista, o con los elementos de otro
+contenedor
+iterable. Así, por ejemplo
+\begin{lstlisting}
+[ j^2 for j in [1..5] ]
+\end{lstlisting}
+tomará, uno a uno, los elementos de la lista \lstinline|[1,2,3,4,5]| y generará
+la lista
+de sus cuadrados:\\
+\begin{Output}
+	[1, 4, 9, 16, 25]
+\end{Output}
+Se puede, también, filtrar los elementos del contenedor original. De nuevo nos
+adelantamos a un material posterior, aunque es fácil entender el siguiente
+ejemplo.
+\begin{lstlisting}
+[ j^2 for j in [1..20] if j.is_prime() ]
+\end{lstlisting}
+\begin{Output}
+	[4, 9, 25, 49, 121, 169, 289, 361]
+\end{Output}
+
+Volveremos sobre este asunto en la subsecci\'on \ref{bucles2}.
+\label{ent-sage}
+ \item Dado un \hyperref[enteros]{entero de {\sage}}, \lstinline|k|, el método
+\lstinline|k.digits()|
+devuelve
+una lista cuyos elementos son sus dígitos. Por ejemplo, \lstinline|123.digits()|
+devuelve
+la lista  \lstinline|[3,2,1]| (atención al orden). Por defecto los dígitos se
+consideran
+en la base $10$, y una lista \emph{sin ceros a la izquierda}. Otra base de
+numeración se
+indica como primer argumento, y un número de dígitos fijo, \lstinline|m|, se
+indica
+asignando al parámetro \lstinline|padto| dicho valor: \lstinline|padto=m|.
+\begin{lstlisting}
+L=123.digits(padto=5)
+LL=111.digits(2,padto=7)
+L.reverse(),LL.reverse()
+L, LL
+\end{lstlisting}
+\begin{Output}
+	([0, 0, 1, 2, 3], [0, 1, 1, 0, 1, 1, 1, 1])
+\end{Output}
+
+\item Los enteros de {\sage} se pueden factorizar en primos con el método
+\lstinline|.factor()|. El resultado no se muestra como una lista, pero en
+ocasiones es
+útil la lista de factores y potencias: el constructor \lstinline|list()| es
+apropiado
+para este objetivo.
+\begin{lstlisting}
+k=3888
+print k.factor()
+L=list(k.factor())
+L
+\end{lstlisting}
+\begin{Output}
+	2^4 * 3^5
+	[(2, 4), (3, 5)]
+\end{Output}
+\end{itemize}
+
+
+
+\subsection{Ejercicios con listas}
+\label{ejer-0}
+\begin{ejer}
+Dada la lista \lstinline|L=[3,5,6,8,10,12]|, se pide:
+
+\letra averiguar la posición del número $8$;
+
+\letra cambiar el valor $8$ por $9$, sin reescribir toda la lista;
+
+\letra intercambiar $5$ y $9$;
+
+\letra intercambiar cada valor por el que ocupa su posición \emph{simétrica}, es
+decir,
+el primero con el último, el segundo con el penúltimo, ...
+
+\letra crear la lista resultante de concatenar a la original, el resultado del
+apartado
+anterior.
+
+\end{ejer}
+
+\begin{ejer}
+La orden \lstinline|prime_range(100,1001)| genera la lista de los números primos
+entre
+$100$ y $1000$. 
+
+Se pide, siendo \verb|primos|\lstinline|=prime_range(100,1001)|:
+
+\letra averiguar el primo que ocupa la posición central en \verb|primos|;
+
+\letra averiguar la posición, en \verb|primos|, de $331$ y $631$;
+
+\letra extraer, conociendo las posiciones anteriores, la sublista de primos
+entre $331$ y
+$631$ (ambos incluidos);
+
+\letra extraer una sublista de primos que olvide los dos centrales de cada
+cuatro;
+
+\letra (**) extraer una sublista de primos que olvide el tercero de cada tres.
+\end{ejer}
+
+
+   
+\section{Tuplas}
+Las ``tuplas'' son similares a las listas, la mayor diferencia es que no podemos
+asignar nuevo valor a los elementos de
+una tupla. Decimos que las tuplas son ``inmutables''. Las listas no lo son
+porque
+podemos reasignar el valor de una
+entrada de la lista, \lstinline|L[1] = 7|, y también un método puede modificar
+el valor de una lista, por ejemplo, \lstinline|L.reverse()|
+cambia el valor de~\lstinline|L|.
+
+
+\begin{itemize}
+\item Definimos una tupla mediante \lstinline|t = (1,2,3,4,5,6)|.
+\item  Nos referimos a los elementos de una tupla con la notación \emph{slice},
+de la
+misma forma que a los de una lista, así: \lstinline|t[0]| es el elemento en la
+primera
+posición de la tupla, \lstinline|1|; \lstinline|t[1:5]| es la tupla
+\lstinline|(2,3,4,5)|; etc.
+\item Con el símbolo de la suma se concatenan tuplas: \lstinline|t + (1,5)| es
+la tupla
+\lstinline|(1,2,3,4,5,6,1,5)|. Y con el del producto, se repite:
+\lstinline|2*(1,5)|
+devuelve la tupla \lstinline|(1,5,1,5)|.
+
+\item A diferencia de las listas, no se puede cambiar un elemento
+de una tupla intentando reasignar su valor:
+\begin{lstlisting}
+t=(1,2,3,4,5,6,7)
+t[1]=3
+\end{lstlisting}
+\begin{Output}
+	TypeError: 'tuple' object does not support item assignment
+\end{Output}
+Si queremos cambiar algún elemento de una tupla, tenemos que reasignar toda la
+tupla. 
+
+En ocasiones, esta será una tarea ingrata y preferiremos un camino más directo.
+Pensemos
+en una tupla con algunas decenas de elementos.
+Para el intento anterior, podríamos hacerlo con una sintaxis algo enrevesada:
+\begin{lstlisting}
+t1,t2=t[:1],t[2:] ##cortamos la tupla en dos, 
+##evitando el elemento a sustituir
+t1+(3,)+t2 	  ## concatenamos intercalando la tupla $(3,)$
+\end{lstlisting}
+\begin{Output}
+	(1, 3, 3, 4, 5, 6, 7)
+\end{Output}
+Es fácil comprobar que \lstinline|(3)| no se interpreta como una tupla, pero
+\lstinline|(3,)| sí.
+
+Otra opción es cambiar a un contenedor tipo lista, más manipulable, realizar
+los cambios y asignar el resultado a una tupla. Los constructores
+\lstinline|list()| y
+\lstinline|tuple()| son idóneos para este camino que se deja como ejercicio al
+lector.
+
+\item La función \lstinline|len()|, aplicada a una tupla, nos devuelve su
+tamaño.
+
+\item Los métodos \lstinline|.index()| y \lstinline|.count()| se aplican de
+manera
+análoga al caso de listas.
+
+\end{itemize}
+
+
+
+\subsection{Ejemplos con tuplas}
+\label{factoriz}
+\begin{ejem}
+La composición \lstinline|list(factor())|, aplicada a un natural, devuelve una
+lista de pares
+\begin{lstlisting}
+factores=list(factor(600)); factores
+\end{lstlisting}
+\begin{Output}
+	[(2, 3), (3, 1), (5, 2)]
+\end{Output}
+Se puede iterar sobre esta lista para extraer los pares 
+\begin{lstlisting}
+for k in factores: print k,
+\end{lstlisting}
+\begin{Output}
+	(2, 3) (3, 1) (5, 2)
+\end{Output}
+o \emph{desempaquetar} cada par, es decir extraer simultáneamente cada miembro
+de la 
+pareja al iterar la lista
+\begin{lstlisting}
+for a,b in factores: print a^b,
+\end{lstlisting}
+\begin{Output}
+	8 3 25
+\end{Output}
+\end{ejem}
+
+\begin{ejem}
+La función \lstinline|xgcd()| aplicada a dos enteros, \lstinline|a,b|, 
+devuelve una tupla con $3$ valores: \lstinline|(d,u,v)|. El primero es el máximo
+común
+divisor\footnote{\emph{gcd} son las siglas de \emph{greatest common divisor}. La
+función
+\lstinline|gcd()| devuelve, sin más, el máximo común divisor; \lstinline|xgcd()|
+es una
+versión e{\bf x}tendida.}, y se verifica la \emph{identidad de Bézout}:
+$d=a\cdot u+b\cdot
+v$.
+\begin{lstlisting}
+a,b=200,120
+d,u,v=xgcd(a,b)
+d,u,v,d-(a*u+b*v)
+\end{lstlisting}
+\begin{Output}
+	(40, -1, 2, 0)
+\end{Output}
+\end{ejem}
+
+
+
+En este curso usaremos mucho m\'as listas que tuplas, ya que, esencialmente,
+realizan la misma funci\'on y las listas son m\'as flexibles. 
+
+\section{Cadenas de caracteres}
+
+Una cadena de caracteres es otro contenedor de datos inmutable, como las tuplas.
+Lo que contiene son caracteres de un alfabeto, por ejemplo el nuestro ({\itshape
+alfabeto latino}).
+
+Dado que la {\sc criptograf\'{\i}a}  trata del enmascaramiento sistem\'atico de
+un texto hasta hacerlo ilegible, pero recuperable conociendo la clave, es claro
+que en el cap\'{\i}tulo \ref{cript}, dedicado a ella usaremos sistem\'aticamente
+las funciones y m\'etodos que se aplican a  cadenas de caracteres.
+
+\begin{itemize}
+   
+ \item Una {\tt cadena de caracteres} se forma
+concatenando caracteres de un alfabeto, habitualmente formado por letras,
+dígitos, y otros símbolos como los de puntuación. 
+
+\item En el siguiente ejemplo se asigna a \lstinline|C| una cadena
+\begin{lstlisting}[numbers=none]
+C='Esta es nuestra casa.'
+\end{lstlisting}
+Las comillas delimitan el inicio y el final de la cadena. En este
+caso es suficiente con comillas simples.
+Si se quieren incluir comillas simples entre los caracteres, se usarán comillas
+dobles\footnote{Comillas dobles no son dos simples consecutivas, sino las que
+suelen
+estar en la tecla \boton{2} de un teclado.} o triples (tres sencillas
+consecutivas) para
+delimitar; forzosamente triples si han de incluir simples y dobles. 
+
+
+\item  \lstinline|str(k)| convierte el entero $k$ en una cadena de caracteres,
+de
+forma que \lstinline|str(123)| da como resultado la cadena {\lstinline|'123'|}. 
+
+\item Las operaciones \lstinline|+| (concatenación) y \lstinline|*| (repetición)
+se
+utilizan y comportan como en el caso de listas.
+
+\item  \lstinline|len(<cadena>)| es el número de caracteres de la cadena.
+
+\item Para el acceso a subcadenas, se utiliza la notación \emph{slice}.
+\begin{lstlisting}
+frase='Recortando letras de una frase'
+print (frase[3],frase[1:5:2],frase[6:10],frase[11:],frase[:4],frase[::3])
+\end{lstlisting}
+\begin{Output}
+	('o', 'eo', 'ando', 'letras de una frase', 'Reco', 'Roaoeadu a')
+\end{Output}
+
+\item \lstinline|<cadena>.count(<cadena1>)| devuelve el número de veces que la
+\lstinline|cadena1|  aparece ``textualmente'' dentro de la \lstinline|cadena|.
+\begin{lstlisting}
+frase='Contando letras de una frase'
+frase.count('e')
+\end{lstlisting}
+\begin{Output}
+	3
+\end{Output}
+
+\item \lstinline|<cadena>.index(<cadena1>)| devuelve el lugar en  que la
+\lstinline|cadena1|  aparece \textsc{por primera vez} dentro de la
+\lstinline|cadena|.
+\begin{lstlisting}
+frase='Buscando letras en una frase'
+frase.index('a')
+\end{lstlisting}
+\begin{Output}
+	4
+\end{Output}
+
+\item El método \lstinline|.split()| trocea una cadena de caracteres,
+devolviendo una
+lista con las subcadenas resultantes. Si no hay argumento, se
+utiliza, por defecto, el espacio en blanco para trocear, eliminándose de la
+lista de
+subcadenas resultante. Si se indica al método una subcadena, se utiliza esta
+para
+recortar.
+\begin{lstlisting}[showstringspaces=true]
+frase='Una frase para trocear. 
+Por defecto, se recorta por el espacio en blanco.'
+print frase.split(' ')==frase.split()
+palabras=frase.split(' ')
+subfrases=frase.split('.')
+palabras; subfrases
+\end{lstlisting}
+\begin{Output}
+	True
+	['Una', 'frase', 'para', 'trocear.', 'Por', 'defecto,', 'se',
+'recorta', 
+	'por', 'el', 'espacio', 'en', 'blanco.']
+	['Una frase para trocear', ' Por defecto, se recorta por el espacio en
+	blanco', '']
+\end{Output}
+
+\item El efecto inverso al uso de \lstinline|.split()| viene dado por el método
+\lstinline|.join()|, que actúa sobre cadenas y espera un contenedor de cadenas;
+o la
+función \lstinline|join()|, que actúa sobre un contenedor de cadenas. Un
+ejemplo,
+conectado con el anterior, nos sirve para entender el uso
+\begin{lstlisting}
+'-'.join(palabras); join(palabras,'|')
+\end{lstlisting}
+\begin{Output}
+	'Una-frase-para-trocear.-Por-defecto,
+-se-recorta-por-el-espacio-en-blanco.'
+	'Una|frase|para|trocear.|Por|defecto,
+|se|recorta|por|el|espacio|en|blanco.'
+\end{Output}
+De no especificarse el segundo argumento de la función \lstinline|join()|, se
+utilizará
+un espacio en blanco simple como \emph{pegamento}. Para concatenar cadenas,
+aparte del
+signo \lstinline|+|, podemos usar \lstinline|join| con la cadena \emph{vacía}
+\lstinline|''|
+\begin{lstlisting}
+palabras[0]+palabras[1]; ''.join(palabras); join(palabras,'') 
+\end{lstlisting}
+\begin{Output}
+	'Unafrase'
+	'Unafraseparatrocear.Pordefecto,serecortaporelespacioenblanco.'
+	'Unafraseparatrocear.Pordefecto,serecortaporelespacioenblanco.'
+\end{Output}
+
+\item El método \lstinline|.find()| devuelve el primer índice en que aparece
+una subcadena en la cadena a que se aplica; si no aparece, devuelve $-1$. Se
+puede
+delimitar el inicio de la búsqueda, o el inicio y el final (de omitirse este, es
+el
+último índice de la cadena). En la cadena \verb|frase| anterior aparece la
+subcadena
+\lstinline|'or'| en $3$ ocasiones. El siguiente código nos encuentra dónde:
+\begin{lstlisting}
+L=len(frase)
+a=frase.find('or')
+b=frase.find('or',a+1,-2)
+c=frase.find('or',b+1)
+a, b, c, frase.find('or',c+1)
+\end{lstlisting}
+\begin{Output}
+	(25, 43, 49, -1)
+\end{Output}
+
+\end{itemize}
+
+\noindent\emph{Sugerencia:} Pulsar el \verb|tabulador| tras escribir un punto
+detr\'as
+del nombre de una variable que contenga una cadena de caracteres, % 
+\verb|<cadena>. + tabulador|, para encontrar los métodos aplicables
+a cadenas de caracteres.
+
+
+\subsection{Ejercicios}
+\label{ejer-1}
+\begin{ejer} Considérese el número $1000!$ (\lstinline|factorial(1000)|):
+\begin{itemize}
+ \item ¿en cuántos ceros acaba?
+ \item ¿Se encuentra el número $666$ entre sus subcadenas? 
+ En caso afirmativo, localizar (encontrar los índices de) todas las apariciones.
+ \item Encontrar la subcadena más larga de doses consecutivos. Mostrarla con los
+dos
+d\'{\i}gitos que la rodean.
+\end{itemize}
+\end{ejer}
+
+\begin{ejer}
+Si se aplica la función \lstinline|sum()| a una lista numérica, nos devuelve la
+suma de
+todos sus elementos. En particular, la composición \lstinline|sum(k.digits())|,
+para
+\lstinline|k| un variable entera, nos devuelve la suma de sus dígitos (en base
+$10$).
+\begin{itemize}
+ \item Calcular, con la composición \lstinline|sum(k.digits())|, la suma de los
+dígitos
+del número \lstinline|k=factorial(1000)|.
+\item Calcular la misma suma sin utilizar el método \lstinline|.digits()|. 
+
+\small
+\emph{Sugerencia:} considerar la cadena \lstinline|digitos='0123456789'|, en la
+que
+\lstinline|digitos[0]='0'|, \lstinline|digitos[1]='1'|, ...,
+\lstinline|digitos[9]='9'|.
+Sumar los elementos de la lista
+$$
+\big[j*(\text{ veces que aparece } j \text{ en }1000!) :
+\text{ con }j=1,2,3,4,5,6,7,8,9\big]\,.
+$$
+\normalsize
+\end{itemize}
+
+\end{ejer}
+
+
+       
+\section{Conjuntos}\hypertarget{conj}
+Los conjuntos en SAGE se comportan y tienen, esencialmente, las mismas
+operaciones que los conjuntos en Matemáticas.
+La mayor ventaja que tienen sobre las listas es que, por su propia definición
+como conjunto, suprimen las repeticiones
+de elementos. Así \lstinline|[1, 2, 1]| tiene $3$ elementos (y están indexados),
+pero
+\lstinline|{1, 2, 1}| es lo mismo que \lstinline|{1,2}| y tiene solo $2$
+elementos.
+
+
+As\'{\i} podemos usar conjuntos para suprimir repeticiones en una lista:
+transformamos
+la lista en conjunto y el conjunto resultante en lista.
+
+\begin{itemize}
+\item Se utilizan las llaves para delimitar un conjunto:
+\begin{lstlisting}
+A = {1,2,1}
+type(A), A
+\end{lstlisting}
+\begin{Output}
+	(<type 'set'>, set([1, 2]))
+\end{Output}
+\item Aunque los conjuntos son mutables, sus elementos han de ser objetos
+inmutables. Así, no podemos crear conjuntos con conjuntos o listas entre sus
+elementos.
+
+\small
+\label{unhash}
+\noindent\begin{minipage}{.45\textwidth}
+\begin{lstlisting}
+A={{1,2},{3}}
+\end{lstlisting}
+\begin{Output}
+TypeError: unhashable type: 'set'
+\end{Output}
+\end{minipage}\vrule\hfill
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}
+A={[1,2]}
+\end{lstlisting}
+\begin{Output}
+TypeError: unhashable type: 'list'
+\end{Output} 
+\end{minipage}
+\normalsize
+\item Otra manera de crear conjuntos es con el constructor \lstinline|set()|,
+que toma los elementos de cualquier contenedor
+\begin{lstlisting}[columns=fullflexible]
+l,t,s=[1,2,1],(3,2,3),'Hola gente'
+set(l); set(t); set(s)
+\end{lstlisting}
+\begin{Output}
+	set([1, 2])
+	set([2, 3])
+	set(['a', ' ', 'e', 'g', 'H', 'l', 'o', 'n', 't'])
+\end{Output}
+{\tt Nota:} La orden \lstinline|A=set()| crea un conjunto sin elementos, el
+\emph{conjunto vacío}.
+
+\item Los elementos de un conjunto no están ordenados ni indexados: si
+\lstinline|A|
+es un conjunto \lstinline|A[0]| no es nada.
+
+\item  La instrucción \lstinline|1 in A| devuelve \lstinline|True| si el
+\lstinline|1| es
+uno de los elementos del conjunto \lstinline|A|.
+
+
+\item Si \lstinline|A| y \lstinline|B| son dos conjuntos, la unión de dos
+conjuntos se
+obtiene con \lstinline:A | B:, la intersección
+con \lstinline|A & B| y la diferencia con \lstinline|A-B|.
+La comparación \lstinline|A<=B| devuelve
+\lstinline|True| si todos los elementos de \lstinline|A| están en \lstinline|B|.
+
+\item  Como para los contenederos ya estudiados, \lstinline|len(A)| es el número
+de
+elementos de un conjunto.
+
+\item  Añadimos un elemento, por ejemplo el \lstinline|1|, a un conjunto
+mediante
+\lstinline|A.add(1)|, y lo suprimimos con \lstinline|A.remove(1)|.
+Si se quieren añadir más elementos, contenidos en cualquier otro contenedor,
+basta
+aplicar el método \lstinline|.update()|
+\begin{lstlisting}
+A={-1,-2}
+l=srange(100)
+A.update(l)
+len(A)
+\end{lstlisting}
+\begin{Output}
+	102
+\end{Output}
+                         
+\end{itemize}
+  
+\noindent\emph{Sugerencia:} Averiguar el uso de otros métodos como:
+\lstinline|.pop()|,
+\lstinline|.union()|, 
+
+\lstinline|.intersection()|, \dots
+
+
+\subsection{Ejercicios}
+
+\begin{ejer}
+A partir de la cadena de caracteres
+\begin{lstlisting}
+texto='Omnes homines, qui sese student praestare ceteris animalibus, 
+summa ope niti decet ne uitam silentio transeant ueluti pecora, quae 
+natura prona atque uentri oboedientia finxit.'
+\end{lstlisting}
+extraer la lista de los caracteres del alfabeto utilizados, sin repeticiones,
+sin
+distinguir mayúsculas de minúsculas y ordenada alfabéticamente.
+
+\noindent\emph{Sugerencia:} La composición \lstinline|list(set())| aplicada a
+una lista,
+genera una lista con los elementos de la original sin repeticiones, ¿por qué?
+
+\end{ejer}
+
+\begin{ejer} {\bf Máximo común divisor.} 
+
+Sin utilizar los métodos \lstinline|.divisors()| ni la función
+\lstinline|max()|, 
+elabora código que, a partir de dos números $a$ y $b$, calcule:
+\begin{itemize}
+\item El conjunto $\mathrm{Div}_a=\{k \in \mathbb N : k|a\}$
+\item El conjunto $\mathrm{Div}_b=\{k \in \mathbb N : k|b\}$
+\item El conjunto $\mathrm{Div}_{a,b}=\{k \in \mathbb N : k|a \text{ y } k|b\}$.
+\end{itemize}
+Una vez se tenga el conjunto de los \emph{divisores comunes}, encontrar el mayor
+de ellos.
+\end{ejer}
+
+
+\begin{ejer} {\bf Mínimo común múltiplo.}
+
+El mínimo común múltiplo, $m$, de dos números, $a$ y $b$, es menor o igual que
+su
+producto: $m\le a\cdot b$. Sin utilizar la función \lstinline|min()|, elabora
+código 
+que, a partir de dos números $a$ y $b$, calcule:
+\begin{itemize}
+\item El conjunto $\mathrm{Mult}_{a(b)}=\{k\in\mathbb{N}: a|k \text{ y }k<a\cdot
+b\}$
+\item El conjunto $\mathrm{Mult}_{b(a)}=\{k\in\mathbb{N}: b|k \text{ y }k<a\cdot
+b\}$
+\item El conjunto $\mathrm{Mult}_{a,b}=\{k\in\mathbb{N}: a|k\,,\,b|k \text{ y
+}k<a\cdot
+b\}$
+\end{itemize}
+Una vez se tenga este subconjunto de los \emph{múltiplos comunes}, encontrar el
+menor de
+ellos.
+\end{ejer}
+
+\begin{ejer}
+Dada una lista de números enteros, construye un conjunto con los factores primos
+de 
+todos los números de la lista.
+
+Indicación: Usa \lstinline|list(k.factor())| para obtener los factores primos.
+\end{ejer}
+
+Estos ejercicios, y los de las p\'aginas \pageref{ejer-0} y \pageref{ejer-1},
+son importantes porque
+vamos a estar usando  manipulaciones de estructuras de datos, sobre todo listas
+y cadenas de caracteres, durante todo el curso. 
+Soluciones en la hoja de {\sage}
+\href{http://localhost:8888/notebooks/PROGR/31-ESTRD-ejercicios-sol.ipynb}{\tt31-ESTRD-ejercicios-sol.ipynb}.
+                                
+\section{Diccionarios}
+
+Los elementos de una lista \lstinline|L| están indexados por los enteros entre
+\lstinline|0| y \lstinline|len(L)-1| y podemos localizar cualquier elemento
+si conocemos su orden en la lista. Los diccionarios son parecidos a las listas
+en que los elementos están indexados, pero el conjunto de 
+índices es arbitrario y adaptado al problema que queremos resolver.
+\begin{itemize}
+\item  Definimos un diccionario mediante
+\begin{lstlisting}
+diccionario = {clave1:valor1, clave2:valor2, ...}
+\end{lstlisting}
+Las claves son los identificadores de las entradas del diccionario y, por tanto,
+han de
+ser todas diferentes. En general, la información que contiene el diccionario
+reside en
+los pares  \lstinline|clave:valor|. Por ejemplo, un
+diccionario puede contener la información \verb|usuario:contraseña|
+   para cada uno de los usuarios de una red de ordenadores.
+
+\item  Una vez creado el diccionario, recuperamos la información sobre el
+valor correspondiente a una clave con la instrucción
+\lstinline|diccionario[clave]|.
+\begin{lstlisting}
+granja={'vacas':3, 'gallinas':10, 'ovejas':112}
+granja['ovejas']
+\end{lstlisting}
+\begin{Output}
+	112
+\end{Output}
+
+\item  Definimos una nueva entrada, o cambiamos su valor, mediante
+\begin{center}
+\lstinline|diccionario[clave]=valor|,
+\end{center}
+ \noindent y suprimimos una entrada con
+\lstinline|del diccionario[clave]|.
+\begin{lstlisting}
+granja['vacas']+=1 ## Se adquieren una vaca...
+granja['caballos']=2 ## ... y dos caballos.
+del granja['gallinas'] ## Se venden todas las gallinas.
+show(granja)
+\end{lstlisting}
+\begin{Output}
+	$\left\{\verb|vacas| : 4, \verb|ovejas| : 112, \verb|caballos| :
+	2\right\}$
+\end{Output}
+
+\item Podemos crear un diccionario vacío con el constructor \lstinline|dict()|.
+Si
+pasamos al constructor una \emph{lista de pares}, este creará un diccionario con
+claves
+los primeros
+objetos de cada par, y valores los segundos.
+
+\begin{lstlisting}
+Cuadrados_y_cubos=dict([(j,(j^2,j^3)) for j in [1..6]])
+show(Cuadrados_y_cubos)
+\end{lstlisting}
+\begin{Output}
+$\left\{1 : \left(1, 1\right), 2 : \left(4, 8\right), 3 : \left(9,
+	27\right), 4 : \left(16, 64\right), 5 : \left(25, 125\right), 6 :
+	\left(36, 216\right)\right\}$
+\end{Output}
+
+
+{\tt Nota:} Un buen constructor de listas de pares es \lstinline|zip()|. Si se
+tienen dos
+listas, \lstinline|L1| y \lstinline|L2|, la lista \lstinline|zip(L1,L2)| está
+formada
+por las parejas \lstinline|(L1[j],L2[j])| para \lstinline|j=0,1,...,| el menor
+índice
+final posible:
+\begin{lstlisting}
+L1, L2=[1..15], [10..16]
+DD=dict(zip(L1,L2))
+print DD
+\end{lstlisting}
+\begin{Output}
+  	{1: 10, 2: 11, 3: 12, 4: 13, 5: 14, 6: 15, 7: 16}
+\end{Output}
+
+\item Los métodos \lstinline|.keys()| y \lstinline|.values()|
+producen listas con las claves y los valores, respectivamente, en el
+diccionario.
+El método \lstinline|.items()| devuelve la lista de pares
+\lstinline|(clave,valor)|.
+
+\item La instrucción \lstinline| x in diccionario| devuelve \lstinline|True| si
+\lstinline|x| es una de las claves del diccionario. 
+
+
+\end{itemize}
+
+
+ 
+
+
+Los diccionarios sirven para {\sc estructurar la informaci\'on}, haci\'endola
+mucho m\'as accesible.  En el cap\'itulo \ref{cript}, dedicado a la
+criptograf\'{\i}a,  veremos un ejemplo muy
+pr\'oximo a la noci\'on de ``diccionario como un libro con palabras ordenadas
+alfab\'eticamente'': queremos decidir de forma autom\'atica si un texto dado
+pertenece a un idioma y disponemos de un archivo que contiene unas $120.000$
+palabras en ese idioma,  una  en cada l\'{\i}nea. 
+
+Podr\'{\i}amos crear una lista con entradas las palabras del archivo, pero es
+mucho m\'as eficiente estructurar la informaci\'on como un diccionario.  Buscar
+una palabra en una tal lista requiere recorrer la lista hasta que la
+encontremos, y ser\'ia equivalente a buscar una palabra en un diccionario de
+papel compar\'andola con cada palabra del diccionario empezando por la primera. 
+
+
+
+En lugar de usar una lista, 
+creamos un diccionario con claves tripletas de caracteres y cada tripleta toma
+como valor la lista de todas las palabras en el archivo que comienzan
+exactamente por esa tripleta.  De esta forma conseguimos que los valores en el
+diccionario sean listas de longitud moderada, y resulta mucho m\'as f\'acil 
+averiguar si una cierta palabra est\'a o no en el diccionario. 
+
+\label{diccionario}
+Puedes consultar la hoja de {\sage}
+\href{http://localhost:8888/notebooks/PROGR/41-PROGR-diccionario.ipynb}{\tt 41-PROGR-diccionario.ipynb} para ver una implementaci\'on de esta idea, 
+aunque {\sc es necesario haber visto el cap\'{\i}tulo siguiente}, dedicado a la
+programaci\'on, para entenderla. 
+
+Adem\'as, se discute en esa hoja la ventaja que se obtiene al usar diccionarios,
+siempre que las longitudes de los valores est\'en equilibradas, frente a listas.
+Este tipo de discusi\'on se repetir\'a a lo largo del curso, ya que repetidas
+veces deberemos comparar, mediante {\itshape experimentos bien elegidos} los
+m\'eritos o dem\'eritos de diversos m\'etodos para realizar los mismos
+c\'alculos.
+                                                                    
+
+
+
+
+
+
+\section{Conversiones}
+En ocasiones necesitamos convertir los datos contenidos en una cierta
+estructura a otra, debido, esencialmente, a que la nueva estructura admite
+m\'etodos que se adaptan mejor a las manipulaciones con los datos que
+pretendemos hacer.
+\begin{enumerate}
+\item {\sc Tupla a lista o conjunto:} Para una tupla {\tt T}
+
+\begin{lstlisting}
+list(T)
+set(T)
+\end{lstlisting}
+
+    
+\item {\sc Lista a tupla:} \lstinline|tuple(L)|.
+
+\item {\sc Cadena a lista:}
+\begin{lstlisting}
+C = 'abc'
+list(C)
+\end{lstlisting}
+ \begin{Output}
+['a', 'b', 'c']
+ \end{Output}
+
+
+ \item {\sc ?`Lista a cadena?}: 
+ \begin{lstlisting}
+C = 'abc'
+str(list(C))
+ \end{lstlisting}
+ \begin{Output}
+'['a', 'b', 'c']'
+  \end{Output}
+   En general esto {\sc no} es lo que queremos.
+ \item {\sc Lista a cadena:}
+ \begin{lstlisting}
+C = 'abc'
+join(list(C),sep="")
+\end{lstlisting}
+\begin{Output}
+'abc'
+ \end{Output}
+\item  {\sc Lista a conjunto:} para una lista $L$,  \lstinline|set(L)|. Suprime
+repeticiones en la lista.
+ \item {\sc Conjunto a lista:} para un conjunto $A$, \lstinline|list(conjunto)|.
+
+ \item {\sc Diccionario a lista de pares:} Para un diccionerio $D$, 
+\lstinline|D.items()|.
+
+\item {\sc  Lista de pares a diccionario:} Este peque\~no programa, con un
+\hyperref[for]{bucle \lstinline|for|}, realiza la conversi\'on. 
+
+\begin{lstlisting}
+ def convert_list_dict(L):
+        dict = {}
+        for item in L:
+            dict[item[0]]=item[1]
+        return dict
+\end{lstlisting}
+\item Dadas dos listas, {\tt L1} y {\tt L2}, de la misma longitud podemos formar
+una lista de pares mediante \lstinline|zip(L1,L2)|, y
+    transformar esta lista en diccionario mediante la funci\'pn del apartado
+anterior.
+ \end{enumerate}                                             
+

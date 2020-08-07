@@ -1,0 +1,1229 @@
+%%%%%%%%%%%HISTOGRAMAS----->mejorar%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%falta generacion eficiente%%%%%
+
+La ciencia intenta conseguir, siguiendo el modelo de la mec\'anica de Newton,
+capacidad predictiva absoluta, es decir, pretende que dadas las condiciones
+iniciales, la situaci\'on en el instante $t=0$, sea posible calcular la
+evoluci\'on futura, e incluso en algunos casos la evoluci\'on previa del 
+sistema objeto de estudio. 
+
+Esta pretensi\'on ha resultado ser en gran medida  ilusoria:
+\begin{enumerate}
+ \item No es posible medir con precisi\'on absoluta las condiciones iniciales, y
+peque\~n\'{\i}simas variaciones  en esas medidas  pueden afectar
+dr\'asticamente al resultado.
+
+\item Muy pocos de los problemas matem\'aticos a que da lugar la ciencia son
+exactamente resolubles. Las ecuaciones,  diferenciales o en derivadas parciales,
+que aparecen son demasiado complicadas y,  aunque podemos estudiar sus
+soluciones, en muy pocos casos sabemos resolverlas exactamente. 
+
+Se puede usar {\itshape C\'alculo num\'erico} para resolver de manera aproximada
+las ecuaciones, pero se producen errores de redondeo que  no es f\'acil
+controlar.
+
+\item La ciencia a escala at\'omica, y subat\'omica, es intr\'{\i}nsecamente
+probabilista. En Mec\'anica cu\'antica no podemos predecir el resultado de
+muchos experimentos y la teor\'{\i}a \'unicamente nos da probabilidades de los
+resultados posibles. 
+
+Esta situaci\'on no se debe a nuestra incapacidad para calcular mejor, como en
+el caso de la mec\'anica cl\'asica, sino que est\'a en la naturaleza de las
+cosas.
+ 
+ \end{enumerate}
+
+
+
+Entonces, nos interesamos por el resultado de {\itshape experimentos
+aleatorios}, es decir,  experimentos cuyo resultado no consideramos predecible
+con certeza. Un ejemplo puede ser el experimento consistente en el lanzamiento
+de una moneda: en principio, las leyes de la mec\'anica se podr\'{\i}an aplicar
+y deber\'{\i}an permitir calcular,  de manera exacta,  la trayectoria de la
+moneda y el resultado, cara o cruz, del experimento, pero en la pr\'actica tal
+c\'alculo es imposible, y debemos conformarnos con
+mucho menos. 
+
+En la teor\'{\i}a de la probabilidad {\itshape nos conformamos con observar las
+regularidades que aparecen al repetir el experimento un gran n\'umero de veces.}
+Cuando lanzamos una moneda, un gran n\'umero de veces,  observamos que casi
+siempre, aproximadamente,  la mitad de los resultados son caras y la mitad
+cruces, y cuando una
+moneda no se ajusta a este comportamiento dir\'{\i}amos que 
+est\'a trucada. %% o que el lanzador es demasiado h\'abil (?`existen?).%%
+
+En este cap\'{\i}tulo calculamos probabilidades mediante simulaci\'on usando
+generadores de n\'umeros aleatorios. Hay muchos problemas que podemos simular, 
+y  sorprende que con estos m\'etodos se consigan tan buenas aproximaciones al
+resultado exacto calculado de acuerdo a la teor\'{\i}a de la probabilidad. 
+Comprobaremos esto en el caso de la probabilidad de obtener un n\'umero de caras
+dado al lanzar repetidas veces  una moneda.  
+
+El objetivo del cap\'{\i}tulo es introducir un par de ideas b\'asicas de la
+teor\'{\i}a y, sobre todo, intentar mejorar nuestra intuici\'on de los
+fen\'omenos probabil\'{\i}sticos.
+
+
+%%RHG
+
+%%CREADO 23-05-2013/18:23
+
+
+\section{Probabilidad}
+
+
+
+Llamemos $X$ al conjunto de ``resultados at\'omicos'', es decir, resultados que
+no podemos descomponer como uni\'on de otros resultados, de un experimento
+aleatorio. Suponemos primero que el conjunto $X$ es finito, aunque todo esto se
+puede generalizar,  y sus elementos son los {\itshape sucesos elementales
+(at\'omicos)}. A un subconjunto $A\subset X$ le llamamos {\itshape suceso} sin
+m\'as. 
+
+
+Llamemos $n$ al n\'umero de elementos de $X$. Cuando realizamos el experimento
+en la realidad, un n\'umero $N$ de veces, obtenemos, para cada uno de los
+sucesos elementales $x_i$,  una {\itshape frecuencia} $f_i$ que, por
+definici\'on,  es el n\'umero de veces $m_i$ que obtenemos el resultado $x_i\in
+X$ dividido por el n\'umero $N$ de repeticiones del experimento.
+
+Es claro que 
+\[\sum_{i=1}^{n}f_i=\sum_{i=1}^{n} \frac{m_i}{N}=\frac{\sum_{i=1}^{n}
+m_i}{N}=\frac{N}{N}=1.\]
+
+En experimentos aleatorios en los que podemos controlar de manera precisa las
+condiciones principales que determinan el resultado se observa que, al crecer
+$N$,  las frecuencias tienden a estabilizarse. 
+
+La base de la teor\'{\i}a de la probabilidad es entonces un espacio $X$ de
+sucesos elementales, que todav\'{\i}a suponemos finito,  y una funci\'on $p:X\to
+\mathbb{R}$ que asigna ``probabilidades'' $p_i$ a los sucesos elementales $x_i$
+y que verifica
+\begin{enumerate}
+ \item Para todo $i$ 
+ \[0\le p_i=p(x_i)\le 1.\]
+ \item 
+ \[\sum_{i=1}^{n}p_i=1.\]
+ \end{enumerate}
+ 
+ Supuesto que ya tenemos $X$ y $p$, definimos entonces la probabilidad de un
+suceso $A\subset X$ como 
+ \[p(A):=\sum_{x_i\in A}p_i.\]
+ 
+ En muchos casos, {\sc pero no siempre}, los sucesos elementales tienen todos la
+misma probabilidad (i.e. son equiprobables), que entonces vale $1/n$, y para la
+probabilidad $p(A)$ de un suceso $A\subset X$ obtenemos, usando la notaci\'on
+$\#(Y)$ para el n\'umero de elementos del conjunto $Y$, 
+\[p(A)=\frac{\#(A)}{\#(X)},\]
+\noindent que es la famosa f\'ormula {\itshape $p(A)=$ casos favorables/casos
+posibles}. 
+
+ 
+ 
+Podemos pensar, aunque \'esta no es la \'unica  interpretaci\'on posible, las
+probabilidades $p_i$ como el l\'{\i}mite, cuando $N$ tiende a infinito, de las
+frecuencias $f_i$.
+
+En este curso {\itshape simularemos experimentos aleatorios} un n\'umero grande
+de veces $N$ y obtendremos frecuencias que, cuando $N$ crece, calculan,
+experimentalmente, las probabilidades que nos interesan.  
+
+Si dos sucesos,  $A$ y $B$, son disjuntos, $A\cap B=\emptyset$, entonces la 
+probababilidad de que se d\'e uno {\itshape o} el otro debe ser la suma de las 
+probabilidades, ya que, en esas condiciones
+\[\text{{\itshape casos favorables a }}A\cup B=\text{{\itshape casos favorables 
+a 
+}}A+\text{{\itshape casos favorables a }}B,\]
+\noindent y los casos posibles son siempre los mismos.
+
+Por otra parte, la probabilidad de que se verifiquen simult\'aneamente $A$ y 
+$B$,  $p(A\cap B)$, es, en muchos casos igual al producto $p(A)\cdot p(B)$, 
+pero no siempre.  Se dice que {\itshape los sucesos $A$ y $B$ son 
+independientes si y s\'olo si 
+\[p(A\cap B)=p(A)\cdot p(B).\]}
+
+En muchos casos es natural suponer que ciertos sucesos son independientes, de 
+acuerdo a la definici\'on anterior,  ya que no vemos que el hecho de que uno se 
+verifique influya en el otro. As\'{\i}, por ejemplo, debemos suponer que si 
+lanzamos una moneda varias veces el resultado de cada lanzamiento es 
+independiente de los otros. Sin embargo, supongamos un dado con tres caras 
+pintadas de rojo, las del $1,2$ y $3$,  y las restantes tres de verde. 
+La probabilidad de obtener verde y $1$ es cero, pero la de $1$ es $1/6$ y la de 
+verde $1/2,$ luego no son sucesos independientes.
+
+\subsection{Variables aleatorias}
+
+Una {\bf variable aleatoria} es una funci\'on $\mathbb{X}:X \longrightarrow
+\mathbb{R}$, con $X$ un espacio de sucesos elementales tal que algunos de sus
+subconjuntos $A\subset X$ tienen asignada una probabilidad $p(A)$. No entramos
+en detalles t\'ecnicos acerca de las propiedades que deben cumplir $X$ y
+$\mathbb{X}$, que se ver\'an m\'as adelante en los cursos de Probabilidad.
+
+Por ejemplo, si lanzamos dos dados de distinto color, el espacio $X$ de sucesos
+elementales tiene $36$ elementos y se define una variable aleatoria
+considerando, para cada suceso elemental, la suma de los puntos obtenidos en ese
+suceso. La variable aleatoria  toma valores enteros entre $2$ y $12$, y nos
+interesa, por ejemplo para apostar sobre los diversos resultados, calcular la
+probabilidad de sucesos como $\mathbb{X}\ge 7$, es decir la probabilidad de
+obtener $7$ o m\'as puntos lanzando dos dados.
+
+Decimos que una variable aleatoria $\mathbb{X}:X\to [0,1]\subset \mathbb{R}$ es
+{\bf uniforme} si, para cada par $0\le a \le b\le 1$,  la probabilidad del
+suceso $a\le \mathbb{X}\le b$ es exactamente $b-a$. 
+
+La simulaci\'on de variables aleatorias uniformes es clave en todo lo que sigue.
+
+
+
+
+\subsection{Simulaci\'on}
+En esta subsecci\'on simulamos, usando el generador de n\'umeros aleatorios de 
+{\sage}, lanzamientos de una moneda correcta y de una moneda trucada.  La base 
+de estas simulaciones, y de otras muchas que veremos, es el hecho de que el 
+generador \lstinline|random()| simula una variable aleatoria uniforme en el 
+intervalo $[0,1].$ 
+
+\begin{enumerate}
+ \item Comenzamos simulando el lanzamiento de una moneda equiprobable un cierto
+n\'umero de veces:
+ \begin{lstlisting}
+[randint(0,1) for n in srange(10)]
+\end{lstlisting}
+\begin{Output}
+[0, 1, 0, 0, 1, 0, 0, 1, 1, 1]
+\end{Output}
+\begin{lstlisting}
+([randint(0,1) for n in srange(10)]).count(1)
+\end{lstlisting}
+\begin{Output}
+5
+\end{Output}
+\begin{lstlisting}
+([randint(0,1) for n in srange(10^5)]).count(1)
+\end{lstlisting}
+\begin{Output}
+50202
+\end{Output}
+\begin{lstlisting}
+time sum([([randint(0,1) for n in srange(10^5)]).count(1) for int in
+srange(10)])
+\end{lstlisting}
+\begin{Output}
+498868
+Time: CPU 12.51 s, Wall: 12.52 s
+\end{Output}
+
+La instrucci\'on {\tt randint(a,b)} produce un entero en el intervalo cerrado
+$[a,b]$ que es ``aleatorio'',  en el sentido de que todos los enteros del
+intervalo son igualmemte probables. 
+
+En la \'ultima l\'{\i}nea, repetimos $10$ veces el experimento de lanzar una
+moneda $100000$ veces, y observamos que el n\'umero de cruces es, en promedio,
+$49886{.}8$ que es bastante pr\'oximo a $50000.$
+ \item Queremos ahora simular una {\sc moneda trucada}, de forma que, por
+ejemplo, la probabilidad de cara sea s\'olo $1/3$. Para eso, usamos una {\sc
+variable aleatoria uniforme} en el intervalo $[0,1]$ y observamos cu\'antos
+valores de la variable caen en el intervalo $[0,1/3].$
+ \begin{lstlisting}
+ random()
+ \end{lstlisting}
+ \begin{Output}
+0.46257246456300749
+\end{Output}
+\begin{lstlisting}
+def moneda_trucada(p):
+      x = random()
+      if x <= p:
+	  return 0
+      else:
+          return 1
+\end{lstlisting}
+\begin{lstlisting}
+moneda_trucada(1/3)
+\end{lstlisting}
+\begin{Output}
+1
+\end{Output}
+\begin{lstlisting}
+([moneda_trucada(1/3) for n in srange(10^5)]).count(1)
+\end{lstlisting}
+\begin{Output}
+66684 
+\end{Output}
+
+La instrucci\'on {\tt random()} produce un decimal, de la precisi\'on que
+indiquemos,  perteneciente al  intervalo $[0,1]$. Por supuesto, el resultado es
+siempre un n\'umero racional pero los reales no racionales no existen para la
+m\'aquina. 
+ \item T\'ecnicamente, los n\'umeros que producen las dos instrucciones son {\sc
+pseudoaleatorios} ya que est\'an producidos mediante un procedimiento
+determinista, iterando una funci\'on matem\'atica que tiene que tener un
+per\'{\i}odo muy alto. Adem\'as la distribuci\'on de valores tiene que ser muy
+pr\'oxima a uniforme, es decir, {\tt randint} debe producir enteros en el
+intervalo con (casi) la misma frecuencia todos y {\tt random} debe producir
+decimales en el intervalo $[0,1]$ con  frecuencia de pertenencia a cada
+subintervalo (casi) igual a la longitud del subintervalo.
+ \end{enumerate}
+ 
+ 
+ 
+%\end{enumerate}
+
+
+ \begin{ejer}\label{simu}
+ 
+ \begin{enumerate}
+ \item Calcula, experimentalmente, la probabilidad de obtener a lo m\'as $100$
+caras en $1000$ lanzamientos de una moneda para la que la que la probabilidad de
+cara es $\frac{1}{10}\cdot k,\ k=1,2,\dots,9.$  Por supuesto, este ejercicio
+tiene tambi\'en una respuesta ``te\'orica'', pero, de momento, no nos interesa.
+ \item ?`C\'omo producir n\'umeros aleatorios con distribuci\'on unifornme en un
+intervalo $[a,b]$ cualquiera?
+ 
+ 
+ \item {\sc La ruina del jugador:} Un jugador acude a un casino con $100$ euros
+y acepta el siguiente juego: se lanza una moneda y si sale cara gana un euro del
+casino y si sale cruz paga un euro al casino. Suponemos que el casino dispone de
+una cantidad ilimitada de dinero.
+ 
+ \begin{enumerate}
+  \item Comprueba que, en las condiciones anteriores, la ruina del jugador es
+segura. 
+  \item Supongamos ahora que el jugador decide retirarse  cuando su saldo llega
+a $200$ euros o bien a $50$ euros. Calcula la probabilidad de que se retire
+habiendo ganado.
+  
+  
+  
+ \end{enumerate}
+\end{enumerate}
+ \end{ejer}
+ 
+ \section{Binomial}
+El experimento aleatorio m\'as sencillo es el lanzamiento de una moneda, y el
+siguiente m\'as sencillo es lanzar una moneda un n\'umero $N$ de veces. Acabamos
+de ver c\'omo simular, usando n\'umeros (pseudo)aleatorios,  el lanzamiento de
+una moneda o incluso el de una moneda trucada, y en el ejercicio \ref{simu}
+comenzamos a utilizar esa capacidad de simular para responder a algunas
+cuestiones (quiz\'a) interesantes. 
+
+En esta secci\'on discutimos la justificaci\'on teo\'orica del resultado
+obtenido mediante simulaci\'on al resolver el primer apartado. 
+
+El ejercicio pide que se calcule la probabilidad de obtener a lo m\'as $100$
+caras al lanzar $1000$ veces una moneda trucada que tiene probabilidad $0{.}1$
+de cara. 
+\begin{enumerate}
+\item Comenzamos discutiendo la probabilidad de obtener exactamente $100$ cara.
+La sucesión de mil lanzamientos se puede representar
+como una cadena de longitud $1000$ de ceros y unos (cero para cara y uno para
+cruz). En cada lanzamiento de la moneda la probabilidad de obtener cara es
+$1/10$ y lanzamientos sucesivos son {\itshape independientes}, el resultado de
+los anteriores  no influye en los que siguen. En estas condiciones, las
+probabilidades {\itshape se multiplican}, por ejemplo la probabilidad de obtener
+dos caras en las primeras dos tiradas es $1/100$.
+
+La probabilidad de obtener $100$ caras en las primeras $100$ tiradas es
+$(1/10)^{100}$, y la probabilidad de que el resto de las $1000$ tiradas sean
+cruces es $((1/10)^{100})((9/10)^{900})$. Para cada uno de las posibles cadenas
+de ceros y unos que contienen $100$ ceros y $900$ unos la probabilidad de
+aparici\'on de esa cadena particular es la misma, e igual a
+$((1/10)^{100})((9/10)^{900})$.
+
+\item ¿Cuántas cadenas hay que contengan $100$ ceros y $900$ unos? Basta elegir
+las $100$ posiciones en las que colocamos ceros, ya que el resto van a ser unos
+necesariamente. Una ordenaci\'on tiene todos los ceros al comienzo, y hay
+$1000!$ reordenaciones de esta primera, pero muchas son iguales, por ejemplo, si
+intercambiamos el primer cero con el segundo queda la misma cadena. ¿Cu\'antas
+reordenaciones de la cadena que tiene los cien ceros al principio sigue teniendo
+los cien ceros al principio? Todas las que permuten los cien primeros ceros
+entre s\'{\i} o los 900 unos entre s\'{\i}. El n\'umero de esas reordenaciones
+es $100!\times 900!$, de forma que el n\'umero de cadenas con cien ceros y
+novecientos unos es
+
+\[\binom{1000}{100}:=\frac{1000!}{100!\times 900!}.\]
+
+Entonces la probabilidad de obtener exactamente $100$ caras es
+\[\binom{1000}{100}((1/10)^{100})((9/10)^{900}),\]
+\noindent que es aproximadamente igual a $0{.}042.$
+
+\item Entonces, la soluci\'on a nuestro problema original es 
+\[\sum_{i=0}^{i=100}\binom{1000}{i} (0{.}1)^i(0{.}9)^{1000-i},\]
+\noindent que resulta ser, aproximadamente, $0{.}5266.$
+\end{enumerate}
+En la hoja \href{http://sage.mat.uam.es:8888/home/pub/?/}{\tt
+111-PROBA-ejercicio-1.sws},
+que contiene soluciones para el ejercicio \ref{simu}, 
+puedes ver que la simulaci\'on consigue, en un tiempo razonable,  un resultado
+con $3$ cifras decimales correctas.
+
+\subsection{Caso general}
+
+Supongamos que repetimos $N$ veces el lanzamiento de una moneda que tiene
+probabilidad $p$ de cara, por tanto,  $1-p$ de cruz. Como en la discusi\'on
+anterior asignamos $0$ al resultado ``cara'' y $1$ al resultado cruz.
+
+Este experimento aleatorio
+produce  una variable aleatoria $X$={\itshape ``n\'umero de caras obtenidas al
+lanzar la
+moneda $N$ veces''}, definida sobre el conjunto (finito) de cadenas binarias de
+longitud $N$ y con valores enteros entre $0$ y $N$.
+
+Una cadena binaria particular, que contenga $i$ ceros, es, como hemos visto,  un
+suceso at\'omico con probabilidad 
+$p^i(1-p)^{N-i}.$ Nos interesa calcular la probabilidad de obtener exactamente
+$i$ caras, y hemos visto que,  como hay 
+$\binom{N}{i}$ cadenas distintas con exactamente $i$ ceros, la probabilidad de
+obtener $i$ ceros es 
+\[\binom{N}{i} p^i(1-p)^{N-i}.\]
+
+Esta variable aleatoria $X$ se dice que {\itshape es binomial.}
+
+
+ \section{Generadores de n\'umeros (pseudo-)aleatorios}
+Supongamos que queremos programar una función como \lstinline|random()|  que es
+uniforme en el intervalo $[0,1]$. Los números reales en el intervalo los
+veremos, en el ordenador, como decimales, por ejemplo, con diez cifras. Si los
+multiplicamos por $10^{10}$  los podemos ver como enteros en el intervalo
+$[0,10^{10}]$ , o como clases de restos módulo $n:=10^{10}+1.$
+
+Los generadores (pseudo-)aleatorios m\'as simples funcionan iterando
+una función adecuada $f$ de $\mathbb{Z}_N$, con $N$ muy grande,  en sí mismo. El
+primer n\'umero aleatorio que se genera, digamos $x_0$, se llama la semilla, y
+salvo que indiquemos expl\'{\i}citamente lo contrario, el ordenador la genera
+cada vez usando, por ejemplo, el reloj interno de la m\'aquina.
+
+Los siguientes se obtienen iterando la funci\'on $f$, es decir, mediante
+$x_n:=f^n(x_0)$. Es claro que este proceso no tiene de ``aleatorio'' sino la
+elecci\'on de la semilla, el resto es completamente ``determinista''.
+
+\begin{enumerate}
+
+\item Cuando un generador de este tipo  vuelve a un valor ya visitado, por
+ejemplo en $x_{m}$, es decir $x_{m}=x_{n}$ con $n<m$,  se produce un
+per\'{\i}odo: a partir de $m$ los n\'umeros generados son los mismos que se
+generaron a partir de $n$, y ya no sirven para nada \'util. Los buenos
+generadores son los que tienen períodos de longitud enormemente grande y que
+adem\'as visitan casi todos los elementos de $\mathbb{Z}_N$ antes de caer en un
+per\'{\i}odo.
+
+\item La instrucción \lstinline|random()| genera n\'umeros en el intervalo
+$[0,1]$ de manera (aproximadamente) uniforme, es decir,  la frecuencia con que
+el resultado, en $M$ repeticiones, pertenece al subintervalo $[a,b]$ debe ser 
+muy pr\'oxima a $b-a$. Una manera f\'acil de comenzar a estudiar la calidad de 
+los
+generadores es, simplemente, comprobar si esta propiedad de uniformidad se
+mantiene cuando $M$ crece. En general, se utilizan m\'etodos {\itshape
+estad\'{\i}sticos}, los mismos que sirven para estudiar muestras de datos
+obtenidas del mundo real, para estudiar la uniformidad de los n\'umeros
+suministrados por distintos generadores (pseudo-)aleatorios.
+
+\end{enumerate}
+
+
+Los generadores descritos no pueden tener per\'{\i}odos mayores que el entero
+$n$ (?`por qu\'e?), pero una variante que utiliza funciones de varias variables,
+por ejemplo
+$k$,  y determina el valor $x_{n+1}$ usando los $k$ \'ultimos n\'umeros
+puede alcanzar per\'{\i}odos mucho m\'as altos. Los generadores modernos son de
+este tipo. Por ejemplo, el generador que utiliza Python, y tambi\'en {\sage},
+llamado \href{http://en.wikipedia.org/wiki/Mersenne_twister}{\itshape Mersenne
+Twister}, produce enteros aleatorios de $32$ bits con un período  de longitud
+$2^{19937}-1$, es decir $N$ es $2^{32}$ pero el per\'{\i}odo del generador es
+mucho mayor.
+\label{nsa}
+
+Los generadores de n\'umeros (pseudo-)aleatorios tienen un uso importante en la
+pr\'actica de la criptograf\'{\i}a ya que  sirven para elegir claves
+aleatoriamente en un espacio de posibles claves que debe ser enorme para que el
+sistema sea seguro. Parece ser que el m\'etodo que utiliza (?`utilizaba?) la NSA
+({\itshape National Security Agency} de Estados Unidos) para desencriptar
+masivamente mensajes se basa en que forzaron la utilizaci\'on en el {\itshape
+software} criptogr\'afico de {\itshape generatores de n\'umeros aleatorios 
+trucados}. Es claro, por ejemplo,  que si el usuario cree que est\'a usando 
+claves de
+$2048$ bits, que se consideran suficientemente seguras, pero de hecho el
+generador elige las claves en un espacio mucho menor, por ejemplo $512$ bits, la
+seguridad es totalmente ficticia. 
+
+%%COMPLETAR%%%%%%%%%
+%%%%De hecho, el gobierno de Estados Unidos intent\'o, sin \'exito, fijar  %%%
+ La hoja de 
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 111-PROBA-generador-vn.sws}
+contiene un estudio de uno de los generadores primitivos, inventado por
+vonNeumann.
+
+\subsection{Generaci\'on eficiente de n\'umeros aleatorios} 
+**************************************FALTA**************************************
+*******hay una referencia en COMPL*******************
+
+\begin{ejer}
+ 
+ \begin{enumerate}
+  \item Programa y estudia este 
+  \href{http://en.wikipedia.org/wiki/Linear_congruential_generator}{generador},
+en particular estudiando sus per\'{\i}odos y autocorrelaciones.  Se puede usar
+como modelo la hoja sobre el generador de vonNeumann.
+
+
+  \item En la secci\'on $4$ del \href{run:PDFs/PROBA/bbs.pdf}{art\'{\i}culo} se
+describe el generador conocido como {\itshape Blum-Blum-Shub}. Implem\'entalo en
+{\sage} y estudia alguna de las afirmaciones que se hacen en el art\'{\i}culo
+acerca de \'el.
+  
+ %%%%http://www.math.tamu.edu/~rojas/bbs.pdf %%%
+
+ \item Explora la
+\href{http://en.wikipedia.org/wiki/List_of_pseudorandom_number_generators}{lista
+} de generadores de n\'umeros pseudo-aleatorios,   y programa en {\sage} los que
+te interesen. 
+
+
+  
+ \end{enumerate}
+ \end{ejer}
+\section{Elementos aleatorios}
+ 
+ %%en combinatoria random subconjunto random funcion random graph 
+ 
+ En {\sage} existe el m\'etodo \lstinline|A.random_element()| que devuelve un 
+elemento aleatoriamente elegido, es decir, de manera equiprobable, dentro del 
+objeto finito $A$. El m\'etodo no est\'a implementado para cualquier tipo de 
+objeto, y cuando no existe y lo necesitamos debemos programarlo. 
+ 
+ 
+ Comenzamos con los casos m\'as sencillos: \lstinline|A.random_element()| no 
+existe si $A$ es una lista o un conjunto.
+ 
+ \begin{lstlisting}
+def elemento_aleatorio(A):
+      '''A es una lista o conjunto'''
+      B = list(A)
+      n = len(B)-1
+      return B[randint(0,n)]
+\end{lstlisting}
+
+ 
+ \subsection{Grafos aleatorios}
+  ?`Qu\'e es un grafo aleatorio?
+  \begin{enumerate}
+   \item Fijado el n\'umero $n$ de v\'ertices, y una vez que ponemos etiquetas 
+a los v\'ertices, podr\'{\i}amos decir que un {\itshape grafo aleatorio} es uno 
+elegido al azar, de forma equiprobable, entre todos los grafos etiquetados con 
+$n$ v\'ertices. Como fijado el n\'umero de v\'ertices hay un n\'umero finito, 
+aunque muy grande,  de grafos con ese n\'umero de v\'ertices, la definici\'on 
+tiene sentido.
+
+Con mayor propiedad, dir\'{\i}amos que se trata de un {\itshape grafo 
+aleatoriamente elegido.} Uno de los problemas con esta noci\'on es que quiz\'a 
+nos interese m\'as condiderar como equiprobables las clases de isomorfismo de 
+grafos, es decir, considerar dos grafos como iguales si difieren \'unicamente 
+en el etiquetado. 
+
+Tambi\'en es posible considerar grafos aleatoriamente elegidos fijando el 
+n\'umero de v\'ertices y el de ejes. Esta noci\'on de {\itshape grafo 
+aleatorio} es la que corresponde a {\itshape elemento aleatorio del conjunto de 
+grafos con $n$ v\'ertices y $e$ ejes.}
+   
+  \item Otra posible noci\'on de {\itshape grafo aleatorio} ser\'{\i}a el que 
+construimos  generando cada posible eje con una probabilidad $p$ fijada de 
+antemano e independientemente de los ejes que ya tenga el grafo, es decir, para 
+cada par de v\'ertices lanzamos una moneda con probabilidad $p$ de cara y si 
+sale cara ponemos en el grafo el eje que une ese para de v\'ertices y si sale 
+cruz no. 
+
+Dir\'{\i}amos que este es un {\itshape grafo construido aleatoriamente.}
+ \end{enumerate}
+ 
+ Las dos nociones son distintas ya que, por ejemplo, en la segunda y si $p$ es 
+muy baja el grafo resultante tendr\'a muy pocos ejes.
+
+En {\sage} es f\'acil obtener un grafo, con $n$ v\'ertices,  construido 
+aleatoriamente con probabilidad $p$: usamos la instrucci\'on 
+\lstinline|G = graphs.RandomGNP(n,p)| y podemos ver el grafo resultante con 
+\lstinline|show(G)|.
+
+\begin{ejer}
+  En este ejercicio debemos estudiar la probabilidad, cuando $n$ tiende a 
+infinito,  de que un grafo con $n$ v\'ertices construido aleatoriamente con 
+probabilidad $p=\frac{2log(n)}{n}$ sea conexo (el logaritmo es el neperiano).
+  \end{ejer}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ \section{Simulaci\'on: m\'etodo de Monte Carlo}\label{monte}
+ 
+ %%DEFINICION--%%%%%%%%%%%%%%%%%%%
+Los m\'etodos de {\itshape Monte Carlo} se caracterizan por el uso masivo de
+n\'umeros
+aleatorios para calcular el comportamiento de ciertos sistemas complejos. En
+muchos casos hablamos de {\itshape simulaci\'on de Monte Carlo}, es decir,
+nuestro programa simula el comportamiento de un sistema complejo, por ejemplo,
+de un n\'umero grande de part\'{\i}culas en movimiento. 
+
+En esta secci\'on veremos varios ejemplos.
+
+
+\subsection{ C\'alculo aproximado de $\pi$} 
+Como $\pi$ es el \'area de un
+c\'{\i}rculo de radio unidad, la parte del c\'{\i}rculo de centro el origen y
+radio unidad que est\'a en el primer cuadrante tiene \'area $\pi/4$ y est\'a
+contenida en el cuadrado $[0,1]\times [0,1]$ de \'area unidad.
+
+\begin{ejer}
+\begin{enumerate}
+\item Si elegimos un n\'umero $N$, muy grande, de n\'umeros aleatorios
+ejecutando $N$ veces  \lstinline|random()|, debemos esperar, debido a que un
+buen generador debe producir resultados uniformes,  que haya aproximadamente
+$N/10$  de ellos en cada uno de los subintervalos $[i/10,(i+1)/10],\
+i=0,\dots,9.$ De la misma forma, si hemos obtenido $n_i$ n\'umeros aleatorios en
+el subintervalo
+$[i/100,(i+1)/100]$ ($i=0,\dots,99$), debe ser $n_i$ aproximadamente igual a
+$N/100$ para todos los $i$. 
+
+{\sc Comprueba} que cuando $N$ crece 
+\[\sum(n_i-\frac{N}{100})^2\]
+\noindent decrece.
+
+\item Digamos que un punto aleatorio del cuadrado $[0,1]\times [0,1]$ es uno con
+coordenadas 
+\lstinline|(random(),random())|. {\sc Comprueba}, de forma similar a lo hecho en
+el
+apartado anterior,  la uniformidad de la distribuci\'on cuando generamos $N$
+puntos aleatorios en el cuadrado.
+
+
+
+\item \label{pi-mc}Como la distribuci\'on de $N$ puntos aleatorios en el
+cuadrado es
+uniforme, podemos  {\sc calcular} una aproximaci\'on a $\pi/4$ determinando
+ cu\'antos puntos, de los $N$,   caen dentro
+de la circunferencia. La fracci\'on, respecto a $N$,  de los que caen dentro
+debe ser
+aproximadamente igual al \'area, $\pi/4$,  del sector. 
+
+
+\end{enumerate}
+ 
+ \end{ejer}
+ 
+Puedes ver una soluci\'on, del apartado \ref{pi-mc},  en la hoja 
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 114-PROBA-pi-paralelo.sws}.
+
+
+\subsection{ C\'alculo de \'areas}
+
+Podemos, en principio, calcular
+aproximadamente  el \'area de una figura acotada, es decir, contenida en un
+rect\'angulo, usando la misma t\'ecnica que para la circunferencia. La \'unica
+dificultad reside en el proceso de decidir si el punto est\'a dentro o fuera de
+la figura. 
+
+Puedes ver una serie de ejemplos en la hoja 
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 115-PROBA-areas.sws}.
+
+\subsection{ C\'alculo de integrales}
+
+Calcular integrales de manera exacta no es siempre f\'acil, y en muchos casos
+debemos conformarnos con un resultado aproximado. Hay varios m\'etodos para
+calcular aproximadamente el valor de integrales.
+%%, pero el m\'as simple y en
+%%ciertos aspectos el m\'as potente es el m\'etodo de Monte Carlo:
+
+\begin{enumerate}
+
+\item Se puede obtener una buena aproximaci\'on, tomando $N$ muy grande,  al
+valor de una integral considerando la suma
+\[\frac{b-a}{N}\sum_{1}^{N} f(x_i),\]
+\noindent donde hemos dividido el intervalo $[a,b]$ en $N$ suibintervalos de
+longitud $\frac{b-a}{N}$ y tomamos $x_i$ como el extremo superior del
+subintervalo $i$-\'esimo. 
+
+\item {\sc Monte Carlo:}
+%\footnotesize
+\begin{lstlisting}
+ def integral(f,a,b,N):
+      return ((b-a)/N).n()*sum([f(x=a+(b-a)*random()) for muda in srange(N)])
+\end{lstlisting}
+%\normalsize
+
+Cuando $N$ es muy grande, por ejemplo podemos imponer que $(b-a)/N$ sea menor
+que $10^{-5}$, este procedimiento calcula bastante bien el valor de la
+integral. 
+?`Por qu\'e? 
+\begin{enumerate}
+\item Estamos subdividiendo el intervalo $[a,b]$ en $N$ subintervalos iguales,
+cada uno de longitud $(b-a)/N$, de forma que podemos sacar $(b-a)/N$ factor
+com\'un en la f\'ormula para $S_{\Delta}(f,a,b)$.
+\item Producimos $N$ n\'umeros aleatorios en el intervalo $[a,b]$ y debemos
+esperar que, m\'as o menos, caiga uno en cada subintervalo. Se pueden producir
+peque\~nos errores en el c\'alculo debido a que en algunos subintervalos caigan
+varios de los n\'umeros aleatorios y en otros ninguno.
+\item El valor de $f$ en uno de esos n\'umeros aleatorios es el valor en un 
+punto cualquiera del subintervalo.
+\item En consecuencia, el valor que devuelve \lstinline|integral(f,a,b,N)| es 
+una suma  de Riemann con subintervalos de longitud uniforme $(b-a)/N$, y 
+sabemos que el valor de la integral es el l\'{\i}mite, cuando la longitud de 
+los subintervalos tiende a cero, de las sumas de Riemann. Entonces, el valor 
+devuelto es una buena aproximaci\'on a la integral cuando $N$ es muy grande. 
+\end{enumerate}
+Usando este m\'etodo se calculan aproximadamente integrales,  que casi siempre
+tienen dos o tres cifras decimales correctas.  Aumentando $N$ mucho se puede
+mejorar la precisi\'on del c\'alculo. 
+
+El m\'etodo de Monte Carlo para calcular integrales es especialmente \'util en 
+el caso de integrales de funciones de varias variables, en el que puede ser en 
+ocasiones el mejor de los m\'etodos disponibles. 
+
+\end{enumerate}
+
+
+Sin embargo, tambi\'en es importante,  en ciertas aplicaciones, obtener buenas 
+aproximaciones al valor de una integral tomando muy pocos subintervalos ($N$
+peque\~no). Este problema forma parte del {\itshape
+C\'alculo Num\'erico}.
+
+
+\subsection {C\'alculo de probabilidades}
+ 
+ Comenzamos con un ejemplo curioso. Es el llamado ``truco de Monty Hall'': se
+trata de un concurso  de TV\footnote{En TVE se import\'o la idea dentro del 
+programa {\itshape 
+Un, dos, tres,\dots  responda otra vez}, que comenz\'o en $1972$ y se mantuvo 
+durante $10$ temporadas.}
+en el que el concursante debe elegir entre tres
+puertas sabiendo que detr\'as de una de ellas hay un gran premio y detr\'as de
+las otras esencialmente nada. Una vez que el concursante ha elegido una puerta,
+el presentador, Monty Hall en el concurso en EE.UU., hace abrir una de las
+puertas que no tienen premio y ofrece al concursante cambiar de puerta o
+reafirmarse en la primera elecci\'on. ?`Es mejor cambiar o no cambiar?
+
+El truco consiste en que el concursante puede pensar que, una vez que ya s\'olo
+quedan dos puertas,  hay una probabilidad $1/2$ de que el premio est\'e detr\'as
+de cada una de las puertas, de forma que para \'el es indiferente mantener la
+elecci\'on o cambiar. El concursante puede ver el ofrecimiento de cambiar de
+puerta como {\itshape presi\'on por parte del presentador para cambiar}, 
+perdiendo el
+premio que el presentador sabe que est\'a detras de la puerta elegida,  y tiende
+a aferrarse a su elecci\'on original, sin embargo la probabilidad de ganar
+cambiando es bastante mayor que $1/2$.
+\newpage
+%%\enlargethispage{0.5cm} 
+%%\footnotesize 
+ \begin{lstlisting}
+def jugada_mh(eleccion):
+    me_cambio = 1    		  #(1)      
+    puertas = [0]*3
+    puertas[randint(0,2)] = 1     #(2)    
+    quedan = puertas              #(3) 
+    del quedan[eleccion]          #(4)
+    la_otra = (1 in quedan)       #(5)
+    if me_cambio == 1:
+        return la_otra  
+    else:
+        return puertas[eleccion]  #(6) 
+\end{lstlisting}
+
+\begin{enumerate}
+ \item Cambiar a $0$ para ver la probabilidad de ganar el  premio manteniendo 
+la elecci\'on original.
+ 
+ \item  El premio esta en \lstinline|randint(0,2)|.
+ 
+ \item Copia de la situaci\'on de premios detras de las puertas.
+ 
+ \item Borramos la elecci\'on original de la lista {\tt quedan},  que ahora 
+tiene longitud $2$.
+ 
+ \item Booleano: vale $1$ si el premio no estaba detr\'as de la puerta elegida 
+inicialmente.
+ 
+ \item Mantengo mi elecci\'on original.
+ 
+\end{enumerate}
+%%\normalsize
+
+
+
+
+En el c\'odigo no es necesario implementar expl\'{\i}citamente el hecho de que 
+una de las puertas
+que no tiene premio ha sido abierta, ya que si $1$ est\'a en la lista {\tt
+quedan} cambiando se va a obtener premio y si $1$ no est\'a en {\tt quedan}
+cambiando no se va a obtener premio. 
+
+
+\begin{lstlisting}
+sum([jugada_mh(1) for int in xrange(100000)])
+\end{lstlisting}
+\begin{Output}
+66683 
+\end{Output}
+ 
+ Vemos que las probabilidades de obtener el premio cambiando de puerta o no
+cambiando no son iguales, es decir las dos $1/2$,  sino que la probabilidad de
+obtener el premio cambiando de puerta es del orden de $66683/100000$, es decir
+m\'as o menos $2/3.$ 
+  
+ Puedes leer algo m\'as sobre el problema en este
+\href{http://en.wikipedia.org/wiki/Monty_Hall_problem}{art\'{\i}culo de la
+Wikipedia.}
+
+ 
+ 
+ 
+\begin{ejer}
+  \begin{enumerate}
+   \item En este hipot\'etico juego de casino apostamos un Euro a la posibilidad
+de que en $1000$ lanzamientos de una moneda correcta se obtengan $10$  caras
+seguidas. Supongamos que en caso de ganar el casino nos da como premio $X$ Euros
+y queremos averiguar el valor de $X>1$ que hace que el juego sea
+justo\footnote{En realidad los juegos de los casinos son siempre injustos
+para el jugador,  que si juega mucho  acabar\'a arruinado,  porque si no los
+casinos no ser\'{\i}an rentables y desaparecer\'{\i}an.}. 
+  
+  {\sc Debemos calcular la probabilidad $p$}  de que en $1000$ lanzamientos de
+una moneda correcta se obtengan $10$ caras seguidas, ya que el valor justo de
+$X$ es el que hace que 
+$p\cdot X=1$, de forma que el jugador, si juega mucho,  termine aproximadamente
+con la misma riqueza que al comienzo. Si se cumple esta condici\'on, el casino
+tampoco obtendr\'{\i}a, a largo plazo,  ninguna ganancia.
+  
+  \item  $N$ personas asisten a una reuni\'on todos con un sombrero parecido, y
+al terminar se llevan un sombrero elegido al azar.  Estima la probabilidad de
+que ninguno se lleve su propio sombrero.
+
+\item  Estima la probabilidad de que en una reuni\'on en la que hay $N$ personas
+haya $2$ al menos que cumplen a\~nos el mismo d\'{\i}a. 
+  
+  
+  \end{enumerate}
+
+ \end{ejer}
+
+ Puedes ver una soluci\'on de estos ejercicios  en la hoja 
+ \href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt
+116-PROBA-probabilidades.sws}.
+ 
+ 
+ \subsection{Un sistema f\'{\i}sico} 
+ 
+ En este ejercicio simulamos un sistema f\'{\i}sico muy simple y nada realista,
+pero de gran
+inter\'es. Supongamos una lista $L$ de longitud $n$ que en el momento inicial
+tiene en todas sus entradas el valor $5$. Cada una de esas entradas representa
+una ``part\'{\i}cula'' que en el momento inicial $t=0$ tiene una``energ\'{\i}a''
+igual a $5$ unidades. El sistema $L$ evoluciona en el tiempo, es decir para
+$t=0,1,2,3,\dots$  obtenemos listas $L_0=L,L_1,L_2,L_3,\dots$, de la siguiente
+manera:
+\begin{enumerate}
+\item Dada la lista $L_t$ elegimos una entrada al azar, es decir con igual
+probabilidad para cada una de las $n$ entradas. Supongamos que hemos obtenido la
+entrada $i$.
+\item A continuación elegimos al azar otra entrada de $L_t$ y obtenemos la
+entrada $j$.
+ \item Si $L_t[i]$ es mayor que cero, definimos  $L_{t+1}[i]:=L_t[i]-1$ y
+$L_{t+1}[j]:= L_t[j]+1$, y dejamos las demás entradas igual, y si $L_t[i]=0$
+dejamos $L_{t+1}=L_{t}$.   Es decir, la part\'{\i}cula $i$ ha
+``interaccionado'', en el instante $t$, con la $j$ y le ha transferido una
+unidad de energ\'{\i}a, pero todo el tiempo  la energ\'{\i}a total del sistema
+es  $5n$ y, por tanto,  la energ\'{\i}a media es siempre $5$.
+
+\end{enumerate}
+\begin{ejer}
+
+\begin{enumerate}
+
+\item Programa una funci\'on de dos argumentos enteros $n$ la longitud de $L$ y
+$N$ el valor m\'aximo de $t$,  y que devuelva la lista $L_N$, que representa los
+valores de la energ\'{\i}a de las part\'{\i}culas después del paso de $N$
+"segundos".
+ \item Define una lista, por ejemplo {\tt M=[1,2,3]}, define 
+ \lstinline|T=finance.TimeSeries(M)|, que convierte la lista en una serie
+temporal (el
+primer elemento es el correspondiente a $t=0$, el segundo a $t=1$, etc.)  y
+estudia   la informaci\'on (poca) que se obtiene con la instrucci\'on  
+\lstinline|T.plot\_histogram()| . El gr\'afico que se obtiene es
+el``histograma''
+correspondiente a la serie temporal $T$. 
+ \item Utiliza la informaci\'on obtenida en el apartado anterior para producir,
+mediante
+un bucle \lstinline|for|  adecuado,  una serie de histogramas  correspondientes
+a $n=1000$ y
+$N=100,1000,10000,100000,1000000$. ¿Qu\'e observas en los histogramas acerca de
+la evoluci\'on temporal del sistema de part\'{\i}culas?
+\end{enumerate}
+ \end{ejer}
+ 
+ %%%%%%%%%%%%%en las colisiones reparten energia %%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 
+ Puedes ver una soluci\'on de este ejercicio  en la hoja 
+ \href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 11?-PROBA-particulas.sws}.
+ 
+
+ 
+
+ \subsection{Cadenas de Markov}
+Comenzamos con un ejercicio sencillo:
+
+\begin{ejer}
+En cada d\'{\i}a la Bolsa, por ejemplo de Nueva York, puede subir, bajar o
+mantenerse. Supongamos que las probabilidades de transici\'on, de un d\'{\i}a al
+siguiente,  entre cada uno de estos tres estados son:
+\begin{enumerate}
+ \item Si un d\'{\i}a el mercado subi\'o tenemos probabilidades
+$0{.}3$ de que suba al siguiente, $0{.}5$ de que baje y $0{.}2$ de que se
+mantenga.
+\item Si un d\'{\i}a el mercado baj\'o tenemos probabilidades
+$0{.}4$ de que suba al siguiente, $0{.}3$ de que baje y $0{.}3$ de que se
+mantenga.
+ 
+ \item Si un d\'{\i}a el mercado se mantuvo tenemos probabilidades
+$0{.}4$ de que suba al siguiente, $0{.}4$ de que baje y $0{.}2$ de que se
+mantenga.
+\end{enumerate}
+
+Obs\'ervese que la suma de las tres probabilidades, en cada uno de los tres
+casos, es $1$ ya que necesariamente el mercado debe subir, mantenerse o bajar. 
+
+
+Se trata de analizar el comportamiento {\itshape a largo plazo} de este mercado.
+M\'as concretamente, si observamos el mercado durante un per\'{\i}odo largo de
+tiempo, ?`cu\'al es la probabilidad de que lo encontremos en cada uno de los
+tres estados (subiendo, bajando, manteni\'endose)?
+\end{ejer}
+
+Puedes ver una soluci\'on de este ejercicio  en la hoja 
+ \href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 11?-PROBA-mercado.sws},
+y una lista de ejercicios propuestos en 
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 11?-PROBA-markov.sws}, con
+soluciones en 
+\href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 11?-PROBA-markov-sol.sws.}
+
+ \subsection{Paseos aleatorios}
+El problema de la ruina del jugador, que ya hemos estudiado, es un ejemplo de 
+{\itshape paseo aleatorio}. Otro ejemplo similar, que es el que da nombre a los 
+paseos aleatorios, consiste en imaginar un paseante que comienza, en tiempo 
+$t=0$,  en el origen de la recta real, y en cada instante de tiempo se desplaza 
+una unidad entera hacia la derecha o la izquierda de manera equiprobable.  En 
+todo momento el paseante est\'a en un punto de coordenada entera.
+
+
+Esta situaci\'on tan simple da lugar a muchos problemas interesantes:
+
+\begin{ejer}
+ 
+\begin{enumerate}
+ \item ?`Cu\'al es, en promedio, la distancia al origen del paseante en el 
+instante $N$?
+ 
+ \item ?Cu\'al es la probabilidad de que el paseante vuelva, en alg\'un 
+momento, al origen?
+ 
+ %%\item 
+ \end{enumerate}
+\end{ejer}
+
+\subsubsection{Paseos $2$-dimensionales}
+
+
+En los paseos bidimensionales el paseante comienza, en $t=0$,  en $(0,0)$ y se 
+desplaza entre puntos de coordenadas enteras. En cada instante debe decidir 
+entre cuatro opciones de desplazamiento: {\itshape Norte,Sur,Este,Oeste}, y 
+decide entre ellas de manera equiprobable. 
+
+\begin{ejer}
+ 
+\begin{enumerate}
+ \item ?`Cu\'al es, en promedio, la distancia al origen del paseante en el 
+instante $N$?
+ 
+ \item ?Cu\'al es la probabilidad de que el paseante vuelva, en alg\'un 
+momento, al origen?
+ 
+\item Supongamos dos paseantes que comienzan su paseo en 
+el instante $t=0$ en el origen. ?`Cu\'al es la probabilidad de que el segundo 
+paseante visite, en alg\'un momento de su paseo,  un lugar en el que ya ha 
+estado el primero?
+ 
+ 
+ \item ?`Cu\'al es la probabilidad de que dos paseantes que comienzan su paseo 
+en el instante $t=0$ en el origen vuelvan a encontrarse (i.e. lleguen en un 
+cierto instante $t=N$ a ocupar la misma posici\'on en el plano)?
+
+
+ \end{enumerate}
+\end{ejer}
+
+\subsection{Urnas de Polya}
+
+Utilizamos una variable {\itshape tiempo} discreta que toma valores enteros
+$t=0,1,2,3,\dots$. La variable $t$ ser\'{\i}a, por ejemplo, el tiempo
+transcurrido medido en minutos. 
+
+Se trata de simular la siguiente situaci\'on:
+
+{\itshape
+En el instante $t=0$ tenemos una urna $U_0$ que tiene una bola blanca y una
+negra. En el instante $t=n$ extraemos una bola de la urna $U_{n-1}$, la urna tal
+ como estaba en el instante $t=n-1$,  y la devolvemos a la urna junto con otra
+del mismo color y ese es el estado $U_n$ de la urna. En cada instante $t\in
+\mathbb{N}$ tenemos una probabilidad $P(t)$ de extraer una bola blanca de la
+urna $U_t.$ }
+
+Si describimos la urna en el momento $t$ mediante una lista $U_t:=[b(t),n(t)]$
+($b(t)$ el n\'umero de bolas blancas y $n(t)$ el de negras en el instante $t$)
+es claro que, como la extracci\'on se hace al azar, es decir, todas las bolas
+tienen la misma probabilidad de ser extra\'{\i}das igual a $1/(b(t)+n(t))$, la
+probabilidad $P(t)=b(t)/(b(t)+n(t)).$ 
+
+La funci\'on $P(t)$ depende de extracciones realizadas al azar, y no tiene
+sentido ``determinarla'': cada vez que se realice el proceso de generar las
+urnas $U_t$ se obtienen resultados bastante diferentes para $P(t)$. Sin embargo
+pueden aparecer ``regularidades a largo plazo'' ($t\to \infty$) que 
+queremos estudiar. 
+
+%%%%COMENTAR!!!!!!!!!!!!!!! VHS-BETA//GRANJAS
+
+\begin{ejer}
+\begin{enumerate}
+ \item Definir una funci\'on de SAGE que dada la urna $U(t)$ devuelva la urna
+$U_{t+1}$.
+ 
+ \item Definir una funci\'on de SAGE, dependiendo de un par\'ametro entero $N$, 
+que devuelva una lista 
+ \[[P(0),P(1),P(2),\dots,P(N)]\]
+ \noindent que simule el comportamiento de las urnas de
+Polya.
+ 
+ \item Representar gr\'aficamente la lista obtenida en el apartado anterior.
+?`Qu\'e observas cuando se ejecuta un cierto n\'umero de veces  la
+representaci\'on gr\'afica con listas diferentes.
+
+\item Para $N$ suficientemente grande estudia, generando $n$ (tambi\'en
+suficientemente grande) urnas,  el aspecto de los valores $P(N)$ que se obtienen
+para cada una de las urnas.  En particular puedes usar las funciones de SAGE
+\begin{itemize}
+ \item \lstinline|T = finance.TimeSeries(L)| necesaria para poder aplicar a $T$
+las
+funciones que siguen. Esta funci\'on declara que $T$ es una ``serie temporal''
+que es otro nombre para una funci\'on, como $P(t)$, de un tiempo discreto.
+\item \lstinline|T.histogram(bins=10)| agrupa los valores de la serie temporal
+en $10$
+intervalos y cuenta las frecuencias en cada intervalo. Devuelve 
+el par formado por la lista ordenada de las frecuencias y la lista ordenada de
+los intervalos.
+\item \lstinline|t.plot\_histogram(bins=10,normalize=True)| crea el gr\'afico
+correspondiente a la funci\'on anterior.
+\end{itemize}
+\end{enumerate}
+\end{ejer}
+
+
+Puedes ver una soluci\'on de estos ejercicios  en la hoja 
+ \href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 11?-PROBA-urnas-polya.sws}.
+ 
+
+ %%{ \color{red}***Otras urnas --> hoja cadenas Markov***}%%%
+
+
+
+\subsection{Probabilidades geom\'eticas}
+
+ Supongamos que tenemos un tri\'angulo equil\'atero inscrito en la
+circunferencia unidad. Elegimos una cuerda  ``al azar'' y queremos {\sc calcular
+la probabilidad}  de que la cuerda sea m\'as larga que el lado del tri\'angulo. 
+Hay varios m\'etodos para elegir la cuerda ``al azar'' y cada uno de ellos da un
+resultado diferente:
+ \begin{enumerate}
+ \item Elegimos los extremos de la cuerda, dos puntos elegidos al azar sobre la
+circunferencia, y obtenemos la cuerda uni\'endolos. Para elegir los puntos
+podemos usar que la circunferencia se parametriza mediante $(cos(t),sen(t))$ con
+$t\in [0,2\pi).$  
+ \item Elegimos un punto $P$ al azar dentro de la circunferencia y a
+continuaci\'on decidimos que $P$ es el punto medio de la cuerda. La cuerda queda
+totalmente determinada por esta decisi\'on, y su longitud es mayor que la del
+lado del tri\'angulo si y s\'olo si $P$ est\'a dentro del c\'{\i}rculo de radio
+$1/2$ (Explica estas dos afirmaciones). 
+ \item  Elegimos un radio ``al azar'', eligiendo su extremo sobre la
+circunferencia unidad, y decidimos que el punto medio de la cuerda es ahora un
+punto elegido ``al azar''  sobre el radio. 
+ \end{enumerate}
+ \bigskip
+\begin{ejer}
+ \begin{enumerate}
+ \item  Simula cada uno de los tres m\'etodos (usando {\tt random()}) para
+obtener estimaciones de la probabilidad buscada. Como se indica m\'as arriba, se
+obtienen valores totalmente diferentes. 
+ \item No es dif\'{\i}cil obtener, sobre todo {\itshape a posteriori},
+argumentos que justifican las probabilidades obtenidas experimentalmente.
+?`Puedes encontrarlos?
+ \item Es interesante crear gr\'aficas que muestren visualmente las diferencias
+entre los tres m\'etodos. En este apartado queremos dibujar los puntos medios de
+las cuerdas para cada uno de los tres m\'etodos. Debes modificar cada una de las
+funciones que calculaban la probabilidad  para que devuelvan una lista de las
+coordenadas cartesianas de los puntos medios.  Finalmente podemos usar la
+instrucci\'on 
+ \begin{lstlisting}
+ plot(point(simulacion1\_pm(10000),rgbcolor=hue(1),size=1)).show(aspect_ratio=1)
+ \end{lstlisting}
+ \noindent donde \lstinline|simulacion1\_pm(10000)| es la funci\'on que produce
+la
+lista de coordenadas de los puntos medios para el primer m\'etodo, y $10000$ es
+el n\'umero de puntos que queremos dibujar.
+ \end{enumerate}
+ \end{ejer}
+ 
+ Puedes ver una soluci\'on de este ejercicio  en la hoja 
+ \href{http://sage.mat.uam.es:8888/home/pub/??/}{\tt 11?-PROBA-geom.sws}.
+ 
+ 
+ %%%APROXIMACION DE PI LANZANDO UNA
+%%AGUJA%%%%%%%%%%%%http://en.wikipedia.org/wiki/Buffon's_needle%%%%%%%%%%%%
+
+
+ 
+ 
+ \section{Ejercicios}
+ 
+%geometrica
+%%Mirar ME libro nuevo
+%%%higos -- bayes??---condicionada
+%%secretarias
+
+%% probabilidad critica grafos aleatorios conexos ???
+%%%%%http://en.wikipedia.org/wiki/Two_envelopes_problem%%%%%
+\begin{ejer}
+ 
+Supongamos una moneda trucada con probabilidad $p=0{.}1$ de obtener cara. Determinar 
+la probabilidad de que sea necesario lanzarla $100$ veces antes de obtener  por 
+primera vez una cara. 
+\end{ejer}
+
+
+
+
+
+
+\begin{ejer}
+ 
+ En teor\'{\i}a de n\'umeros se utilizan en ocasiones argumentos 
+probabil\'{\i}sticos, por ejemplo para demostrar teoremas de existencia. En 
+este ejercicio calculamos la {\bf probabilidad de que dos enteros elegidos 
+al azar sean primos entre s\'{i}.}
+
+Para dar sentido al problema suponemos inicialmente que los enteros pertenecen 
+al intervalo $[2,N]$, de forma que podemos calcular experimentalmente la 
+probabilidad de que un par de enteros del intervalo sean primos entre s\'{\i}, 
+y finalmente trataremos de estudiar el l\'{\i}mite de esa probabilidad cuando 
+$N$ tiende a infinito. 
+
+Trataremos de calcular unas cuantas cifras decimales del l\'{\i}mite que ya no 
+cambien cuando incrementamos $N$, y podremos usar, como en 
+\hyperref[stirling]{el 
+ejercicio sobre la aproximaci\'on de Stirling}, 
+la \href{https://oeis.org/}{{\itshape  Enciclopedia de sucesiones de enteros}}.
+ 
+ 
+\end{ejer}
+
+
+\begin{ejer}
+ 
+ Supongamos que para cubrir un puesto de trabajo hay $n$ candidatos que deben 
+ser entrevistados para decidir cu\'al de ellos obtendr\'a el puesto. Las 
+condiciones detalladas del problema son las siguientes:
+
+\begin{enumerate}
+ \item El n\'umero $n$ de candidatos es conocido al comenzar el proceso de 
+selecci\'on.
+ 
+ \item Si entrevist\'aramos a todos los candidatos los podr\'{\i}amos ordenar 
+de mejor a peor sin empates. 
+ 
+ \item Los candidatos son entrevistados de uno en uno y en orden aleatorio, con 
+cada una de  las $n!$ posibles ordenaciones elegida con probabilidad $1/n!.$
+ 
+ \item Despu\'es de cada entrevista el candidato es aceptado o rechazado,  y 
+esta decisi\'on es irrevocable
+
+
+ \item La estrategia que utilizamos consiste en entrevistar a un cierto 
+n\'umero $r$ de candidatos y elegir el siguiente entrevistado que es mejor que 
+los $r$. Se puede demostrar que esta estrategia es \'optima. 
+ 
+ \end{enumerate}
+
+El problema consiste en 
+\begin{enumerate}
+\item Entender el valor de $r$, en funci\'on de $n$, que hace 
+m\'axima la probabilidad de elegir al mejor candidato de los $n$.
+\item Determinar el valor l\'{\i}mite de esa probabilidad cuando $n$ tiende a 
+infinito. 
+\end{enumerate}
+ 
+Queremos resolver este problema experimentalmente con la ayuda de 
+\lstinline|find_fit| y de la  
+ \href{https://oeis.org/}{{\itshape  Enciclopedia de sucesiones de enteros}}.
+ 
+ 
+\end{ejer}
+
+\begin{ejer}
+ 
+\end{ejer}
+
+\begin{ejer}
+ 
+\end{ejer}
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

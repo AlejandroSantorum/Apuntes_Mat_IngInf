@@ -1,0 +1,18 @@
+Para convertir notebooks de SAGE, con extensión .sws,  a notebooks de IPython, 
+con extensión .ipynb,  hay que:
+1)Abrir una terminal.
+2)Cambiar el directorio al mismo en que están estas instrucciones y el script 
+que vamos a ejecutar. Por ejemplo
+cd ~/Desktop/SAGE-noteb/bin/sws2ipynb/
+3)En la carpeta CONVERTIR_SWS colocar todas las hojas de SAGE que vamos a 
+convertir en notebooksd de IPython.
+4)Ejecutar en la terminal
+python sws2ipynb.py
+5)Los otros dos programas, sws2sagews.py y sagews2ipynb.py, son 
+auxiliares y no hay que ejecutarlos nunca. 
+6)Aunque se ha comprobado que el programa funciona en una gran cantidad de 
+notebooks de SAGE, indudablemente habrá algunos que no pueda convertir. En 
+particular, los nombres de archivo con espacios en blanco o con paréntesis  
+producen errores, pero estos dos casos ya están considerados dentro del script, 
+que comienza por cambiarlos por otros caracteres que no producen errores. 
+

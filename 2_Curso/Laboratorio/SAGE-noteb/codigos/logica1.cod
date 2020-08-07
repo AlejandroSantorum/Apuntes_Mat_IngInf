@@ -1,0 +1,18 @@
+var('enS enT')
+valores=[True,False]
+frase1=(enS and not enT) or (enT and not enS)
+frase2=(enS or enT) and not(enS and enT)
+for enS in valores:
+    for enT in valores:
+        print frase1==frase2,
+####################################
+	True True True True
+####################################
+m=2 ## hay m variables en las frases
+for k in srange(2^m):
+    enS,enT=k.digits(2,padto=m)
+    print frase1==frase2,
+#####################################
+all([frase1==frase2 for enS in valores for enT in valores])
+#####################################
+	True

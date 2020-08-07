@@ -1,0 +1,1743 @@
+
+%%%21-08-2013 Publicar 24-25-26-CAVAN, y dos  PDFs con ayuda para los ejercicios de calculo  24-CAVAN etc%%%%%%%%
+
+Usamos {\sage} como una ``calculadora avanzada'' escribiendo en una celda de
+c\'alculo una instrucci\'on preprogramada junto con un n\'umero correcto de
+par\'ametros.
+ 
+Por ejemplo, existe una
+instrucci\'on para factorizar n\'umeros enteros, \lstinline|factor|, que admite
+como
+par\'ametro un n\'umero entero,  de forma que debemos evaluar una celda que
+contenga 
+\lstinline|factor(2^137+1)| para calcular los factores primos del n\'umero
+$2^{137}+1$.
+
+Muchas instrucciones de SAGE tienen, adem\'as de par\'ametros obligatorios,
+algunos par\'ametros opcionales. Obtenemos la informaci\'on sobre los
+par\'ametros de una funci\'on escribiendo, en una celda de cálculo, el nombre de la función seguido de un 
+paréntesis abierto y evaluando, o, más cómodo, clicando la tecla de tabulación.
+Por ejemplo, tabulando tras escribir \lstinline|factor(| obtenemos la
+informaci\'on 
+sobre la funci\'on que factoriza enteros. 
+
+Adem\'as, si s\'olo conocemos, o sospechamos,  algunas letras del nombre de la
+funci\'on podemos escribirlas en la celda de c\'alculo y pulsar el tabulador, lo
+que produce un desplegable con los nombres de todas las instrucciones que
+comienzan por esas letras. En el desplegable podemos elegir la que nos parezca
+m\'as pr\'oxima a lo que buscamos y vemos que se completan las letras que
+hab\'{\i}amos escrito con el nombre completo que hemos elegido. 
+Si necesitamos informaci\'on sobre los par\'ametros de la instrucci\'on podemos a\~nadir el
+interrogante al final y evaluar.
+
+
+Una instrucci\'on como \lstinline|factor(2^137+1)| decimos que es una funci\'on,
+o
+que est\'a en forma funcional, ya que se parece a una funci\'on matem\'atica que
+se aplica a un n\'umero entero y produce sus factores.  Hay otra clase de
+instrucciones a las que llamamos {\itshape m\'etodos} y que tienen una sintaxis
+diferente 
+\begin{center}
+\verb|(objeto).metodo()|
+\end{center}
+
+Por ejemplo, tambi\'en podemos factorizar un entero mediante 
+\begin{center}
+\lstinline|(2^137+1).factor()|
+\end{center}
+\noindent donde $2^{137}+1$ es un objeto de clase {\itshape n\'umero entero} al
+que
+aplicamos el m\'etodo {\itshape factor.} Esta sintaxis procede de la
+programaci\'on
+{\itshape orientada a objetos} (OOP), y como Python es un lenguaje orientado a
+objetos es natural que en SAGE aparezca esta sintaxis. 
+
+Algunas instrucciones, como \lstinline|factor|, admiten las dos formas,
+funciones y m\'etodos, pero otras s\'olo tienen uno de las dos. Veremos ejemplos
+a lo largo del curso. 
+
+
+Como SAGE tiene miles de instrucciones preprogramadas, para toda clase de tareas
+en matem\'aticas, es muy \'util tener a mano un {\itshape chuletario} con las
+instrucciones m\'as comunes\footnote{Estos {\itshape chuletarios} pertenecen a versiones anteriores de {\sage} y no han sido actualizados. Aunque la sintaxis de las instrucciones de {\sage} no var\'{\i}a mucho, en ocasiones hay peque\~nos cambios en la versi'on actual respecto a la informaci\'on que aparece en el chuletario.}.  Hay varios y aqu\'{\i} puedes encontrar enlaces a
+algunos:
+\label{chuletas}
+\begin{enumerate}\itemsep=-2pt
+ \item  \href{http://150.244.21.37/PDFs/CAVAN/VisitaSAGE.pdf}{En castellano.} 
+ \item  \href{http://150.244.21.37/PDFs/CAVAN/quickref.pdf}{Preparada por el desarrollador
+principal de SAGE William Stein (en ingl\'es).} 
+ \item  \href{http://150.244.21.37/PDFs/CAVAN/quickref-calc.pdf}{C\'alculo.} 
+ \item  \href{http://150.244.21.37/PDFs/CAVAN/quickref-linalg.pdf}{\'Algebra lineal.} 
+ \item  \href{http://150.244.21.37/PDFs/CAVAN/quickref-nt.pdf}{Aritm\'etica.} 
+ \item  \href{http://150.244.21.37/PDFs/CAVAN/quickref-algebra.pdf}{Estructuras algebraicas.} 
+ \item  \href{http://150.244.21.37/PDFs/CAVAN/quickref-graphtheory.pdf}{Grafos.}
+\end{enumerate}
+
+
+
+
+\section{Aritmética elemental}
+
+Las operaciones de \emph{la escuela} son sencillas de invocar. Sobre el
+resultado a esperar de cada operación (o sucesión de operaciones), ha de tenerse
+en cuenta que la aritmética es exacta, así:
+\begin{itemize}
+ \item Suma (y diferencia): \lstinline|3+56+23-75| devuelve \lstinline|7|.
+ \item Producto: \lstinline|3*56*23|, \lstinline|3864|
+ \item Potencia: \lstinline|3**2|, \lstinline|9|; y también lo hace
+\lstinline|3^2|.\footnote{La segunda expresión, con ser más sencilla, obliga a
+hacer aparecer el símbolo \^\ en escena, lo que, en la mayoría de teclados,
+requiere pulsar la barra espaciadora tras él.}
+ \item Cociente: \lstinline|3864/56| es \lstinline|23|. Pero, \lstinline|7/3| (o
+\lstinline|14/6|) devolverá, \lstinline|7/3|.
+
+También la respuesta a \lstinline|7/5| se muestra en notación
+racional\footnote{El cuerpo de los racionales, $\mathbb Q$, es suficiente para
+contener cocientes de números enteros.}, \lstinline|7/5|,  en detrimento de la
+notación decimal\footnote{Se reserva la notación decimal para números que, con
+cierta precisión (finita), servirán para aproximar reales, complejos, ...},
+\lstinline|1.4|.
+
+\item División entera: \lstinline|7//2| devuelve \lstinline|3|, el cociente en
+la
+división entera\footnote{\emph{Dividendo=cociente$\times$divisor$+$resto}, con 
+\emph{$0<$resto$<$divisor}.};
+y \lstinline|7%2|, el resto, \lstinline|1|. 
+\end{itemize}
+
+Al encontrar varias operaciones
+en una misma expresión, se siguen las usuales reglas de precedencia, rotas por
+la presencia de paréntesis.
+\begin{itemize}
+ \item \lstinline|8*(5-3)+9^(1/2)+6| da \lstinline|25|, mientras que
+\lstinline|(8*(5-3)+9)^(1/2)+6| es \lstinline|11|.
+\end{itemize}
+
+
+
+Estas operaciones aritm\'eticas se efect\'uan en alg\'un conjunto, generalmente
+un anillo o cuerpo, de n\'umeros,  y {\sage} dispone de  unos cuantos
+predefinidos:
+
+\begin{center}\label{Tabla-Ambientes}
+\def\entrada#1 #2.{
+\textcolor{blue}{#1} & #2 \\
+\hline}
+\begin{tabular}{|l|l|}
+ \hline
+ Símbolo & Descripción \\
+ \hline
+\entrada ZZ  anillo de los números enteros, $\mathbb{Z}$.
+\entrada Integers(6)  anillo de enteros módulo $6$, $\mathbb Z_6$.
+\entrada QQ cuerpo de los números racionales, $\mathbb Q$.
+\entrada RR cuerpo de los números reales (53 bits de precisión), $\mathbb R$.
+\entrada CC cuerpo de los números complejos (53 bits de precisión), $\mathbb C$.
+\entrada RDF cuerpo de números reales con doble precisión.
+\entrada CDF cuerpo de números complejos con doble precisión.
+\entrada RealField(400) reales con 400-bit de precisión.
+\entrada ComplexField(400) complejos con 400-bit de precisión.
+\entrada ZZ[I] anillo de enteros Gaussianos.
+\entrada {AA, QQbar} cuerpo de números algebraicos, Q.
+\entrada FiniteField(7) cuerpo finito de 7 elementos, $\mathbb Z_7$ o $\mathbb
+F_7$.
+\entrada SR anillo de expresiones simbólicas.
+\end{tabular}
+\end{center}
+
+
+\section{Listas y tuplas}
+
+Las listas y tuplas son {\itshape estructuras de datos} y se tratar\'an m\'as
+ampliamente en el cap\'{\i}tulo siguiente. Para cubrir las necesidades de este
+cap\'{\i}tulo baste decir que
+\begin{enumerate}
+ \item Se crea una lista de nombre \lstinline|L| escribiendo en una celda de
+c\'alculo algo como
+\begin{lstlisting}
+L=[1,7,2,5,27,-5]
+\end{lstlisting}
+ \item Los elementos de la lista est\'an ordenados  y se accede a ellos mediante
+instrucciones como 
+ \lstinline|a=L[1]|, que asigna a la variable $a$ el valor del segundo elemento
+de la
+lista, es decir $a$ vale $7$. Eso quiere decir que el primer elemento de la
+lista es \lstinline|L[0]| y {\sc no} \lstinline|L[1]| como podr\'{\i}amos
+esperar.
+\item Las tuplas son muy parecidas a las listas, pero hay ciertas diferencias
+que veremos m\'as adelante. Una tupla \lstinline|t| se crea con la
+instrucci\'on 
+\begin{lstlisting}
+t=(1,7,2,5,27,-5)
+\end{lstlisting}
+ \noindent con par\'entesis en lugar de corchetes. Se accede a sus elementos de
+la misma forma que para las listas, y, por ejemplo, 
+\lstinline|t[1]| vale $7$. Mencionamos aqu\'{\i} las tuplas porque  en {\sage}
+las
+coordenadas de un punto no forman una lista sino una tupla.  
+ 
+\end{enumerate}
+
+\section{Funciones}
+
+\label{variables}
+Necesitamos definir funciones, en sentido matem\'atico, para poder calcular con
+ellas,  o bien representarlas gr\'aficamente. Muchas funciones est\'an ya
+definidas en {\sage} y lo \'unico que haremos es asignarles un nombre c\'omodo
+para
+poder referirnos a ellas. As\'i tenemos la exponencial, el logaritmo y las
+funciones trigonom\'etricas.  Tambi\'en podemos construir nuevas funciones
+usando las conocidas y las operaciones aritm\'eticas. 
+
+
+
+Podemos definir una funci\'on, por ejemplo de la variable $x$, mediante una
+expresi\'on como \verb|f(x)=sin(x)|, que asigna el nombre \verb|f| a la 
+funci\'on
+seno. A la derecha de la igualdad podemos escribir cualquier expresi\'on
+definida usando las operaciones aritm\'eticas y las funciones definidas en
+{\sage}.
+De \'estas, las de uso m\'as com\'un son
+\begin{center}
+\def\entrada#1 #2.{
+\textcolor{blue}{#1} & #2 \\
+\hline}
+\begin{tabular}{|l|l|}
+ \hline
+ Símbolo & Descripción \\
+ \hline
+\entrada $f1(x)=exp(x)$ que define la funci\'on exponencial, $e^x$.
+\entrada $f2(x)=log(x)$ que define la funci\'on logaritmo neperiano, $\ln(x)$.
+\entrada $f3(x)=sin(x)$ que define la funci\'on seno, $\mathrm{sen}(x)$.
+\entrada $f4(x)=cos(x)$ que define la funci\'on coseno, $\cos(x)$.
+\entrada $f5(x)=tan(x)$ que define la funci\'on tangente, $\tan(x)$.
+\entrada $f6(x)=sqrt(x)$ que define la funci\'on ra\'{\i}z cuadrada, $\sqrt{x}$.
+\end{tabular}
+\end{center}
+ 
+
+ Usando estas funciones y las operaciones aritm\'eticas podemos definir
+funciones como 
+ \begin{lstlisting}
+  F(x,y,z)=sin(x^2+y^2+z^2)+sqrt(cos(x)+cos(y)+cos(z)).
+ \end{lstlisting}
+ 
+ Como definimos la función indicando expl\'{\i}citamente el orden de sus
+argumentos no existe  ambig\"uedad sobre qu\'e variables se deben sustituir por
+qu\'e argumentos:
+\begin{lstlisting}
+f(a,b,c) = a + 2*b + 3*c
+f(1,2,1)
+\end{lstlisting}
+\begin{Output}
+	8
+\end{Output}
+\pagebreak[3]
+\begin{lstlisting}
+s = a + 2*b + 3*c
+s(1,2,1) 
+\end{lstlisting}
+\begin{Output}
+	__main__:4: DeprecationWarning: Substitution using function-call syntax
+	and unnamed arguments is deprecated and will be removed from a future
+	release of Sage; you can use named arguments instead, like EXPR(x=...,
+	y=...)
+	See http://trac.sagemath.org/5930 for details.
+	8
+\end{Output}
+
+En este ejemplo vemos que podemos sustituir en una funci\'on, pero la
+sustituci\'on en una expresi\'on simb\'olica ser\'a imposible, dentro de
+{\sage}, 
+en un futuro
+pr\'oximo.
+ 
+ 
+Puedes encontrar m\'as informaci\'on acerca de las funciones predefinidas en
+{\sage}  en esta
+ \href{http://www.sagemath.org/doc/reference/functions/index.html}{p\'agina}.
+ 
+ \medskip
+ 
+ La otra manera de definir funciones matem\'aticas es usando la misma sintaxis
+que utilizamos, en Python,  para definir programas o trozos de programas. Esto
+aparecer\'a en detalle \hyperref[sect-funciones]{m\'as adelante}, pero de 
+momento podemos ver un
+ejemplo:
+\begin{lstlisting}
+ def f(x):
+      return x*x
+\end{lstlisting}
+\noindent define la funci\'on {\itshape elevar al cuadrado.}
+
+
+
+
+
+
+\subsection{Variables y expresiones simbólicas}
+
+Una  \textbf{variable simbólica}  es un objeto en Python que representa una
+{\itshape variable}, en sentido matem\'atico,  que
+puede tomar cualquier valor en un cierto dominio. Casi siempre, ese dominio es
+un cuerpo de n\'umeros, como los racionales, los reales o los n\'umeros
+complejos. En el caso de los n\'umeros racionales la representaci\'on es exacta,
+mientras que  los reales, o los complejos, se representan usando decimales con
+un n\'umero dado de d\'{\i}gitos en la parte decimal.
+
+
+\begin{enumerate}
+
+\item La variable simbólica
+\lstinline|x| está predefinida, y para cualquier otra que utilicemos
+debemos
+avisar al intérprete:
+\begin{lstlisting}[numbers=none]
+var('a b c')
+\end{lstlisting}
+
+
+\item La igualdad \lstinline|a = 2| es una asignaci\'on que crea
+una variable $a$ y le da el valor $2$. Hasta que no se eval\'ue una celda que
+le asigne otro valor, por ejemplo \lstinline|a = 3|, el valor de $a$
+ser\'a $2$. Los valores de las variables, una vez asignados, se mantienen
+dentro de la hoja mientras no se cambien expl\'{\i}citamente. 
+
+
+\item Una operación que involucra una o más variables simbólicas no devuelve un
+valor
+numérico,
+sino una \textbf{expresión simbólica} que involucra números, operaciones,
+funciones y
+variables simbólicas. 
+\begin{lstlisting}[numbers=none]
+s = a + b + c
+s2 = a^2 + b^2 + c^2
+s3 = a^3 + b^3 + c^3
+s4 = a + b + c + 2*(a + b + c)
+p = a*b*c
+\end{lstlisting}
+\item Una igualdad como \lstinline|s = a + b + c| es, de hecho, una
+asignaci\'on: despu\'es de ejecutar esa l\'{\i}nea el valor de {\tt s} es
+\lstinline|a + b + c| y, por tanto, el de $s^2$ es $(a+b+c)^2,$ etc. 
+
+
+\item Podemos imprimirlas como código
+\begin{lstlisting}[numbers=none]
+print s; s2; s3; s4; p
+\end{lstlisting}
+\begin{Output}
+	a + b + c
+	a^2 + b^2 + c^2
+	a^3 + b^3 + c^3
+	3*a + 3*b + 3*c
+	a*b*c
+\end{Output}
+ o mostrarlas en un formato matemático más habitual
+\begin{lstlisting}[numbers=none]
+show([s, s2, s3, s4, p])
+\end{lstlisting}
+\begin{Output}
+	$\left[a + b + c, a^{2} + b^{2} + c^{2}, a^{3} + b^{3} + c^{3}, 3 \, a +
+	3 \, b + 3 \, c, a b c\right]$
+\end{Output}
+
+
+
+\item Si en algún momento sustituimos las variables simbólicas por números
+(o elementos de un anillo), podremos realizar las operaciones y obtener un
+número (o un
+elemento de un anillo).
+\begin{lstlisting}[numbers=none]
+print s(a=1, b=1, c=1), s(a=1, b=2, c=3)
+s(a=1, b=1, c=1)+ s(a=1, b=2, c=3)
+\end{lstlisting}
+\begin{Output}
+	3 6
+	9
+\end{Output}
+
+La sustituci\'on no cambia el valor de $s$, que sigue siendo una expresi\'on 
+simb\'olica, y s\'olo nos da el valor que se obtiene al sustituir. 
+Obsérvese, en cambio, qué se obtiene si ejecutamos
+\begin{lstlisting}[numbers=none]
+a=1;b=1;c=1
+print s
+\end{lstlisting}
+
+\item Si operamos expresiones simbólicas, obtenemos otras expresiones
+simbólicas,
+aunque pocas veces estarán simplificadas
+\begin{lstlisting}[numbers=none]
+ex = (1/6)*(s^3 - 3*s*s2 +2*s3 )
+show(ex)
+\end{lstlisting}
+\begin{Output}
+	$\frac{1}{6} \, {\left(a + b + c\right)}^{3} + \frac{1}{3} \, a^{3} +
+	\frac{1}{3} \, b^{3} + \frac{1}{3} \, c^{3} - \frac{1}{2} \, {\left(a +
+	b + c\right)} {\left(a^{2} + b^{2} + c^{2}\right)}$
+\end{Output}
+\end{enumerate}
+\subsubsection{Simplificar expresiones}
+
+Observamos que
+al crear la expresión se han realizado ``\emph{de oficio}'' algunas
+simplificaciones
+triviales. En ejemplos como el de arriba, nos puede interesar simplificar la
+expresión
+todavía más, pero es necesario decir qué queremos exactamente.
+
+\smallskip
+
+Existen varias estrategias
+para intentar simplificar una expresión, y cada estrategia puede tener más o
+menos éxito
+dependiendo del tipo de expresión simbólica. Algunas dan lugar a una expresión
+más sencilla en algunos casos, pero no en otros, y con expresiones complicadas
+pueden
+consumir bastante tiempo de proceso.
+\label{expand}
+Para la expresión anterior, como tenemos un polinomio, es buena idea expandirla
+en
+monomios que se puedan comparar unos con otros, usando el método 
+\lstinline|.expand()|.
+
+\begin{lstlisting}[numbers=none]
+show(ex.expand())
+\end{lstlisting}
+\begin{Output}
+	$abc$
+\end{Output}
+\pagebreak[3]
+
+A menudo nos interesa lo contrario: factorizar la expresión usando
+\lstinline|.factor()|
+\begin{lstlisting}[numbers=none]
+p = a^3 + a^2*b + a^2*c + a*b^2 + a*c^2 + b^3 + b^2*c + b*c^2 + c^3
+show(p)
+show(p.factor())
+\end{lstlisting}
+\begin{Output}
+	$a^{3}+a^{2}b+a^{2}c+ab^{2}+ac^{2}+b^{3}+b^{2}c+bc^{2}+c^{3}$
+	${\left(a+b+c\right)}{\left(a^{2}+b^{2}+c^{2}\right)}$
+\end{Output}
+
+Si consultas con el tabulador los métodos de las expresiones simbólicas, verás
+que hay
+métodos específicos para expresiones con funciones trigonométricas,
+exponenciales, con
+radicales o fracciones (es decir, con funciones racionales), ...
+
+\begin{minipage}{.3\textwidth}
+\ilustra{metodos_simplify}
+\end{minipage}
+
+
+\begin{lstlisting}[numbers=none]
+p = sin(3*a)
+show(p.expand_trig())
+\end{lstlisting}
+\begin{Output}
+	$-\sin(a)^3+3 \, \sin(a)\cos(a)^{2}$
+\end{Output}
+
+\begin{lstlisting}[numbers=none]
+p = sin(a)^2 - cos(a)^2
+show(p.simplify_trig())
+\end{lstlisting}
+\begin{Output}
+	$-2\,\cos(a)^2+1$
+\end{Output}
+
+\begin{lstlisting}[numbers=none]
+p = 2^a * 4^(2*a)
+show(p.simplify_exp())
+\end{lstlisting}
+\begin{Output}
+	$2^{5\,a}$
+\end{Output}
+\begin{lstlisting}[numbers=none]
+p = 1/a - 1/(a+1)
+show(p.simplify_rational())
+\end{lstlisting}
+\begin{Output}
+	$\dfrac{1}{a^{2} + a}$
+\end{Output}
+
+
+
+\subsection{Variables booleanas}\label{bool}
+Un tipo especial de variables es el \emph{booleano} o lógico. Una tal variable
+toma
+valores \verb|True| (verdadero) o \verb|False| (falso). \footnote{Aunque, como
+veremos algo más adelante, también los valores $1$, en lugar de {\tt True},y $0$
+en lugar de {\tt False}.}
+
+
+
+El  doble signo igual ({\tt ==}) sirve para comparar,
+y devuelve \lstinline|True| o \lstinline|False| según los objetos comparados
+sean iguales o no para el intérprete. De la misma manera se pueden usar, siempre
+que tengan sentido, las comparaciones \lstinline|a<b| y \lstinline|a<=b|. 
+Como veremos en el cap\'{\i}tulo \ref{prog}, estas comparaciones aparecen en los
+bucles \lstinline|while| y al bifurcar la ejecuci\'on de c\'odigo mediante un
+\lstinline|if|.
+
+\noindent\begin{minipage}{1\textwidth}
+Operaciones básicas con variables booleanas son la \emph{conjunción}
+(\lstinline|and|),
+la \emph{disyunción} (\lstinline|or|) y la \emph{negación} (\lstinline|not|):
+
+\mbox{}\hfill
+\small
+\begin{tabular}{*3{|l}|}
+\hline
+ \lstinline| and | & True & False\\
+ \hline
+ True & True & False\\
+ \hline
+ False & False & False\\
+ \hline
+\end{tabular}
+\hfill
+\begin{tabular}{*3{|l}|}
+\hline
+ \lstinline| or | & True & False\\
+ \hline
+ True & True & True\\
+ \hline
+ False & True & False\\
+ \hline
+\end{tabular}
+\hfill
+\begin{tabular}{*2{|l}|}
+\hline
+ & \lstinline| not | \\
+ \hline
+ True & False\\
+ \hline
+ False & True \\
+ \hline
+\end{tabular}
+\hfill\mbox{}
+\end{minipage}
+
+
+\section{Gr\'aficas}
+
+
+
+
+\subsection{Gr\'aficas en 2D}
+
+Utilizaremos comandos como los que siguen para obtener objetos gráficos:
+
+\begin{enumerate}\itemsep=-1pt
+	\item  \lstinline|point(punto o lista)|, \lstinline|points(lista)|, %
+	\lstinline|point2d(lista)|, \lstinline|point3d(lista)| %
+	dibujan los puntos de la \lstinline|lista| que se pasa como
+	argumento. Usaremos este tipo de gráficas, en particular,  al estudiar la
+	\hyperref[bertrand]{paradoja de Bertrand} en el cap\'{\i}tulo \ref{prob}. 
+	
+	\item  \lstinline|line(lista)|, \lstinline|line2d(lista)|, %
+	\lstinline|line3d(lista)| dibujan líneas entre los puntos de la lista que se
+	pasa como
+	argumento. Usaremos este tipo de gráficas, en particular,  al estudiar el
+	problema conocido como \hyperref[]{la ruina del jugador} en el cap\'{\i}tulo
+	\ref{prob}.
+	
+	\item \lstinline|plot(f,x,xmin=a,xmax=b)|  esboza una gráfica de la función de una
+	variable  %
+	\lstinline|f| en el intervalo $[a,b]$. La escala en el eje $OY$ la elige {\sage} autom\'aticamente. En ocasiones, debido a esa elecci\'on autom\'atica,  la gr\'afica mostrada consiste en un trozo encima del eje $OX$ y otro pr\'acticamente vertical, lo que no resulta muy \'util. Podemos centrarnos en la parte que nos interesa del plano mediante 
+	\lstinline|plot(f,x,xmin=a,xmax=b,ymin=c,ymax=d)|, que muestra la parte de la gr\'afica contenida en el rect\'angulo $[a,b]\times [c,d].$
+	
+		\item \lstinline|parametric_plot([f(t),g(t)],(t,0,2))|  esboza una gráfica de la
+	curva dada en param\'etricas mediante  dos funciones de $t$,    %
+	\lstinline|f|~y~\lstinline|g|,  con la variable $t$ variando en el intervalo
+	$[0,2]$.
+	
+	\item Mediante \lstinline|implicit_plot(f,(x,-5,5),(y,-5,5))| obtenemos una
+	representaci\'on de la parte de  la curva $f(x,y)=0$ contenida en el
+	cuadrado $[-5,5]\times [-5,5]$. Decimos que se trata de una representaci\'on de
+	una curva {\itshape ``en impl\'{\i}citas''.}
+	
+\end{enumerate}
+
+Puedes ver algunos ejemplos de gr\'aficas en el  plano  en la hoja de {\sage}
+\href{http://localhost:8888/notebooks/CAVAN/21-CAVAN-graficas.ipynb}{\tt 21-CAVAN-graficas.ipynb}.
+
+\subsection{Gr\'aficas en 3D}
+
+El sistema para representaciones gr\'aficas en 3D que tiene {\sage} no funciona en {\tt jupyterhub}, es decir no muestra los gr\'aficos cuando se ejecuta en el servidor del Departamento. En cambio, desde la versi\'on {\bf 8.0} de {\sage},  funciona bien cuando se ejecuta en la versi\'on local de {\tt Jupyter}. Entonces, y hasta que se resuelva este problema, en el servidor  usaremos {\tt matplotlib}.
+
+\begin{enumerate}
+\item En general, {\tt matplotlib} produce gr\'aficos 3D a partir de listas de coordenadas de puntos, de la forma $(x,y,f(x,y))$,  en $\mathbb{R}^3$ . As\'{\i} por ejemplo, para representar la gr\'afica de una funci\'on de dos variables  $f(x,y)$ primero necesitamos una lista con coordenadas de puntos en el rect\'angulo $[a,b]\times[c,d]$ sobre el que deseamos obtener la gr\'afica. 
+
+\begin{lstlisting}[numbers=none]
+x = np.arange(-2,2,0.05)
+y = np.arange(-2,2,0.05)
+X,Y = np.meshgrid(x, y)
+\end{lstlisting}	
+
+Esto nos dar\'a $80=4/0.05$ puntos en el intervalo $[-2,2]$ para la variable $x$, otros $80$ para la $y$, y  un ret\'{\i}culo de $6400$ puntos, uniformemente distribuidos,  en el  cuadrado $[-2,2]\times [2,2]$. Los comandos que empiezan por $\tt np$ son de {\tt numpy}, y permiten la manipulaci\'on eficiente de listas y matrices. Veremos m\'as sobre esto m\'as adelante.
+
+\item Ahora definimos la funci\'on que vamos a representar
+\begin{lstlisting}[numbers=none]
+def f(x,y):
+	return np.cos(x**2+y**2)
+\end{lstlisting}	
+	
+Como usamos listas y matrices de {\tt numpy}, las funciones matem\'aticas como el coseno tambi\'en deben ser de {\tt numpy}, y por eso usamos {\tt np.cos.}
+\item Finalmente, representamos la superficie mediante, por ejemplo, 
+\begin{lstlisting}[numbers=left]
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+zs = np.array([f(x,y) for x,y in zip(np.ravel(X), np.ravel(Y))])
+Z = zs.reshape(X.shape)
+ax.plot_surface(X,Y,Z, cmap=plt.cm.rainbow,rstride=1, cstride=1)
+\end{lstlisting}	
+
+
+La tercera l\'{\i}nea es la que crea las coordenadas de los puntos en $\mathbb{R}^3$ que usamos para construir la superficie, y la quinta es la que finalmente genera el gr\'afico interactivo.
+
+
+
+\item Para obtener el gr\'afico primero, es decir en la primera celda que ejecutamos,  hay que importar una serie de paquetes 
+
+\begin{lstlisting}
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from math import *
+%matplotlib notebook
+\end{lstlisting}
+
+
+\end{enumerate}
+
+
+\ilustra{superficie}
+
+
+
+
+
+Puedes ver un resumen del uso de {\tt matplotlib} en \href{http://pausa.mat.uam.es/PDFs/CAVAN/matplotlib.pdf}{este tutorial}\footnote{{\tt IPython} es el nombre antiguo de {\tt Jupyter}, pero la mayor parte de lo que se dice en este tutorial funciona en {\tt Jupyter} sin problema.} y algunos ejemplos en la hoja 
+\begin{center}
+ \href{http://localhost:8888/notebooks/CAVAN/21-CAVAN-graficas-matplotlib.ipynb}{\tt 21-CAVAN-graficas-matplotlib.ipynb}.
+\end{center}
+
+\subsection{Gr\'aficas 3D en el {\tt notebook} antiguo}
+Las tres funciones principales para representaciones gr\'aficas 3D son
+
+\begin{enumerate}
+	
+	\item \lstinline|plot3d(g,(x,-10,10),(y,-10,10))|  esboza una gráfica de la
+	función de dos variables  %
+	\lstinline|g| sobre el cuadrado  $[-10,10]\times [-10,10]$.
+	
+	
+	\item \lstinline|parametric_plot3d([f(u,v),g(u,v),h(u,v)],(u,0,2),(v,0,2))| 
+	esboza una gráfica de la
+	superficie  dada en param\'etricas mediante  tres  funciones de $u$ y $v$,    %
+	\lstinline|f|, \lstinline|g| y \lstinline|h|,  con las variables $u$ y $v$  en 
+	el intervalo $[0,2]$.
+	
+	Los puntos de la superficie son entonces los que se obtienen mediante
+	$x=f(u,v),y=g(u,v),z=h(u,v).$
+	
+	\item Con \lstinline|implicit_plot3d(f,(x,-5,5),(y,-5,5),(z,-5,5))| 
+	se representa una parte de  la superficie $f(x,y,z)=0$ contenida en el
+	cubo $[-5,5]\times [-5,5]\times [-5,5]$. Decimos que se trata de una
+	representaci\'on de una superficie {\itshape ``en impl\'{\i}citas''.}
+	\end{enumerate}
+
+Si se ejecutan en {\tt Jupyter} se obtiene un gr\'afico vac\'{\i}o, pero en el {\tt notebook} antiguo de {\sage} (\ref{ini-ses}) funcionan perfectamente. 
+
+\section{C\'alculo}
+
+
+En esta secci\'on usaremos la hoja de {\sage} 
+\href{http://localhost:8888/notebooks/CAVAN/22-CAVAN-calculo-s1.ipynb}{\tt 22-CAVAN-calculo-s1.ipynb}.
+
+\medskip
+
+Cuando usamos el ordenador para estudiar problemas de c\'alculo diferencial o
+integral operamos frecuentemente con valores aproximados de los n\'umeros reales
+implicados, es decir truncamos los n\'umeros reales despu\'es de un n\'umero
+prefijado de decimales. 
+
+Sin embargo, en {\sage} podemos realizar gran cantidad de operaciones de manera
+``simb\'olica'', es decir,  sin evaluar de manera aproximada los n\'umeros
+reales o complejos implicados. As\'{\i}, por ejemplo, \lstinline|sqrt(2)| es una
+representaci\'on simb\'olica de $\sqrt{2}$, una expresi\'on cuyo cuadrado es
+exactamente $2$,  mientras que  \lstinline|sqrt(2).n()| (o bien
+\lstinline|n(sqrt(2))|) es un valor aproximado con $20$ decimales y su cuadrado
+no es exactamente $2$.
+\label{num}
+Para obtener una
+representación decimal de una expresión simbólica, podemos usar los comandos
+\lstinline|n()|, \lstinline|N()|,  o los métodos homónimos \lstinline|.n()|,
+\lstinline|.N()| (n de numérico).\footnote{Es muy
+habitual la asignación `$n=\ $', o `$N=\,$', cuando pensamos en dar nombre a una
+variable
+entera. Si la utilizamos en una hoja de {\sage}, el sistema no nos avisa de que
+estamos
+\emph{tapando las funciones} \lstinline|n(), N()|. Desde ese momento, y hasta
+que no
+reiniciemos la hoja, ya no funcionará la función. Se recomienda el uso de los
+métodos,
+\lstinline|.n(), .N()|, para evitar innecesarios dolores de cabeza.}
+
+
+El c\'alculo con valores aproximados de n\'umeros reales necesariamente
+introduce errores, y suele llamarse {\itshape C\'alculo num\'erico} a la materia
+que estudia c\'omo controlar esos errores, de manera que conocemos el grado de
+validez del resultado final y tratamos de que sea lo m\'as alto posible. 
+Volveremos en el cap\'{\i}tulo \ref{aprox} sobre este asunto. 
+
+La diferencia entre el {\itshape c\'alculo simb\'olico} y el {\itshape c\'alculo
+num\'erico} es importante: el c\'alculo simb\'olico es exacto pero m\'as
+limitado que el num\'erico. Un ejemplo t\'{\i}pico podr\'{\i}a ser el c\'alculo
+de una integral definida 
+\begin{equation}\label{int1}
+\int_a^b f(x)\ dx,
+\end{equation}
+\noindent que simb\'olicamente requiere el c\'alculo de una primitiva $F(x)$ de
+$f(x)$ de forma que el valor de la integral definida es $F(b)-F(a)$. El
+c\'alculo de primitivas no es f\'acil, y para algunas funciones, como por
+ejemplo $\sin(x)/x$, la primitiva no se puede expresar usando las 
+funciones
+habituales y, si fuera necesario, deber\'{\i}amos considerarla como una nueva
+funci\'on elemental semejante a las trigonom\'etricas o la exponencial.
+
+En cambio, para cada funci\'on continua $f(x)$ en un intervalo $[a,b]$ podemos 
+calcular f\'acilmente un valor aproximado para la integral definida 
+(\ref{int1}). Veremos alguno de estos m\'etodos en la secci\'on  \ref{monte}.
+
+
+\subsection{Ecuaciones}
+\begin{enumerate}
+  \item El comando  \lstinline|solve()|  permite resolver ecuaciones (al menos
+lo
+intenta): para resolver una ecuación llamamos a \lstinline|solve()| con la
+ecuación como primer
+argumento y la variable a despejar como segundo argumento, y recibimos una lista
+con las
+soluciones.
+\begin{lstlisting}[numbers=none]
+#Las soluciones de esta ecuaci$\X o$n c$\X u$bica son n$\X u$meros complejos
+solve(x^3 - 3*x + 5, x)
+\end{lstlisting}
+
+ \item El algoritmo resuelve también un sistema de ecuaciones. Basta pasar la
+\emph{lista} de igualdades o expresiones.
+ \begin{lstlisting}[numbers=none]
+var('x y')
+solve([x^2+y^2==1,x-y+1],x,y)
+\end{lstlisting}
+\item El comando \lstinline|solve()| intenta obtener soluciones exactas en forma
+de expresi\'on simb\'olica,  de la ecuaci\'on o sistema,
+y frecuentemente no encuentra ninguna. Tambi\'en es posible buscar soluciones
+aproximadas mediante m\'etodos num\'ericos:  el comando
+\lstinline|find_root(f,a,b)| busca una soluci\'on de la ecuaci\'on $f(x)=0$ 
+perteneciente al intervalo $[a,b]$. Volveremos sobre este asunto en la secci\'on
+\ref{raices}.
+ 
+\end{enumerate}
+
+
+\subsection{L\'{\i}mites}
+\begin{enumerate}
+ \item El método  \lstinline|.limit()| (o la función \lstinline|limit()|) 
+permite calcular
+límites de funciones. Para calcular el límite de \verb|f| en un punto:
+\begin{lstlisting}[numbers=none]
+f1=x^2
+print f1.limit(x=1)
+\end{lstlisting}
+ \item Tambi\'en se puede calcular el límite cuando la variable tiende a
+infinito
+
+\begin{lstlisting}[numbers=none]
+f2=(x+1)*sin(x)
+f3=f2/f1
+f3.limit(x=+oo)
+\end{lstlisting}
+\item Si Sage sabe que el límite no existe, por ejemplo para la funci\'on
+$f(x)=1/(x*sin(x))$, la función \lstinline|limit()| devuelve el
+valor \lstinline|und|, abreviatura de \emph{undefined},  o el valor
+\lstinline|ind|, que indica que no existe l\'{\i}mite pero
+la funci\'on permanece acotada, por ejemplo $\sin(x)$ cuando $x$ tiende a
+infinito,   cerca del valor l\'{\i}mite de la variable.
+
+Por \'ultimo, en algunos casos Sage no sabe c\'omo determinar el l\'{\i}mite o
+no sabe que no existe, y entonces devuelve la definici\'on de la funci\'on. Esto
+ocurre, por ejemplo, con la funci\'on $f(x):=x/\sin(1/x)$ cuando se quiere
+calcular el l\'{\i}mite cuando $x$ tiende a cero.
+
+ \item También podemos calcular así límites de sucesiones. Al fin y al cabo, si
+la
+expresión simbólica admite valores reales, el límite de la función que define en
+infinito, si existe, es el mismo que el límite de la sucesión de naturales
+definido por la misma expresión.
+\end{enumerate}
+
+
+
+
+\subsection{Series}
+
+Una serie es un tipo particular de sucesi\'on: dada una sucesi\'on
+$a_0,a_1,a_2,\dots$  queremos dar sentido a la suma infinita 
+\[S=a_0+a_1+a_2+\dots+a_n+\dots\]
+
+Definimos $S$ como el l\'{\i}mite, si existe, de la sucesi\'on de ``sumas
+parciales'' $S_n:=a_0+a_1+a_2+\dots+a_n$ cuando $n$ tiende a infinito y decimos
+que $S$ es la suma de la serie. 
+
+Para que pueda existir un l\'{\i}mite para $S_n$ tiene que ocurrir que el
+l\'{\i}mite de $a_n$, cuando $n$ tiende a infinito, sea cero. Es una condici\'on
+necesaria pero {\sc no suficiente} para la existencia de suma de la serie. Por
+ejemplo, la sucesi\'on $a_n:=1/n$ tiende a cero cuando $n$ tiende a infinito,
+pero  el l\'{\i}mite de la correspondiente sucesi\'on de sumas parciales es
+infinito. 
+
+
+El comando \lstinline|sum()|, tomando $\infty$ como l\'{\i}mite superior,
+permite, a veces, 
+calcular la suma de una serie infinita:
+\begin{lstlisting}[columns=fullflexible,backgroundcolor=\color{white}]
+sum(expresion, variable, limite_inferior, limite_superior)
+\end{lstlisting}
+
+\begin{lstlisting}
+sum(1/k^2, k, 1, oo).show()
+\end{lstlisting}
+\begin{Output}
+	$\frac16\pi^2$
+\end{Output}
+
+En casos como el anterior, Sage no realiza ning\'un c\'alculo para devolvernos
+su respuesta. Lo \'unico que hace es identificar la serie que queremos sumar y
+nos devuelve el valor de la suma si lo conoce. Por ejemplo, si le pedimos la
+suma de los inversos de los cubos de enteros nos dice que vale
+\lstinline|zeta(3)|, que no es sino el nombre que se usa en Matem\'aticas para
+esa suma. Estudiaremos en detalle el c\'alculo con series en el cap\'{\i}tulo
+\ref{aprox}. 
+
+
+
+
+
+
+
+
+
+\subsection{C\'alculo diferencial}
+\begin{enumerate}
+ \item El método  \lstinline|.derivative()|, o la función 
+\lstinline|derivative()|, permite
+calcular derivadas de funciones simbólicas. Las \textbf{derivadas}  se obtienen
+siguiendo
+metódicamente las reglas de derivación y no suponen ningún problema al
+ordenador:
+\begin{lstlisting}[numbers=none]
+f=1/(x*sin(x))
+g=f.derivative()
+show([g,g.simplify_trig()])
+\end{lstlisting}
+
+
+\item Se pueden calcular derivadas de órdenes superiores
+\begin{lstlisting}[numbers=none]
+m=5
+[derivative(x^m,x,j) for j in range(m+1)]
+\end{lstlisting}
+
+Para derivar funciones de varias variables, es decir calcular derivadas
+parciales (i.e. derivar una funci\'on de varias variables respecto a una de
+ellas manteniendo las otras variables en valores constantes), basta especificar
+la variable con respecto a la que derivamos y
+el orden hasta el que derivamos: 
+\begin{lstlisting}[numbers=none]
+F(x,y)=x^2*sin(y)+y^2*cos(x)
+show([F.derivative(y,2),derivative(F,x,1).derivative(y,1)])
+\end{lstlisting}
+\end{enumerate}
+
+\subsection{Desarrollo de Taylor}\label{taylor}
+As\'{\i} como la derivada  de una funci\'on en un punto $x_0$ nos permite
+escribir una aproximaci\'on lineal de la funci\'on {\sc cerca del punto}
+\[f(x)\sim f(x_0)+f^{\prime}(x_0)(x-x_0),\]
+\noindent el polinomio de Taylor nos da una aproximaci\'on polinomial, de un
+cierto grado prefijado, v\'alida {\sc cerca del punto}. As\'{\i} por ejemplo:
+\begin{lstlisting}[numbers=none]
+f(x)=exp(x)
+taylor(f,x,0,20)
+\end{lstlisting}
+\noindent nos devuelve un polinomio de grado $20$ que cerca del origen aproxima 
+la funci\'on exponencial. Volveremos sobre este \hyperref[taylor]{asunto} en el
+cap\'{\i}tulo
+\ref{aprox}.
+
+\subsection{C\'alculo integral}
+El cálculo de {\itshape primitivas}  es mucho  más complicado 
+que la derivación, ya que no existe ningún método que pueda calcular
+la primitiva de cualquier función. En realidad, hay muchas funciones elementales
+(construídas
+a partir
+de funciones trigonométricas, exponenciales y algebraicas mediante sumas,
+productos y
+composición de funciones) cuyas primitivas, aunque estén bien definidas, no se
+pueden
+expresar en términos de estas mismas funciones. Los ejemplos $f(x)=e^{-x^2}$ y
+$f(x)=\frac{\sin(x)}{x}$ son bien conocidos.
+
+\
+
+Aunque en teoría existe un algoritmo (el algoritmo de
+\href{http://en.wikipedia.org/wiki/Risch\_algorithm}{Risch}) capaz de decidir si
+la
+primitiva de una función elemental es elemental, dificultades
+prácticas
+imposibilitan llevarlo a la práctica, y el resultado es que incluso en casos en
+los que
+integramos una función cuya primitiva es una función elemental, nuestro
+algoritmo
+de integración simbólica puede no darse cuenta. Si {\sage} no puede calcular una
+primitiva de $f(x)$
+expl\'{\i}cita devuelve  
+\[\int f(x)\ dx.\]
+
+\begin{enumerate}
+ \item Los métodos (funciones) para el cálculo de primitivas a nuestra
+disposición son:
+%
+\lstinline|.integral()| e \lstinline|.integrate()|.
+\begin{lstlisting}[numbers=none]
+f=1/sin(x)
+show(f.integrate(x))
+\end{lstlisting}
+ \item Siempre podemos obtener una aproximación
+numérica de una integral definida: 
+\begin{lstlisting}[numbers=none]
+f=tan(x)/x
+[numerical_integral(f,pi/5,pi/4),N(f.integrate(x,pi/5,pi/4))]
+\end{lstlisting}
+
+Obsérvese que, con \lstinline|numerical_integral()|, el intérprete devuelve una
+tupla, con
+el valor aproximado de la integral y una cota para el error.
+ 
+ \item Tambi\'en es posible
+\href{
+http://docs.scipy.org/doc/scipy/reference/tutorial/integrate.html#general-multip
+le-integration-dblquad-tplquad-nquad}{integrar num\'ericamente funciones de
+varias variables}, aunque,  de momento,  no vamos a tratar el tema. As\'{\i}
+como las integrales de funciones de una variable corresponden al c\'alculo de
+\'areas, las integrales de funciones de varias variables permiten calcular
+vol\'umenes e hipervol\'umenes. 
+ 
+ 
+ En el cap\'{\i}tulo \ref{prob}
+veremos un m\'etodo, conocido como \hyperref[int-mc]{integraci\'on de Monte
+Carlo}
+que permite calcular valores aproximados de integrales de funciones de una o
+varias variables. 
+ 
+ 
+ 
+ 
+ 
+ \end{enumerate}
+
+
+\section{\'Algebra lineal}
+
+
+
+Podemos decir que el \'Algebra Lineal, al menos en espacios de dimensi\'on
+finita,  trata de la {\itshape resoluci\'on de todos aquellos problemas que
+pueden reducirse a encontrar las soluciones de un sistema de ecuaciones de
+primer grado en todas las inc\'ognitas,} es decir, un sistema lineal de
+ecuaciones.  Es posible realizar todas las operaciones necesarias para resolver
+tales sistemas mediante c\'alculo con matrices, y esa es la forma preferida para
+resolver problemas de \'Algebra Lineal mediante ordenador.
+
+Los sistemas de  ecuaciones lineales con coeficientes en un cuerpo, por ejemplo
+el de los n\'umeros racionales, siempre se pueden resolver y encontrar
+expl\'{\i}citamente todas las soluciones del sistema en ese cuerpo o en uno que
+lo contenga.  Esto no es cierto para ecuaciones polinomiales de grado m\'as
+alto, y, por ejemplo, no hay m\'etodos generales para resolver una \'unica
+ecuaci\'on  polinomial, de grado arbitrario $n$,  en una \'unica variable
+\[a_0+a_1x+a_2x^2+\dots+a_nx^n=0.\]
+
+Veremos en \hyperref[grobner]{la parte final del curso} algo de los que se puede
+decir acerca de la resoluci\'on de los sistemas de ecuaciones polinomiales. 
+
+\subsection{Construcción de matrices}
+El constructor básico de matrices en Sage es la función \lstinline|matrix()|,
+que,  en su forma m\'as simple, tiene como argumentos 
+\begin{enumerate}
+ \item El conjunto de n\'umeros, enteros, racionales, etc.,  al que pertenecen
+las entradas de la matriz. 
+ \item Una lista cuyos elementos son listas de la misma longitud,  y que ser\'an
+las {\itshape filas} de la matriz.
+\end{enumerate}
+\begin{lstlisting}
+A=matrix(ZZ,[[1,2,3],[4,5,6]]);A;show(A)
+\end{lstlisting}
+
+Una variante \'util contruye la misma matriz con 
+\begin{lstlisting}
+A=matrix(ZZ,2,[1,2,3,4,5,6]);show(A)
+\end{lstlisting}
+\noindent que trocea la lista dada como tercer argumento en el n\'umero de filas
+dado por el segundo, en este caso $2$ filas. Por supuesto,  el n\'umero de
+elementos de la lista debe ser m\'ultiplo del segundo argumento o aparece un
+error. 
+
+Para más ejemplos e información sobre \lstinline|matrix()|, pulsar el 
+\verb|tabulador| del teclado tras escribir \lstinline|matrix(| en una celda.
+
+
+\subsection{Submatrices}
+
+Sobre el acceso a las entradas de una matriz se ha de tener en cuenta que tanto
+filas como columnas empiezan su numeración en $0$. Así, en la matriz $3\times2$
+definida por \lstinline|A=matrix(3,range(6))|, es decir
+$$
+\Biggl(
+\begin{array}{*2{c}}
+ 0 & 1 \\ 2 & 3 \\ 4 & 5
+\end{array}
+\Biggr)
+$$
+el extremo superior izquierdo tiene \emph{índices} `0,0', y el inferior derecho,
+`2,1'. Una vez claros los índices de un elemento, Sage usa
+la notación \emph{slice} (por cortes) de Python para acceder a él:
+\lstinline|A[0][0]| y \lstinline|A[2][1]| serían los elementos recién
+mencionados. Para el caso especial de matrices, se ha adaptado también una
+notación más habitual: \lstinline|A[0,0]| y \lstinline|A[2,1]|. 
+
+En la notación \emph{slice}, dos índices separados por dos puntos, %
+\lstinline|i:j|, indican el corte entre el primer índice, incluido,
+hasta el segundo, que se excluye. En el ejemplo, se muestran las filas de
+índices $2$ y $3$ de la matriz. 
+Si se excluye alguno de los índices, se toma, por defecto, el valor más
+extremo. 
+
+\begin{lstlisting}
+A=matrix(ZZ,10,[1..100])
+A[7:]
+\end{lstlisting}
+\begin{Output}
+	[ 71  72  73  74  75  76  77  78  79  80]
+	[ 81  82  83  84  85  86  87  88  89  90]
+	[ 91  92  93  94  95  96  97  98  99 100]
+\end{Output}
+La matriz \lstinline|A[7:]| consiste en las filas desde la octava, que tiene
+\'{\i}ndice $7$ porque hemos empezado a contar en $0$, hasta la d\'ecima.
+
+\begin{lstlisting}
+A=matrix(10,[1..100])
+A[:2]
+\end{lstlisting}
+\begin{Output}
+ 	[ 1  2  3  4  5  6  7  8  9 10]
+	[11 12 13 14 15 16 17 18 19 20] 
+\end{Output}
+La matriz \lstinline|A[:2]| consiste en las filas primera y segunda, es decir,
+las de \'{\i}ndice menor estrictamente que $2$.
+Utilizando el doble índice, podemos recortar recuadros más concretos:
+
+\begin{lstlisting}
+A=matrix(10,[1..100])
+A[3:5,4:7]
+\end{lstlisting}
+\begin{Output}
+	[35 36 37]
+	[45 46 47]
+\end{Output}
+
+Unas últimas virguerías  gracias a la notación slice: saltos e índices
+negativos. La matriz $A$ es, como en el ejemplo anterior, la matriz $10\times
+10$ con los primeros cien enteros colocados en orden en las filas de $A$. 
+\begin{lstlisting}
+A[2:5:2,4:7:2]
+\end{lstlisting}
+
+\noindent produce 
+
+\begin{Output}
+	[25  27]
+	[45  47]
+\end{Output}
+\noindent se queda con las filas con \'{\i}ndice del $2$ al $4$,
+saltando de dos en dos debido al $2$ que aparece en tercer lugar en
+\lstinline|2:5:2|, y con las columnas con \'indices del $4$ al $6$
+tambi\'en saltando de dos en dos por el que aparece en \lstinline|4:7:2|.
+Siempre hay que recordar que las filas y
+columnas se numeran empezando en el cero.  
+
+Por otra parte, tambi\'en podemos usar \'{\i}ndices negativos lo que conduce a
+quedarnos con filas o columnas que contamos hacia atr\'as, de derecha a
+izquierda,  empezando por las
+\'ultimas:
+
+\begin{lstlisting}
+A[-1];A.column(-2)
+\end{lstlisting}
+\begin{Output}
+	(91, 92, 93, 94, 95, 96, 97, 98, 99, 100)
+	(9, 19, 29, 39, 49, 59, 69, 79, 89, 99)
+\end{Output}
+
+La primera fila del resultado, que corresponde a \lstinline|A[-1]|, es la
+\'ultima fila de la matriz, y la segunda es la novena columna (que tiene
+\'{\i}ndice $8$). La \'ultima columna se obtendr\'{\i}a con
+\lstinline|A.column(-1)|.
+	
+	
+\subsection{Operaciones con matrices}
+
+
+Las operaciones entre matrices, suma, diferencia, multiplicaci\'on, potencia e
+inversa, se denotan con los mismos s\'{\i}mbolos que las correspondientes
+operaciones entre n\'umeros.  En el caso de operaciones entre matrices es
+posible que la operaci\'on~no sea posible porque los tama\~nos de las matrices
+implicadas no sean compatibles, o en el caso de la inversa porque la matriz 
+no~sea cuadrada de rango m\'aximo. 
+
+
+
+
+De entre todas las funciones y m\'etodos que se aplican a matrices hemos
+seleccionado las que parecen m\'as \'utiles: 
+
+\def\bfitem#1:{\item\lstinline|#1|.- }
+\begin{itemize}
+\renewcommand{\labelitemi}{$\circ$}
+ \bfitem identity_matrix(n): matriz identidad $n\times n$  
+ \bfitem A.det(), det(A): determinante de $A$
+ \bfitem A.rank(), rank(A): rango de $A$
+ \bfitem A.trace(): traza de $A$
+ \bfitem A.inverse(): inversa de $A$
+ \bfitem A.transpose(): traspuesta de $A$
+ \bfitem A.adjoint(): matriz adjunta de $A$
+ \bfitem A.echelonize(), A.echelon_form(): matriz escalonada de $A$, en el
+menor anillo en que vivan sus entradas
+\bfitem A.rref(): matriz escalonada de $A$, en el menor cuerpo en que coincidan
+sus entradas
+\end{itemize}
+
+Dado que resolver un sistema lineal de ecuaciones consiste, desde un punto de
+vista matricial, en obtener la forma escalonada de la matriz (reducci\'on
+gaussiana), la instrucci\'on quiz\'a m\'as importante en la lista es
+\lstinline|A.echelon_form().|
+
+Aunque \lstinline|A.echelonize()| y \lstinline|A.echelon_form()| hacen
+esencialmente lo mismo, la primera deja la forma escalonada en la variable $A$,
+por tanto machaca el valor antiguo de $A$,  y no es posible asignar el resultado
+a otra variable, es decir \lstinline|B = A.echelonize()| no funciona, mientras
+que  la segunda forma funciona como esperamos \lstinline|B=A.echelon_form()|
+hace que 
+la forma escalonada quede en $B$ y la matriz $A$ todav\'{\i}a existe con su
+valor original. Puedes comprobar este comportamiento en la hoja 
+\href{http://localhost:8888/notebooks/CAVAN/23-CAVAN-reduccion-gaussiana.ipynb}{\tt
+23-CAVAN-reduccion-gaussiana.ipynb}.
+
+\subsection{Espacios vectoriales}
+
+Operar con matrices en el ordenador {\itshape siempre} ha sido posible debido a
+que los lenguajes de programaci\'on disponen de la estructura de datos
+\lstinline|array|, que esencialmente es lo mismo que una matriz. En los sistemas
+de c\'alculo algebraico, como {\sage}, existe la posibilidad de definir objetos
+matem\'aticos mucho m\'as abstractos como, por ejemplo,
+\href{http://150.244.21.37/PDFs/CAVAN/quickref-algebra.pdf}{grupos},  
+\href{http://150.244.21.37/PDFs/CAVAN/quickref-linalg.pdf}{espacios vectoriales}, 
+\href{http://150.244.21.37/PDFs/CAVAN/quickref-graphtheory.pdf}{grafos}, 
+\href{http://150.244.21.37/PDFs/CAVAN/quickref-algebra.pdf}{anillos}, etc. 
+
+
+
+
+Nos fijamos en esta subseccci\'on  en el caso de los espacios vectoriales.
+?`Qu\'e significa definir, como objeto de {\sage},  un espacio vectorial $E$ de
+dimensi\'on $3$ sobre el cuerpo de los n\'umeros racionales?
+
+Lo definimos mediante 
+\lstinline|E = VectorSpace(QQ,3)| y sus elementos, vectores, mediante, por
+ejemplo, \lstinline|v = vector([1,2,3])| o bien \lstinline|v = E([1,2,3])|.
+
+Una vez definido el espacio vectorial y vectores en \'el, podemos realizar
+c\'alculos con vectores siguiendo las reglas que definen, en  matem\'aticas, los
+espacios vectoriales. As\'{i} por ejemplo, el sistema sabe que
+$\mathbf{v}+(-1)*\mathbf{v}=\mathbf{0}.$
+
+Tambi\'en es posible construir espacios  de matrices con una instrucci\'on como 
+\lstinline|M = MatrixSpace(QQ, 4, 4)|, que define $M$ como el conjunto de
+matrices con coeficientes racionales $4\times 4$,  con operaciones de suma,
+producto por escalares, producto de matrices y matriz inversa.
+
+
+
+
+
+
+
+
+\subsection{Subespacios vectoriales}\label{b3s3:index-2}
+\begin{enumerate}
+\item Podemos definir fácilmente el subespacio engendrado por un conjunto de
+vectores, y después realizar operaciones como intersección o suma de
+subespacios, o
+comprobaciones como igualdad o inclusión de subespacios. 
+\begin{lstlisting}
+V1 = VectorSpace(QQ,3)
+v1 = V1([1,1,1])
+v2 = V1([1,1,0])
+L1 = V1.subspace([v1,v2])
+print L1
+\end{lstlisting}
+
+
+\item Definido un subespacio, podemos averiguar información sobre él:
+\begin{lstlisting}
+print dim(L1); L1.degree(); L1.ambient_vector_space()
+\end{lstlisting}
+
+{\sage} llama {\itshape degree} de un subespacio a la dimensi\'on de su espacio
+ambiente.
+
+\item Muchos operadores actúan sobre subespacios vectoriales, con los
+significados
+habituales.
+\begin{lstlisting}
+# Pertenencia a un subespacio
+v3, v4 = vector([1,0,1]), vector([4,4,3])
+print v3 in L1; v4 in L1
+\end{lstlisting}
+
+\begin{lstlisting}
+#Comprobaci$\X{on}$ de igualdad
+print L1 == V1
+print L1 == V1.subspace([v1,v1+v2]) 
+\end{lstlisting}
+
+\begin{lstlisting}
+#Comprobaci$\X{on}$ de inclusi$\X{on}$
+print L1 <= V1; L1 >= V1; L1 >= V1.subspace([v1])
+\end{lstlisting}
+
+
+\begin{lstlisting}
+#Intersecci$\X{on}$ y suma de subespacios
+L1 = V1.subspace([(1,1,0),(0,0,1)])
+L2 = V1.subspace([(1,0,1),(0,1,0)])
+L3 = L1.intersection(L2)
+print '* Intersecci$\texttt{ón}$ de subespacios: '
+print L3
+L4 = L1+L2
+print '* Suma de subespacios: ';L4
+\end{lstlisting}
+
+\end{enumerate}
+\subsection{Bases y coordenadas}
+
+Como hemos visto, se define un subespacio de un espacio vectorial en {\sage}
+mediante un conjunto de generadores del subespacio,   pero internamente se
+guarda   mediante una base del subespacio. Esta base, en principio no es un
+subconjunto del conjunto generador utilizado para definir el subespacio, pero
+podemos imponer que lo sea  con el método \lstinline|subspace_with_basis|:
+\begin{lstlisting}
+L1 = V1.subspace_with_basis([v1,v2,v3])
+print L1.basis(); L1.basis_matrix()
+\end{lstlisting}
+
+El método \lstinline|.coordinates()| nos da las coordenadas de un vector en la
+base del
+espacio
+\begin{lstlisting}
+print (L1.coordinates(v1), L2.coordinates(v1))
+\end{lstlisting}
+
+
+\subsection{Producto escalar}
+
+Podemos definir un espacio vectorial con una forma bilineal mediante 
+
+\begin{lstlisting}
+V = VectorSpace(QQ,2, inner_product_matrix=[[1,2],[2,1]])
+\end{lstlisting}
+
+Acabamos con una  lista, incompleta, de funciones y métodos relacionados con el
+producto escalar de vectores.
+
+\def\bfitem#1:{\item\lstinline|#1|.- }
+\begin{itemize}
+\renewcommand{\labelitemi}{$\circ$}
+\bfitem u.dot_product(v): producto escalar, $u\cdot v$
+\bfitem u.cross_product(v): producto vectorial, $u\times v$
+\bfitem u.pairwise_product(v): producto elemento a elemento
+\bfitem norm(u), u.norm(), u.norm(2): norma Euclídea
+\bfitem u.norm(1): suma de coordenadas en valor absoluto
+\bfitem u.norm(Infinity): coordenada con mayor valor absoluto
+\bfitem u.inner_product(v): producto escalar utilizando la matriz del producto
+escalar
+\end{itemize}
+
+\section{Ejercicios}
+
+
+\subsection{Inducci\'on y sucesiones}
+\begin{ejer}
+Demuestra por inducci\'on sobre $n\in\mathbb{N}$ las afirmaciones siguientes:
+\label{rec}
+\begin{enumerate}
+
+\item $1^2+2^2+\cdots+n^2= \dfrac{n(n+1)(2n+1)}6.$
+
+\item $\dfrac{1}{1\cdot 2}+\dfrac{1}{2\cdot 3}+\cdots+\dfrac{1}{n\cdot (n+1)} =
+\dfrac{n}{n+1}\,,\text{ si }n\ge1.$
+\item $1\cdot 1!+2\cdot 2!+\cdots +n\cdot n!=(n+1)!-1.$
+
+\item $ \dfrac12+\dfrac2{2^2}+\dfrac3{2^3}+\cdots+ \dfrac n{2^n}\,=\,
+2-\dfrac{n+2}{2^n}.$
+\item $(1+q)(1+q^2)(1+q^4)\cdots (1+q^{2^n}) \,=\, \dfrac{1-q^{2^{n+1}}}{1-q}.$
+
+\end{enumerate}
+
+En este ejercicio se pide una ``demostraci\'on matem\'atica'' por inducci\'on. M\'as adelante \hyperref[induccion]{veremos} c\'omo programar  la comprobaci\'on, hasta un $n$ prefijado, de f\'ormulas copmo estas.
+
+
+\end{ejer}
+
+
+
+
+
+\begin{ejer}
+La sucesión de Fibonacci, $\{F_n\}$, está definida por medio de la
+ley de recurrencia:
+$$
+F_1=1,\quad F_2=1,\quad F_{n+2}=F_n+F_{n+1}.
+$$
+Calcular los diez primeros términos de la sucesión y comprobar, para $1\le n\le
+10$,  la
+siguiente identidad:
+$$
+F_n\,=\, \frac{\left[\frac{1+\sqrt5}2\right]^n\,-\,
+\left[\frac{1-\sqrt5}2\right]^n} {\sqrt5}.
+$$
+
+La sucesi\'on de Fibonacci vuelve a aparecer varias veces a lo largo del curso,
+sobre todo en la  p\'agina \pageref{fibon} y siguientes. 
+
+\end{ejer}
+
+\pagebreak[2]
+
+\begin{ejer}\label{ej-DemoSumaCubos}
+Demostrar por inducción la fórmula para la suma de los primeros $n$ cubos
+$$
+1^3+2^3+...+n^3=\frac{(n+1)^2\,n^2}{4}\,.
+$$
+En el ejercicio \ref{ej-SumaCubos} se plantea un método para encontrar esta
+fórmula. 
+\end{ejer}
+
+\begin{ejer}\setcounter{temp}{0}
+Estudiar el límite de las siguientes sucesiones
+\small
+\newcommand{\linea}[2]{\letra \big\{\frac{#1}{#2}\big\}\,;}
+$$
+\begin{array}{*4{l@{\quad}}}
+ \linea{n^2}{n+2}
+ &
+ \linea{n^3}{n^3+2n+1}
+ &
+ \linea{n}{n^2-n-4}
+ &
+ \linea{\sqrt{2n^2-1}}{n+2}
+ \\[10pt]
+ \linea{\sqrt{n^3+2n}+n}{n^2+2}
+ &
+ \linea{\sqrt{n+1}+n^2}{\sqrt{n+2}}
+ &
+ \linea{(-1)^nn^2}{n^2+2}
+ &
+ \linea{n+(-1)^n}{n}
+ \\[10pt]
+ \letra \big\{\big(\frac23\big)^n\big\}\,;
+ &
+ \letra \big\{\big(\frac53\big)^n\big\}\,;
+ &
+ \linea{2^n}{4^n+1}
+ &
+ \linea{3^n+(-2)^n}{3^{n+1}+(-2)^{n+1}}
+ \\[10pt]
+ \letra\big\{\frac{n}{n+1}-\frac{n+1}{n}\big\}\,;
+ &
+ \letra \big\{\sqrt{n+1}-\sqrt{n}\big\}\,;
+ &
+ \multicolumn{2}{l}{\letra
+\big\{\frac{1}{n^2}+\frac{2}{n^2}+\dots+\frac{n}{n^2}\big\}\,.}
+\end{array}
+$$
+\normalsize
+\end{ejer}
+\noindent\textbf{Atención: } la sucesión $\frac{3^n+(-2)^n}{3^{n+1}+(-2)^{n+1}}$
+tiene
+límite $\frac13$. El siguiente código
+\begin{lstlisting}[numbers=none]
+var('m')
+l(m)=3^m+(-2)^m
+ll=l(m)/l(m+1)
+ll.limit(m=oo)
+\end{lstlisting}
+devuelve, incorrectamente, \lstinline[basicstyle=\color{NavyBlue}]|0|, %
+pero es f\'acil ayudar al int\'erprete:
+\begin{lstlisting}[numbers=none]
+var('m')
+l(m)=3^m+(-2.0)^m
+ll=l(m)/l(m+1)
+ll.limit(m=oo)
+\end{lstlisting}
+\begin{Output}
+	1/3
+\end{Output}
+
+?`Cu\'al puede ser la explicaci\'on?
+
+\begin{ejer}
+Calcular, si existen, los límites de las sucesiones que tienen como término
+general
+$$
+a_n=\Big(\frac{n^2+1}{n^2}\Big)^{2n^2-3}\,,\quad
+b_n=\Big(\frac{n^2-1}{n^2}\Big)^{2n^2+3}\,,\quad
+c_n=a_n+\frac1{b_n}\,.
+$$
+\end{ejer}
+
+\subsection{Un ejercicio de c\'alculo}
+
+Consideramos el polinomio en la variable $x$ y dependiente de dos par\'ametros
+reales, $a$ y $b$, dado por 
+\[p(x,a,b):=x^4-6x^2+ax+b,\]
+\noindent y queremos estudiar el n\'umero de ra\'{\i}ces reales que tiene
+dependiendo del valor de los par\'ametros.
+
+\begin{enumerate}
+ \item Es un teorema importante, llamado en ocasiones el {\itshape teorema
+fundamental del \'algebra}, el hecho cierto de que todo polinomio de grado $n$
+con coeficientes complejos tiene exactamente $n$ ra\'{\i}ces complejas si se
+cuentan con sus multiplicidades.
+\item Si un polinomio tiene coeficientes reales entonces tiene un n\'umero par
+de ra\'{\i}ces complejas no reales, ya que si un complejo no real es
+ra\'{\i}z su complejo conjugado tambi\'en lo es. 
+\item En consecuencia, el n\'umero de ra\'{\i}ces reales de un polinomio de
+grado cuatro con coeficientes reales es siempre par.
+
+\item Supongamos para empezar que $a=0$, y podemos empezar dibujando la
+gr\'afica para diversos valores de $b$. Si no estaba claro desde el principio,
+vemos que todas las gr\'aficas son iguales, la joroba doble de un dromedario
+invertida, y que al crecer $b$ la gr\'afica ``sube'' respecto a los ejes.
+
+Entonces, para valores suficientemente grandes de $b$ no habr\'a ninguna
+ra\'{\i}z real y para valores muy negativos de $b$ habr\'a dos ra\'{\i}ces
+reales. Para valores intermedios deber\'{\i}a haber cuatro ra\'ices reales ya
+que el eje $OX$ puede cortar a las dos jorobas. 
+ 
+ \item Cuando $a=0$ podemos tratar el problema usando que podemos escribir
+ \[p(x,0,b)=(x^2-3)^2-9+b,\]
+ \noindent y vemos inmediatamente que si $9-b<0$ no puede haber ra\'{\i}ces
+reales y las cuatro ra\'{\i}ces son n\'umeros complejos no reales. Los casos
+restantes ($b\le 9$) se pueden tratar de forma similar, resolviendo
+expl\'{\i}citamente la ecuaci\'on $p(x,0,b)=0$.
+
+\item Supongamos ahora que $a\ne 0$ y vamos a tratar el caso particular en que
+$a=8$. Si observamos cuidadosamente la gr\'afica para $a=8$ y $b=0$ vemos que
+una de las jorobas ha desaparecido y la parte de abajo de la gr\'afica se ha
+aplanado. ?`Por qu\'e? Cuando estamos cerca del origen  los dos primeros
+sumandos de  $p(x,a,b)$ toman valores muy peque\~nos, si $x$ es peque\~no $x^4$
+es mucho m\'as peque\~no, y el t\'ermino $ax+b$ domina. 
+
+\item Para ver el motivo de la desaparici\'on de una de las jorobas debemos
+calcular los m\'aximos y m\'{\i}nimos de la funci\'on, es decir, debemos derivar
+e igualar a cero. Vemos entonces que lo que tiene de especial el valor $a=8$ es
+que para ese valor y $x=1$ se anulan la primera y la segunda derivadas. En la
+gr\'afica eso se ve como una zona casi horizontal cerca de $x=1$.
+
+\item En la gr\'afica tambi\'en parece verse que la funci\'on $p(x,8,0)$ es
+creciente para $x\ge 0$. ?`Es esto verdad?
+ 
+ \item Debemos pensar que la desaparici\'on de una de las jorobas implica que
+ahora s\'olo puede haber $2$ ra\'{\i}ces reales o bien ninguna. ?`C\'omo se
+puede probar esta afirmaci\'on y para qu\'e valores de $b$ se obtendr\'{\i}a 
+cada uno de los casos?
+
+\item ?`Puedes decir algo,  acerca del n\'umero de ra\'{\i}ces reales en
+funci\'on de $a$ y $b$, si $a\ne
+0$ y $a\ne \pm 8$?
+ 
+\end{enumerate}
+
+
+Puedes ver una soluci\'on en la hoja 
+\href{http://localhost:8888/notebooks/CAVAN/24-CAVAN-raices-reales.ipynb}{\tt 24-CAVAN-raices-reales.ipynb},
+y de la parte m\'as matem\'atica en este
+\href{http://150.244.21.37/PDFs/CAVAN/un_ejercicio_calculo.pdf}{archivo.}
+
+
+\subsection{Algunos ejercicios m\'as}
+
+\begin{ejer}
+Comenzamos con el semic\'{\i}rculo de radio uno y centro el
+origen. Elegimos un \'angulo $0<\theta<\pi/2$ y representamos las rectas
+$x=sen(\theta)$ y $x=-cos(\theta)$  de forma que junto con el eje $y=0$ y la
+circunferencia encierran una regi\'on que llamamos $A$.
+
+Llamamos $B$ al complemento de $A$ en el semic\'{\i}rculo. {\sc Determinar} el
+valor m\'aximo, cuando $\theta$ var\'{\i}a, 
+ del cociente $F(\theta):=Area(A)/Area(B)$.
+ 
+\end{ejer}
+
+\begin{ejer}
+ Consideramos la par\'abola de ecuaci\'on $y=x^2$ y una
+circunferencia de centro $(0,a)$ y tal que es tangente\footnote{Dos curvas son
+tangentes en un punto en que se cortan si tienen la misma recta tangente en ese
+punto.} a la par\'abola en dos puntos distintos. {\sc Determinar} los valores de
+$a$ para los que tal circunferencia existe.
+\end{ejer}
+
+
+\begin{ejer}
+Determinar el valor de $m$ que hace que la ecuaci\'on 
+\[x^4-(3m+2)x^2+m^2=0\]
+\noindent tenga cuatro ra\'{\i}ces reales en progresi\'on aritm\'etica (i.e. las ra\'{\i}ces ser\'{\i}an $x_0,x_0+a,x_0+2a,x_0+3a$).	
+\end{ejer}
+
+\begin{ejer}
+	Sea $M$ un real muy grande. Demuestra que la ecuaci\'on $Mx=e^x$ tiene una soluci\'on, digamos $w$,  \'unica con $w>1$. Estima el valor de $w$, usando como gu\'{\i}a representaciones gr\'aficas de $f(x):=e^x-Mx$, despu\'es de darle a $M$ un valor suficientemente grande. ?`Podr\'{\i}as estimar el valor de $M$ a partir del que se obtiene la soluci\'on $w$ \'unica??`Qu\'e ocurre para valores de $M$ m\'as peque\~nos?
+ \end{ejer}
+
+\begin{ejer} Determina el valor m\'{\i}nimo de la constante $a>1$ tal que siempre que $x\le y$  se verifica 
+	\[\frac{a+sen(x)}{a+sen(y)}\le e^{y-x}.\]
+	
+\end{ejer}
+\begin{ejer}
+	?`Es mayor $e^{\pi}$ que $\pi^{e}$? A una pregunta as\'{\i} podr\'{\i}amos responder calculando los dos n\'umeros reales, con cierta aproximaci\'on, y resulta que ciertamente es mayor $e^{\pi}$. Sin embargo, se trata de demostrarlo en la forma m\'as convincente posible,  sin usar el  valor aproximado. Dicho de otra manera, nuestro argumento nos debe conducir a una demostraci\'on puramente matem\'atica, para la que podemos usar como apoyo el ordenador (gr\'aficas, derivadas, etc.).
+	
+	\end{ejer}
+
+Puedes ver algo de ayuda para los primeros dos  ejercicios en este
+\href{http://150.244.21.37/PDFs/CAVAN/dos_ejercicios_calculo.pdf}{archivo.} Adem\'as, en la hoja
+\href{http://localhost:8888/notebooks/CAVAN/27-CAVAN-tangencias.ipynb}{\tt 27-CAVAN-tangencias.ipynb}
+puedes ver una animaci\'on de la soluci\'on del segundo.
+
+
+\subsection{Ejercicios de Álgebra Lineal}\label{interp1}
+
+Antes de plantear una lista de ejercicios  resolvemos, a modo de
+ejemplo, un problema de interpolación. Si bien la solución propuesta dista de
+ser la más eficiente,
+nos sirve como motivación a la manera de hacer que se pretende en este curso. En
+una hoja
+de Sage, tanto el enunciado como los comentarios en la solución, deberían
+aparecer en
+cuadros de texto.
+
+\
+
+\begin{ejer}\label{coef-indet} {\upshape Método de coeficientes indeterminados}.
+ Encontrar el polinomio de menor grado cuya gráfica pasa por los puntos
+ $$
+ (-2, 26), (-1, 4), (1, 8), (2, -2)\,.
+ $$ 
+\end{ejer}
+
+
+\begin{sol}
+ {Puesto que se tienen $4$ puntos, se considera un polinomio general, de grado
+$\le 3$: $P(x)=a_0+a_1x+a_2x^2+a_3x^3$.
+
+Con las coordenadas de los $4$ puntos dados, sustituyendo las abcisas e
+igualando a las respectivas ordenadas, se obtiene un sistema lineal de $4$
+ecuaciones con $4$ incógnitas (los coeficientes, $a_0,a_1,a_2,a_3$, del
+polinomio): 
+\begin{align*}
+1*a_0-2*a_1+4*a_2-8*a_3&=26&&\text{ punto }(-2,26)\\
+1*a_0-1*a_1+1*a_2-1*a_3&=4&&\text{ punto }(-1,4)\\
+1*a_0+1*a_1+1*a_2+1*a_3&=8&&\text{ punto }(1,8)\\
+1*a_0+2*a_1+4*a_2+8*a_3&=-2&&\text{ punto }(2,-2)
+\end{align*}
+El hecho de que
+los $4$ puntos se encuentren en distintas verticales, asegura que el sistema es
+compatible determinado. Su matriz  es 
+\begin{equation}\notag
+ \begin{pmatrix}
+  1&-2&4&-8\\
+  1&-1&1&-1\\
+  1&1&1&1\\
+  1&2&4&8
+  \end{pmatrix}
+\end{equation}
+\noindent con inversa 
+\[
+\left(\begin{array}{rrrr}
+-\frac{1}{6} & \frac{2}{3} & \frac{2}{3} & -\frac{1}{6} \\
+\frac{1}{12} & -\frac{2}{3} & \frac{2}{3} & -\frac{1}{12} \\
+\frac{1}{6} & -\frac{1}{6} & -\frac{1}{6} & \frac{1}{6} \\
+-\frac{1}{12} & \frac{1}{6} & -\frac{1}{6} & \frac{1}{12}
+\end{array}\right)
+\]
+
+\noindent y la soluci\'on del sistema, obtenida multiplicando la matriz inversa
+por el vector columna de t\'erminos independientes,  es el vector $(4,5,2,-3)$,
+es decir, el polinomio $4+5x+2x^2-3x^3.$}
+\end{sol}
+
+\par
+\medskip
+\par
+
+\begin{comment}
+En la hoja de {\sage}
+\href{http://sage.mat.uam.es:8888/home/pub/24/}{\tt 25-CAVAN-AL-hoja3.sws}
+puedes ver una soluci\'on de algunos ejercicios de la 
+ \href{http://150.244.21.37/PDFs/CAVAN/AL1213-hoja3.pdf}{Hoja 3} del curso de \'Algebra Lineal. 
+
+ De forma similar deb\'eis intentar resolver otros ejercicios de las hojas, y
+tambi\'en los que se enuncian a continuaci\'on:
+\end{comment}
+
+\begin{ejer}\label{ej-SumaCubos}
+La suma de los $n$ primeros enteros positivos, $1+2+\dots+n$, es un polinomio en
+$n$
+de grado
+$2$: $\frac12n^2+\frac12n$. La suma de sus cuadrados, $1^2+2^2+\dots+n^2$, es un
+polinomio de grado $3$. En general, fijada la potencia, $k$, la suma
+$1^k+2^k+3^k+\dots+n^k$ es un polinomio en $n$ de grado $k+1$ ({\sc ?`por
+qu\'e?}).
+
+Encontrar, usando interpolaci\'on como en el ejercicio anterior,   una fórmula
+para la suma de los cubos de los primeros $n$ enteros
+positivos.\footnote{En el ejercicio \ref{ej-DemoSumaCubos}, se pide
+una demostración, para este caso, de la afirmaci\'on de que estas sumas son
+polinomios en
+el n\'umero de sumandos.}
+
+Podemos comprobar el resultado obtenido mediante las instrucciones
+\begin{center}
+\lstinline|var('m k');sum(k^3,k,1,m)| 
+\end{center}
+que devuelve directamente el polinomio
+buscado, en $m$.
+\end{ejer}
+
+\begin{comment}
+\begin{ejer}
+Escribir, en las bases estándar, la matriz de la aplicación lineal 
+$F:\mathbb{Q}^3\longrightarrow \mathbb{Q}^2$ que tiene como n\'ucleo el plano
+$\{x+y-2z=0\}$ y
+tal que
+$F(1,-1,1)=(-1,1)$.
+\end{ejer}
+
+\pagebreak[3]
+
+\begin{ejer}
+ Consideremos en $\mathbb{Q}^4$ los  subespacios vectoriales
+\[W_1=<(2,1,1,0),\,(1,0,2,-1)>\] y   $W_2$ soluci\'on del sistema de ecuaciones
+\[
+\begin{aligned}
+2x-z&=0\\
+x+y-z-t&=0.
+\end{aligned}
+\]
+
+
+
+Se pide calcular:
+\begin{itemize}
+\item las ecuaciones de $W_1$;
+\item una base de $W_2$;
+\item las dimensiones de $W_1\cap W_2$ y de $W_1+W_2$.
+\end{itemize}
+\emph{Sugerencia: } averiguar, para una matriz dada, el uso del m\'etodo
+\lstinline|.right_kernel()|.
+\end{ejer}
+\end{comment}
+
+ 
+%%\subsection{Un ejercicio m\'as de \'Algebra Lineal}
+\begin{ejer}
+ Dada una matriz $\mathbf{A}$ de tama\~no $m\times n$ con entradas racionales, 
+podemos definir una
+funci\'on $\Phi_{\mathbf{A}}$, entre espacios vectoriales de matrices,   
+mediante 
+  \begin{equation}\notag
+   \begin{matrix}
+    \mathcal{M}_{n\times
+k}&\stackrel{\Phi_{\mathbf{A}}}{\longrightarrow}&\mathcal{M}_{m\times k}\\
+    \mathbf{B}&\mapsto&\mathbf{A}\cdot \mathbf{B}, 
+   \end{matrix}
+\end{equation}
+ \noindent con $\mathcal{M}_{n\times k}$ ($\mathcal{M}_{m\times k}$) los
+espacios de matrices con $n$ filas y $k$ columnas ($m$ filas y $k$ columnas).
+ 
+ Cuando $k=1$, la aplicaci\'on lineal $\Phi_{\mathbf{A}}$ es bien conocida:  se
+trata de la obtenida al multiplicar vectores columna de $n$ filas, colocados a
+la derecha de $\mathbf{A}$,  por la propia matriz, y nos referimos a ella como
+la {\bf aplicaci\'on lineal asociada} a la matriz $\mathbf{A}$. 
+ Sabemos que toda aplicaci\'on lineal $u:\mathbb{Q}^n\to \mathbb{Q}^m$ es la
+aplicaci\'on asociada a una matriz $\mathbf{U}$, a la que llamamos {\sc la
+matriz} de la aplicaci\'on lineal.
+ 
+ \begin{enumerate}
+ 
+  \item Demostrar (completamente) que $\Phi_{\mathbf{A}}$ es, de hecho,  una
+aplicaci\'on lineal.
+ 
+ \item Supongamos que la matriz $\mathbf{A}$ es invertible, y, por tanto,
+cuadrada. ?`Ser\'a cierto que $\Phi_{\mathbf{A}}$ es necesariamente biyectiva
+(es decir, invertible)? 
+ 
+\item Supongamos que la aplicaci\'on lineal que corresponde a $\mathbf{A}$ {\sc
+no} es inyectiva. ?`Es cierto que $\Phi_{\mathbf{A}}$ no puede ser inyectiva?
+
+\item Supongamos que $m<n$, ?`es cierto que si la aplicaci\'on lineal que
+corresponde a $\mathbf{A}$ es suprayectiva (es decir, de rango $m$) tambi\'en
+ser\'a suprayectiva la aplicaci\'on lineal $\Phi_{\mathbf{A}}$??`Es cierta la
+afirmaci\'on rec\'{\i}proca?
+ 
+ \item Supongamos ahora que $\mathbf{A}$ es $2\times 2$. En este caso, la
+aplicaci\'on lineal $\Phi_{\mathbf{A}}$ va del espacio
+de matrices $2\times n$ en s\'{\i} mismo.
+ 
+ \begin{enumerate}
+ \item \label{phi-matriz}?`Podr\'{\i}as calcular la matriz de
+$\Phi_{\mathbf{A}}$ en las bases
+est\'andar de los espacios de matrices (las matrices de esas bases tienen todas
+sus entradas $0$ menos una que vale $1$)?
+
+\item Determina el n\'ucleo de $\Phi_{\mathbf{A}}$, y discute los casos
+$rango(\mathbf{A})=0,1,2.$ 
+
+ \item Calcula una base del n\'ucleo de $\Phi_{\mathbf{A}}$ en cada uno de los
+tres casos.
+
+\end{enumerate}
+ \end{enumerate}
+\end{ejer}
+
+\begin{comment}
+En la hoja de {\sage} 
+\href{http://sage.mat.uam.es:8888/home/pub/25/}{\tt 26-CAVAN-phisubA.sws}
+puedes ver la soluci\'on de un caso particular del apartado \ref{phi-matriz}.
+C\'alculos parecidos,  usando {\sage},  te pueden ayudar bastante a resolver el
+ejercicio completo.
+\end{comment}

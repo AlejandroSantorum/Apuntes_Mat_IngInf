@@ -1,0 +1,678 @@
+Sage es un sistema de álgebra computacional (CAS, del inglés \emph{computer
+algebra system}).
+El programa es libre, lo que nos permite copiarlo, modificarlo y redistribuirlo
+libremente. Sage consta de un buen número de librerías para ejecutar cálculos
+matemáticos y para generar gráficas. Para llamar a estas libre\-rías se usa el
+lenguaje de programación \texttt{Python}.
+
+{\sage} está desarrollado por el proyecto de software libre
+\href{http://www.sagemath.org/}{Sagemath}. Se encuentra disponible para
+GNU/Linux y MacOS, y para Windows bajo máquina virtual ({\itshape virtualbox})\footnote{Recientemente se ha presentado una versi\'on de {\sage} para Windows que no requiere la m\'aquina virtual, es decir, puede instalarse directamente. Pueden verse los detalles en \href{https://github.com/sagemath/sage-windows} {esta p\'agina.}}. Reúne y compatibiliza
+bajo una única interfaz y un único entorno, distintos sistemas algebraicos de
+software libre. %%Permite también integrar otras herramientas de {\itshape
+%%software de pago}, como Magma, Matlab,  Mathematica o Maple.%%
+
+Python es un lenguaje de propósito general de muy alto nivel, que permite
+representar conceptos abstractos de forma
+natural y, en general, hacer más con menos código. Buena parte de las librerías
+que componen Sage se pueden usar
+directamente desde Python, sin necesidad de acarrear todo el entorno de Sage.
+
+
+Existen varias formas de interactuar con Sage: desde la consola, desde ciertos
+programas como TeXmacs o Cantor, y desde el \emph{navegador de internet}. Para
+este último uso, Sage crea un \emph{servidor web} que escucha las peticiones del
+cliente (un navegador), realiza los cálculos que le pide el cliente, y le
+devuelve los resultados. En esta asignatura sólo usaremos el interfaz web (\emph{notebook}). 
+
+
+
+\section{Iniciar sesión}\label{ini-ses}
+
+\begin{enumerate}
+\item {\sc En una máquina local} (no se necesita conexión a internet)
+ \begin{enumerate}
+  \item \label{local}de nuestro laboratorio:  abrir una terminal (la encontramos en el men\'u {\tt Aplicaciones/Herramientas del Sistema/Terminal de MATE}) y
+ejecutar (escribir el texto indicado y pulsar {\tt Intro})
+\begin{lstlisting}[basicstyle=\color{black},
+		backgroundcolor=\color{white},
+		numbers=none,linewidth=.25\textwidth]
+  arrancar-jupyter.sh
+\end{lstlisting}
+
+
+
+
+Lo \'unico que hace este {\tt script} es cambiar de directorio a 
+\begin{center}
+	{\tt ~/Desktop/SAGE-noteb/IPYNB/}
+\end{center} 
+\noindent y ejecutar {\tt sage -notebook=jupyter --ip=127.0.0.1 --port=8888} que arranca {\sage} con la interfaz de {\tt Jupyter}. 
+
+
+
+
+
+
+
+Si en la terminal ejecutamos  {\tt sage -notebook=sagenb} acceder\'{\i}amos al {\tt no\-te\-book} antiguo de {\sage}. En este curso usaremos siempre el nuevo, es decir {\tt Jupyter}.
+
+\item exterior a nuestro laboratorio: generalmente se ha de instalar previamente
+el software.
+En el sitio
+de \href{http://www.sagemath.org/download.html}{Sagemath}\, se encontrarán las
+instrucciones precisas para cada sistema operativo\footnote{En este momento  todav\'{\i}a no aparecen las instrucciones para la instalaci\'on en Windows sin m\'aquina virtual mencionada en la nota anterior.}. Una vez instalado, el inicio
+de sesión será similar al indicado en el punto anterior.
+
+\begin{comment} 
+ La  manera de instalar {\sage} en una m\'aquina cuyo sistema operativo sea
+MSWindows consiste en instalar una m\'aquina virtual que ejecute Linux y
+contenga una versi\'on de {\sage}. %% Hemos preparado una tal m\'aquina virtual, que puedes descargar de uno de nuestros servidores  siguiendo las instrucciones que encontrar\'as en \href{run:matuam_sage_ova.pdf}{este documento.} %%%
+ 
+ Puedes ver instrucciones detalladas de instalaci\'on, en  MSWindows, 
+en  \href{http://www.sagemath.org/download-windows.html}{este enlace}.
+\end{comment}
+ 
+ \end{enumerate}
+ 
+ En este caso el programa se ejecuta en la  m\'aquina en la
+que estamos sentados ({\itshape m\'aquina local=localhost}) y el navegador web
+%({\itshape Iceweasel})%
+ se conecta a la m\'aquina local mediante la direcci\'on 
+
+\mbox{}\hskip.1\textwidth\url{http://localhost:8888/}.
+
+El n\'umero del puerto, por defecto {\tt 8888}, se puede utilizar si no hay otro proceso en la m\'aquina que lo haya reservado. Si el puerto est\'a ocupado {\tt Jupyter} utiliza otro y los enlaces a hojas (Ap\'endice \ref{uso}-\ref{enlaces-s}) de {\sage} no funcionar\'an. Si se trata, como ocurrir\'a casi siempre, de que ya hemos arrancado {\tt Jupyter} en   nuestra sesi\'on, podemos ejecutar en una terminal {\tt killall python} para poder arrancar {\tt Jupyter} en el puerto {\tt 8888}.
+
+ \item {\sc En el servidor del Departamento de Matem\'aticas} (se necesita conexión a internet). Al teclear, en un
+ navegador, la dirección 
+ 
+ \mbox{}\hskip.1\textwidth\url{https://jupyter.mat.uam.es/}, 
+ 
+ se nos muestra la siguiente ventana
+ 
+\ilustra{login-jupyter}
+
+El usuario es del tipo {\tt nombre-apellido-jup}, nombre y apellido como en vuestra direcci\'on de correo de la UAM,  y contrase\~na que debe ser la misma que se os da para las cuentas en el Laboratorio. 
+
+Cuando conectamos el navegador a una dirección remota, es decir, no a {\tt
+localhost}, el c\'odigo de {\sage} se ejecuta en la m\'aquina remota y la
+máquina en la que estemos trabajando \'unicamente ejecutar\'a el navegador. Si
+el servidor tiene que atender peticiones de c\'alculos complicados de muchos
+usuarios simult\'aneamente puede ralentizarse su funcionamiento, o incluso puede colgarse. 
+En consecuencia, para trabajar durante las clases deber\'{\i}a usarse la m\'aquina local, como explicado en \ref{ini-ses}-\ref{local},  en lugar del  servidor del Departamento.
+
+\end{enumerate}
+
+
+
+
+\section{El \emph{Notebook} de Jupyter}\label{noteb}
+
+
+Una vez que conectamos, a trav\'es del navegador, con una sesi\'on de {\tt Jupyter}, accedemos a una p\'agina  en la que podemos ver el que va a ser nuestro {\itshape espacio de trabajo} b\'asico.
+
+\subsection{Sistema de archivos}\label{files}
+
+
+
+\ilustra{noteb-1}
+
+\begin{enumerate}
+	\item \label{files1}{\color{red}Si estamos trabajando en el Laboratorio}, y por tanto hemos ejecutado {\tt arrancar-jupyter.sh} en una terminal para iniciar la sesi\'on, las carpetas y archivos que vemos son los que hay en el directorio {$\sim$/Desktop/SAGE-noteb/} (el s\'{\i}mbolo $\sim$ representa el directorio {\tt HOME} del usuario), que es el que contiene  los archivos que os damos para el curso (ver Ap\'endice \ref{uso}-\ref{carpeta}).
+	
+	
+	%Entonces, conviene arrancar desde un directorio que contenga todos los archivos con los que trabajamos habitualmente, por ejemplo {\tt $\sim$/Desktop/SAGE-noteb/}, y para eso, antes de arrancar {\tt jupyter}, ejecutamos en la terminal {\tt cd $\sim$/Desktop/SAGE-noteb/} (el s\'{\i}mbolo $\sim$ representa el directorio {\tt HOME} del usuario). %
+	
+	La terminal desde la que arrancamos  queda abierta y en ella van apareciendo mensajes que se refieren a la ejecuci\'on de {\tt Jupyter}. Esta terminal se puede mandar al panel, pinchando en el peque\~no gui\'on que hay en la parte de arriba a la derecha de la ventana, pero debe permanecer viva. 
+	
+	Al terminar de trabajar, es {\sc importante} cerrar bien {\tt jupyter} pulsando {\tt control-c} con la ventana de la terminal activa. Es decir, la buscamos en el panel, pinchamos en ella para activarla y entonces pulsamos las teclas {\tt control} y {\tt c} al mismo tiempo dos veces seguidas. 
+	
+	\item {\color{red} Si, en cambio, hemos iniciado sesi\'on en el servidor del Departamento}, las carpetas y archivos que vemos son las que ten\'{\i}amos en el servidor, tal como quedaron en la sesi\'on anterior.  
+	
+	Cuando terminamos de trabajar, pinchamos en la pesta\~na {\tt Running} para ver las hojas que todav\'{\i}a est\'an activas, aparecen en color verde, y las paramos todas marc\'andolas en la casilla de la izquierda y pulsando {\tt Shutdown}. Finalmente, pinchamos en la pesta\~na {\tt Files} y en la l\'{\i}nea superior de la ventana pinchamos en {\tt Logout}.
+	
+	Aqu\'{\i} tambi\'en es {\sc importante} cerrar,  como se acaba de indicar, los procesos en el servidor que nos han permitido el acceso. 
+\label{cerrar}	
+\end{enumerate}
+El resto de las indicaciones se aplican a los dos casos: Laboratorio y servidor del Departamento.
+
+
+
+\begin{enumerate}
+	
+	\item Cuando pinchamos en el cuadrado a la izquierda de un nombre de archivo se activan cuatro nuevas posibilidades: {\itshape Duplicate, Rename, Move, Download} que no necesitan grandes explicaciones. {\itshape Move} permite mover el archivo marcado a cualquiera de las carpetas que existen en nuestro directorio. 
+	
+	En el men\'u {\itshape New} se puede crear una carpeta nueva dentro de la que est\'a activa en ese momento, y podemos navegar en el sistema de archivos pinchando en los nombres de las carpetas.
+	
+	\item Al seleccionar un archivo o carpeta tambi\'en aparece un icono de papelera de color rojo. Permite destruirlos y, aunque pide confirmaci\'on, es {\sc bastante peligroso} ya que puede haber archivos o carpetas seleccionados pero que no vemos en la ventana del navegador. Debemos usarlo  poco y asegurarnos de que \'unicamente estamos destruyendo lo que realmente queremos. 
+	
+	Una opci\'on razonable es crear una carpeta de nombre {\sc basura} en la p\'agina de inicio y mover los archivos a ella en lugar de destruirlos. Al cabo de un tiempo deberemos limpiar esta carpeta de archivos que realmente no son necesarios. 
+	
+	\item A la derecha de la ventana, encima de la lista de archivos y carpetas, tambi\'en hay un bot\'on {\itshape Upload} para subir archivos desde el sistema de archivos del ordenador en el que estamos trabajando al sistema de archivos del servidor del Departamento. 
+	
+	En el caso de que estemos trabajando en {\itshape local}, este bot\'on {\sc no es necesario} ya que podemos ver, desde {\tt Jupyter},  todos los archivos que hay por debajo de la carpeta en la que hemos arrancado (\ref{files}-\ref{files1}).   
+	
+	\item Cuando marcamos dos o m\'as archivos desaparece la posibilidad de descargarlos {\itshape clicando} una s\'ola vez. Hay que descargarlos uno a uno, o bien comprimirlos en  un s\'olo archivo antes de  descargarlo. De la misma forma, se puede comprimir una carpeta con archivos, que queremos subir al servidor,  para poder subirlos todos de golpe. Se explica la forma m\'as adelante (\ref{inter}).   
+\item Debe estar claro que conviene usar  estas funciones de la interfaz de {\tt Jupyter} para mantener nuestro {\sc espacio de trabajo ordenado}. La forma concreta de hacerlo  depender\'a de cada persona. 
+	
+\end{enumerate}
+
+\subsection{Hojas de trabajo}
+
+
+\begin{enumerate}
+\item Creamos una hoja de trabajo vac\'{\i}a en el men\'u {\itshape New} eligiendo el tipo de hoja en el deplegable. En el Laboratorio los \'unicos tipos disponibles ser\'an {\tt Python} y {\tt Sagemath}, pero en el servidor del Departamento hay algunos m\'as: {\tt R} para Estad\'{\i}stica, {\tt Matlab}, {\tt Julia} y {\tt Octave} para C\'alculo Num\'erico, {\tt C++11} para programar, de forma interactiva, en {\tt C++}.
+
+\item Cada uno de estos tipos de hoja est\'a asociado a un {\tt n\'ucleo} ({\tt kernel}) que ejecuta los c\'alculos que le indicamos. En ocasiones hay que interrumpir la ejecuci\'on o reiniciar el {\tt n\'ucleo}. Cuando se reinicia se pierden todas las funciones y variables que ten\'{\i}amos.
+
+Todo esto se hace bajo el men\'u desplegable {\tt Kernel}. La \'ultima entrada del men\'u sirve para cambiar de n\'ucleo, y que usaremos (raramente) cuando una hoja de {\sage} sea entendida por el sistema como si fuera de Python.  
+
+\item Las celdas que vemos en la hoja son, por defecto, {\bf celdas de c\'alculo}. Es decir, en ellas escribimos el c\'odigo que queremos ejecutar. Encima de la zona de celdas hay un men\'u con peque\~nos iconos, y al pasar el cursor por encima de ellos se autoexplican. En particular, el triangulito con el segmento vertical en un v\'ertice sirve para ejecutar la celda activa y el cuadrado para  parar la ejecuci\'on. La celda activa tiene su borde de color verde. 
+
+Tambi\'en es posible ejecutar la celda activa pulsando {\tt control+Intro} (las dos teclas al mismo tiempo).
+
+
+\item En ocasiones es necesario reiniciar totalmente una hoja que se ha colgado. Se puede utilizar el \'ultimo, de izquierda a derecha, de los iconos mencionados en el punto anterior,  que muestra una flecha circular. Al hacer esto se borran de la memoria   todos los c\'alculos anteriores y hay que volver a ejecutar las celdas que nos convenga.  
+
+\item En el submen\'u {\tt File/Download as} podemos elegir {\tt PDF via Latex (.pdf)} para convertir la hoja a formato {\tt PDF}, por ejemplo para imprimirla bien formateada. Las l\'{\i}neas de c\'odigo que son demasiado largas y salen de la p\'agina, en el {\tt PDF},  se pueden cortar usando el car\'acter \verb='\'= para terminarlas, es decir, varias l\'{\i}neas consecutivas terminadas cada una, menos la \'ultima, en \verb='\'= se interpretan como una \'unica l\'{\i}nea.   
+
+
+\item En las celdas de c\'alculo, en hojas {\tt Sagemath},  hay un sistema para completar comandos pulsando el tabulador, y un sistema completo de ayuda que se obtiene completando el nombre de un comando con un interrogante de cierre (?) y ejecutando la celda. 
+
+%m'etodos*****%
+
+
+\item Convertimos una {\bf celda} de c\'alculo en una de {\bf texto} en el submen\'u {\itshape Cell/Cell Type}, eligiendo como tipo {\itshape Markdown}.
+
+En estas celdas se puede escribir c\'odigo {\LaTeX}(ver Cap\'{\i}tulo \ref{intro}-Ap\'endice \ref{latex}) entre d\'olares, para las f\'ormulas matem\'aticas, y usar el lenguaje {\tt markdown} para formatear el texto normal: secciones, subsecciones, listas, etc.
+Las celdas de texto tambi\'en hay que ejecutarlas, en la misma forma que las de c\'alculo, para ver el resultado. 
+
+Puedes ver un resumen  del uso de {\itshape Markdown} en 
+\href{http://localhost:8888/notebooks/INTRO/markdown.ipynb}{esta hoja}\footnote{El enlace funciona si se ha arrancado {\tt Jupyter} como se indica en  \ref{ini-ses}-\ref{local}.}.
+
+
+\item Es f\'acil convertir las hojas de trabajo antiguas, con extensi\'on {\tt .sws} a hojas nuevas (hojas de {\tt Jupyter}) con extensi\'on {\tt .ipynb}. Las instrucciones y programas necesarios est\'an en la carpeta {\tt SAGE-noteb/bin/sws2ipynb/}  en tu escritorio. 
+
+
+
+\item Hay otras opciones en la interfaz de {\tt Jupyter} pero, aunque quiz\'a \'utiles,  no es muy probable que las usemos.
+
+\end{enumerate}
+
+
+\subsection{Interacci\'on con el sistema operativo}\label{inter}
+
+\begin{enumerate}
+\item Una hoja de trabajo de tipo {\tt Python} permite interaccionar con el sistema operativo de la m\'aquina. En el caso de que estemos trabajando en {\tt local} no es muy \'util porque podemos hacer lo mismo en una terminal, pero en el caso de que estemos trabajando en {\tt remoto} s\'{\i} lo es. 
+
+\item En una celda de c\'alculo, de una hoja de {\tt Python}, se pueden escribir comandos del sistema operativo sin m\'as que comenzar la l\'{\i}nea con el s\'{\i}mbolo de admiraci\'on (!). El comportamiento que se obtiene es el mismo que en una terminal, y depende de los permisos de ejecuci\'on que tenga el usuario.
+
+Puedes ver  ejemplos de esta interacci\'on, por jemplo comprimir y descomprimir archivos,  en 
+\href{http://localhost:8888/notebooks/INTRO/Interaccion-con-SO.ipynb}{esta otra hoja}.
+
+\item Esta posibilidad es intr\'{\i}nsecamente peligrosa ya que cualquier peque\~no error en la configuraci\'on del sistema podr\'{\i}a permitir actividades no deseadas, como, por ejemplo, borrar el disco duro.
+
+En el caso en que encontr\'eis un error de este tipo, en las m\'aquinas del Laboratorio o en el servidor,  rogamos que lo comuniqu\'eis cuanto antes a la direcci\'on de correo
+\begin{center}
+\verb=informatica.matematicas@uam.es=. 
+\end{center}
+\end{enumerate}
+
+
+
+\section{Notación}
+
+En estas notas, representaremos los cuadros de código por una
+\begin{center}
+\colorbox{LightYellow}{caja con fondo de color}.
+\end{center}
+ En ocasiones aparecerán
+numeradas las líneas de código,  en la parte exterior de la caja. Esta
+numeración no es parte del código y aparece para facilitar la referencia a l\'{\i}neas individuales.
+Además, las palabras clave del lenguaje de programación aparecerán resaltadas, 
+para distinguirlas de las demás. Las respuestas del intérprete, 
+en caso de querer mostrarlas, aparecerán indentadas, y en otro color, bajo las
+cajas 
+con el código.
+
+Así, por ejemplo, trascribiremos la celda
+
+\ilustra{SumaImpares}
+\noindent con alguno de los siguientes aspectos
+\footnotesize
+\begin{itemize}
+ \item numerado
+\codigo[numbers=left,linerange=1-3]{SumaImpares}
+\item sin numerar
+\codigo[numbers=none,linerange=1-3]{SumaImpares}
+\item con la respuesta del intérprete
+\CodigoOut{SumaImpares}{1}{3}{4}
+\end{itemize}
+\normalsize
+Cuando copiamos c\'odigo desde este PDF a una celda de {\sage} podemos encontrarnos con errores de sintaxis debidos simplemente a que en la celda se entienden algunos caracteres,  que estaban en el PDF,  de forma incompatible con las reglas sint\'acticas de {\sage}. Un ejemplo t\'{\i}pico aparece con el gui\'on que usamos para la resta, que al pegarlo en la celda aparece como un gui\'on largo, que {\sage} no interpreta como el s\'{\i}mbolo de la resta. 
+
+\section{En resumen}
+Cuando trabajamos en {\tt local}  los recursos de la m\'aquina, {\tt RAM, cores, red, etc.},  son nuestros, pero ese no es el caso al trabajar con el servidor de c\'alculo del Departamento, ya que estamos compartiendo los recursos con el resto de los usuarios.
+\begin{enumerate}
+	\item El servidor dispone de $500\ GB$ para almacenar los archivos de trabajo de los usuarios. Aunque no se ha fijado, de momento,  un l\'{\i}mite de espacio por usuario esperamos que ning\'un usuario supere unos $2\ GB$ de espacio en disco.
+	
+	En el caso de las m\'aquinas del Laboratorio tambi\'en debe haber l\'{\i}mites, ya que todos los archivos de todos los usuarios se almacenan en un \'unico disco duro de $256\ GB$, lo que nos permite sentarnos en cualquier puesto y ver los archivos de nuestra cuenta. En este caso un l\'{\i}mite razonable puede ser de $1\ GB$. 
+	
+	\item En el servidor hay un l\'{\i}mite de $3\ GB$ de {\tt RAM} por usuario conectado. Es {\sc necesario} cerrar las hojas que no estemos usando, para trabajar basta con tener una hoja abierta y puntualmente abrir otra para copiar alg\'un c\'odigo, y no dejar procesos vivos en la m\'aquina, como se explica  en la p\'agina \pageref{cerrar}, cuando hemos dejado de trabajar.  
+	
+	\item En este momento todav\'{\i}a no sabemos cu\'antos usuarios simult\'aneos soporta, sin ralentizarse, el servidor. Entonces, no parece conveniente usar el servidor durante las clases ya que podr\'{\i}a colapsarse y hacernos perder tiempo. 
+	
+	\item Aunque se hace un {\itshape backup} cada noche del servidor de c\'alculo y de las cuentas del Laboratorio, no deber\'{\i}ais fiaros completamente de esto. Es conveniente mantener un {\itshape backup} personal en un l\'apiz de memoria.
+	
+	
+	
+\end{enumerate}
+
+
+
+\begin{appendices}
+\chapter{Uso de este documento}\label{uso}
+
+Hemos preparado estas notas  con la intenci\'on de que faciliten el
+mantenimiento organizado de toda la informaci\'on que genera el curso.
+Pueden cambiar un poco a lo largo del curso, ya que corregimos las erratas, y errores, que se detecten, y a\~nadiremos nuevas secciones o temas  si nos parece \'util.
+Por otra parte, tambi\'en pretendemos que sigan creciendo en cursos sucesivos
+aunque entonces ser\'a probablemente imposible cubrir todo el material y habr\'a
+que seleccionar. 
+
+\begin{enumerate}
+
+\item \label{carpeta}Encontrar\'as una carpeta \verb|SAGE-noteb| en el escritorio de tu cuenta
+en el Laboratorio. Esta carpeta contendr\'a  los materiales que os vayamos
+dando, y, por tanto, su contenido puede variar de una semana a
+otra. Se recomienda mantener  una copia actualizada de esta carpeta en un {\itshape pendrive}. 
+
+\item En cada examen encontrar\'as una copia de la carpeta \verb|SAGE-noteb|,
+tal como estaba en tu cuenta habitual justo antes del examen, en el escritorio
+de la cuenta en la que debes hacer el examen. Esto quiere decir que puedes
+colocar archivos que quieres ver durante el examen en ciertas subcarpetas, se
+concreta un poco m\'as adelante,  de la carpeta \verb|SAGE-noteb|.
+
+
+\item El documento b\'asico es este, \verb|laboratorio.pdf|, que tiene un
+mont\'on de
+enlaces a otras p\'aginas del documento,  a p\'aginas {\itshape web} y a otros
+documentos, lecturas opcionales, que est\'an situados en la carpeta \verb|PDFs|
+dentro de la que contiene todo el material. Se trata entonces de un documento
+\emph{navegable.}
+
+{\sc Recomendamos} abrirlo con el navegador {\itshape web}, en nuestro caso usamos {\tt chromium-browser} por defecto. Se abre escribiendo en la barra de direcciones del navegador
+\small
+\begin{center}
+	{\tt file:///alumnos/<curso>/<usuario>/Desktop/SAGE-noteb/laboratorio.pdf}
+\end{center}
+\normalsize
+\noindent con \verb|<curso>| el nombre que tiene en el Laboratorio ({\tt labodt,\ labot,\ }etc.) y \verb|<usuario>| el de vuestra cuenta en el Laboratorio.
+
+%%{\sc Recomendamos} abrirlo con el visor de PDFs {\tt evince} tambi\'en llamado
+%%{\itshape Visor de documentos}.
+
+
+\item {\sc Enlaces:} navegamos en el documento y fuera de \'el usando diversos tipos de enlaces:
+\begin{enumerate}
+\item Por ejemplo, este es un \href{http://150.244.21.37/PDFs/INTRO/ltxprimer-1.0.pdf}{enlace a
+un documento PDF} situado 
+en uno de nuestros servidores y  debe abrirse en el navegador que usamos por defecto, mientras que este otro es un 
+\href{http://www.sagemath.org/}{enlace a una p\'agina web} externa.
+
+
+
+\item Tambi\'en hay \hyperref[prologo]{enlaces a otras zonas de este mismo documento}. Debemos  recordar, aproximadamente, la p\'agina del documento en la que est\'abamos para poder volver c\'omodamente a ella. Puede ayudar recordar la zona de la barra de la derecha de la ventana (barra de {\itshape scroll}) en la que estaba la p\'agina de origen ya que {\itshape clickando} en esa zona volvemos a ella. 
+
+
+
+
+%%Podemos recuparar la p\'agina en la que est\'abamos usando el bot\'on {\itshape Back} (la flecha hacia la izquierda) en {\tt evince}.%%
+
+
+\item \label{enlaces-s} Por \'ultimo, hay \href{http://localhost:8888/notebooks/INTRO/Interaccion-con-SO.ipynb}{enlaces} que nos llevan directamente a hojas de trabajo de {\sage} que, como hemos visto se abren dentro del navegador (en nuestro caso
+\verb|Chromium|). Para que estos enlaces funcionen hay que arrancar {\sage} como se indica en \ref{ini-ses}-\ref{local}. Adem\'as conviene abrir esos enlaces en pesta\~nas nuevas del navegador {\itshape clickando} en el enlace con el bot\'on medio, es decir, con la rueda.  Alternativamente, se puede {\itshape clickar} en el enlace con el bot\'on derecho y seleccionar en el men\'u que aparece {\itshape ``Open link in new tab''}.
+
+
+\end{enumerate}
+
+
+
+
+\begin{comment}
+\end{enumerate}
+\item El programa {\itshape Visor de documentos} ({\tt evince}), como otros programas para leer PDFs, tiene varias funciones muy \'utiles:
+\begin{enumerate}
+	\item {\sc B\'usqueda:} permite buscar dentro del documento una palabra o grupo de palabras. Se muestra como el icono de una {\itshape lupa}.
+	\begin{comment}
+	\item {\sc Anotaci\'on:} es posible a\~nadir notas (parecidas a {\itshape Postit}s) al documento. Esta no es la manera correcta de personalizar el documento, la forma correcta se explica en el siguiente apartado,  que est\'a en vuestra cuenta del Laboratorio ya que cuando los profesores lo cambiemos por una versi\'on m\'as reciente se pierden las notas. Sin embargo, sirve para personalizar una copia del documento que resida en vuestro ordenador personal. 
+	
+	Aparece como un icono con una {\itshape hoja de papel y un l\'apiz encima.} 
+
+	\item {\sc Recuperar la p\'agina anterior:} despu\'es de usar un enlace a otra zona del mismo documento se puede volver a la p\'agina en la
+	que est\'abamos usando el bot\'on {\itshape Back} (la flecha hacia la izquierda) en {\tt evince}.
+\end{enumerate}
+
+\end{comment}
+%%Seg\'un la versi\'on de {\tt evince} que estemos usando es posible que no aparezcan directamente estos botones, en cuyo caso hay que instalarlos usando el men\'u {\tt Edit/Toolbar}. En la versi\'on de {\tt evince} instalada en el Laboratorio intentaremos que todo esto funcione sin problema.%%
+
+
+
+\item Puedes a\~nadir tus propias notas para completar o clarificar el contenido
+de nuestro documento. Es importante entonces tener en cuenta
+que puedes, y debes,  {\emph personalizar} nuestro \verb|laboratorio.pdf| con
+tus
+aportaciones o las de tus compa\~neros.  Para esto
+
+
+\begin{enumerate}
+ \item Para cada cap\'{\i}tulo, por ejemplo el $4$,  hay un documento, en la
+carpeta \verb|SAGE-noteb/INPUTS/NOTAS|, con nombre \verb|notas-cap4.tex| en el
+que puedes escribir y no desaparecer\'a cuando modifiquemos la carpeta. Si
+escribes en cualquiera
+de los otros documentos a la semana siguiente puede haber desaparecido  lo que
+hayas
+a\~nadido.
+
+\item En esos documentos  \verb|notas-capn.tex| se puede escribir texto simple, 
+pero para obtener un m\'{\i}nimo de legibilidad hay que escribir en \LaTeX, que
+no es sino texto formateado,  como se explica en el ap\'endice siguiente. 
+
+\item Para generar el PDF resultante, incluyendo las notas a\~nadidas, hay que compilar los archivos {\.tex} (ver Ap\'endice \ref{latex}-ref{TS}). 
+\end{enumerate}
+
+\item Las hojas de trabajo de {\sage} que hayas creado o modificado  y quieras
+ver durante  un examen debes guardarlas en la subcarpeta \verb|IPYNB-mios| dentro de
+\verb|SAGE-noteb/IPYNB|. Esta subcarpeta puede contener, a su vez, diversas subcarpetas que organicen su contenido.
+
+\begin{comment}
+\item Como se explica en la p\'agina \pageref{subir}, hay una manera r\'apida de
+descargar todas las hojas que uno quiera en un \'unico archivo comprimido {\tt
+zip} y luego subir el zip, las hojas que contiene, a otra copia de {\sage}. Esta
+es la manera recomendada, ya que es la m\'as r\'apida,  de transferir nuestras
+hojas a la copia de {\sage} que se usa durante los ex\'amenes.
+\end{comment}
+\item Conviene mantener la informaci\'on acerca de nuestras hojas de
+{\sage}, las que hayamos elaborado o modificado nosotros,  de manera que sea
+f\'acilmente accesible durante los ex\'amenes: por ejemplo, para una hoja que se
+refiere al Cap\'{\i}tulo $4$ de estas notas podr\'{\i}as incluir en el archivo
+\verb|notas-cap4.tex| un \verb|\item| indicando el nombre y
+localizaci\'on del archivo, deber\'{\i}a estar en la subcarpeta \verb|IPYNB/IPYNB-mios|
+de la
+carpeta principal,  y una descripci\'on  de su contenido. Esto es
+importante  para facilitar la b\'usqueda de una hoja concreta sobre la que
+quiz\'a trabajamos hace cuatro meses y de la que podemos haber olvidado casi
+todo.  
+
+
+
+\item En el ap\'endice {\bf B} se describe la manera de generar enlaces de
+nuestro PDF, \verb|laboratorio.pdf|, a p\'aginas {\itshape web},  a otros
+documentos PDF o a hojas de trabajo de {\sage}. 
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+\chapter{{\LaTeX} b\'asico}\label{latex}
+
+\begin{enumerate}
+ 
+ \item Aunque este peque\~no resumen puede servir para escribir en {\LaTeX} las
+notas que quer\'ais a\~nadir al texto, una introducci\'on bastante completa y
+clara se puede encontrar en este 
+ \href{http://150.244.21.37/PDFs/INTRO/ltxprimer-1.0.pdf}{enlace}.
+ 
+ \item \label{TS}Como editor de {\LaTeX}  usamos el programa \verb|texstudio|
+  que est\'a instalado en las m\'aquinas del Laboratorio. 
+  
+  Una vez que hemos abierto el programa, su lanzador est\'a en
+el men\'u {\itshape Aplicaciones/Oficina/}, debemos abrir, usando el bot\'on
+{\itshape Open}, los archivos con c\'odigo {\LaTeX} que vamos a editar.
+  
+  
+  
+  
+  \item Siempre hay que abrir, dentro de \verb|texstudio|,  el archivo
+\begin{center}
+  \verb|SAGE-noteb/laboratorio.tex| 
+ \end{center}
+  
+\noindent que es el documento ra\'{\i}z y el que hay que
+procesar para obtener el \verb|PDF|. Se procesa pinchando en el bot\'on
+\verb|Build&view|, el bot\'on con dos puntas de flecha verdes  en la barra superior de   \verb|texstudio|. El \verb|PDF| resultante aparece en el lado derecho de la ventana.  
+
+\item Los documentos \verb|notas-capn.tex|, que deber\'{\i}an est\'an en la subcarpeta
+\verb|SAGE-noteb/INPUTS/NOTAS/| de la carpeta principal, inicialmente contienen 
+\'unicamente 
+\begin{verbatim}
+\begin{enumerate}
+ \item 
+\end{enumerate}
+\end{verbatim}
+\noindent que es un entorno de listas numeradas. Debes abrirlos en el editor,
+usando el men\'u \verb|Open|, para a\~nadirles materia.
+
+\item Las l\'{\i}neas, dentro de un documento de c\'odigo \LaTeX, que comienzan
+con un \% son comentarios que no aparecen en el PDF resultante.  As\'{\i}, por
+ejemplo, para ver en el PDF uno de los archivos 
+\verb|notas-capn.tex| que has editado, por ejemplo el \verb|notas-cap2.tex|, 
+debes quitar el s\'{\i}mbolo \% al comienzo de dos  l\'{\i}neas en
+\verb|SAGE-noteb/laboratorio.tex| cuyo contenido~es
+\begin{verbatim}
+%\section{Notas personales}
+%\montan|notas-cap2|
+\end{verbatim}
+
+
+\item Cada nota que quieras incluir debe comenzar con un nuevo \verb|\item| y a
+continuaci\'on el texto que quieras. 
+
+\item Para escribir matem\'aticas dentro de una l\'{\i}nea de texto  basta
+escribir el c\'odigo adecuado entre s\'{\i}mbolos de d\'olar (\$..\$). 
+Para escribir matem\'aticas en \emph{display}, es decir ocupando las f\'ormulas
+toda la l\'{\i}nea se puede encerrar el c\'odigo entre dobles d\'olares 
+(\$\$..\$\$), o, mucho mejor, abrir la zona de c\'odigo con \verb|\[| y 
+cerrarla con \verb|\]|. 
+
+\item Por ejemplo, podemos mostrar una ecuaci\'on cuadr\'atica en \emph{display}
+mediante
+\begin{verbatim}
+ \[ax^2+bx+c=0\]
+ \end{verbatim}
+ \noindent que produce 
+ \[ax^2+bx+c=0\]
+ \noindent y su soluci\'on mediante 
+ \begin{verbatim}
+ \[ x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}\]
+ \end{verbatim}
+\noindent que ahora produce 
+
+\[ x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}.\]
+
+\item Si observas con cuidado el c\'odigo {\LaTeX}  anterior ver\'as que la
+forma
+en que se escribe el c\'odigo coincide bastante con la forma en que leemos
+la expresi\'on. Una diferencia es que ante ciertos
+operadores con dos argumentos, como la fracci\'on que tiene numerador y
+denominador, debemos avisar a {\LaTeX}  de que debe esperar dos argumentos
+mientras
+que cuando leemos la f\'ormula hasta que no llegamos a \verb|partido por 2a| no
+sabemos que se trata de una fracci\'on. 
+
+Esto es lo que hace que aprender a escribir c\'odigo {\LaTeX} sea muy sencillo
+para personas acostumbradas a leer texto matem\'atico. 
+
+\item Para cambiar de p\'arrafo en \LaTeX\ basta dejar una l\'{\i}nea
+completamente en blanco. 
+
+\item Los sub\'{\i}ndices se consiguen con la barra baja, \verb|x_n| da $x_n$, 
+y los super\'{\i}ndices con el acento circunflejo, \verb|x^n| da $x^n$.
+
+\item Como se ve en el ejemplo anterior,  \verb|\frac{numerador}{denominador}|
+es
+la forma de obtener una fracci\'on.
+
+\item Conjuntos:
+\begin{enumerate}
+\item \$\lstinline[language={[LaTeX]TeX}]|A\times B|\$ 
+%\verb|$A\times B$|
+produce $A\times B$.
+\item \$\lstinline[language={[LaTeX]TeX}]|A\cap B|\$ 
+%\verb|$A\cap B$|
+produce $A\cap B$.
+\item \$\lstinline[language={[LaTeX]TeX}]|A\cup B|\$ 
+%\verb|$A\cup B$|
+produce $A\cup B$.
+\item \$\lstinline[language={[LaTeX]TeX}]|a\in B|\$ 
+%\verb|$A\in B$|
+produce $a\in B$.
+\item \$\lstinline[language={[LaTeX]TeX}]|a\notin B|\$ 
+%\verb|$A\notin B$|
+produce $a\notin B$.
+\item \$\lstinline[language={[LaTeX]TeX}]|A\subset B|\$ 
+%\verb|$A\subset B$|
+produce $A\subset B$.
+\item \$\lstinline[language={[LaTeX]TeX}]|A\to B|\$ 
+%\verb|$A\to B$|
+produce $A\to B$.
+\item \$\lstinline[language={[LaTeX]TeX}]|a\mapsto f(a)|\$ 
+%\verb|$a\mapsto f(a)$| 
+produce $a\mapsto f(a)$.
+
+\item \$\lstinline|A=\{a,b,c\}|\$
+%\verb|$A=\{a,b,c\}$| 
+produce $A=\{a,b,c\}$.
+\end{enumerate}
+
+\item C\'alculo:
+\begin{enumerate}
+\item \verb|\[\lim_{x\to \infty} f(x)=a\]| produce \[\lim_{x\to \infty}
+f(x)=a.\]
+\item \verb|\[\lim_{h\to 0} \frac{f(x+h)-f(x)}{h}=:f^{\prime}(x)\]| produce 
+ \[\lim_{h\to 0} \frac{f(x+h)-f(x)}{h}=:f^{\prime}(x).\]
+\item \verb|\[\sum_{i=0}^{i=\infty}\frac{x^n}{n!}=:e^x\]| produce
+\[\sum_{i=0}^{i=\infty}\frac{x^n}{n!}=:e^x.\]
+\item \verb|\[\int_a^b f(x)dx\]| produce 
+\[\int_a^b f(x)dx.\]
+
+\end{enumerate}
+\item Tambi\'en es conveniente saber componer matrices. Por ejemplo, 
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{equation}
+\begin{pmatrix}
+    1&0&0\\
+    0&1&0\\
+    0&0&1
+\end{pmatrix}
+\end{equation}
+\end{lstlisting}
+\noindent produce la matriz identidad 
+\begin{equation}
+\begin{pmatrix}
+    1&0&0\\
+    0&1&0\\
+    0&0&1
+\end{pmatrix}
+\end{equation}
+\item Puedes encontrar una lista m\'as completa de los c\'odigos que producen
+diversos s\'{\i}mbolos matem\'aticos en este
+\href{http://150.244.21.37/PDFs/INTRO/short-math-guide.pdf}{archivo}, mientras que la lista
+completa, que es enorme, se encuentra en
+\href{http://150.244.21.37/PDFs/INTRO/symbols-a4.pdf}{este otro}.
+\item Podemos cambiar el color de un trozo de texto en el PDF sin m\'as que
+incluir el correspondiente texto, en el archivo con el c\'odigo \LaTeX,  entre
+llaves indicando el color en la forma
+{\tt\lstinline[language={[LaTeX]TeX}]|{\color{green}...texto...}|}, %
+que ver\'{\i}amos como {\color{green}...texto...}. 
+
+%%\pagebreak[3]
+
+
+\item Para incluir en el PDF un enlace a otra zona del mismo documento 
+\begin{enumerate}
+ \item En la zona a la que queremos que lleve el enlace debemos incluir una
+l\'{\i}nea con el contenido 
+ \verb=\label{nombre}=, donde {\tt nombre} es el nombre arbitrario que damos al
+enlace y que no debe ser igual a ning\'un otro  {\itshape label} en el
+documento.
+ \item Donde queremos que aparezca el enlace usamos
+\begin{center}
+\verb|\hyperref[nombre]{texto},|
+\end{center}
+\noindent con {\tt nombre} el del enlace de acuerdo al
+punto
+anterior, y {\tt texto} el que queramos que aparezca como enlace, es decir
+coloreado, y que pinchamos para movernos al otro lugar en el documento.
+ \end{enumerate}
+
+Si incluyes enlaces de estos en la copia de la carpeta \verb|SAGE-noteb| en el
+ordenador del Laboratorio, y que lleven a zonas del PDF fuera de tus notas
+personales, {\itshape esos enlaces desaparecer\'an cuando actualicemos} la
+carpeta.
+
+
+\item Para incluir en el PDF resultante un enlace a una p\'agina \emph{web}
+basta escribir, en el lugar adecuado del texto, algo como 
+\begin{center}
+\verb|\href{http://...URL...}{enlace}|, 
+\end{center}
+\noindent donde \verb|...URL...| es la direcci\'on
+completa de la p\'agina y \verb|enlace| es el texto que va a aparecer en el PDF
+como el enlace pinchable.
+
+\item Para incluir en el PDF un enlace a otro PDF, por ejemplo situado en la
+subcarpeta \verb|PDFs-mios| de la carpeta \verb|SAGE-noteb|, basta escribir, en
+el
+lugar adecuado del texto, algo como 
+\begin{center}
+\verb|\href{run:PDFs-mios/<nombre del PDF>.pdf}{enlace}|.
+\end{center}
+
+El contenido de esta carpeta \verb|PDFs-mios| no desaparecer\'a al actualizar
+la carpeta \verb|SAGE-noteb|.
+
+\item En este archivo \verb|laboratorio.pdf| hay tambi\'en enlaces que llevan
+directamente a hojas de trabajo de {\sage}. En las secciones de notas personales
+puedes crear esa clase de enlaces incluyendo en el c\'odigo {\LaTeX} algo como 
+ \small
+ \begin{center}
+ \begin{verbatim}
+ \href{http://localhost:8888/notebooks/<camino>}{texto}
+ \end{verbatim}
+ \end{center}
+ \normalsize
+ 
+ \noindent con \verb=<camino>= que deber\'{\i}a ser 
+ \begin{center}
+ \verb=~/Desktop/SAGE-noteb/IPYNB/IPYNB-mios/<nombre del archivo>=
+ \end{center}
+ 
+Estos enlaces  funcionar\'an si hemos arrancado {\sage} como se indica en \ref{ini-ses}-\ref{local}.
+
+
+
+\end{enumerate}
+
+
+
+
+\end{appendices}
+
+
+
+
+
+
+
+

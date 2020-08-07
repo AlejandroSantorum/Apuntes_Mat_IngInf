@@ -1,0 +1,15 @@
+puntos=[(-2, 26), (-1, 4), (1, 8), (2, -2)]
+n=len(puntos)
+difs=[[(a,a,b) for a,b in puntos]]
+for k in [1..n-1]:
+	ll=difs[-1]
+	m=len(ll)
+	l=[]
+	for j in xrange(m-1):
+		xi,xd=ll[j][0],ll[j+1][1]
+		yi,yd=ll[j][-1],ll[j+1][-1]
+		valor=(yi-yd)/(xi-xd)
+		l.append((xi,xd,valor))
+	difs.append(l)
+coefs=[dato[0][-1] for dato in difs]
+coefs

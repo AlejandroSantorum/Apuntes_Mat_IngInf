@@ -1,0 +1,206 @@
+\label{prologo}
+La idea detr\'as de la existencia de un curso como este es f\'acil de expresar:
+{\itshape es muy conveniente que alumnos de un Grado en Ciencias Matem\'aticas
+tengan la oportunidad, desde
+el comienzo de sus estudios, de conocer y practicar una aproximaci\'on
+experimental al estudio de las matem\'aticas.}
+
+\smallskip
+
+La idea de las matem\'aticas como una ciencia experimental aparece despu\'es de
+que se generalizara el uso de los ordenadores personales, en nuestro pa\'{\i}s a
+partir de los a\~nos $90$, y, sobre todo,  con la aparici\'on de ordenadores
+personales con suficiente potencia de c\'alculo ya en este siglo. 
+
+\smallskip
+
+Sin embargo, algunos matem\'aticos de siglos anteriores demostraron una
+extraordinaria capacidad de c\'alculo mental y realizaron sin duda experimentos
+que les convencieron de que las ideas que pudieran tener sobre un determinado
+problema eran correctas, o bien de que eran  incorrectas. Un ejemplo claro es el
+de Gauss en sus trabajos sobre teor\'{\i}a de n\'umeros: se sabe, ya que se
+conservan los cuadernos que utilizaba, que fundamentaba sus afirmaciones en
+c\'alculos muy extensos de ejemplos concretos.
+
+\smallskip
+
+Los ordenadores personales extienden nuestra capacidad de c\'alculo, en estos
+tiempos bastante limitada, y permiten realizar b\'usquedas exhaustivas de
+ejemplos o contraejemplos. Podemos decir, hablando en general, que los
+ordenadores realizan para nosotros, de forma muy eficiente,  tareas repetitivas
+como la ejecuci\'on, miles de veces,  de un bloque de instrucciones que por
+alg\'un motivo nos interesa.  
+
+\smallskip
+
+Es cierto que el ordenador no va a demostrar un teorema por nosotros, pero puede
+encontrar un contraejemplo, probando as\'{\i} que el resultado propuesto es
+falso, y tambi\'en puede, en ocasiones, ayudarnos a lo largo del desarrollo de
+una demostraci\'on. Sobre todo nos convencen de que una cierta afirmaci\'on es
+plausible y, por tanto, puede merecer la pena pensar sobre ella.
+
+
+\bigskip
+
+
+\pagebreak[3]
+
+{\sc Descripci\'on del curso}
+
+En este curso usamos {\sage} como instrumento para calcular y programar. Puedes
+ver una descripci\'on de la forma de acceder a su uso en el primer cap\'{\i}tulo de estas notas. 
+
+
+Comenzamos estudiando el uso de {\sage} como calculadora avanzada, es decir, su
+uso
+para obtener respuesta inmediata a nuestras preguntas mediante programas ya
+incluidos dentro del sistema. Por ejemplo, mediante {\tt factor(n)} podemos
+obtener la descomposici\'on como producto de factores primos de un entero {\tt
+n}. 
+
+{\sage} tiene miles de tales instrucciones preprogramadas que resuelven muchos
+de
+los problemas con los que nos podemos encontrar. En particular, revisaremos las
+instrucciones para resolver problemas de c\'alculo y \'algebra lineal, as\'{\i}
+como las instrucciones para obtener representaciones gr\'aficas en $2$ y $3$
+dimensiones.
+
+
+A continuaci\'on, despu\'es describir las estructuras de datos y su manipulaci\'on,  de  trataremos los aspectos b\'asicos de la programaci\'on usando
+el lenguaje Python, que es el lenguaje utilizado en una gran parte de
+{\sage}, y es el que usaremos a lo largo del curso.
+Concretamente, veremos los bucles {\tt for} y {\tt while}, el control del flujo
+usando {\tt if} y {\tt else}, y la recursi\'on. Con estos pocos mimbres haremos
+todos los cestos que podamos durante este curso. 
+
+Por \'ultimo, el curso contiene cuatro  bloques, aproximaci\'on, aritm\'etica,
+criptograf\'{\i}a y
+teor\'{\i}a de la probabilidad, que desarrollamos todos los cursos junto con uno
+m\'as, que llamamos miscel\'anea, cuyo contenido puede variar de unos cursos a
+otros. En esta parte usamos los rudimentos de programaci\'on que hemos visto
+antes para resolver problemas concretos dentro de estas \'areas. 
+
+Aunque puede parecer que no hay conexi\'on entre estos bloques, veremos que  la
+hay bastante fuerte:
+\begin{enumerate}
+ \item La aritm\'etica, el estudio de los n\'umeros enteros, es la base de
+muchos de los sistemas criptogr\'aficos que usamos para transmitir informaci\'on
+de forma segura. En particular, estudiaremos el sistema RSA, uno de los m\'as
+utilizados actualmente,  cuya seguridad se basa en la enorme dificultad de
+factorizar un entero muy grande cuyos \'unicos factores son dos n\'umeros primos
+enormes y distantes entre s\'{\i}. 
+\item Para elegir los factores primos en el sistema RSA, cada usuario del
+sistema debe tener su par de primos, se utilizan generadores de n\'umeros
+(pseudo-)aleatorios.  Este ser\'a uno de los asuntos que trataremos en el bloque
+de probabilidad. 
+\item En el cap\'{\i}tulo de ampliaci\'on de teor\'{\i}a de n\'umeros discutiremos c\'omo encontrar n\'umeros primos muy grandes y c\'omo intentar factorizar, de manera eficiente, n\'umeros grandes. Son dos asuntos muy relacionados con la criptograf\'{\i}a.  
+\item En el bloque sobre la aproximaci\'on de n\'umeros reales, dedicaremos
+cierta atenci\'on al c\'alculo  de los d\'igitos de algunas constantes
+matem\'aticas, en particular $\pi$ y $e$. Tambi\'en estudiaremos la resoluci\'on aproximada de ecuaciones y la aproximaci\'on de funciones. 
+%%Nos encontraremos con una pregunta interesante: ?`se pueden considerar los%%
+%%d\'igitos de $\pi$ como un generador de n\'umeros (pseudo-)aleatorios?%%
+
+\item Como aplicaci\'on de este bloque sobre aproximaci\'on de n\'umeros reales
+veremos un par de ejemplos  en que usaremos logaritmos para estudiar potencias
+$a^n$ con $n$ muy grande. Es decir, usaremos los reales ({\itshape el continuo}) para estudiar un problema discreto. 
+ \end{enumerate}
+
+
+De la lista anterior se deduce que el tema central del curso es la
+criptograf\'{\i}a,  con varios de los otros temas ayudando a entender y aplicar
+correctamente los sistemas criptogr\'aficos.
+
+Los temas que tratamos en la segunda parte del curso vuelven a aparecer en
+asignaturas de la carrera, en alg\'un caso optativas como la criptograf\'{\i}a,
+y pueden verse como peque\~nas introducciones {\itshape experimentales} a
+ellos. Creemos entonces que la asignatura es una buena muestra, por supuesto
+ incompleta,  de lo que os encontrar\'eis durante los pr\'oximos a\~os. Es como
+catar {\itshape el mel\'on} antes de abrirlo.
+ 
+ El prototipo de este curso fu\'e desarrollado, en su totalidad,  por Pablo
+ Angulo, y puedes todav\'{\i}a consultar el excelente resultado de su trabajo en
+ este  \href{http://verso.mat.uam.es/~pablo.angulo/doc/laboratorio/}{enlace}. Los que lo hemos impartido despu\'es aprendimos casi todo lo que sabemos en sus notas y, por supuesto, se lo agradecemos aqu\'{\i}. 
+ 
+ 
+ 
+ 
+ 
+ 
+ \smallskip
+
+
+
+
+\begin{comment}
+{\sc Algunos consejos}
+
+
+No deja de ser una perogrullada  afirmar que para superar un curso en el que
+la programaci\'on juega un papel destacado hay que programar, por uno mismo,
+sistem\'aticamente. Dicho de otra manera, {\itshape se aprende a programar
+programando.}
+
+M\'as concretamente,
+\begin{enumerate}
+ \item No suele servir {\itshape cortar y pegar}  c\'odigos escritos por
+otros. Frecuentemente esa manera de trabajar produce errores  en el
+c\'odigo resultante, en ocasiones dif\'{\i}ciles de arreglar.
+
+\item Antes de poder programar un algoritmo es necesario {\itshape entenderlo
+bien}. Uno se da cuenta de que no entiende bien el algoritmo cuando encuentra
+dificultades para expresarlo como un programa. En tales casos suele ser de ayuda
+ejecutar {\itshape a mano} el algoritmo para valores muy bajos de sus
+par\'ametros. 
+
+\item Es f\'acil convencerse de que se ha comprendido un c\'odigo, escrito por
+otros, que funciona correctamente. Sin embargo, frecuentemente s\'olo se
+consigue una buena comprensi\'on comparando en detalle nuestro c\'odigo,
+correcto o no, con otras soluciones, por ejemplo las del  profesor. 
+
+\item Siempre hay que intentar comprobar las soluciones que produce nuestro
+c\'odigo. Para valores bajos de los par\'ametros del c\'odigo podemos intentar
+ {\itshape calcular a mano} las soluciones para comparar, y, en general, es
+bueno pensar siempre si las soluciones obtenidas se ajustan a lo que
+podr\'{\i}amos esperar {\itshape a priori.}
+ 
+ 
+ 
+\end{enumerate}
+
+
+
+
+\smallskip
+
+{\sc Un poco de historia}
+
+El prototipo de este curso fu\'e desarrollado, en su totalidad,  por Pablo
+Angulo, y puedes todav\'{\i}a consultar el excelente resultado de su trabajo en
+este 
+\href{http://verso.mat.uam.es/~pablo.angulo/doc/laboratorio/}{enlace}.
+Esta
+versi\'on primera del curso estaba pensada tanto
+para los estudiantes del grado en Matem\'aticas como para los del doble grado
+Matem\'aticas-Inform\'atica. 
+
+En aquel curso tambi\'en impartieron docencia en la asignatura Patricio
+Cifuentes y Daniel Ortega.  En cursos sucesivos se vio la necesidad  de
+adaptar m\'as el curso a los estudiantes del Grado en Matem\'aticas, que en
+principio no tienen que saber programar antes de comenzar el curso, mientras que
+los estudiantes del doble grado Matem\'aticas-Inform\'atica ya saben todos
+programar antes de empezar. 
+
+Posteriormente se incorporaron Bernardo L\'opez, Rafael Hern\'andez, Fernando
+Quir\'os, Juan Ram\'on Esteban, Enrique Gonz\'alez, Adolfo Quir\'os, . El estado
+actual del curso para el grado en Matem\'aticas, el que reflejan estas notas, 
+corresponde al original de Pablo
+Angulo,  con algunos a\~nadidos y con la adaptaci\'on ya mencionada a la
+situaci\'on previa, respecto a la programaci\'on,  de muchos de los estudiantes
+de grado. 
+
+
+La idea que tenemos es seguir ampliando estas notas con nuevos temas, de forma
+que dispongamos de un exceso de material,  y haya que seleccionar cada curso la
+parte que se cubre. 
+
+\end{comment}

@@ -1,0 +1,4 @@
+## Suma de los 150 primeros impares positivos
+m=150
+'Los %d primeros impares positivos suman %d.'%(m,sum([2*k+1 for k in range(m)]))
+	'Los 150 primeros impares positivos suman 22500.'

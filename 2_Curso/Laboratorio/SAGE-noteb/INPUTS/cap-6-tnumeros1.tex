@@ -1,0 +1,836 @@
+La {\itshape teor\'{\i}a de n\'umeros} o {\itshape aritm\'etica} estudia las
+propiedades los n\'umeros enteros y  de algunos otros conjuntos de n\'umeros
+que generalizan a los enteros. 
+
+Una de las caracter\'{\i}sticas de la teor\'{\i}a de n\'umeros es la existencia
+de una gran cantidad de {\sc problemas de enunciado muy sencillo\footnote{Para
+muchos
+de ellos basta con conocer {\itshape las cuatro reglas}.}
+pero de difícil, o desconocida, demostración}.
+En~todos estos casos se han hecho comprobaciones masivas mediante ordenador  sin
+encontrar un contraejemplo, de forma que se cree que los resultados son ciertos
+pero en muchos de ellos se cree tambi\'en que la demostraci\'on est\'a
+todav\'{\i}a lejos.
+
+
+Muchos de los ejercicios planteados en este cap\'{\i}tulo son
+{\itshape ejercicios ret\'oricos}, es decir, son ejercicios de programaci\'on,
+que como tales son \'utiles para aprender a programar, pero que no nos dicen
+gran cosa sobre los problemas matem\'aticos, extremadamente dif\'{\i}ciles, que
+estudian. 
+
+
+En otros casos plantearemos algunos ejercicios cuya respuesta ya debe ser
+conocida, te\'oricamente, a trav\'es de 
+la asignatura {\itshape Conjuntos y
+N\'umeros}, y por tanto son tambi\'en, en otro sentido, {\itshape ret\'oricos}.
+En particular,  supondremos conocidos los siguientes contenidos:
+
+\begin{enumerate}
+ \item Las nociones de grupo abeliano, anillo y cuerpo. Las definiciones
+b\'asicas acerca del anillo de los n\'umeros enteros y el cuerpo de los
+racionales. El teorema de factorizaci\'on de enteros como producto de primos, a
+veces llamado {\itshape teorema fundamental de la aritm\'etica.} 
+ 
+ \item La definici\'on de los {\itshape anillos $\mathbb{Z}_m$ de clases de
+restos m\'odulo un entero $m$} y el hecho de que son cuerpos \'unicamente
+aquellos en los que
+el m\'odulo es primo. 
+
+\item Las nociones de {\itshape m\'aximo com\'un divisor (MCD)} y {\itshape
+m\'{\i}nimo com\'un m\'ultiplo (MCM)}, el algoritmo de Euclides para calcular el
+MCD y su consecuencia, {\itshape el teorema de Bézout}. Este \'ultimo resultado
+lo usamos para calcular el inverso de un elemento invertible en un anillo de
+clases de restos y, por tanto,  es importante.
+
+\item El {\itshape teorema peque\~no de Fermat}, y su generalizaci\'on,
+{\itshape el teorema de Fermat-Euler},  que estudian las potencias de elementos
+en un anillo de clases de restos. En el enunciado del teorema de Fermat-Euler
+aparece la funci\'on $\phi$ de Euler, que tambi\'en supondremos conocida.
+
+
+Estos resultados ser\'an utilizados m\'as
+adelante en criptograf\'{\i}a y al estudiar algunos criterios para determinar si
+un entero es primo.
+ 
+\end{enumerate}
+
+
+
+\section{Clase de restos}
+
+Fijamos un entero $m$ al que llamamos {\itshape m\'odulo}. 
+En el anillo de los n\'umeros enteros la relaci\'on  $nR_{n}n^\prime 
+$ si  y s\'olo si   $n$ y $n^\prime$ tienen el mismo resto al 
+dividir por $m$ es una relaci\'on de equivalencia. Denotamos por $[ 
+n]_m$ {\itshape la clase de $n$ m\'odulo $m$},  aunque habitualmente  escribimos
+$[n]$
+sin que el m\'odulo aparezca expl\'{\i}citamente en la notaci\'on.
+
+
+
+El conjunto cociente tiene $m$ elementos que corresponden a los 
+$m$ posibles restos, es decir, una clase,$[0]$, contiene todos 
+aquellos enteros que al dividir entre $m$ dan resto $0$ (m\'ultiplos 
+de $m$), otra, $[1]$, aquellos que dan resto $1$, y as\'{\i}  hasta $m-
+1$.
+
+
+La observaci\'on fundamental es que el conjunto de clases (o 
+conjunto cociente) tiene una estructura natural de anillo:
+\begin{enumerate}
+\item Suma: $[n_1]+[n_2]=[n_1+n_2]$
+\item Producto: $[n_1].[n_2]=[n_1. n_2]$
+\end{enumerate}
+
+Esta definici\'on de las operaciones es natural: para operar dos 
+clases se eligen elementos {\bf cualesquiera} en cada una de ellas, 
+se operan y la clase resultado es la clase del resultado.  Es 
+esencial comprobar que la clase del resultado no depende de la 
+elecci\'on de representantes de cada una de las clases, porque en 
+caso contrario la operaci\'on no estar\'{\i}a bien definida (habr\'{\i} 
+a varios resultados para una misma suma o producto). 
+
+Se obtiene as\'{\i}   un 
+anillo conmutativo, al que denotamos mediante $\Bbb Z_{m}$, y llamamos {\itshape
+el anillo de clases de restos m\'odulo $m$.} 
+
+?`En qu\'e condiciones es el anillo $\mathbb{Z}_{n}$ un cuerpo?  Gracias al
+\hyperref[bezout]{teorema de Bezout} y dado que el $MCD(k,p)=1$ si
+$p$ es primo y $k<p$, sabemos
+que existen enteros $a$ y $b$ tales que $a\cdot k+b\cdot p=1$ de forma que
+tomando restos m\'odulo $p$ se obtiene que el inverso de $[k]$ es $[a].$
+
+
+El c\'alculo de potencias en los anillos de clases de restos $\mathbb{Z}_m$ es, 
+computacionalmente, muy eficiente ya que podemos efectuar todas las operaciones
+m\'odulo $m$. Al discutir  un m\'etodo para
+calcular \hyperref[potencias]{potencias} de elementos de un anillo ya vimos que
+para los anillos de clases de restos el algoritmo utilizado era  especialmente
+eficiente.
+
+
+Estos c\'alculos, potencias de un elemento en un anillo de clases de restos,
+son, importantes en \hyperref[rsa]{criptograf\'{\i}a}, y concretamente
+en el m\'etodo llamado RSA que es uno de los m\'as utilizados en la pr\'actica.
+En el fundamento teórico de la criptograf\'{\i}a RSA est\'a el llamado
+{\itshape teorema de Fermat-Euler}, un resultado bastante elemental pero
+enormemente importante en aritm\'etica y sus aplicaciones.
+
+\subsection{Teorema de Fermat-Euler}\label{peq}
+
+Sea $[a]\in \mathbb{Z}_p$ una clase de restos no nula m\'odulo un entero primo,
+y definimos la funci\'on $M_{[a]}:\mathbb{Z}_p\to \mathbb{Z}_p$ definida por
+multiplicaci\'on por $[a]$: $M_{[a]}([b])=[a]\cdot[b]$. Iterando la funci\'on
+$M_{[a]}$, dado que el conjunto de
+clases de restos es finito, llegaremos, partiendo de una clase $[b]$ no nula 
+cualquiera, necesariamente a un elemento ya visitado, es decir,
+$M_{[a]^t}([b])=M_{[a]^s}([b])\  ([a]^t\cdot [b]=[a]^s\cdot [b])$ con $s<t$.
+Como $[a]$ es invertible, la igualdad entre par\'entesis implica $[a]^{t-s}\cdot
+[b]=[b]$, y como $[b]$ tambi\'en es invertible obtenemos finalmente
+$[a]^{t-s}=[1].$
+
+En resumen, para todo elemento no nulo $[a]\in \mathbb{Z}_p$ existe un entero
+positivo $n_{[a]}$ m\'{\i}nimo tal que $[a]^{n_{[a]}}=[1].$ Es claro, entonces, 
+que la iteraci\'on de la funci\'on $M_{[a]}$ termina siendo la funci\'on
+identidad.
+
+\begin{ejer}
+\begin{enumerate}
+ \item En una hoja de {\sage} define \lstinline|p=nth_prime(2013)|, y escribe un
+programa para calcular el {\itshape conjunto} formado por los enteros 
+$n_{[a]}$ con $[a]$ recorriendo los elementos no nulos de $\mathbb{Z}_p$. 
+
+\item El m\'{\i}nimo com\'un m\'ultiplo de todos los enteros $n_{[a]}$ es un
+entero $N$ tal que $[a]^N=[1]$ para toda clase $[a]\ne [0].$  Encuentra, en
+$\mathbb{Z}_p$ como en el apartado anterior, el m\'{\i}nimo $N$ con esa
+propiedad. 
+
+
+\item Consideramos ahora un m\'odulo compuesto, por ejemplo
+\lstinline|m=nth_prime(2013)*nth_prime(2014)|, y queremos estudiar el mismo tipo
+de resultados.
+
+Observar que las clases invertibles no son ahora todas las no nulas, 
+sino las clases de enteros
+$[k]$ tales que $k$ es primo con $m$. ?`Por qu\'e? 	
+
+?`C\'omo se modifican los resultados, para m\'odulo primo,  anteriores para el
+caso
+de m\'odulo compuesto?
+
+\item Escribe un programa que calcule las clases en $\mathbb{Z}_m$  que son
+su propio inverso para la multiplicaci\'on, es decir, clases $[a]$ tales que
+$[a]\cdot [a]=[1]$.  Utiliza el programa para tratar de caracterizar esas clases
+en t\'erminos de la factorizaci\'on de $m$ como producto de primos.
+
+
+
+ 
+ \end{enumerate}
+\end{ejer}
+
+\section{Fibonacci}\label{fibon}
+
+La sucesi\'on de Fibonacci es la de n\'umeros enteros  definida por
+\[F_0=0,\ F_1=1,\ F_m=F_{m-1}+F_{m-2},\]
+\noindent y forma parte de una gran familia de sucesiones que decimos que
+est\'an {\itshape definidas recursivamente.} En {\sage} disponemos de la
+funci\'on \lstinline|fibonacci(m)| que, como es esperable,  devuelve el n\'umero
+de Fibonacci $m$-\'esimo.  En los primeros ejercicios de esta secci\'on
+implementamos diversos m\'etodos para calcular $F_m$ y la funci\'on
+\lstinline|fibonacci(m)| de {\sage} nos puede servir para comprobar los
+resultados obtenidos. 
+
+\pagebreak[3]
+
+\begin{ejer}
+ \begin{enumerate}
+  \item Programar una funci\'on recursiva que dado un entero $m$ devuelva el
+$m$-\'esimo n\'umero de Fibonacci $F_m$.  Este ejercicio se ha resuelto como un
+ejemplo en la p\'agina \pageref{fibor}.
+  \item Programar una funci\'on iterativa  que dado un entero $m$ devuelva
+el $m$-\'esimo n\'umero de Fibonacci $F_m$. Este ejercicio tambi\'en se ha
+resuelto como un
+ejemplo, ahora  en la p\'agina \pageref{fiboi}.
+  \item \label{fib-matriz}Observa que es f\'acil obtener el vector
+$(F_{k+1},F_k)^t$
+multiplicando el par $(F_{k},F_{k-1})^t$ por una cierta matriz $\mathbf{A}$ que
+no depende de $k$. Entonces, obtendr\'{\i}amos el vector $(F_{k+1},F_k)^t$
+multiplicando $(1,0)^t$ por una potencia adecuada de la matriz $\mathbf{A}$.
+
+Implementa esta manera de calcular la sucesi\'on de Fibonacci usando el
+m\'etodo r\'apido para calcular potencias (ver p.~\pageref{potencias}). 
+ 
+ \item Hay f\'ormulas que permiten calcular el $m$-\'esimo número de Fibonacci
+$F_m$ sin haber calculado los anteriores. Una tal f\'ormula, debida a Binet
+(1843),  
+afirma que
+\[F_m:=\frac{\phi^m-(1-\phi)^m}{\sqrt{5}},\]
+con $\phi$ el {\itshape n\'umero áureo} $\frac{1+\sqrt{5}}{2}$. Observa que,
+aunque la parte derecha de la f\'ormula es una expresi\'on complicada que
+involucra ra\'{\i}ces cuadradas de $5$, la f\'ormula est\'a afirmando que el
+resultado es un n\'umero entero para todo valor de $m$, es decir, que las
+ra\'{\i}ces se van a cancelar al operar.
+
+    En {\sage}  podemos operar de manera exacta, es decir, de forma {\itshape
+simb\'olica} como opuesta a {\itshape numérica},  con expresiones como~$\phi$.
+Basta tomar  \lstinline|sqrt(5)|, la ra\'{\i}z cuadrada de $5$, y usar las
+operaciones aritm\'eticas habituales. Se puede forzar a {\sage} a desarrollar,
+{\itshape quitar los par\'entesis},   una expresión como $F_m$ usando la función
+\lstinline|expand| (ver p\'ag. \pageref{expand}). 
+
+\begin{enumerate}
+\renewcommand{\theenumi}{}%%Para quitarlas en las refs-cruzadas
+\item\label{met-fibo-a} Comprueba que $F_m$ es el n\'umero de Fibonacci
+$m$-\'esimo para $20$ valores de $m$ mayores que $10000$. Estudia la eficiencia
+de esta f\'ormula como medio para calcular el n\'umero de Fibonacci $m$-\'esimo.
+
+\item Define una función \lstinline|fibonacci_num(m,d)| que devuelva el n\'umero
+$F_m$
+calculado, aproximadamente,  como n\'umero real con $d$ d\'{\i}gitos de
+precisi\'on.
+
+\item Mediante las funciones \lstinline|floor(x), ceil(x)| o
+\lstinline|round(x)|, usa la aproximaci\'on de $F_m$ dada por la f\'ormula de
+Binet 
+para calcular el valor exacto entero de $F_m$.
+
+\item Estudia la eficiencia de este m\'etodo, comparando con el m\'etodo del
+apartado
+\ref{met-fibo-a} (siempre para valores de $m$ mayores que $10000$), y los
+errores que pueden
+aparecer al usar n\'umeros reales con $d$ d\'{\i}gitos de precisión. 
+\end{enumerate}
+
+\item Dado un n\'umero de Fibonacci bastante grande $F_m$ queremos calcular el
+lugar que ocupa en la sucesi\'on, es decir, dado un $F_m$ queremos obtener el
+$m$.
+\begin{enumerate}
+\item Define, usando la construcci\'on iterativa de la sucesi\'on de Fibonacci, 
+una funci\'on que reciba como argumento  $F_m$ y devuelva $m$.
+    
+\item \label{fib-log} Cuando $m$ crece, el segundo sumando (de hecho es un
+{\itshape restando})
+en el numerador del $F_m$ del ejercicio anterior tiende a cero. Explica el
+motivo. 
+
+Entonces, $F_m$ es aproximadamente igual a $\phi^m/ \sqrt{5}$,  y esto
+podr\'{\i}a servir para calcular $m$ dado un $F_m$ suficientemente grande.
+Implementa un tal m\'etodo, y estudia su grado de validez comparando los valores
+de $m$ que produce para variados $F_m$ calculados a partir de emes dados.
+\end{enumerate}
+\end{enumerate}
+\end{ejer}
+
+\subsection{Algunas propiedades de la sucesi\'on de Fibonacci}
+
+
+\subsubsection{F\'ormulas}
+
+
+
+Los n\'umeros de Fibonacci tienen una enorme cantidad de relaciones entre ellos,
+y muchas de ellas se pueden demostrar por inducci\'on. Algunas de las m\'as
+simples son las siguientes:
+
+\begin{enumerate}
+ \item\hfill $F_0+F_1+F_2+\dots+F_m=F_{m+2}-1,$\hfill\mbox{}
+
+ \item\hfill $F_1+F_3+F_5+\dots+F_{2m-1}=F_{2m},$\hfill\mbox{}
+ 
+ \item\hfill $F_0-F_1+F_2-F_3\dots-F_{2m-1}+F_{2m}=F_{2m-1}-1,$\hfill\mbox{}
+ 
+ \item\hfill $F_0^2+F_1^2+F_2^2+\dots+F_m^2=F_{m}F_{m+1},$\hfill\mbox{}
+ 
+ \item\hfill $F_{m-1}F_{m+1}-F_m^2=(-1)^m.$\hfill\mbox{}
+ \end{enumerate}
+
+ \begin{ejer}
+Es f\'acil, y debes hacerlo,  escribir programas que comprueben, hasta un $m$
+muy grande, que cualquiera de estas f\'ormulas es correcta, pero lo que
+ser\'{\i}a m\'as interesante es encontrar m\'etodos para generar
+autom\'aticamente y demostrar  f\'ormulas de esta clase.
+\end{ejer}
+
+\subsubsection{Divisibilidad}
+\begin{ejer}
+\begin{enumerate}
+\item?`Qu\'e n\'umeros de Fibonacci son pares??`Cu\'ales son divisibles por $3$?
+?`Y por $5$? ?`Qu\'e n\'umeros de Fibonacci son divisibles por $7$?
+
+\item ?`Qu\'e podr\'{i}amos decir acerca de los divisores de un n\'umero de
+Fibonacci que son tambi\'en n\'umeros de Fibonacci? 
+
+\item ?`Hay n\'umeros de Fibonacci que sean primos?
+
+\item?`Es (experimentalmente) cierto que si un n\'umero de Fibonacci $F_m$  es
+primo entonces $m$ debe ser primo?
+
+\item ?`Qu\'e relaci\'on hay entre el MCD de dos n\'umeros de Fibonacci,
+$F_{m_1}$ y
+$F_{m_2}$,  y el MCD de $m_1$ y $m_2$?
+
+\item La sucesi\'on de Fibonacci se puede definir, mediante la misma
+recursi\'on,  para las clases de restos m\'odulo un entero $m$, es decir, en el
+anillo $\mathbb{Z}_m$. Como hay un n\'umero finito de clases de restos la
+sucesi\'on deber\'{\i}a repetirse a partir de un valor, es decir, deber\'{\i}a
+ser peri\'odica. 
+
+Estudia el per\'{\i}odo en funci\'on de $m$, es decir, el m\'{\i}nimo $k>0$ tal
+que 
+\begin{center}
+\lstinline|F${}_k$%m==0,F${}_{k+1}$%m==1|,
+\end{center}
+\noindent y trata de encontrar alg\'un orden en ese caos.
+\end{enumerate}
+\end{ejer}
+\subsubsection{Curiosidad}
+\begin{ejer}
+La suma de la serie 
+\[\sum_{k=2}^{\infty}\frac{F_k}{10^k}\]
+\noindent es un n\'umero racional con un denominador menor que $100$. Calcula el
+valor m\'as razonable para esa fracci\'on. 
+\end{ejer}
+
+\section{Algoritmo de Euclides}\label{eucl}
+
+El algoritmo de Euclides para calcular el {\itshape m\'aximo com\'un divisor} de
+dos enteros es ciertamente el m\'as antiguo que conocemos.
+
+Dados dos enteros positivos $a_0$ y $b_0$  su 
+m\'aximo com\'un divisor (MCD) es el mayor de sus divisores (positivos)
+comunes. 
+
+Obsérvese que hay un número finito de divisores (positivos) comunes, pues todos
+están 
+comprendidos entre $1$ y $\min(a,b)$.
+
+% Para que esta definici\'on tenga sentido debemos saber que hay un 
+% n\'umero finito de divisores comunes, ya que si hubiera infinitos no 
+% tendr\'{\i}a sentido hablar del mayor. Esto es cierto ya que los 
+% divisores comunes est\'an comprendidos entre $1$  y $\min(a,b)$.
+
+El algoritmo de Euclides es un m\'etodo para calcular el MCD. 
+Supongamos dados dos enteros positivos, $a_0$ y $b_0$, y queremos 
+calcular su MCD.
+
+\begin{enumerate}
+\item Un primer paso ser\'a dividir el mayor,  por ejemplo
+$a_0$, entre el otro. Si el resto es $0$ entonces $a_0$ es 
+m\'ultiplo de $b_0$  y el MCD es $b_0$.
+
+\item Si no, tendremos
+$ a_0 = b_0 \cdot c_0+r_0$  con $ b_0>r_0>0$.  Esta \'ultima condici\'on 
+hace que se pueda dividir  $b_0$ entre $r_0$, para obtener $b_0=r_0 \cdot
+c_1+r_1$.
+
+\item Si $r_1=0$  podemos sustituir $b_0$ en la primera divisi\'on y obtenemos
+$a_0=r_0 \cdot( c_1 \cdot c_0 +1)$ de forma que $ b_0$ y $a_0$ son m\'ultiplos
+de $r_0$. Falta 
+comprobar que $r_0$ es el MCD. 
+
+Si no lo fuera, existir\'\i a un divisor com\'un $k$ mayor que $r_0$.
+Tendremos entonces $k\cdot k ^\prime =c_1 \cdot r_0$ y 
+$k\cdot k^{\prime \prime} =(c_0\cdot c_1+1) \cdot r_0$. Sustituyendo se obtiene
+$k \cdot k^{\prime \prime} =c_0  \cdot k \cdot k ^\prime +r_0$ y finalmente
+$k( k^{\prime \prime}-c_0 \cdot  k^\prime )=r_0$ de forma que $k$  no es el 
+MCD.
+
+\item Si $r_1 \ne 0$ hay que repetir el proceso, dividiendo $r_0$ entre 
+$r_1$, etc.  
+
+\item El algoritmo finaliza, despu\'es de un n\'umero finito de divisiones, 
+porque los restos sucesivos son cada vez m\'as 
+peque\~nos pero siempre positivos o nulos. Cuando se alcance un 
+resto nulo, el anterior es el MCD.
+
+\item {\sc Ejercicio}: Demuestra esta \'ultima afirmaci\'on  por inducci\'on.
+
+\end{enumerate}
+
+
+Una de las propiedades m\'as \'utiles del MCD es el teorema de Bézout: {\itshape
+Si $d$ es el MCD de $a_0$ y $b_0$, entonces 
+existen enteros $u$ y $v$ tales que $d=u\cdot a_0+v\cdot b_0$.}
+\label{bezout}
+\bigbreak
+Se puede demostrar  el teorema de Bézout como consecuencia 
+del algoritmo de Euclides: 
+
+Supongamos, por ejemplo, que hemos hecho cuatro divisiones:
+\begin{equation}\notag
+ \begin{aligned}
+  a_0 &= b_0\cdot c_0+r_0\\
+  b_0 &= r_0\cdot c_1+r_1\\
+  r_0 &= r_1\cdot c_2+r_2\\
+  r_1 &= r_2\cdot c_3 +0,
+  \end{aligned}
+\end{equation}
+
+\noindent de forma que $r_2$ es el MCD de $a_0$ y $b_0$ ($a_0\ge b_0$). Ahora
+podemos
+escribir, despejando los restos y sustituyendo, 
+\[r_2=r_0-r_1\cdot c_2=(a_0-b_0\cdot c_0)-(b_0-(a_0-b_0\cdot c_0)\cdot c_1)\cdot
+c_2=
+a_0(1+c_1\cdot c_2)+b_0(-c_0-c_2-c_0\cdot c_1\cdot c_2),\]
+
+\noindent de forma que, en este caso en que hacemos $4$ divisiones al aplicar el
+algoritmo,  $u=1+c_1\cdot c_2$ y $v=-c_0-c_2-c_0\cdot c_1\cdot c_2$.
+
+
+
+Debe ser claro que si necesitamos m\'as de cuatro divisiones para llegar al MCD,
+el procedimiento para calcular los coeficientes $a_0$ y $b_0$ en el teorema de
+Bézout va a funcionar como en el caso de cuatro.
+
+\subsection{M\'{\i}nimo com\'un m\'ultiplo}
+
+Dados dos enteros positivos, $a_0$ y $b_0$, su {\itshape m\'{\i}nimo com\'un
+m\'ultiplo} (MCM) es el menor de sus m\'ultiplos comunes.  Los dos enteros
+tienen una infinidad de m\'ultiplos comunes, por lo menos todos los enteros de
+la forma $k\cdot a_0\cdot b_0$, pero todo conjunto no vac\'{\i}o de enteros
+positivos tiene un menor elemento, y, por tanto, el MCM est\'a bien definido.
+
+
+Una manera f\'acil de calcular el MCM de dos enteros es, debido a que podemos
+calcular su MCD mediante el algoritmo de Euclides,  usando el hecho de que el
+producto de dos enteros positivos cualesquiera es igual al producto de su MCD
+por su MCM.
+
+
+
+
+\subsection{MCD en {\sage}}
+
+En {\sage} disponemos de dos instrucciones principales relacionadas con el MCD:
+\lstinline|gcd($a$,$b$)| y \lstinline|xgcd($a$,$b$)|. La primera devuelve el MCD
+de los
+dos enteros y la segunda una $3$-upla $(d,u,v)$ en la que el primer elemento es
+el MCD de $a$ y $b$,  y los otros dos son enteros tales que $d=u\cdot
+a+v\cdot b$, es decir, es decir se calculan un par de enteros tales que se
+verifica el teorema de Bézout. 
+
+Los enteros $u$ y $v$ no son \'unicos, de hecho, la ecuación $ax+by=d$, con $d$
+el MCD de $a$ y $b$, tiene soluciones
+$$x=u+(b/d)k,\ y=v-(a/d)k,$$
+para alg\'un $k$ entero, con $u$ y $v$ una solución particular, por ejemplo la
+dada por el algoritmo de Euclides.
+
+Estas dos funciones de {\sage} tambi\'en pueden aplicarse a polinomios en una
+variable con coeficientes racionales, ya que tales polinomios admiten divisi\'on
+con resto y, en consecuencia, el algoritmo de Euclides es v\'alido para ellos. 
+
+\
+
+\begin{ejer}
+\begin{enumerate}
+ \item Programa el algoritmo de Euclides en forma iterativa y en forma
+recursiva. 
+ \item Programa, en forma iterativa y en forma recursiva, el algoritmo,
+explicado m\'as arriba,  que nos
+da los coeficientes $u$ y $v$ en el teorema de Bézout.
+\item El algoritmo iterativo para calcular los coeficientes que aparecen en el
+teorema de Bézout se puede organizar mucho mejor usando multiplicaci\'on de
+matrices. Esto es, hasta cierto punto, an\'alogo al c\'alculo de los t\'erminos
+de la \hyperref[fib-matrices]{sucesi\'on de Fibonacci} usando tambi\'en
+multiplicaci\'on de matrices. 
+
+Programar el algoritmo de esta manera.
+
+
+\item Llamamos {\itshape ecuaci\'on diof\'antica lineal con dos inc\'ognitas a
+una de la forma 
+\[a\cdot x+b\cdot y=c,\]
+\noindent donde $a,b,c$ son enteros dados,  y $x$ e $y$, las soluciones, deben
+ser tambi\'en enteros tales que se cumple la ecuaci\'on. }
+
+El teorema de Bézout permite resolver esta clase de ecuaciones. Escribe c\'odigo
+tal que dados los coeficientes $a,b$ y $c$ devuelva las infinitas soluciones de
+la ecuaci\'on diof\'antica como una f\'ormula en funci\'on de un par\'ametro $k$
+entero.
+
+\item Escribe una funci\'on de {\sage} tal que dados enteros $a$ y $b$ devuelva
+el n\'umero de divisiones que hay que hacer al aplicar el algoritmo de
+Euclides. 
+
+Queremos estudiar, experimentalmente,  la siguiente cuesti\'on: {\itshape
+``Encontrar, en funci\'on
+de $k$, el n\'umero m\'aximo de divisiones que hay que hacer para calcular el
+MCD de un n\'umero $a$ de m\'as de $k$ cifras y un n\'umero $b$ de exactamente
+$k$ cifras''.} 
+\end{enumerate}
+\end{ejer}
+
+
+\section{N\'umeros primos}\label{primos}
+
+Un n\'umero $p>1$ es primo si sus \'unicos divisores son $\pm 1$ y $\pm p$. Uno
+de los teoremas fundamentales, ya conocido por Euclides, afirma que {\itshape
+todo entero $\ge 2$ es el producto, \'unico salvo el orden, de un n\'umero
+finito de enteros primos}.
+
+Tambi\'en Euclides sab\'{\i}a que hay infinitos n\'umeros primos, con el
+siguiente argumento:
+\begin{quotation}
+``{\itshape Si hubiera un n\'umero finito de primos $p_1,p_2,\dots,p_n$ el
+entero $p_1\cdot p_2\cdot \dots \cdot p_n+1$ no ser\'{\i}a divisible por ninguno
+de ellos luego ser\'{\i}a, gracias al teorema de factorizaci\'on, 
+necesariamente primo.}''
+\end{quotation}
+
+Si observamos la sucesi\'on de los primos inmediatamente vemos que seg\'un
+avanza los huecos entre primos se hacen, {\itshape en general},  cada vez m\'as
+grandes. Dicho de otra manera, podemos generar listas tan grandes como queramos
+de enteros consecutivos todos compuestos:
+\[n!+2,n!+3,n!+4,\dots,n!+n. \]
+
+Entonces, uno de los problemas centrales, en la teor\'{\i}a de los n\'umeros
+primos, es el de {\itshape la distribuci\'on de los n\'umeros primos dentro
+del conjunto de los enteros,} que podemos entender como la determinaci\'on del
+n\'umero, aproximado,  de primos en el intervalo $[N_1,N_2]$. 
+
+
+Si definimos $\pi(x)$ como el n\'umero de primos menores o iguales que el
+n\'umero real $x$ el {\itshape teorema de los n\'umeros primos}, conjeturado por
+Legendre y Gauss,  y demostrado por Hadamard y de la Vall\'ee-Poussin, propone
+que 
+\[\lim_{n\to \infty}\frac{\pi(x)}{x/\mathrm{ln}(x)}=1.\]
+
+Este resultado, y otros muchos en teor\'{\i}a de n\'umeros, se demostr\'o usando
+t\'ecnicas de c\'alculo diferencial para funciones de una variable compleja, y
+todav\'{\i}a es la demostraci\'on m\'as sencilla aunque hay otras.
+
+El teorema nos informa, con una aproximaci\'on bastante buena,  de que el
+n\'umero de primos $\le x$ es $x/\mathrm{ln}(x)$. 
+
+Una de sus consecuencias es que el primo $n$-\'esimo $p_n$ est\'a pr\'oximo al
+real $n\cdot \mathrm{ln}(n)$, aunque es siempre mayor (Rosser, 1938).
+\subsection{N\'umeros primos en {\sage}}
+
+Algunas de las funciones o m\'etodos disponibles en {\sage} para tratar con
+n\'umeros primos: 
+\begin{enumerate}
+ \item En primer lugar tenemos el m\'etodo \lstinline|.is_prime()|, que devuelve
+\lstinline|True| o \lstinline|False| 
+seg\'un el entero, de {\sage},  al que se aplique sea primo o no. 
+\item El m\'etodo \lstinline|.next_prime()| devuelve el primo siguiente al
+entero al que se aplica. Sirve, por ejemplo, para localizar sucesiones grandes
+de enteros consecutivos que sean todos compuestos.
+\item La funci\'on \lstinline|prime_range(N_1,N_2)| devuelve la lista de los
+primos contenidos en el intervalo $[N_1,N_2)$.
+ 
+ \item La funci\'on \lstinline|nth_prime(m)| devuelve el primo, $p_m$,  
+que ocupa el lugar $m$-\'esimo en la sucesi\'on de los n\'umeros primos.
+ 
+ \item La funci\'on \lstinline|primes(N_1,N_2)| es un iterador sobre la lista de
+los primos. Sirve para definir un bucle que itere sobre los enteros primos en el
+rango $[N_1,N_2)$  utilizando poca memoria RAM.
+\item Ya discutimos, en la p\'agina \pageref{factoriz}, c\'omo trabajar con las
+factorizaciones de un entero como producto de primos.
+ 
+ 
+\end{enumerate}
+
+
+
+
+
+\subsection{Algunos problemas}
+Dentro de la teor\'{\i}a de los n\'umeros primos hay bastantes conjeturas,
+resultados probablemente ciertos pero para los que no se conoce demostraci\'on,
+y resultados, algunos de demostraci\'on extremadamente dif\'{\i}cil, pero en
+muchos casos con un enunciado muy simple. 
+
+
+\bigskip
+
+
+A continuaci\'on hay una peque\~na muestra, y para los problemas
+marcados con un asterisco {\sc se propone que se elaboren programas} para
+estudiarlos. 
+
+
+
+
+\begin{enumerate}
+ 
+ 
+ \item {\sc Conjetura de Goldbach}:
+ 
+ \begin{enumerate}
+ \item (Goldbach fuerte $^*$) Todo n\'umero par, mayor que $2$, es la suma de
+dos
+n\'umeros primos. 
+ 
+ \item (Goldbach d\'ebil $^*$) Todo n\'umero impar mayor que cinco es la suma de
+tres
+n\'umeros primos. Esta conjetura parece que ha sido finalmente probada. 
+
+
+Puedes leer el comienzo de este
+\href{http://150.244.21.37/PDFs/TNUME/Harald.pdf}{art\'{\i}culo}, en el que el autor de la
+demostraci\'on, el matem\'atico peruano 
+Harald Andr\'es Helfgott, expone las ideas b\'asicas. Lo que nos interesa
+aqu\'{\i} es que la demostraci\'on tiene dos partes:
+\begin{enumerate}
+\item Para n\'umeros impares menores que $10^{29}$ se comprob\'o mediante
+ordenador.
+\item Para los mayores que $10^{29}$ Helfgott mejor\'o  argumentos conocidos
+hasta llegar a demostrar la conjetura para todos ellos.
+\end{enumerate}
+\item Tambi\'en se ha probado (Chen, 1973) que todo n\'umero par {\itshape
+suficientemente grande} es la suma de dos primos o bien de un primo y un
+producto de dos primos (por definici\'on un {\itshape semiprimo}).
+
+\item (Conjetura de Lemoine)  Todo n\'umero impar mayor que cinco es la suma de
+un n\'umero primo y 
+de un semiprimo par.
+
+
+\item (Conjetura de Sun $^*$) Todo n\'umero impar mayor que tres es la suma de
+un
+n\'umero primo impar 
+y un producto de dos enteros consecutivos.
+
+\end{enumerate}
+
+\item {\sc Primos gemelos}:
+ 
+ \begin{enumerate}
+ \item ($^*$) Existen infinitos pares de n\'umeros primos de la forma $(p,p+2)$.
+ 
+ \item Al comienzo de 2013 se ha presentado (Zhang)  una demostraci\'on de que
+hay infinitos pares de primos que distan menos que $70$ millones. Esto est\'a
+bastante lejos de la conjetura, pero en este momento parece que la cota, $70$
+millones, ya ha sido rebajada a un n\'umero del orden de $4000.$
+ 
+ \item ($^*$) Se sabe que todos los pares de primos gemelos $(p,p+2),\ p\ge 5$
+son de
+la forma $(6n-1,6n+1)$ para alg\'un $n$. Esto se debe a que todo primo mayor o
+igual a cinco es de la forma $6n-1$ o de la forma $6n+1.$
+ 
+\item ($^*$) {\sc Ejercicio}: encontrar todos los enteros $p$ tales que
+$p,p+4,p+6,p+10,p+12,p+16,p+22$ sean todos primos.
+ 
+ 
+ 
+ 
+ \end{enumerate}
+ 
+ \item{\sc Primos como valores de polinomios }:
+ \begin{enumerate}
+ \item ($^*$) Dirichlet demostr\'o que los polinomios  $an+b$, verificando
+$MCD(a,b)=1$, toman infinitos valores primos, es decir, {\itshape
+ hay infinitos primos en las  progresiones aritm\'eticas en las que no todos los
+elementos son m\'ultiplos de un entero $d$.}
+ 
+ Por ejemplo,  es un ejercicio f\'acil,  usando la misma idea que la
+demostraci\'on de Euclides
+de la existencia de infinitos primos, demostrar que hay infinitos primos en la
+progresi\'on aritm\'etica $4n+3$, pero el caso general es bastante dif\'{\i}cil.
+ 
+ \item ($^*$) No se sabe si hay infinitos primos de la forma $n^2+1$. Sin
+embargo se
+sabe (Iwaniec, 1978)
+que hay infinitos enteros de la forma  $n^2+1$ que tienen a lo m\'as dos
+factores primos.
+ \item No se conoce ning\'un polinomio de una variable, con coeficientes enteros
+ y de grado mayor que uno, que tome infinitos valores primos.
+ \item El polinomio $n^2+n+41$ comienza bien, toma valores primos para $n$ entre
+$0$ y $39$, pero no se sabe que tome infinitos valores primos.
+ 
+ \item {\sc Conjetura de Bouniakovsky ($^*$)}: Sea $P(x)$ un polinomio con
+coeficientes
+enteros  irreducible (i.e. no se puede escribir como producto de dos polinomios
+con coeficientes enteros) y  de grado al menos $1$. Sea  $d$ el mayor entero tal
+que divide a todos los valores  $P(n),\ n\in \mathbb{Z}$. Si $d$ vale $1$
+entonces $P(n)$ tiene infinitos valores primos.  
+ 
+ 
+ \item ($^*$) Sin embargo, hay polinomios de dos variables como $x^2+y^2$ para
+los que
+se puede demostrar, usando el teorema de Dirichlet, que toman infinitos valores
+primos. 
+
+\item Hay polinomios con coeficientes enteros en $10$ variables tales que el
+conjunto de  los valores positivos que toman, cuando las variables recorren los
+enteros no negativos, es el conjunto de enteros primos.
+\end{enumerate}
+\end{enumerate}
+
+\section{Enteros representables como sumas de cuadrados}\label{suma-cuadrados}
+
+La suma de los cuadrados de dos enteros, $x^2+y^2$, es un entero no negativo y
+queremos averiguar qu\'e enteros no negativos se pueden representar como una tal
+suma de cuadrados. Es claro que, por ejemplo, $2=1^2+1^2$ pero $3$ no se puede
+representar como una suma de cuadrados. En estos ejercicios se trata de generar
+un n\'umero suficiente de ejemplos de enteros que se representan, o no, como
+sumas
+de cuadrados,  y de obtener conjeturas razonables acerca de la condici\'on
+(condiciones) que debe verificar un entero $n$ para que se pueda representar
+como una suma de cuadrados.
+
+\begin{ejer}
+\begin{enumerate}
+\item ?`Qu\'e n\'umeros primos se pueden representar como suma de dos cuadrados?
+Mediante un programa adecuado no es dif\'{\i}cil ver cu\'al debe ser la
+respuesta, aunque no es tan f\'acil demostrarla.
+
+\item ?`Qu\'e enteros positivos se pueden representar como una suma de
+cuadrados?
+
+Gracias a las identidades
+
+\begin{equation}\notag
+ \begin{aligned}
+  (x_1^2+y_1^2)(x_2^2+y_2^2)&=(x_1x_2\pm y_1y_2)^2+(x_1y_2\mp y_1x_2)^2\\
+  2(x_1^2+y_1^2) &=(x_1+y_1)^2+(x_1-y_1)^2
+ \end{aligned}
+\end{equation}
+
+\noindent no es dif\'{\i}cil responder a esta pregunta usando la respuesta de la
+anterior y el hecho de que todo entero es un producto, esencialmente \'unico, 
+de potencias de primos. 
+
+\item ?`Qu\'e enteros positivos se pueden representar como una suma de tres
+cuadrados? ?`Y como una suma de cuatro cuadrados?
+\end{enumerate}
+\end{ejer}
+\section{Desarrollos decimales}\label{decimales}
+Dada una fracci\'on reducida $n/d$, con $n$ y $d$ enteros positivos primos entre
+s\'{\i}, podemos asociarle un n\'umero real, decimal con infinitas cifras, 
+mediante el algoritmo de divisi\'on con resto de n\'umeros enteros.
+\begin{enumerate}
+\item Para empezar, si $n>d$,  separamos la parte entera  dividiendo
+$n=c\cdot d+r$,  de forma que $\frac{n}{d}=c+\frac{r}{d}$ con $c$ la parte
+entera de la fracci\'on. Podemos continuar con el desarrollo decimal de $r/d$,
+es decir, suponiendo que $n<d.$
+\item Si el denominador $d$ es de la forma $2^a\cdot 5^b$, llamemos $n$ al
+m\'aximo de $a$ y $b$,  obtenemos un n\'umero entero multiplicando $r/d$ por
+$10^n$, y, por tanto el desarrollo decimal de $r/d$ es  cero a partir del lugar
+$n$-\'esimo despu\'es del punto decimal.
+
+\item Supongamos ahora que $n<d$ y  $MCD(d,10)=1.$ ?`C\'omo podemos calcular la
+primera cifra decimal de $n/d$? Es claro que la primera cifra decimal es la
+parte entera de $(10\cdot n)/d$. 
+
+Por ejemplo, la primera cifra decimal de $3/7$ es $4$ como vemos al realizar la
+división entera de $3\cdot10=30$ por $7$, esto es
+$30=4\cdot 7+2$.
+
+?`Y la segunda cifra decimal? Habr\'a que restar a $(10\cdot n)/d$ su parte
+entera, multiplicar por $10$ otra vez y quedarnos con la parte entera del
+resultado. En el ejemplo, y dividiendo la división entera ya realizada por $7$,
+encontramos $\frac{30}7-4=\frac27$, y continuaríamos con el desarrollo decimal
+para $2/7$.
+
+\item Defino entonces dos  funciones
+\begin{enumerate}
+\item \lstinline|f(r):=floor(10*r)|, que aplicada a un n\'umero racional menor
+que $1$ produce la primera cifra de su desarrollo decimal.
+
+ \item \lstinline|F(r):=10*r-floor(10*r)|, que aplicada a
+un n\'umero racional $r=n/d$ produce otro n\'umero racional $r_1:=n_1/d<1$, con
+el mismo denominador que $r$, que es la fracci\'on que contiene la informaci\'on
+sobre las siguientes cifras decimales de $n/d.$
+En particular, aplicando $f$ al racional $F(r)$ obtenemos la segunda cifra
+decimal de $r$. 
+\end{enumerate}
+
+\item Como todas las fracciones que obtenemos al iterar $F$ tienen el mismo
+denominador $d$, s\'olo puede haber un n\'umero finito de numeradores, enteros
+entre $1$ y $d-1$, lo que sugiere que tiene sentido considerar la cuesti\'on en
+el anillo de clases de restos m\'odulo $d$. 
+
+\item ?`Qui\'en es el numerador $n_1$ de la fracci\'on $r_1$? Si escribimos
+$10*n=c\cdot d+r$ y dividimos entre $d$ ambos miembros vemos que $n_1$ es el
+resto $r$ de esta divisi\'on, de forma que cuando consideramos la funci\'on $F$
+como actuando en los numeradores de fracciones que tienen $d$ como denominador,
+se trata simplemente de la funci\'on, de $\mathbb{Z}_d$ en s\'{\i} mismo,  
+definida mediante $\overline{F}([n]):=[10*n],$ y sabemos, gracias al teorema de
+Fermat-Euler
+(ver la subsecci\'on \ref{peq}), que existe un exponente $\nu$ tal que
+$\overline{F}^{\nu}=Identidad.$
+
+Esto demuestra que {\itshape los desarrollos decimales de fracciones $n/d$ con
+$n<d$ y $MCD(d,10)=1$ son peri\'odicos.}
+
+\item Por \'ultimo, si el denominador $d$ de la fracci\'on $n/d$ que estamos
+estudiando es de la forma $2^a\cdot 5^b\cdot D$ con $MCD(D,10)=1$, y
+multiplicamos la fracci\'on por $10^{\max(a,b)}$ obtenemos una expresi\'on de la
+forma $C+\frac{N}{D}$ con $C$ un entero. Ya sabemos que el desarrollo decimal de
+$N/D$ es peri\'odico, de manera que dividiendo por 
+$10^{\max(a,b)}$ obtenemos que el desarrollo decimal de la fracci\'on original
+tiene un primer bloque de la forma $C/10^{\max(a,b)}$ y a continuaci\'on
+otro bloque repetido infinitas veces,  al que llamamos la {\itshape parte
+peri\'odica del desarrollo}. 
+\end{enumerate}
+
+?`C\'omo podemos obtener la fracci\'on que corresponde a un cierto desarrollo
+decimal peri\'odico?  Supongamos, por ejemplo, un desarrollo de la forma 
+\[x:=2{.}34545454545\dots=:2{.}3\overline{45}.\]
+
+Podemos escribir $x=\frac{23}{10}+\frac{0{.}\overline{45}}{10}$. Tomando 
+$s=0{.}\overline{45}$, y restándoselo a \(100s=45{.}\overline{45}\)
+se obtiene $s=\frac{45}{99}=\frac5{11}$ y así
+\[x=\frac{23}{10}+\frac{\frac{5}{11}}{10}=\dots=\frac{129}{55}
+\]
+
+
+\begin{ejer}
+\begin{enumerate}
+ \item  Programa una funci\'on, o varias, para calcular el desarrollo decimal de
+una fracci\'on $n/d$ reducida cualquiera.
+ \item Programa una funci\'on para calcular la fracci\'on que corresponde a un
+desarrollo decimal dado.
+ \item ?`Qu\'e modificaciones habr\'{\i}a que hacer para que estos programas
+funcionaran para fracciones de enteros expresados en el
+\hyperref[bases-num]{sistema de numeraci\'on
+de base $b$}?
+ 
+\end{enumerate}
+
+
+\end{ejer}
+

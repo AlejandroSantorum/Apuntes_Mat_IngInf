@@ -1,0 +1,12 @@
+         2000005 function calls in 6.292 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+  1000000    3.492    0.000    4.589    0.000 misc.py:431(is_prime)
+        1    1.701    1.701    6.292    6.292 <ipython-input-4-7aab5e8efd1e>:1(subintervalo3)
+  1000000    1.098    0.000    1.098    0.000 {method 'is_prime' of 'sage.rings.integer.Integer' objects}
+        1    0.002    0.002    0.002    0.002 {max}
+        1    0.000    0.000    6.292    6.292 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
