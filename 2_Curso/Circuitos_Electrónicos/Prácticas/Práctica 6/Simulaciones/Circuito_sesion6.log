@@ -1,0 +1,21 @@
+Circuit: * C:\Users\Alejandro Santorum\Desktop\ALEX\DG\2º\1 CUATRIMESTRE\Circuitos Electrónicos\Prácticas\Práctica 6\Simulaciones\Circuito_sesion6.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Tue Nov 14 22:40:57 2017
+Total elapsed time: 0.115 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 4390
+traniter = 4340
+tranpoints = 2131
+accept = 2112
+rejected = 19
+matrix size = 11
+fillins = 1
+solver = Normal
+Matrix Compiler1: 432 bytes object code size  0.2/0.1/[0.0]
+Matrix Compiler2: 855 bytes object code size  0.1/0.2/[0.0]
+
