@@ -1,0 +1,6 @@
+--5. How many books were sold to registered users?
+Result:
+ n_bookssold_toregistered 
+--------------------------
+                    24736
+(1 row)

@@ -1,0 +1,7 @@
+--8.2 In which days were books of the publisher Oxford University Press, U.S.A. on sale?
+Result:
+ initial_date | final_date 
+--------------+------------
+ 2010-01-15   | 2014-10-10
+ 2012-01-01   | 2014-12-30
+(2 rows)

@@ -1,0 +1,9 @@
+--4. How much money was earned by selling books of author X?(ex. Arturo Perez-Reverte)
+Result:
+CREATE VIEW
+ money_earned_for_x_author 
+---------------------------
+                    224.28
+(1 row)
+
+DROP VIEW

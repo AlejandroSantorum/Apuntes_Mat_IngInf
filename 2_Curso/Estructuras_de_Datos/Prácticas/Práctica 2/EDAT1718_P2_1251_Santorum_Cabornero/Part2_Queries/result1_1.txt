@@ -1,0 +1,6 @@
+--1.1 Given a title, how many editions does it have?(ex. Don Quixote)
+Result:
+ n_editions 
+------------
+          5
+(1 row)

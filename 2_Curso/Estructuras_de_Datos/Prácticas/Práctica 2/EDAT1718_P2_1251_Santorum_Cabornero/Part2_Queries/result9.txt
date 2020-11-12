@@ -1,0 +1,6 @@
+--9. Which registered users have never bought paperback books?
+Result:
+    full_name    
+-----------------
+ Jason M. Lemkin
+(1 row)

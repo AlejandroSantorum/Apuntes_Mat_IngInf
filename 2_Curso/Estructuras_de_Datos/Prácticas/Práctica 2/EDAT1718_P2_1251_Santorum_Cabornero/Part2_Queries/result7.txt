@@ -1,0 +1,9 @@
+--7. How much money was earned by selling books in French?
+Result:
+CREATE VIEW
+ money_earned_booksfrench 
+--------------------------
+         45597.3099999998
+(1 row)
+
+DROP VIEW

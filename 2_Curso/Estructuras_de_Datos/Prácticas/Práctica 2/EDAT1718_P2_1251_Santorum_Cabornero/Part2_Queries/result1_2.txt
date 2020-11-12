@@ -1,0 +1,6 @@
+--1.2 Given a title, in how many languages is the book written?(ex. Don Quixote)
+Result:
+ n_languages 
+-------------
+           1
+(1 row)

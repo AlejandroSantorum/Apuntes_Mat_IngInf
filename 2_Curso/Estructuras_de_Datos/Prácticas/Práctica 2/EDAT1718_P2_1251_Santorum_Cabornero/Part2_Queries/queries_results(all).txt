@@ -1,0 +1,59 @@
+ n_editions 
+------------
+          5
+(1 row)
+
+ n_languages 
+-------------
+           1
+(1 row)
+
+ n_bookssold 
+-------------
+        3052
+(1 row)
+
+ n_booksatdiscount 
+-------------------
+                18
+(1 row)
+
+CREATE VIEW
+ money_earned_for_x_author 
+---------------------------
+                    224.28
+(1 row)
+
+DROP VIEW
+ n_bookssold_toregistered 
+--------------------------
+                    24736
+(1 row)
+
+ n_registeredusers 
+-------------------
+                97
+(1 row)
+
+CREATE VIEW
+ money_earned_booksfrench 
+--------------------------
+         45597.3099999998
+(1 row)
+
+DROP VIEW
+ initial_date | final_date 
+--------------+------------
+(0 rows)
+
+ initial_date | final_date 
+--------------+------------
+ 2010-01-15   | 2014-10-10
+ 2012-01-01   | 2014-12-30
+(2 rows)
+
+    full_name    
+-----------------
+ Jason M. Lemkin
+(1 row)
+

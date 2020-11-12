@@ -1,0 +1,6 @@
+--2. How many books of author X were sold? (ex. Arturo Perez-Reverte)
+Result:
+ n_bookssold 
+-------------
+        3052
+(1 row)

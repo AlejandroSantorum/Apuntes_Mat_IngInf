@@ -1,0 +1,7 @@
+﻿--8.1 In which days were books of the publisher Adelpi on sale?
+Result:
+ initial_date | final_date 
+--------------+------------
+(0 rows)
+
+NOTE: The result is 0 becuase Adelpi publishing_house doesn´t exist.

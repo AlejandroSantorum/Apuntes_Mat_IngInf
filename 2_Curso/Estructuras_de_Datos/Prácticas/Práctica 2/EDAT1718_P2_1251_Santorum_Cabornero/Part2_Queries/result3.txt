@@ -1,0 +1,6 @@
+--3. How many books of author X were sold at a discount? (ex. Arturo Perez-Reverte)
+Result:
+ n_booksatdiscount 
+-------------------
+                18
+(1 row)

@@ -1,0 +1,6 @@
+--6. How many registered users have bought English books?
+Result:
+ n_registeredusers 
+-------------------
+                97
+(1 row)
