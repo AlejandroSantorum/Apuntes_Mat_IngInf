@@ -1,0 +1,654 @@
+\hypertarget{proyecto_8c}{}\section{proyecto.\+c File Reference}
+\label{proyecto_8c}\index{proyecto.\+c@{proyecto.\+c}}
+
+
+Proyecto Final.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$limits.\+h$>$}\\*
+{\ttfamily \#include $<$ctype.\+h$>$}\\*
+{\ttfamily \#include $<$pthread.\+h$>$}\\*
+{\ttfamily \#include $<$sys/sem.\+h$>$}\\*
+{\ttfamily \#include $<$sys/ipc.\+h$>$}\\*
+{\ttfamily \#include $<$sys/shm.\+h$>$}\\*
+{\ttfamily \#include $<$sys/msg.\+h$>$}\\*
+{\ttfamily \#include $<$syslog.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}semaforos.\+h\char`\"{}}\\*
+Include dependency graph for proyecto.\+c\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structmsgbuf}{msgbuf}
+\begin{DoxyCompactList}\small\item\em Estructura de colas de mensajes. \end{DoxyCompactList}\item 
+struct \hyperlink{structmarket__rates__struct}{market\+\_\+rates\+\_\+struct}
+\begin{DoxyCompactList}\small\item\em Estructura de memoria compartida de cotizaciones. \end{DoxyCompactList}\item 
+struct \hyperlink{structrace__control__struct}{race\+\_\+control\+\_\+struct}
+\begin{DoxyCompactList}\small\item\em Estructura de memoria compartida de control de carrera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{proyecto_8c_a45427030a543a1fe5b6a6ad24b0415a5}{N\+\_\+\+A\+R\+GS}~6
+\item 
+\#define \hyperlink{proyecto_8c_aed61c013d1ed5cd22ac6797da255d7b2}{M\+I\+N\+\_\+\+P\+R\+OC}~3
+\item 
+\#define \hyperlink{proyecto_8c_a1f292d5e7fb89ea56519859a22db34c6}{M\+A\+X\+\_\+\+H\+O\+R\+S\+ES}~10
+\item 
+\#define \hyperlink{proyecto_8c_a04b095594991cd1e45207233c829809c}{M\+I\+N\+\_\+\+H\+O\+R\+S\+ES}~2
+\item 
+\#define \hyperlink{proyecto_8c_ada3d0388ad1f3695c1d5943777f1bbe5}{M\+A\+X\+\_\+\+R\+A\+CE}~200
+\item 
+\#define \hyperlink{proyecto_8c_afbdb2dcbc6453cdd1fa0ee0cadfa4d68}{M\+I\+N\+\_\+\+R\+A\+CE}~20
+\item 
+\#define \hyperlink{proyecto_8c_a413f07003e939da217bc0eeff5916a02}{M\+A\+X\+\_\+\+B\+E\+T\+T\+OR}~100
+\item 
+\#define \hyperlink{proyecto_8c_aeaf66b255808739ffee8c780b2181757}{M\+I\+N\+\_\+\+B\+E\+T\+T\+OR}~10
+\item 
+\#define \hyperlink{proyecto_8c_a96f609b2a30e2dc3cc404945cdb2d55e}{M\+A\+X\+\_\+\+W\+I\+N\+D\+O\+WS}~30
+\item 
+\#define \hyperlink{proyecto_8c_a1908236606322549825ed3994b7ea62d}{M\+I\+N\+\_\+\+W\+I\+N\+D\+O\+WS}~1
+\item 
+\#define \hyperlink{proyecto_8c_a9ec2d7f52a33047523f87fbd5da5510a}{M\+A\+X\+\_\+\+M\+O\+N\+EY}~2000
+\item 
+\#define \hyperlink{proyecto_8c_a133a97109d0a1096b0661b5295e60ede}{M\+I\+N\+\_\+\+M\+O\+N\+EY}~10
+\item 
+\#define \hyperlink{proyecto_8c_a39ce4c57ee1cd38a8230f70193b506d3}{P\+R\+O\+C\+\_\+\+M\+A\+N\+A\+G\+ER}~0
+\item 
+\#define \hyperlink{proyecto_8c_acb4a682f0662a1fc810539b0e24797cc}{P\+R\+O\+C\+\_\+\+B\+E\+T\+T\+OR}~1
+\item 
+\#define \hyperlink{proyecto_8c_ad798c34a41dfac0cc34f1c71c9278476}{P\+R\+O\+C\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+ER}~2
+\item 
+\#define \hyperlink{proyecto_8c_ad2d98a7d31786f8332b2aaf8525bb1e2}{S\+E\+M\+\_\+\+S\+I\+ZE}~3
+\item 
+\#define \hyperlink{proyecto_8c_ab7af58da661e265f90a803729e1cc662}{M\+A\+R\+K\+E\+T\+\_\+\+S\+EM}~0
+\item 
+\#define \hyperlink{proyecto_8c_a549b501dcbeadb15771f3172449d6b2e}{R\+A\+C\+E\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+EM}~1
+\item 
+\#define \hyperlink{proyecto_8c_a2448034a2c73a5f0e1e0608e4375eca6}{F\+I\+L\+E\+\_\+\+S\+EM}~2
+\item 
+\#define \hyperlink{proyecto_8c_a492c6ccf2bde2bebcd32e73e0933ee92}{F\+I\+R\+ST}~1
+\item 
+\#define \hyperlink{proyecto_8c_a1291f416b069313021b519eea62d5bf1}{N\+O\+R\+M\+AL}~100
+\item 
+\#define \hyperlink{proyecto_8c_a210af1d04c8870416a556f0e9a5194fd}{L\+A\+ST}~-\/100
+\item 
+\#define \hyperlink{proyecto_8c_ab0139008fdda107456f13f837872b410}{P\+A\+TH}~\char`\"{}/bin/bash\char`\"{}
+\item 
+\#define \hyperlink{proyecto_8c_aae41b9fee1a9f666fa16a88e24309186}{B\+E\+T\+F\+I\+LE}~\char`\"{}apuestas.\+txt\char`\"{}
+\item 
+\#define \hyperlink{proyecto_8c_a4b646acb77bd65ffb169af5ad1407a76}{B\+E\+T\+T\+O\+R\+F\+I\+LE}~\char`\"{}resultados\+\_\+apostadores.\+txt\char`\"{}
+\item 
+\#define \hyperlink{proyecto_8c_a8fe83ac76edc595f6b98cd4a4127aed5}{E\+R\+R\+OR}~-\/1
+\item 
+\#define \hyperlink{proyecto_8c_a48fcf4f2eeef6769d588168d4ac2ab0e}{S\+E\+C\+O\+N\+DS}~30
+\item 
+\#define \hyperlink{proyecto_8c_a834e9a379307f869a10f4da078be5786}{N\+A\+M\+E\+\_\+\+S\+I\+ZE}~20
+\item 
+\#define \hyperlink{proyecto_8c_a6b20d41d6252e9871430c242cb1a56e7}{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~128
+\item 
+\#define \hyperlink{proyecto_8c_a6553be7790241bf88c873cc1549487e1}{N\+\_\+\+B\+E\+S\+T\+\_\+\+B\+E\+T\+T\+OR}~10
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{proyecto_8c_ad78dc83d46d4d5c58d0efd395c8f3d10}{init\+\_\+syslog} ()
+\begin{DoxyCompactList}\small\item\em inicializa syslog \end{DoxyCompactList}\item 
+int \hyperlink{proyecto_8c_a86a4f2b7e18ef771ecf42d7aca5c9fde}{is\+\_\+valid\+\_\+integer} (char $\ast$input)
+\begin{DoxyCompactList}\small\item\em comprueba si una cadena de caracteres es un numero \end{DoxyCompactList}\item 
+int \hyperlink{proyecto_8c_a423be02d237888f767b6d107096c10f4}{aleat\+\_\+num} (int inf, int sup)
+\begin{DoxyCompactList}\small\item\em devuelve un numero entero aleatorio en el intervalo (limites incluidos) \end{DoxyCompactList}\item 
+float \hyperlink{proyecto_8c_a0ceb8db9b925b9858018a23ada0e3560}{float\+\_\+rand} (float min, float max)
+\begin{DoxyCompactList}\small\item\em devuelve un numero decimal aleatorio en el intervalo (limites incluidos) \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_a4a9eb9635b640723c989b595ae2563b7}{handler\+\_\+\+S\+I\+G\+U\+S\+R1\+\_\+bettor} (int sig)
+\begin{DoxyCompactList}\small\item\em nuevo manejador de la señal S\+I\+G\+U\+S\+R1 para el proceso apostador. Su funcionalidad es simplemente obligar al proceso a no ignorar la señal. Ademas, pone la variable global de control del apostador a 1 \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_ad74373062149d2394167150b79a4dca9}{handler\+\_\+\+S\+I\+G\+U\+S\+R2} (int sig)
+\begin{DoxyCompactList}\small\item\em nuevo manejador de la señal S\+I\+G\+U\+S\+R2. Su funcionalidad es simplemente obligar al proceso a no ignorar la señal. \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_a8c10e09a164a4c558b48b6c6d30cf70b}{displayer\+\_\+process} (int bettor\+\_\+process\+\_\+pid, int betting\+\_\+manager\+\_\+process\+\_\+pid, int len\+\_\+race, int n\+\_\+bettor)
+\begin{DoxyCompactList}\small\item\em funcion que implementa la funcionalidad del proceso monitor \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_ad86d0002bad6dc92d598b9dc1dc158e7}{betting\+\_\+manager\+\_\+process} (int \hyperlink{proyecto_8c_a71cce9a5c473ee9da7abc2fa84010c30}{n\+\_\+horses}, int n\+\_\+bettor, int n\+\_\+windows)
+\begin{DoxyCompactList}\small\item\em funcion que implementa la funcionalidad del proceso manejador de apuestas \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_a1c41f50bb3c770e73fc5d8cea3e96135}{bettor\+\_\+process} (int \hyperlink{proyecto_8c_a71cce9a5c473ee9da7abc2fa84010c30}{n\+\_\+horses}, int n\+\_\+bettor, int money)
+\begin{DoxyCompactList}\small\item\em funcion que implementa la funcionalidad del proceso apostador \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_afc31db7de432d57007b0b9b3c518f405}{horse} ()
+\begin{DoxyCompactList}\small\item\em funcion que implementa la funcionalidad del proceso caballo \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{proyecto_8c_a565f874a89caf6fdddeeddd67f7e113b}{window\+\_\+function} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em funcion que implementa la funcionalidad de las ventanillas \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_a6ac7cf6dff95cd711b8bd73de83146c1}{classification} (int $\ast$current, int $\ast$position, int len)
+\begin{DoxyCompactList}\small\item\em funcion que asigna a cada caballo su posicion en el ranking actual \end{DoxyCompactList}\item 
+int \hyperlink{proyecto_8c_a4f2e3020d3fd9eefc3742496fd1d1112}{checked} (int $\ast$array, int len)
+\begin{DoxyCompactList}\small\item\em funcion auxiliar de la funcion classification que se encarga de comprobar si todos los caballos han sido clasificados \end{DoxyCompactList}\item 
+int \hyperlink{proyecto_8c_a97b670ecbe556e6739fe4951824e52fe}{finished} (int $\ast$array, int len, int racelen)
+\begin{DoxyCompactList}\small\item\em funcion auxiliar que se encarga de comprobar si la carrera ha finalizado \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_a25a03578340ad5ea8ef8689220b6ec2c}{calculate\+\_\+bet\+\_\+results} (int $\ast$winners, int n\+\_\+winners, int n\+\_\+bettor)
+\begin{DoxyCompactList}\small\item\em funcion que calcula los resultados de las apuestas y los escribe en un fichero \end{DoxyCompactList}\item 
+void \hyperlink{proyecto_8c_aedefd2b2f11c534044047a0213408a29}{print\+\_\+best\+\_\+bettors} (int n\+\_\+bettor)
+\begin{DoxyCompactList}\small\item\em funcion que calcula los mejores apostadores y los muestra por pantalla \end{DoxyCompactList}\item 
+int \hyperlink{proyecto_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\item 
+void {\bfseries horse} (int id)\hypertarget{proyecto_8c_ae24e33737b9e1eb24d897356820ef624}{}\label{proyecto_8c_ae24e33737b9e1eb24d897356820ef624}
+
+\item 
+void {\bfseries handler\+\_\+\+S\+I\+G\+I\+NT} (int sig)\hypertarget{proyecto_8c_a06ccb54a5a8e0e1573b029bcd7e73b26}{}\label{proyecto_8c_a06ccb54a5a8e0e1573b029bcd7e73b26}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries semid}\hypertarget{proyecto_8c_a7c35ac5305085cf7360645b8d52988b5}{}\label{proyecto_8c_a7c35ac5305085cf7360645b8d52988b5}
+
+\item 
+int {\bfseries msgid}\hypertarget{proyecto_8c_a6174c42da8c55c86e7255be2848dc4ac}{}\label{proyecto_8c_a6174c42da8c55c86e7255be2848dc4ac}
+
+\item 
+int {\bfseries memid\+\_\+market}\hypertarget{proyecto_8c_aba22d8e5022b64df91850f15681fa24d}{}\label{proyecto_8c_aba22d8e5022b64df91850f15681fa24d}
+
+\item 
+int {\bfseries memid\+\_\+race}\hypertarget{proyecto_8c_a5e521a2ea7410c64e6051536339fde3a}{}\label{proyecto_8c_a5e521a2ea7410c64e6051536339fde3a}
+
+\item 
+int \hyperlink{proyecto_8c_a71cce9a5c473ee9da7abc2fa84010c30}{n\+\_\+horses}
+\item 
+int {\bfseries n\+\_\+proc}\hypertarget{proyecto_8c_a8e11f1341e237bed04950ced470b8946}{}\label{proyecto_8c_a8e11f1341e237bed04950ced470b8946}
+
+\item 
+int \hyperlink{proyecto_8c_ab64e560b3425405da700479853245853}{flag\+\_\+bettor} =0
+\item 
+int {\bfseries flag\+\_\+window} =0\hypertarget{proyecto_8c_a28738b933a03b2e16f93f2134f176e67}{}\label{proyecto_8c_a28738b933a03b2e16f93f2134f176e67}
+
+\item 
+int $\ast$ \hyperlink{proyecto_8c_ae2dbd09bc5d807d7e639d9b4ada71a7e}{pids} =N\+U\+LL
+\item 
+\hyperlink{structmarket__rates__struct}{market\+\_\+rates\+\_\+struct} $\ast$ \hyperlink{proyecto_8c_ab77451f408925891ab0ac04c0d901131}{market\+\_\+rates} =N\+U\+LL
+\item 
+\hyperlink{structrace__control__struct}{race\+\_\+control\+\_\+struct} $\ast$ \hyperlink{proyecto_8c_a6dc9be99884e82ceb7b58a5de4613f70}{race\+\_\+control} =N\+U\+LL
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Proyecto Final. 
+
+Proyecto final de la asignatura de Sistemas Operativos 2018
+
+\begin{DoxyAuthor}{Author}
+Alejandro Santorum \& David Cabornero (G2202-\/\+Pareja7) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+04-\/05-\/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\index{proyecto.\+c@{proyecto.\+c}!B\+E\+T\+F\+I\+LE@{B\+E\+T\+F\+I\+LE}}
+\index{B\+E\+T\+F\+I\+LE@{B\+E\+T\+F\+I\+LE}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{B\+E\+T\+F\+I\+LE}{BETFILE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+E\+T\+F\+I\+LE~\char`\"{}apuestas.\+txt\char`\"{}}\hypertarget{proyecto_8c_aae41b9fee1a9f666fa16a88e24309186}{}\label{proyecto_8c_aae41b9fee1a9f666fa16a88e24309186}
+Fichero de guardado de datos de las apuestas \index{proyecto.\+c@{proyecto.\+c}!B\+E\+T\+T\+O\+R\+F\+I\+LE@{B\+E\+T\+T\+O\+R\+F\+I\+LE}}
+\index{B\+E\+T\+T\+O\+R\+F\+I\+LE@{B\+E\+T\+T\+O\+R\+F\+I\+LE}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{B\+E\+T\+T\+O\+R\+F\+I\+LE}{BETTORFILE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+E\+T\+T\+O\+R\+F\+I\+LE~\char`\"{}resultados\+\_\+apostadores.\+txt\char`\"{}}\hypertarget{proyecto_8c_a4b646acb77bd65ffb169af5ad1407a76}{}\label{proyecto_8c_a4b646acb77bd65ffb169af5ad1407a76}
+Fichero de guardado de datos de los resultadores de las apuestas \index{proyecto.\+c@{proyecto.\+c}!B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}
+\index{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}{BUFFER_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~128}\hypertarget{proyecto_8c_a6b20d41d6252e9871430c242cb1a56e7}{}\label{proyecto_8c_a6b20d41d6252e9871430c242cb1a56e7}
+Tamanio maximo del buffer de lectura \index{proyecto.\+c@{proyecto.\+c}!E\+R\+R\+OR@{E\+R\+R\+OR}}
+\index{E\+R\+R\+OR@{E\+R\+R\+OR}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{E\+R\+R\+OR}{ERROR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+OR~-\/1}\hypertarget{proyecto_8c_a8fe83ac76edc595f6b98cd4a4127aed5}{}\label{proyecto_8c_a8fe83ac76edc595f6b98cd4a4127aed5}
+Constante de error \index{proyecto.\+c@{proyecto.\+c}!F\+I\+L\+E\+\_\+\+S\+EM@{F\+I\+L\+E\+\_\+\+S\+EM}}
+\index{F\+I\+L\+E\+\_\+\+S\+EM@{F\+I\+L\+E\+\_\+\+S\+EM}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{F\+I\+L\+E\+\_\+\+S\+EM}{FILE_SEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+I\+L\+E\+\_\+\+S\+EM~2}\hypertarget{proyecto_8c_a2448034a2c73a5f0e1e0608e4375eca6}{}\label{proyecto_8c_a2448034a2c73a5f0e1e0608e4375eca6}
+Indice del array de semaforos del semaforo que controla el acceso a ficheros de texto \index{proyecto.\+c@{proyecto.\+c}!F\+I\+R\+ST@{F\+I\+R\+ST}}
+\index{F\+I\+R\+ST@{F\+I\+R\+ST}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{F\+I\+R\+ST}{FIRST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+I\+R\+ST~1}\hypertarget{proyecto_8c_a492c6ccf2bde2bebcd32e73e0933ee92}{}\label{proyecto_8c_a492c6ccf2bde2bebcd32e73e0933ee92}
+Primera posicion de la carrera \index{proyecto.\+c@{proyecto.\+c}!L\+A\+ST@{L\+A\+ST}}
+\index{L\+A\+ST@{L\+A\+ST}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{L\+A\+ST}{LAST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+A\+ST~-\/100}\hypertarget{proyecto_8c_a210af1d04c8870416a556f0e9a5194fd}{}\label{proyecto_8c_a210af1d04c8870416a556f0e9a5194fd}
+Ultima posicion de la carrera \index{proyecto.\+c@{proyecto.\+c}!M\+A\+R\+K\+E\+T\+\_\+\+S\+EM@{M\+A\+R\+K\+E\+T\+\_\+\+S\+EM}}
+\index{M\+A\+R\+K\+E\+T\+\_\+\+S\+EM@{M\+A\+R\+K\+E\+T\+\_\+\+S\+EM}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+R\+K\+E\+T\+\_\+\+S\+EM}{MARKET_SEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+R\+K\+E\+T\+\_\+\+S\+EM~0}\hypertarget{proyecto_8c_ab7af58da661e265f90a803729e1cc662}{}\label{proyecto_8c_ab7af58da661e265f90a803729e1cc662}
+Indice del array de semaforos del semaforo que controla el acceso a la zona de memoria compartida de las cotizaciones \index{proyecto.\+c@{proyecto.\+c}!M\+A\+X\+\_\+\+B\+E\+T\+T\+OR@{M\+A\+X\+\_\+\+B\+E\+T\+T\+OR}}
+\index{M\+A\+X\+\_\+\+B\+E\+T\+T\+OR@{M\+A\+X\+\_\+\+B\+E\+T\+T\+OR}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+B\+E\+T\+T\+OR}{MAX_BETTOR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+B\+E\+T\+T\+OR~100}\hypertarget{proyecto_8c_a413f07003e939da217bc0eeff5916a02}{}\label{proyecto_8c_a413f07003e939da217bc0eeff5916a02}
+Numero maximo de apostadores \index{proyecto.\+c@{proyecto.\+c}!M\+A\+X\+\_\+\+H\+O\+R\+S\+ES@{M\+A\+X\+\_\+\+H\+O\+R\+S\+ES}}
+\index{M\+A\+X\+\_\+\+H\+O\+R\+S\+ES@{M\+A\+X\+\_\+\+H\+O\+R\+S\+ES}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+H\+O\+R\+S\+ES}{MAX_HORSES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+H\+O\+R\+S\+ES~10}\hypertarget{proyecto_8c_a1f292d5e7fb89ea56519859a22db34c6}{}\label{proyecto_8c_a1f292d5e7fb89ea56519859a22db34c6}
+Numero maximo de caballos \index{proyecto.\+c@{proyecto.\+c}!M\+A\+X\+\_\+\+M\+O\+N\+EY@{M\+A\+X\+\_\+\+M\+O\+N\+EY}}
+\index{M\+A\+X\+\_\+\+M\+O\+N\+EY@{M\+A\+X\+\_\+\+M\+O\+N\+EY}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+M\+O\+N\+EY}{MAX_MONEY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+M\+O\+N\+EY~2000}\hypertarget{proyecto_8c_a9ec2d7f52a33047523f87fbd5da5510a}{}\label{proyecto_8c_a9ec2d7f52a33047523f87fbd5da5510a}
+Cantidad maxima apostable en una unica apuesta \index{proyecto.\+c@{proyecto.\+c}!M\+A\+X\+\_\+\+R\+A\+CE@{M\+A\+X\+\_\+\+R\+A\+CE}}
+\index{M\+A\+X\+\_\+\+R\+A\+CE@{M\+A\+X\+\_\+\+R\+A\+CE}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+R\+A\+CE}{MAX_RACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+R\+A\+CE~200}\hypertarget{proyecto_8c_ada3d0388ad1f3695c1d5943777f1bbe5}{}\label{proyecto_8c_ada3d0388ad1f3695c1d5943777f1bbe5}
+Longitud maxima de la carrera \index{proyecto.\+c@{proyecto.\+c}!M\+A\+X\+\_\+\+W\+I\+N\+D\+O\+WS@{M\+A\+X\+\_\+\+W\+I\+N\+D\+O\+WS}}
+\index{M\+A\+X\+\_\+\+W\+I\+N\+D\+O\+WS@{M\+A\+X\+\_\+\+W\+I\+N\+D\+O\+WS}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+W\+I\+N\+D\+O\+WS}{MAX_WINDOWS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+W\+I\+N\+D\+O\+WS~30}\hypertarget{proyecto_8c_a96f609b2a30e2dc3cc404945cdb2d55e}{}\label{proyecto_8c_a96f609b2a30e2dc3cc404945cdb2d55e}
+Numero maximo de ventanillas \index{proyecto.\+c@{proyecto.\+c}!M\+I\+N\+\_\+\+B\+E\+T\+T\+OR@{M\+I\+N\+\_\+\+B\+E\+T\+T\+OR}}
+\index{M\+I\+N\+\_\+\+B\+E\+T\+T\+OR@{M\+I\+N\+\_\+\+B\+E\+T\+T\+OR}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+\_\+\+B\+E\+T\+T\+OR}{MIN_BETTOR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+\_\+\+B\+E\+T\+T\+OR~10}\hypertarget{proyecto_8c_aeaf66b255808739ffee8c780b2181757}{}\label{proyecto_8c_aeaf66b255808739ffee8c780b2181757}
+Numero minimo de apostadores \index{proyecto.\+c@{proyecto.\+c}!M\+I\+N\+\_\+\+H\+O\+R\+S\+ES@{M\+I\+N\+\_\+\+H\+O\+R\+S\+ES}}
+\index{M\+I\+N\+\_\+\+H\+O\+R\+S\+ES@{M\+I\+N\+\_\+\+H\+O\+R\+S\+ES}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+\_\+\+H\+O\+R\+S\+ES}{MIN_HORSES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+\_\+\+H\+O\+R\+S\+ES~2}\hypertarget{proyecto_8c_a04b095594991cd1e45207233c829809c}{}\label{proyecto_8c_a04b095594991cd1e45207233c829809c}
+Numero minimo de caballos \index{proyecto.\+c@{proyecto.\+c}!M\+I\+N\+\_\+\+M\+O\+N\+EY@{M\+I\+N\+\_\+\+M\+O\+N\+EY}}
+\index{M\+I\+N\+\_\+\+M\+O\+N\+EY@{M\+I\+N\+\_\+\+M\+O\+N\+EY}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+\_\+\+M\+O\+N\+EY}{MIN_MONEY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+\_\+\+M\+O\+N\+EY~10}\hypertarget{proyecto_8c_a133a97109d0a1096b0661b5295e60ede}{}\label{proyecto_8c_a133a97109d0a1096b0661b5295e60ede}
+Cantidad minima apostable en una unica apuesta \index{proyecto.\+c@{proyecto.\+c}!M\+I\+N\+\_\+\+P\+R\+OC@{M\+I\+N\+\_\+\+P\+R\+OC}}
+\index{M\+I\+N\+\_\+\+P\+R\+OC@{M\+I\+N\+\_\+\+P\+R\+OC}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+\_\+\+P\+R\+OC}{MIN_PROC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+\_\+\+P\+R\+OC~3}\hypertarget{proyecto_8c_aed61c013d1ed5cd22ac6797da255d7b2}{}\label{proyecto_8c_aed61c013d1ed5cd22ac6797da255d7b2}
+Numero de procesos \index{proyecto.\+c@{proyecto.\+c}!M\+I\+N\+\_\+\+R\+A\+CE@{M\+I\+N\+\_\+\+R\+A\+CE}}
+\index{M\+I\+N\+\_\+\+R\+A\+CE@{M\+I\+N\+\_\+\+R\+A\+CE}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+\_\+\+R\+A\+CE}{MIN_RACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+\_\+\+R\+A\+CE~20}\hypertarget{proyecto_8c_afbdb2dcbc6453cdd1fa0ee0cadfa4d68}{}\label{proyecto_8c_afbdb2dcbc6453cdd1fa0ee0cadfa4d68}
+Longitud minima de la carrera \index{proyecto.\+c@{proyecto.\+c}!M\+I\+N\+\_\+\+W\+I\+N\+D\+O\+WS@{M\+I\+N\+\_\+\+W\+I\+N\+D\+O\+WS}}
+\index{M\+I\+N\+\_\+\+W\+I\+N\+D\+O\+WS@{M\+I\+N\+\_\+\+W\+I\+N\+D\+O\+WS}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+\_\+\+W\+I\+N\+D\+O\+WS}{MIN_WINDOWS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+\_\+\+W\+I\+N\+D\+O\+WS~1}\hypertarget{proyecto_8c_a1908236606322549825ed3994b7ea62d}{}\label{proyecto_8c_a1908236606322549825ed3994b7ea62d}
+Numero minimo de ventanillas \index{proyecto.\+c@{proyecto.\+c}!N\+\_\+\+A\+R\+GS@{N\+\_\+\+A\+R\+GS}}
+\index{N\+\_\+\+A\+R\+GS@{N\+\_\+\+A\+R\+GS}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{N\+\_\+\+A\+R\+GS}{N_ARGS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+\_\+\+A\+R\+GS~6}\hypertarget{proyecto_8c_a45427030a543a1fe5b6a6ad24b0415a5}{}\label{proyecto_8c_a45427030a543a1fe5b6a6ad24b0415a5}
+Numero de argumentos de entrada \index{proyecto.\+c@{proyecto.\+c}!N\+\_\+\+B\+E\+S\+T\+\_\+\+B\+E\+T\+T\+OR@{N\+\_\+\+B\+E\+S\+T\+\_\+\+B\+E\+T\+T\+OR}}
+\index{N\+\_\+\+B\+E\+S\+T\+\_\+\+B\+E\+T\+T\+OR@{N\+\_\+\+B\+E\+S\+T\+\_\+\+B\+E\+T\+T\+OR}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{N\+\_\+\+B\+E\+S\+T\+\_\+\+B\+E\+T\+T\+OR}{N_BEST_BETTOR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+\_\+\+B\+E\+S\+T\+\_\+\+B\+E\+T\+T\+OR~10}\hypertarget{proyecto_8c_a6553be7790241bf88c873cc1549487e1}{}\label{proyecto_8c_a6553be7790241bf88c873cc1549487e1}
+Numero de mejores apostadores mostrados por pantalla \index{proyecto.\+c@{proyecto.\+c}!N\+A\+M\+E\+\_\+\+S\+I\+ZE@{N\+A\+M\+E\+\_\+\+S\+I\+ZE}}
+\index{N\+A\+M\+E\+\_\+\+S\+I\+ZE@{N\+A\+M\+E\+\_\+\+S\+I\+ZE}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{N\+A\+M\+E\+\_\+\+S\+I\+ZE}{NAME_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+A\+M\+E\+\_\+\+S\+I\+ZE~20}\hypertarget{proyecto_8c_a834e9a379307f869a10f4da078be5786}{}\label{proyecto_8c_a834e9a379307f869a10f4da078be5786}
+Tamanio maximo de los nombres de los apostadores \index{proyecto.\+c@{proyecto.\+c}!N\+O\+R\+M\+AL@{N\+O\+R\+M\+AL}}
+\index{N\+O\+R\+M\+AL@{N\+O\+R\+M\+AL}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{N\+O\+R\+M\+AL}{NORMAL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+O\+R\+M\+AL~100}\hypertarget{proyecto_8c_a1291f416b069313021b519eea62d5bf1}{}\label{proyecto_8c_a1291f416b069313021b519eea62d5bf1}
+Tirada de tipo normal\+: ni remontadora ni ganadora \index{proyecto.\+c@{proyecto.\+c}!P\+A\+TH@{P\+A\+TH}}
+\index{P\+A\+TH@{P\+A\+TH}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{P\+A\+TH}{PATH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+TH~\char`\"{}/bin/bash\char`\"{}}\hypertarget{proyecto_8c_ab0139008fdda107456f13f837872b410}{}\label{proyecto_8c_ab0139008fdda107456f13f837872b410}
+Directorio de obtenicion de keys \index{proyecto.\+c@{proyecto.\+c}!P\+R\+O\+C\+\_\+\+B\+E\+T\+T\+OR@{P\+R\+O\+C\+\_\+\+B\+E\+T\+T\+OR}}
+\index{P\+R\+O\+C\+\_\+\+B\+E\+T\+T\+OR@{P\+R\+O\+C\+\_\+\+B\+E\+T\+T\+OR}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{P\+R\+O\+C\+\_\+\+B\+E\+T\+T\+OR}{PROC_BETTOR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+C\+\_\+\+B\+E\+T\+T\+OR~1}\hypertarget{proyecto_8c_acb4a682f0662a1fc810539b0e24797cc}{}\label{proyecto_8c_acb4a682f0662a1fc810539b0e24797cc}
+Indice del array de P\+I\+DS del proceso apostador \index{proyecto.\+c@{proyecto.\+c}!P\+R\+O\+C\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+ER@{P\+R\+O\+C\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+ER}}
+\index{P\+R\+O\+C\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+ER@{P\+R\+O\+C\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+ER}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{P\+R\+O\+C\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+ER}{PROC_DISPLAYER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+C\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+ER~2}\hypertarget{proyecto_8c_ad798c34a41dfac0cc34f1c71c9278476}{}\label{proyecto_8c_ad798c34a41dfac0cc34f1c71c9278476}
+Indice del array de P\+I\+DS del proceso monitor \index{proyecto.\+c@{proyecto.\+c}!P\+R\+O\+C\+\_\+\+M\+A\+N\+A\+G\+ER@{P\+R\+O\+C\+\_\+\+M\+A\+N\+A\+G\+ER}}
+\index{P\+R\+O\+C\+\_\+\+M\+A\+N\+A\+G\+ER@{P\+R\+O\+C\+\_\+\+M\+A\+N\+A\+G\+ER}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{P\+R\+O\+C\+\_\+\+M\+A\+N\+A\+G\+ER}{PROC_MANAGER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+C\+\_\+\+M\+A\+N\+A\+G\+ER~0}\hypertarget{proyecto_8c_a39ce4c57ee1cd38a8230f70193b506d3}{}\label{proyecto_8c_a39ce4c57ee1cd38a8230f70193b506d3}
+Indice del array de P\+I\+DS del proceso manejador de apuestas \index{proyecto.\+c@{proyecto.\+c}!R\+A\+C\+E\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+EM@{R\+A\+C\+E\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+EM}}
+\index{R\+A\+C\+E\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+EM@{R\+A\+C\+E\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+EM}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{R\+A\+C\+E\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+EM}{RACECONTROL_SEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+A\+C\+E\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+EM~1}\hypertarget{proyecto_8c_a549b501dcbeadb15771f3172449d6b2e}{}\label{proyecto_8c_a549b501dcbeadb15771f3172449d6b2e}
+Indice del array de semaforos del semaforo que controla el acceso a la zona de memoria compartida del control de carrera \index{proyecto.\+c@{proyecto.\+c}!S\+E\+C\+O\+N\+DS@{S\+E\+C\+O\+N\+DS}}
+\index{S\+E\+C\+O\+N\+DS@{S\+E\+C\+O\+N\+DS}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{S\+E\+C\+O\+N\+DS}{SECONDS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+C\+O\+N\+DS~30}\hypertarget{proyecto_8c_a48fcf4f2eeef6769d588168d4ac2ab0e}{}\label{proyecto_8c_a48fcf4f2eeef6769d588168d4ac2ab0e}
+Tiempo (s) de duracion de las apuestas \index{proyecto.\+c@{proyecto.\+c}!S\+E\+M\+\_\+\+S\+I\+ZE@{S\+E\+M\+\_\+\+S\+I\+ZE}}
+\index{S\+E\+M\+\_\+\+S\+I\+ZE@{S\+E\+M\+\_\+\+S\+I\+ZE}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{S\+E\+M\+\_\+\+S\+I\+ZE}{SEM_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+M\+\_\+\+S\+I\+ZE~3}\hypertarget{proyecto_8c_ad2d98a7d31786f8332b2aaf8525bb1e2}{}\label{proyecto_8c_ad2d98a7d31786f8332b2aaf8525bb1e2}
+Tamanio del array de semaforos 
+
+\subsection{Function Documentation}
+\index{proyecto.\+c@{proyecto.\+c}!aleat\+\_\+num@{aleat\+\_\+num}}
+\index{aleat\+\_\+num@{aleat\+\_\+num}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{aleat\+\_\+num(int inf, int sup)}{aleat_num(int inf, int sup)}}]{\setlength{\rightskip}{0pt plus 5cm}int aleat\+\_\+num (
+\begin{DoxyParamCaption}
+\item[{int}]{inf, }
+\item[{int}]{sup}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a423be02d237888f767b6d107096c10f4}{}\label{proyecto_8c_a423be02d237888f767b6d107096c10f4}
+
+
+devuelve un numero entero aleatorio en el intervalo (limites incluidos) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inf} & -\/ limite inferior intervalo \\
+\hline
+{\em sup} & -\/ limite superior intervalo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entero aleatorio en el intervalo. Corta ejecucion en caso de error. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!betting\+\_\+manager\+\_\+process@{betting\+\_\+manager\+\_\+process}}
+\index{betting\+\_\+manager\+\_\+process@{betting\+\_\+manager\+\_\+process}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{betting\+\_\+manager\+\_\+process(int n\+\_\+horses, int n\+\_\+bettor, int n\+\_\+windows)}{betting_manager_process(int n_horses, int n_bettor, int n_windows)}}]{\setlength{\rightskip}{0pt plus 5cm}void betting\+\_\+manager\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{int}]{n\+\_\+horses, }
+\item[{int}]{n\+\_\+bettor, }
+\item[{int}]{n\+\_\+windows}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_ad86d0002bad6dc92d598b9dc1dc158e7}{}\label{proyecto_8c_ad86d0002bad6dc92d598b9dc1dc158e7}
+
+
+funcion que implementa la funcionalidad del proceso manejador de apuestas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+horses} & -\/ numero de caballos \\
+\hline
+{\em n\+\_\+bettor} & -\/ numero de apostadores \\
+\hline
+{\em n\+\_\+windows} & -\/ numero de vetanillas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!bettor\+\_\+process@{bettor\+\_\+process}}
+\index{bettor\+\_\+process@{bettor\+\_\+process}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{bettor\+\_\+process(int n\+\_\+horses, int n\+\_\+bettor, int money)}{bettor_process(int n_horses, int n_bettor, int money)}}]{\setlength{\rightskip}{0pt plus 5cm}void bettor\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{int}]{n\+\_\+horses, }
+\item[{int}]{n\+\_\+bettor, }
+\item[{int}]{money}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a1c41f50bb3c770e73fc5d8cea3e96135}{}\label{proyecto_8c_a1c41f50bb3c770e73fc5d8cea3e96135}
+
+
+funcion que implementa la funcionalidad del proceso apostador 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+horses} & -\/ numero de caballos \\
+\hline
+{\em n\+\_\+bettor} & -\/ numero de apostadores \\
+\hline
+{\em money} & -\/ cantidad maxima apostadble por apuesta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!calculate\+\_\+bet\+\_\+results@{calculate\+\_\+bet\+\_\+results}}
+\index{calculate\+\_\+bet\+\_\+results@{calculate\+\_\+bet\+\_\+results}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{calculate\+\_\+bet\+\_\+results(int $\ast$winners, int n\+\_\+winners, int n\+\_\+bettor)}{calculate_bet_results(int *winners, int n_winners, int n_bettor)}}]{\setlength{\rightskip}{0pt plus 5cm}void calculate\+\_\+bet\+\_\+results (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{winners, }
+\item[{int}]{n\+\_\+winners, }
+\item[{int}]{n\+\_\+bettor}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a25a03578340ad5ea8ef8689220b6ec2c}{}\label{proyecto_8c_a25a03578340ad5ea8ef8689220b6ec2c}
+
+
+funcion que calcula los resultados de las apuestas y los escribe en un fichero 
+
+
+\begin{DoxyParams}{Parameters}
+{\em winners} & -\/ array de I\+Ds de los caballos ganadores de la carrera \\
+\hline
+{\em n\+\_\+winners} & -\/ numero de ganadores (tamaño del array winners) \\
+\hline
+{\em n\+\_\+bettor} & -\/ numero de apostadores \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!checked@{checked}}
+\index{checked@{checked}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{checked(int $\ast$array, int len)}{checked(int *array, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int checked (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{array, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a4f2e3020d3fd9eefc3742496fd1d1112}{}\label{proyecto_8c_a4f2e3020d3fd9eefc3742496fd1d1112}
+
+
+funcion auxiliar de la funcion classification que se encarga de comprobar si todos los caballos han sido clasificados 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current} & -\/ array de enteros que se corresponden con la casilla de cada caballo, o -\/1 si ya ha sido clasificado \\
+\hline
+{\em len} & -\/ longitud del array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si ya han sido todos clasificados o 0 en caso contrario. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!classification@{classification}}
+\index{classification@{classification}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{classification(int $\ast$current, int $\ast$position, int len)}{classification(int *current, int *position, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}void classification (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{current, }
+\item[{int $\ast$}]{position, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a6ac7cf6dff95cd711b8bd73de83146c1}{}\label{proyecto_8c_a6ac7cf6dff95cd711b8bd73de83146c1}
+
+
+funcion que asigna a cada caballo su posicion en el ranking actual 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current} & -\/ array de enteros que se corresponden con la casilla actual de cada caballo \\
+\hline
+{\em position} & -\/ array de enteros en el que se devuelven las posiciones de los caballos actuales \\
+\hline
+{\em len} & -\/ longitud de los arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!displayer\+\_\+process@{displayer\+\_\+process}}
+\index{displayer\+\_\+process@{displayer\+\_\+process}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{displayer\+\_\+process(int bettor\+\_\+process\+\_\+pid, int betting\+\_\+manager\+\_\+process\+\_\+pid, int len\+\_\+race, int n\+\_\+bettor)}{displayer_process(int bettor_process_pid, int betting_manager_process_pid, int len_race, int n_bettor)}}]{\setlength{\rightskip}{0pt plus 5cm}void displayer\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{int}]{bettor\+\_\+process\+\_\+pid, }
+\item[{int}]{betting\+\_\+manager\+\_\+process\+\_\+pid, }
+\item[{int}]{len\+\_\+race, }
+\item[{int}]{n\+\_\+bettor}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a8c10e09a164a4c558b48b6c6d30cf70b}{}\label{proyecto_8c_a8c10e09a164a4c558b48b6c6d30cf70b}
+
+
+funcion que implementa la funcionalidad del proceso monitor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bettor\+\_\+process\+\_\+pid} & -\/ id del proceso apostador \\
+\hline
+{\em betting\+\_\+manager\+\_\+process\+\_\+pid} & -\/ id del proceso manejador de apuestas \\
+\hline
+{\em len\+\_\+race} & -\/ longitud de la carrera \\
+\hline
+{\em n\+\_\+bettor} & -\/ numero de apostadores \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!finished@{finished}}
+\index{finished@{finished}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{finished(int $\ast$array, int len, int racelen)}{finished(int *array, int len, int racelen)}}]{\setlength{\rightskip}{0pt plus 5cm}int finished (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{array, }
+\item[{int}]{len, }
+\item[{int}]{racelen}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a97b670ecbe556e6739fe4951824e52fe}{}\label{proyecto_8c_a97b670ecbe556e6739fe4951824e52fe}
+
+
+funcion auxiliar que se encarga de comprobar si la carrera ha finalizado 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current} & -\/ array de enteros que se corresponden con la casilla de cada caballo, o -\/1 si ya ha sido clasificado \\
+\hline
+{\em len} & -\/ longitud del array \\
+\hline
+{\em racelen} & -\/ longitud total de la carrera \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si ya han sido todos clasificados o 0 en caso contrario. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!float\+\_\+rand@{float\+\_\+rand}}
+\index{float\+\_\+rand@{float\+\_\+rand}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{float\+\_\+rand(float min, float max)}{float_rand(float min, float max)}}]{\setlength{\rightskip}{0pt plus 5cm}float float\+\_\+rand (
+\begin{DoxyParamCaption}
+\item[{float}]{min, }
+\item[{float}]{max}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a0ceb8db9b925b9858018a23ada0e3560}{}\label{proyecto_8c_a0ceb8db9b925b9858018a23ada0e3560}
+
+
+devuelve un numero decimal aleatorio en el intervalo (limites incluidos) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inf} & -\/ limite inferior intervalo \\
+\hline
+{\em sup} & -\/ limite superior intervalo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entero aleatorio en el intervalo. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!handler\+\_\+\+S\+I\+G\+U\+S\+R1\+\_\+bettor@{handler\+\_\+\+S\+I\+G\+U\+S\+R1\+\_\+bettor}}
+\index{handler\+\_\+\+S\+I\+G\+U\+S\+R1\+\_\+bettor@{handler\+\_\+\+S\+I\+G\+U\+S\+R1\+\_\+bettor}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{handler\+\_\+\+S\+I\+G\+U\+S\+R1\+\_\+bettor(int sig)}{handler_SIGUSR1_bettor(int sig)}}]{\setlength{\rightskip}{0pt plus 5cm}void handler\+\_\+\+S\+I\+G\+U\+S\+R1\+\_\+bettor (
+\begin{DoxyParamCaption}
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a4a9eb9635b640723c989b595ae2563b7}{}\label{proyecto_8c_a4a9eb9635b640723c989b595ae2563b7}
+
+
+nuevo manejador de la señal S\+I\+G\+U\+S\+R1 para el proceso apostador. Su funcionalidad es simplemente obligar al proceso a no ignorar la señal. Ademas, pone la variable global de control del apostador a 1 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & -\/ la señal que utilizará este manejador cuando sea llamada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!handler\+\_\+\+S\+I\+G\+U\+S\+R2@{handler\+\_\+\+S\+I\+G\+U\+S\+R2}}
+\index{handler\+\_\+\+S\+I\+G\+U\+S\+R2@{handler\+\_\+\+S\+I\+G\+U\+S\+R2}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{handler\+\_\+\+S\+I\+G\+U\+S\+R2(int sig)}{handler_SIGUSR2(int sig)}}]{\setlength{\rightskip}{0pt plus 5cm}void handler\+\_\+\+S\+I\+G\+U\+S\+R2 (
+\begin{DoxyParamCaption}
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_ad74373062149d2394167150b79a4dca9}{}\label{proyecto_8c_ad74373062149d2394167150b79a4dca9}
+
+
+nuevo manejador de la señal S\+I\+G\+U\+S\+R2. Su funcionalidad es simplemente obligar al proceso a no ignorar la señal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & -\/ la señal que utilizará este manejador cuando sea llamada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!horse@{horse}}
+\index{horse@{horse}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{horse()}{horse()}}]{\setlength{\rightskip}{0pt plus 5cm}void horse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_afc31db7de432d57007b0b9b3c518f405}{}\label{proyecto_8c_afc31db7de432d57007b0b9b3c518f405}
+
+
+funcion que implementa la funcionalidad del proceso caballo 
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!init\+\_\+syslog@{init\+\_\+syslog}}
+\index{init\+\_\+syslog@{init\+\_\+syslog}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+syslog()}{init_syslog()}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+syslog (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_ad78dc83d46d4d5c58d0efd395c8f3d10}{}\label{proyecto_8c_ad78dc83d46d4d5c58d0efd395c8f3d10}
+
+
+inicializa syslog 
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!is\+\_\+valid\+\_\+integer@{is\+\_\+valid\+\_\+integer}}
+\index{is\+\_\+valid\+\_\+integer@{is\+\_\+valid\+\_\+integer}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{is\+\_\+valid\+\_\+integer(char $\ast$input)}{is_valid_integer(char *input)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+\_\+valid\+\_\+integer (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a86a4f2b7e18ef771ecf42d7aca5c9fde}{}\label{proyecto_8c_a86a4f2b7e18ef771ecf42d7aca5c9fde}
+
+
+comprueba si una cadena de caracteres es un numero 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & -\/ cadena de caracteres \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 en caso de que sea un numero. 0 en caso contrario 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!main@{main}}
+\index{main@{main}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{proyecto_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+Estructura de control de carrera \index{proyecto.\+c@{proyecto.\+c}!print\+\_\+best\+\_\+bettors@{print\+\_\+best\+\_\+bettors}}
+\index{print\+\_\+best\+\_\+bettors@{print\+\_\+best\+\_\+bettors}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{print\+\_\+best\+\_\+bettors(int n\+\_\+bettor)}{print_best_bettors(int n_bettor)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+best\+\_\+bettors (
+\begin{DoxyParamCaption}
+\item[{int}]{n\+\_\+bettor}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_aedefd2b2f11c534044047a0213408a29}{}\label{proyecto_8c_aedefd2b2f11c534044047a0213408a29}
+
+
+funcion que calcula los mejores apostadores y los muestra por pantalla 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+bettor} & -\/ numero de apostadores \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{proyecto.\+c@{proyecto.\+c}!window\+\_\+function@{window\+\_\+function}}
+\index{window\+\_\+function@{window\+\_\+function}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{window\+\_\+function(void $\ast$arg)}{window_function(void *arg)}}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ window\+\_\+function (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}\hypertarget{proyecto_8c_a565f874a89caf6fdddeeddd67f7e113b}{}\label{proyecto_8c_a565f874a89caf6fdddeeddd67f7e113b}
+
+
+funcion que implementa la funcionalidad de las ventanillas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & -\/ puntero a estructura de informacion \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\index{proyecto.\+c@{proyecto.\+c}!flag\+\_\+bettor@{flag\+\_\+bettor}}
+\index{flag\+\_\+bettor@{flag\+\_\+bettor}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{flag\+\_\+bettor}{flag_bettor}}]{\setlength{\rightskip}{0pt plus 5cm}int flag\+\_\+bettor =0}\hypertarget{proyecto_8c_ab64e560b3425405da700479853245853}{}\label{proyecto_8c_ab64e560b3425405da700479853245853}
+Paramentros de entrada necesitados en handlers \index{proyecto.\+c@{proyecto.\+c}!market\+\_\+rates@{market\+\_\+rates}}
+\index{market\+\_\+rates@{market\+\_\+rates}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{market\+\_\+rates}{market_rates}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf market\+\_\+rates\+\_\+struct}$\ast$ market\+\_\+rates =N\+U\+LL}\hypertarget{proyecto_8c_ab77451f408925891ab0ac04c0d901131}{}\label{proyecto_8c_ab77451f408925891ab0ac04c0d901131}
+I\+DS de todos los procesos para poder acabar su ejecución en el caso de que se utilice C\+T\+R\+L+C \index{proyecto.\+c@{proyecto.\+c}!n\+\_\+horses@{n\+\_\+horses}}
+\index{n\+\_\+horses@{n\+\_\+horses}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{n\+\_\+horses}{n_horses}}]{\setlength{\rightskip}{0pt plus 5cm}int n\+\_\+horses}\hypertarget{proyecto_8c_a71cce9a5c473ee9da7abc2fa84010c30}{}\label{proyecto_8c_a71cce9a5c473ee9da7abc2fa84010c30}
+Variables invariantes a lo largo del programa y de interes comun \index{proyecto.\+c@{proyecto.\+c}!pids@{pids}}
+\index{pids@{pids}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{pids}{pids}}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ pids =N\+U\+LL}\hypertarget{proyecto_8c_ae2dbd09bc5d807d7e639d9b4ada71a7e}{}\label{proyecto_8c_ae2dbd09bc5d807d7e639d9b4ada71a7e}
+Flags variables para hilos, handlers y proceso apostador \index{proyecto.\+c@{proyecto.\+c}!race\+\_\+control@{race\+\_\+control}}
+\index{race\+\_\+control@{race\+\_\+control}!proyecto.\+c@{proyecto.\+c}}
+\subsubsection[{\texorpdfstring{race\+\_\+control}{race_control}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf race\+\_\+control\+\_\+struct}$\ast$ race\+\_\+control =N\+U\+LL}\hypertarget{proyecto_8c_a6dc9be99884e82ceb7b58a5de4613f70}{}\label{proyecto_8c_a6dc9be99884e82ceb7b58a5de4613f70}
+Cotizaciones de los caballos 

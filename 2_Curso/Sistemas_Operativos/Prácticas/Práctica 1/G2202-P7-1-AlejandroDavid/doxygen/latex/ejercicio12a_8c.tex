@@ -1,0 +1,118 @@
+\hypertarget{ejercicio12a_8c}{\section{ejercicio12a.\+c File Reference}
+\label{ejercicio12a_8c}\index{ejercicio12a.\+c@{ejercicio12a.\+c}}
+}
+
+
+Ejercicio12a Creacion de 100 procesos y en cada uno se calculan los primeros N numeros primos, siendo N pasado como argumento entrada al programa.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$pthread.\+h$>$}\\*
+{\ttfamily \#include $<$limits.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+Include dependency graph for ejercicio12a.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ejercicio12a_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structStructure}{Structure}
+\begin{DoxyCompactList}\small\item\em Estructura programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ejercicio12a_8c_a05b49c662c073f89e86804f7856622a0}{L\+E\+N}~100
+\item 
+\#define \hyperlink{ejercicio12a_8c_a1dc0370947cd4d4485a36ad37de15139}{T\+E\+N\+T\+O\+T\+H\+E\+N\+I\+N\+E}~1000000000
+\item 
+\#define \hyperlink{ejercicio12a_8c_a469b1ab8d3ecbd62178c442e0d19c200}{N\+\_\+\+C\+H\+I\+L\+D\+S}~100
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{ejercicio12a_8c_ad6740255386952216cb75d813243a3ea}{is\+\_\+prime} (int n)
+\begin{DoxyCompactList}\small\item\em evalua si un numero es primo o no. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{ejercicio12a_8c_aca3b2affe916a5464b035bde74fd4fae}{calculate\+\_\+primes} (int n\+\_\+primes)
+\begin{DoxyCompactList}\small\item\em devuelve un array con los n\+\_\+primes primeros primos \end{DoxyCompactList}\item 
+\hypertarget{ejercicio12a_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{int {\bfseries main} (int argc, char const $\ast$argv\mbox{[}$\,$\mbox{]})}\label{ejercicio12a_8c_abf9e6b7e6f15df4b525a2e7705ba3089}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ejercicio12a Creacion de 100 procesos y en cada uno se calculan los primeros N numeros primos, siendo N pasado como argumento entrada al programa. 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Santorum \& David Cabornero (G2202) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+02-\/03-\/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{ejercicio12a_8c_a05b49c662c073f89e86804f7856622a0}{\index{ejercicio12a.\+c@{ejercicio12a.\+c}!L\+E\+N@{L\+E\+N}}
+\index{L\+E\+N@{L\+E\+N}!ejercicio12a.\+c@{ejercicio12a.\+c}}
+\subsubsection[{L\+E\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+E\+N~100}}\label{ejercicio12a_8c_a05b49c662c073f89e86804f7856622a0}
+Longitud de las cadenas de caracteres \hypertarget{ejercicio12a_8c_a469b1ab8d3ecbd62178c442e0d19c200}{\index{ejercicio12a.\+c@{ejercicio12a.\+c}!N\+\_\+\+C\+H\+I\+L\+D\+S@{N\+\_\+\+C\+H\+I\+L\+D\+S}}
+\index{N\+\_\+\+C\+H\+I\+L\+D\+S@{N\+\_\+\+C\+H\+I\+L\+D\+S}!ejercicio12a.\+c@{ejercicio12a.\+c}}
+\subsubsection[{N\+\_\+\+C\+H\+I\+L\+D\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+\_\+\+C\+H\+I\+L\+D\+S~100}}\label{ejercicio12a_8c_a469b1ab8d3ecbd62178c442e0d19c200}
+Numero de procesos hijo \hypertarget{ejercicio12a_8c_a1dc0370947cd4d4485a36ad37de15139}{\index{ejercicio12a.\+c@{ejercicio12a.\+c}!T\+E\+N\+T\+O\+T\+H\+E\+N\+I\+N\+E@{T\+E\+N\+T\+O\+T\+H\+E\+N\+I\+N\+E}}
+\index{T\+E\+N\+T\+O\+T\+H\+E\+N\+I\+N\+E@{T\+E\+N\+T\+O\+T\+H\+E\+N\+I\+N\+E}!ejercicio12a.\+c@{ejercicio12a.\+c}}
+\subsubsection[{T\+E\+N\+T\+O\+T\+H\+E\+N\+I\+N\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+E\+N\+T\+O\+T\+H\+E\+N\+I\+N\+E~1000000000}}\label{ejercicio12a_8c_a1dc0370947cd4d4485a36ad37de15139}
+Constante 
+
+\subsection{Function Documentation}
+\hypertarget{ejercicio12a_8c_aca3b2affe916a5464b035bde74fd4fae}{\index{ejercicio12a.\+c@{ejercicio12a.\+c}!calculate\+\_\+primes@{calculate\+\_\+primes}}
+\index{calculate\+\_\+primes@{calculate\+\_\+primes}!ejercicio12a.\+c@{ejercicio12a.\+c}}
+\subsubsection[{calculate\+\_\+primes}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ calculate\+\_\+primes (
+\begin{DoxyParamCaption}
+\item[{int}]{n\+\_\+primes}
+\end{DoxyParamCaption}
+)}}\label{ejercicio12a_8c_aca3b2affe916a5464b035bde74fd4fae}
+
+
+devuelve un array con los n\+\_\+primes primeros primos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+primes} & numero de primeros primos a ser calculados \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array de primos 
+\end{DoxyReturn}
+\hypertarget{ejercicio12a_8c_ad6740255386952216cb75d813243a3ea}{\index{ejercicio12a.\+c@{ejercicio12a.\+c}!is\+\_\+prime@{is\+\_\+prime}}
+\index{is\+\_\+prime@{is\+\_\+prime}!ejercicio12a.\+c@{ejercicio12a.\+c}}
+\subsubsection[{is\+\_\+prime}]{\setlength{\rightskip}{0pt plus 5cm}int is\+\_\+prime (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{ejercicio12a_8c_ad6740255386952216cb75d813243a3ea}
+
+
+evalua si un numero es primo o no. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & entero a ser evaluado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si es primo, false si no. 
+\end{DoxyReturn}

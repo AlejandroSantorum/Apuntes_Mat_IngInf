@@ -1,0 +1,68 @@
+\hypertarget{structmsgbuf}{}\section{msgbuf Struct Reference}
+\label{structmsgbuf}\index{msgbuf@{msgbuf}}
+
+
+Estructura de colas de mensajes.  
+
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+long \hyperlink{structmsgbuf_a12a4780abaa96553f2ebf5fafeb58360}{mtype}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \{\\
+\>\>char \hyperlink{structmsgbuf_a72921f6ad2d6985d78d0e0fd1ae00774}{name} \mbox{[}\hyperlink{proyecto_8c_a834e9a379307f869a10f4da078be5786}{NAME\_SIZE}\mbox{]}\\
+\>\>int \hyperlink{structmsgbuf_a4d6daa3e4bf410b275b596b1e6828110}{bettor\_id}\\
+\>\>int \hyperlink{structmsgbuf_a2d569f43a4859884c21c9ce8f1408eeb}{horse\_id}\\
+\>\>float \hyperlink{structmsgbuf_a39278db78542cbe8cf2df77ac5b8b080}{bet}\\
+\>\} \hyperlink{structmsgbuf_a1337d4cd36a0fa762c15244c00853381}{betting}\\
+\>struct \{\\
+\>\>int \hyperlink{structmsgbuf_a0a654069b1868c3be58115550ed078fa}{position}\\
+\>\>int \hyperlink{structmsgbuf_a2b1acedae627a698a89d2503665c593d}{last\_throw}\\
+\>\} {\bfseries race}\\
+\} \hyperlink{structmsgbuf_ad43d12674488c373d8fb69efed53c3cc}{info}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Estructura de colas de mensajes. 
+
+Esta estructura contiene la informacion necesaria para comunicarse por colas de mensajes 
+
+\subsection{Member Data Documentation}
+\index{msgbuf@{msgbuf}!bet@{bet}}
+\index{bet@{bet}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{bet}{bet}}]{\setlength{\rightskip}{0pt plus 5cm}float msgbuf\+::bet}\hypertarget{structmsgbuf_a39278db78542cbe8cf2df77ac5b8b080}{}\label{structmsgbuf_a39278db78542cbe8cf2df77ac5b8b080}
+cantidad apostada \index{msgbuf@{msgbuf}!betting@{betting}}
+\index{betting@{betting}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{betting}{betting}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}  msgbuf\+::betting}\hypertarget{structmsgbuf_a1337d4cd36a0fa762c15244c00853381}{}\label{structmsgbuf_a1337d4cd36a0fa762c15244c00853381}
+Informacion de apuestas \index{msgbuf@{msgbuf}!bettor\+\_\+id@{bettor\+\_\+id}}
+\index{bettor\+\_\+id@{bettor\+\_\+id}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{bettor\+\_\+id}{bettor_id}}]{\setlength{\rightskip}{0pt plus 5cm}int msgbuf\+::bettor\+\_\+id}\hypertarget{structmsgbuf_a4d6daa3e4bf410b275b596b1e6828110}{}\label{structmsgbuf_a4d6daa3e4bf410b275b596b1e6828110}
+ID apostador \index{msgbuf@{msgbuf}!horse\+\_\+id@{horse\+\_\+id}}
+\index{horse\+\_\+id@{horse\+\_\+id}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{horse\+\_\+id}{horse_id}}]{\setlength{\rightskip}{0pt plus 5cm}int msgbuf\+::horse\+\_\+id}\hypertarget{structmsgbuf_a2d569f43a4859884c21c9ce8f1408eeb}{}\label{structmsgbuf_a2d569f43a4859884c21c9ce8f1408eeb}
+ID caballo \index{msgbuf@{msgbuf}!info@{info}}
+\index{info@{info}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{info}{info}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}  msgbuf\+::info}\hypertarget{structmsgbuf_ad43d12674488c373d8fb69efed53c3cc}{}\label{structmsgbuf_ad43d12674488c373d8fb69efed53c3cc}
+Informacion de control de carrera \index{msgbuf@{msgbuf}!last\+\_\+throw@{last\+\_\+throw}}
+\index{last\+\_\+throw@{last\+\_\+throw}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{last\+\_\+throw}{last_throw}}]{\setlength{\rightskip}{0pt plus 5cm}int msgbuf\+::last\+\_\+throw}\hypertarget{structmsgbuf_a2b1acedae627a698a89d2503665c593d}{}\label{structmsgbuf_a2b1acedae627a698a89d2503665c593d}
+ultima tirada \index{msgbuf@{msgbuf}!mtype@{mtype}}
+\index{mtype@{mtype}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{mtype}{mtype}}]{\setlength{\rightskip}{0pt plus 5cm}long msgbuf\+::mtype}\hypertarget{structmsgbuf_a12a4780abaa96553f2ebf5fafeb58360}{}\label{structmsgbuf_a12a4780abaa96553f2ebf5fafeb58360}
+tipo del mensaje \index{msgbuf@{msgbuf}!name@{name}}
+\index{name@{name}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{name}{name}}]{\setlength{\rightskip}{0pt plus 5cm}char msgbuf\+::name\mbox{[}{\bf N\+A\+M\+E\+\_\+\+S\+I\+ZE}\mbox{]}}\hypertarget{structmsgbuf_a72921f6ad2d6985d78d0e0fd1ae00774}{}\label{structmsgbuf_a72921f6ad2d6985d78d0e0fd1ae00774}
+nombre apostador \index{msgbuf@{msgbuf}!position@{position}}
+\index{position@{position}!msgbuf@{msgbuf}}
+\subsubsection[{\texorpdfstring{position}{position}}]{\setlength{\rightskip}{0pt plus 5cm}int msgbuf\+::position}\hypertarget{structmsgbuf_a0a654069b1868c3be58115550ed078fa}{}\label{structmsgbuf_a0a654069b1868c3be58115550ed078fa}
+posicion 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{proyecto_8c}{proyecto.\+c}\end{DoxyCompactItemize}

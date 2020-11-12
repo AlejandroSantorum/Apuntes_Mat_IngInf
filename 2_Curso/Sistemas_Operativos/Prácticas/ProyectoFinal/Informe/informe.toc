@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{2}{section.1}
+\contentsline {section}{\numberline {2}Esbozo inicial}{2}{section.2}
+\contentsline {section}{\numberline {3}Proceso apostador}{2}{section.3}
+\contentsline {section}{\numberline {4}Proceso gestor de apuestas}{3}{section.4}
+\contentsline {section}{\numberline {5}Proceso monitor}{4}{section.5}
+\contentsline {section}{\numberline {6}Proceso caballo}{5}{section.6}
+\contentsline {section}{\numberline {7}Proceso principal}{5}{section.7}
+\contentsline {section}{\numberline {8}Diagrama de flujo}{7}{section.8}
+\contentsline {section}{\numberline {9}Salida - Output}{8}{section.9}
+\contentsline {section}{\numberline {10}Conclusi\IeC {\'o}n}{8}{section.10}

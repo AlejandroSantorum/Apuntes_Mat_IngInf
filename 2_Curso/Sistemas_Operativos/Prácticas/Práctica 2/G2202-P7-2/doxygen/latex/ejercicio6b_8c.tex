@@ -1,0 +1,79 @@
+\hypertarget{ejercicio6b_8c}{}\section{ejercicio6b.\+c File Reference}
+\label{ejercicio6b_8c}\index{ejercicio6b.\+c@{ejercicio6b.\+c}}
+
+
+Ejercicio6b Toma de contacto con la funcion sigfillset()  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$ctype.\+h$>$}\\*
+Include dependency graph for ejercicio6b.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ejercicio6b_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ejercicio6b_8c_aaf0952059602752258dccaa015d7b54a}{N\+UM}~5
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ejercicio6b_8c_aaf4e4635ab40745568d100c91f0d5a19}{handler\+\_\+\+S\+I\+G\+T\+E\+RM} (int sig)
+\begin{DoxyCompactList}\small\item\em nuevo manejador de la señal S\+I\+G\+T\+E\+RM. Su funcionalidad es simplemente imprimir el P\+ID y un mensaje. \end{DoxyCompactList}\item 
+int {\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})\hypertarget{ejercicio6b_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\label{ejercicio6b_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ejercicio6b Toma de contacto con la funcion sigfillset() 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Santorum \& David Cabornero (G2202-\/\+Pareja7) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31-\/03-\/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\index{ejercicio6b.\+c@{ejercicio6b.\+c}!N\+UM@{N\+UM}}
+\index{N\+UM@{N\+UM}!ejercicio6b.\+c@{ejercicio6b.\+c}}
+\subsubsection[{\texorpdfstring{N\+UM}{NUM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+UM~5}\hypertarget{ejercicio6b_8c_aaf0952059602752258dccaa015d7b54a}{}\label{ejercicio6b_8c_aaf0952059602752258dccaa015d7b54a}
+Número de impresiones 
+
+\subsection{Function Documentation}
+\index{ejercicio6b.\+c@{ejercicio6b.\+c}!handler\+\_\+\+S\+I\+G\+T\+E\+RM@{handler\+\_\+\+S\+I\+G\+T\+E\+RM}}
+\index{handler\+\_\+\+S\+I\+G\+T\+E\+RM@{handler\+\_\+\+S\+I\+G\+T\+E\+RM}!ejercicio6b.\+c@{ejercicio6b.\+c}}
+\subsubsection[{\texorpdfstring{handler\+\_\+\+S\+I\+G\+T\+E\+R\+M(int sig)}{handler_SIGTERM(int sig)}}]{\setlength{\rightskip}{0pt plus 5cm}void handler\+\_\+\+S\+I\+G\+T\+E\+RM (
+\begin{DoxyParamCaption}
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)}\hypertarget{ejercicio6b_8c_aaf4e4635ab40745568d100c91f0d5a19}{}\label{ejercicio6b_8c_aaf4e4635ab40745568d100c91f0d5a19}
+
+
+nuevo manejador de la señal S\+I\+G\+T\+E\+RM. Su funcionalidad es simplemente imprimir el P\+ID y un mensaje. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & -\/ la señal que utilizará este manejador cuando sea llamada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}

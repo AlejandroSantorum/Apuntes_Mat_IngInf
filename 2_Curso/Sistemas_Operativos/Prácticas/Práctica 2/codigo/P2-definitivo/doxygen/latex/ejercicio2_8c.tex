@@ -1,0 +1,55 @@
+\hypertarget{ejercicio2_8c}{}\section{ejercicio2.\+c File Reference}
+\label{ejercicio2_8c}\index{ejercicio2.\+c@{ejercicio2.\+c}}
+
+
+Ejercicio2 Creación de 4 procesos hijos que duermen durante 30s mientras que el proceso padre espera 5s y después envía a cada proceso hijo la señal de finalización S\+I\+G\+T\+E\+RM.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+Include dependency graph for ejercicio2.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ejercicio2_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ejercicio2_8c_a469b1ab8d3ecbd62178c442e0d19c200}{N\+\_\+\+C\+H\+I\+L\+DS}~4
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries main} ()\hypertarget{ejercicio2_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{}\label{ejercicio2_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ejercicio2 Creación de 4 procesos hijos que duermen durante 30s mientras que el proceso padre espera 5s y después envía a cada proceso hijo la señal de finalización S\+I\+G\+T\+E\+RM. 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Santorum \& David Cabornero (G2202-\/\+Pareja7) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31-\/03-\/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\index{ejercicio2.\+c@{ejercicio2.\+c}!N\+\_\+\+C\+H\+I\+L\+DS@{N\+\_\+\+C\+H\+I\+L\+DS}}
+\index{N\+\_\+\+C\+H\+I\+L\+DS@{N\+\_\+\+C\+H\+I\+L\+DS}!ejercicio2.\+c@{ejercicio2.\+c}}
+\subsubsection[{\texorpdfstring{N\+\_\+\+C\+H\+I\+L\+DS}{N_CHILDS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+\_\+\+C\+H\+I\+L\+DS~4}\hypertarget{ejercicio2_8c_a469b1ab8d3ecbd62178c442e0d19c200}{}\label{ejercicio2_8c_a469b1ab8d3ecbd62178c442e0d19c200}
+Número de procesos hijos 

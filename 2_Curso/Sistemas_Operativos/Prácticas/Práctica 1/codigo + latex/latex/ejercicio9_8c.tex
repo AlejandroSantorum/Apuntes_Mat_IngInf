@@ -1,0 +1,157 @@
+\hypertarget{ejercicio9_8c}{\section{ejercicio9.\+c File Reference}
+\label{ejercicio9_8c}\index{ejercicio9.\+c@{ejercicio9.\+c}}
+}
+
+
+Ejercicio9 Ejercicio de comunicación bidireccional entre procesos utilizando tuberias (pipes)  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+Include dependency graph for ejercicio9.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ejercicio9_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ejercicio9_8c_ada74e7db007a68e763f20c17f2985356}{R\+E\+A\+D}~0
+\item 
+\#define \hyperlink{ejercicio9_8c_aa10f470e996d0f51210d24f442d25e1e}{W\+R\+I\+T\+E}~1
+\item 
+\#define \hyperlink{ejercicio9_8c_a469b1ab8d3ecbd62178c442e0d19c200}{N\+\_\+\+C\+H\+I\+L\+D\+S}~4
+\item 
+\#define \hyperlink{ejercicio9_8c_a05b49c662c073f89e86804f7856622a0}{L\+E\+N}~200
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{ejercicio9_8c_a4aa006d6fead344c31cadac2d1292a8e}{split\+\_\+first} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em separa de una cadena el primero Operando \end{DoxyCompactList}\item 
+int \hyperlink{ejercicio9_8c_a6b950f9c2c30c4e1c810b97ee01f141b}{split\+\_\+second} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em separa de una cadena el segundo Operando \end{DoxyCompactList}\item 
+int \hyperlink{ejercicio9_8c_a5127a26373d94a3e3d4c46eca1e20cb7}{factorial} (int a)
+\begin{DoxyCompactList}\small\item\em calcula el factorial \end{DoxyCompactList}\item 
+int \hyperlink{ejercicio9_8c_aa80441bd92270f050b0796561243f410}{abs} (int a)
+\begin{DoxyCompactList}\small\item\em calcula el valor absoluto \end{DoxyCompactList}\item 
+\hypertarget{ejercicio9_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{int {\bfseries main} ()}\label{ejercicio9_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ejercicio9 Ejercicio de comunicación bidireccional entre procesos utilizando tuberias (pipes) 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Santorum \& David Cabornero 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+02-\/03-\/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{ejercicio9_8c_a05b49c662c073f89e86804f7856622a0}{\index{ejercicio9.\+c@{ejercicio9.\+c}!L\+E\+N@{L\+E\+N}}
+\index{L\+E\+N@{L\+E\+N}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{L\+E\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+E\+N~200}}\label{ejercicio9_8c_a05b49c662c073f89e86804f7856622a0}
+Longitud de las cadenas de caracteres \hypertarget{ejercicio9_8c_a469b1ab8d3ecbd62178c442e0d19c200}{\index{ejercicio9.\+c@{ejercicio9.\+c}!N\+\_\+\+C\+H\+I\+L\+D\+S@{N\+\_\+\+C\+H\+I\+L\+D\+S}}
+\index{N\+\_\+\+C\+H\+I\+L\+D\+S@{N\+\_\+\+C\+H\+I\+L\+D\+S}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{N\+\_\+\+C\+H\+I\+L\+D\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+\_\+\+C\+H\+I\+L\+D\+S~4}}\label{ejercicio9_8c_a469b1ab8d3ecbd62178c442e0d19c200}
+Numero de procesos hijo \hypertarget{ejercicio9_8c_ada74e7db007a68e763f20c17f2985356}{\index{ejercicio9.\+c@{ejercicio9.\+c}!R\+E\+A\+D@{R\+E\+A\+D}}
+\index{R\+E\+A\+D@{R\+E\+A\+D}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{R\+E\+A\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+A\+D~0}}\label{ejercicio9_8c_ada74e7db007a68e763f20c17f2985356}
+Macro para lectura en tuberias \hypertarget{ejercicio9_8c_aa10f470e996d0f51210d24f442d25e1e}{\index{ejercicio9.\+c@{ejercicio9.\+c}!W\+R\+I\+T\+E@{W\+R\+I\+T\+E}}
+\index{W\+R\+I\+T\+E@{W\+R\+I\+T\+E}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{W\+R\+I\+T\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+R\+I\+T\+E~1}}\label{ejercicio9_8c_aa10f470e996d0f51210d24f442d25e1e}
+Macro para escritura en tuberias 
+
+\subsection{Function Documentation}
+\hypertarget{ejercicio9_8c_aa80441bd92270f050b0796561243f410}{\index{ejercicio9.\+c@{ejercicio9.\+c}!abs@{abs}}
+\index{abs@{abs}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{abs}]{\setlength{\rightskip}{0pt plus 5cm}int abs (
+\begin{DoxyParamCaption}
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}}\label{ejercicio9_8c_aa80441bd92270f050b0796561243f410}
+
+
+calcula el valor absoluto 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & entero para calcular su valor absoluto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entero valor absoluto 
+\end{DoxyReturn}
+\hypertarget{ejercicio9_8c_a5127a26373d94a3e3d4c46eca1e20cb7}{\index{ejercicio9.\+c@{ejercicio9.\+c}!factorial@{factorial}}
+\index{factorial@{factorial}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{factorial}]{\setlength{\rightskip}{0pt plus 5cm}int factorial (
+\begin{DoxyParamCaption}
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}}\label{ejercicio9_8c_a5127a26373d94a3e3d4c46eca1e20cb7}
+
+
+calcula el factorial 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & entero para calcular su factorial \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entero factorial 
+\end{DoxyReturn}
+\hypertarget{ejercicio9_8c_a4aa006d6fead344c31cadac2d1292a8e}{\index{ejercicio9.\+c@{ejercicio9.\+c}!split\+\_\+first@{split\+\_\+first}}
+\index{split\+\_\+first@{split\+\_\+first}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{split\+\_\+first}]{\setlength{\rightskip}{0pt plus 5cm}int split\+\_\+first (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{ejercicio9_8c_a4aa006d6fead344c31cadac2d1292a8e}
+
+
+separa de una cadena el primero Operando 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & cadena para ser separada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entero que es el primer operando 
+\end{DoxyReturn}
+\hypertarget{ejercicio9_8c_a6b950f9c2c30c4e1c810b97ee01f141b}{\index{ejercicio9.\+c@{ejercicio9.\+c}!split\+\_\+second@{split\+\_\+second}}
+\index{split\+\_\+second@{split\+\_\+second}!ejercicio9.\+c@{ejercicio9.\+c}}
+\subsubsection[{split\+\_\+second}]{\setlength{\rightskip}{0pt plus 5cm}int split\+\_\+second (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{ejercicio9_8c_a6b950f9c2c30c4e1c810b97ee01f141b}
+
+
+separa de una cadena el segundo Operando 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & cadena para ser separada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entero que es el segundo operando 
+\end{DoxyReturn}

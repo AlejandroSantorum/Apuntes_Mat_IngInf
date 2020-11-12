@@ -1,0 +1,87 @@
+\hypertarget{ejercicio13_8c}{\section{ejercicio13.\+c File Reference}
+\label{ejercicio13_8c}\index{ejercicio13.\+c@{ejercicio13.\+c}}
+}
+
+
+Ejercicio13 Creacion de dos hilos. Cada uno multiplica una matriz por un escalar, imprimiendo el resultado cada vez que acaba de multiplicar una fila. Ademas, cada hilo sabe por donde va el otro.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$pthread.\+h$>$}\\*
+{\ttfamily \#include $<$limits.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+Include dependency graph for ejercicio13.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ejercicio13_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structArgum}{Argum}
+\begin{DoxyCompactList}\small\item\em Estructura de argumentos de entrada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ejercicio13_8c_a05b49c662c073f89e86804f7856622a0}{L\+E\+N}~50
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{ejercicio13_8c_a4dd6e3f428ac001b95d386b8045a2db9}{mult\+\_\+matrix} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em multiplica una matrix por un escalar. Ademas, indica el estado del hilo hermano. \end{DoxyCompactList}\item 
+\hypertarget{ejercicio13_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{int {\bfseries main} (int argc, char const $\ast$argv\mbox{[}$\,$\mbox{]})}\label{ejercicio13_8c_abf9e6b7e6f15df4b525a2e7705ba3089}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ejercicio13 Creacion de dos hilos. Cada uno multiplica una matriz por un escalar, imprimiendo el resultado cada vez que acaba de multiplicar una fila. Ademas, cada hilo sabe por donde va el otro. 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Santorum \& David Cabornero 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+02-\/03-\/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{ejercicio13_8c_a05b49c662c073f89e86804f7856622a0}{\index{ejercicio13.\+c@{ejercicio13.\+c}!L\+E\+N@{L\+E\+N}}
+\index{L\+E\+N@{L\+E\+N}!ejercicio13.\+c@{ejercicio13.\+c}}
+\subsubsection[{L\+E\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+E\+N~50}}\label{ejercicio13_8c_a05b49c662c073f89e86804f7856622a0}
+Longitud cadena de caracteres 
+
+\subsection{Function Documentation}
+\hypertarget{ejercicio13_8c_a4dd6e3f428ac001b95d386b8045a2db9}{\index{ejercicio13.\+c@{ejercicio13.\+c}!mult\+\_\+matrix@{mult\+\_\+matrix}}
+\index{mult\+\_\+matrix@{mult\+\_\+matrix}!ejercicio13.\+c@{ejercicio13.\+c}}
+\subsubsection[{mult\+\_\+matrix}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ mult\+\_\+matrix (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{ejercicio13_8c_a4dd6e3f428ac001b95d386b8045a2db9}
+
+
+multiplica una matrix por un escalar. Ademas, indica el estado del hilo hermano. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$arg} & estructura con todos los parametros necesarios \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$, debido a politica de hilos 
+\end{DoxyReturn}

@@ -1,0 +1,48 @@
+\begin{theindex}
+
+  \item {Argum}, \hyperpage{5}
+    \subitem {dim}, \hyperpage{5}
+    \subitem {id}, \hyperpage{5}
+    \subitem {matrix}, \hyperpage{5}
+    \subitem {pos1}, \hyperpage{5}
+    \subitem {pos2}, \hyperpage{5}
+    \subitem {scalar}, \hyperpage{6}
+
+  \indexspace
+
+  \item {dim}
+    \subitem {Argum}, \hyperpage{5}
+
+  \indexspace
+
+  \item {id}
+    \subitem {Argum}, \hyperpage{5}
+
+  \indexspace
+
+  \item {matrix}
+    \subitem {Argum}, \hyperpage{5}
+
+  \indexspace
+
+  \item {n}
+    \subitem {Structure}, \hyperpage{6}
+
+  \indexspace
+
+  \item {pos1}
+    \subitem {Argum}, \hyperpage{5}
+  \item {pos2}
+    \subitem {Argum}, \hyperpage{5}
+
+  \indexspace
+
+  \item {scalar}
+    \subitem {Argum}, \hyperpage{6}
+  \item {str}
+    \subitem {Structure}, \hyperpage{6}
+  \item {Structure}, \hyperpage{6}
+    \subitem {n}, \hyperpage{6}
+    \subitem {str}, \hyperpage{6}
+
+\end{theindex}

@@ -1,0 +1,98 @@
+\begin{theindex}
+
+  \item {Borrar\+\_\+\+Semaforo}
+    \subitem {semaforos.\+c}, \hyperpage{10}
+    \subitem {semaforos.\+h}, \hyperpage{14}
+
+  \indexspace
+
+  \item {Crear\+\_\+\+Semaforo}
+    \subitem {semaforos.\+c}, \hyperpage{10}
+    \subitem {semaforos.\+h}, \hyperpage{15}
+
+  \indexspace
+
+  \item {Down\+\_\+\+Semaforo}
+    \subitem {semaforos.\+c}, \hyperpage{11}
+    \subitem {semaforos.\+h}, \hyperpage{15}
+  \item {Down\+Multiple\+\_\+\+Semaforo}
+    \subitem {semaforos.\+c}, \hyperpage{11}
+    \subitem {semaforos.\+h}, \hyperpage{15}
+
+  \indexspace
+
+  \item {E\+R\+R\+OR}
+    \subitem {semaforos.\+h}, \hyperpage{14}
+  \item {ejercicio2.\+c}, \hyperpage{3}
+    \subitem {N\+\_\+\+C\+H\+I\+L\+DS}, \hyperpage{4}
+  \item {ejercicio4.\+c}, \hyperpage{4}
+    \subitem {handler\+\_\+\+S\+I\+G\+U\+S\+R1}, \hyperpage{5}
+    \subitem {is\+\_\+valid\+\_\+integer}, \hyperpage{5}
+    \subitem {N\+\_\+\+P\+R\+I\+NT}, \hyperpage{5}
+  \item {ejercicio6a.\+c}, \hyperpage{7}
+    \subitem {N\+UM}, \hyperpage{8}
+  \item {ejercicio6b.\+c}, \hyperpage{8}
+    \subitem {handler\+\_\+\+S\+I\+G\+T\+E\+RM}, \hyperpage{9}
+    \subitem {N\+UM}, \hyperpage{9}
+
+  \indexspace
+
+  \item {handler\+\_\+\+S\+I\+G\+T\+E\+RM}
+    \subitem {ejercicio6b.\+c}, \hyperpage{9}
+  \item {handler\+\_\+\+S\+I\+G\+U\+S\+R1}
+    \subitem {ejercicio4.\+c}, \hyperpage{5}
+
+  \indexspace
+
+  \item {Inicializar\+\_\+\+Semaforo}
+    \subitem {semaforos.\+c}, \hyperpage{11}
+    \subitem {semaforos.\+h}, \hyperpage{16}
+  \item {is\+\_\+valid\+\_\+integer}
+    \subitem {ejercicio4.\+c}, \hyperpage{5}
+
+  \indexspace
+
+  \item {N\+\_\+\+C\+H\+I\+L\+DS}
+    \subitem {ejercicio2.\+c}, \hyperpage{4}
+  \item {N\+\_\+\+P\+R\+I\+NT}
+    \subitem {ejercicio4.\+c}, \hyperpage{5}
+  \item {N\+UM}
+    \subitem {ejercicio6a.\+c}, \hyperpage{8}
+    \subitem {ejercicio6b.\+c}, \hyperpage{9}
+
+  \indexspace
+
+  \item {OK}
+    \subitem {semaforos.\+h}, \hyperpage{14}
+
+  \indexspace
+
+  \item {semaforos.\+c}, \hyperpage{9}
+    \subitem {Borrar\+\_\+\+Semaforo}, \hyperpage{10}
+    \subitem {Crear\+\_\+\+Semaforo}, \hyperpage{10}
+    \subitem {Down\+\_\+\+Semaforo}, \hyperpage{11}
+    \subitem {Down\+Multiple\+\_\+\+Semaforo}, \hyperpage{11}
+    \subitem {Inicializar\+\_\+\+Semaforo}, \hyperpage{11}
+    \subitem {Up\+\_\+\+Semaforo}, \hyperpage{12}
+    \subitem {Up\+Multiple\+\_\+\+Semaforo}, \hyperpage{12}
+  \item {semaforos.\+h}, \hyperpage{12}
+    \subitem {Borrar\+\_\+\+Semaforo}, \hyperpage{14}
+    \subitem {Crear\+\_\+\+Semaforo}, \hyperpage{15}
+    \subitem {Down\+\_\+\+Semaforo}, \hyperpage{15}
+    \subitem {Down\+Multiple\+\_\+\+Semaforo}, \hyperpage{15}
+    \subitem {E\+R\+R\+OR}, \hyperpage{14}
+    \subitem {Inicializar\+\_\+\+Semaforo}, \hyperpage{16}
+    \subitem {OK}, \hyperpage{14}
+    \subitem {Up\+\_\+\+Semaforo}, \hyperpage{16}
+    \subitem {Up\+Multiple\+\_\+\+Semaforo}, \hyperpage{16}
+
+  \indexspace
+
+  \item {Up\+\_\+\+Semaforo}
+    \subitem {semaforos.\+c}, \hyperpage{12}
+    \subitem {semaforos.\+h}, \hyperpage{16}
+  \item {Up\+Multiple\+\_\+\+Semaforo}
+    \subitem {semaforos.\+c}, \hyperpage{12}
+    \subitem {semaforos.\+h}, \hyperpage{16}
+
+\end{theindex}

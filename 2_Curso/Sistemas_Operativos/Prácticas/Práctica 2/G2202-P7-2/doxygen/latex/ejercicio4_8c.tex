@@ -1,0 +1,100 @@
+\hypertarget{ejercicio4_8c}{}\section{ejercicio4.\+c File Reference}
+\label{ejercicio4_8c}\index{ejercicio4.\+c@{ejercicio4.\+c}}
+
+
+Ejercicio4 Manejo de señales entre procesos hijos y padre.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/wait.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$ctype.\+h$>$}\\*
+Include dependency graph for ejercicio4.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ejercicio4_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ejercicio4_8c_a1eae4448563ec6ad91f74fc8e8ba228d}{N\+\_\+\+P\+R\+I\+NT}~10
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{ejercicio4_8c_a86a4f2b7e18ef771ecf42d7aca5c9fde}{is\+\_\+valid\+\_\+integer} (char $\ast$input)
+\begin{DoxyCompactList}\small\item\em evalua si un argumento de entrada es verdaderamente un entero \end{DoxyCompactList}\item 
+void \hyperlink{ejercicio4_8c_affae6eb1392c68ed64ab02cd348429d2}{handler\+\_\+\+S\+I\+G\+U\+S\+R1} (int sig)
+\begin{DoxyCompactList}\small\item\em nuevo manejador de la señal S\+I\+G\+U\+S\+R1. Su funcionalidad es simplemente no hacer nada. \end{DoxyCompactList}\item 
+int {\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})\hypertarget{ejercicio4_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\label{ejercicio4_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ejercicio4 Manejo de señales entre procesos hijos y padre. 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Santorum \& David Cabornero (G2202-\/\+Pareja7) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31-\/03-\/2018 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\index{ejercicio4.\+c@{ejercicio4.\+c}!N\+\_\+\+P\+R\+I\+NT@{N\+\_\+\+P\+R\+I\+NT}}
+\index{N\+\_\+\+P\+R\+I\+NT@{N\+\_\+\+P\+R\+I\+NT}!ejercicio4.\+c@{ejercicio4.\+c}}
+\subsubsection[{\texorpdfstring{N\+\_\+\+P\+R\+I\+NT}{N_PRINT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+\_\+\+P\+R\+I\+NT~10}\hypertarget{ejercicio4_8c_a1eae4448563ec6ad91f74fc8e8ba228d}{}\label{ejercicio4_8c_a1eae4448563ec6ad91f74fc8e8ba228d}
+Número de impresiones por pantalla de cada hijo 
+
+\subsection{Function Documentation}
+\index{ejercicio4.\+c@{ejercicio4.\+c}!handler\+\_\+\+S\+I\+G\+U\+S\+R1@{handler\+\_\+\+S\+I\+G\+U\+S\+R1}}
+\index{handler\+\_\+\+S\+I\+G\+U\+S\+R1@{handler\+\_\+\+S\+I\+G\+U\+S\+R1}!ejercicio4.\+c@{ejercicio4.\+c}}
+\subsubsection[{\texorpdfstring{handler\+\_\+\+S\+I\+G\+U\+S\+R1(int sig)}{handler_SIGUSR1(int sig)}}]{\setlength{\rightskip}{0pt plus 5cm}void handler\+\_\+\+S\+I\+G\+U\+S\+R1 (
+\begin{DoxyParamCaption}
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)}\hypertarget{ejercicio4_8c_affae6eb1392c68ed64ab02cd348429d2}{}\label{ejercicio4_8c_affae6eb1392c68ed64ab02cd348429d2}
+
+
+nuevo manejador de la señal S\+I\+G\+U\+S\+R1. Su funcionalidad es simplemente no hacer nada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & -\/ la señal que utilizará este manejador cuando sea llamada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{ejercicio4.\+c@{ejercicio4.\+c}!is\+\_\+valid\+\_\+integer@{is\+\_\+valid\+\_\+integer}}
+\index{is\+\_\+valid\+\_\+integer@{is\+\_\+valid\+\_\+integer}!ejercicio4.\+c@{ejercicio4.\+c}}
+\subsubsection[{\texorpdfstring{is\+\_\+valid\+\_\+integer(char $\ast$input)}{is_valid_integer(char *input)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+\_\+valid\+\_\+integer (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{ejercicio4_8c_a86a4f2b7e18ef771ecf42d7aca5c9fde}{}\label{ejercicio4_8c_a86a4f2b7e18ef771ecf42d7aca5c9fde}
+
+
+evalua si un argumento de entrada es verdaderamente un entero 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & -\/ contiene la cadena de caracteres sospechosa de ser un entero \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si es un entero, 0 en caso contrario. 
+\end{DoxyReturn}
