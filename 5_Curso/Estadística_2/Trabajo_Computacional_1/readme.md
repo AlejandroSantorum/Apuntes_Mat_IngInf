@@ -1,5 +1,5 @@
 # AUTORES
 
-José Manuel Chacón Aguilera - josem.chacon@estudiante.uam.es
+José Manuel Chacón Aguilera (@manechacon) - josem.chacon@estudiante.uam.es
 
-Alejandro Santorum Varela - alejandro.santorum@estudiante.uam.es
+Alejandro Santorum Varela (@AlejandroSantorum) - alejandro.santorum@estudiante.uam.es
