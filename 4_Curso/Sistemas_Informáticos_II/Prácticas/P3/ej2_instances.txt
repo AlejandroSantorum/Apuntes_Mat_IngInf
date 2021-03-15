@@ -1,0 +1,6 @@
+si2@si2srv01:~$ asadmin --user admin --passwordfile /opt/SI2/passwordfile list-instances -l
+Name        Host      Port   Pid   Cluster     State     
+Instance01  10.1.7.2  24848  1953  SI2Cluster   running  
+Instance02  10.1.7.3  24848  1955  SI2Cluster   running  
+Command list-instances executed successfully.
+

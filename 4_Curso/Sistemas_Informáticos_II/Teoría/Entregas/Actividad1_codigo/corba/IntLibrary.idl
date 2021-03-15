@@ -1,0 +1,8 @@
+module IntLibraryApp
+{
+  interface IntLibrary
+  {
+    unsigned short procesarPeticion(in short type, in short op1,in short op2);
+    oneway void shutdown();
+  };
+};

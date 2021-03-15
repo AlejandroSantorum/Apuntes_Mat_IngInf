@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<project name="jms-setup" default="show-jms-info" basedir=".">
+ <property environment="env" />
+
+ <property file="build.properties" />
+ <property file="jms.properties" />
+
+
+ <target name="setup-jms"
+   description="Crea nuestros recursos JMS">
+   <antcall target="create-jms-connection-factory">
+       <param name="jms.restype" value="javax.jms.QueueConnectionFactory" />
+       <param name="jms.resource.name" value="${jms.factoryname}" />
+   </antcall>
+   <antcall target="create-jms-resource">
+       <param name="jms.restype" value="javax.jms.Queue" />
+       <param name="jms.resource.property" value="Name=${jms.physname}" />
+       <param name="jms.resource.name" value="${jms.name}" />
+   </antcall>
+ </target>
+
+ <target name="unsetup-jms"
+   description="Elimina nuestros recursos JMS">
+   <antcall target="delete-jms-resource">
+       <param name="jms.resource.name" value="${jms.name}" />
+   </antcall>
+   <antcall target="delete-jms-resource">
+       <param name="jms.resource.name" value="${jms.factoryname}" />
+   </antcall>
+ </target>
+
+ <!-- ... -->
+ <target name="create-jms-resource"
+     description="creates jms destination resource">
+     <exec executable="${asadmin}">
+        <arg line=" --user ${as.user}" />
+        <arg line=" --passwordfile ${as.passwordfile}" />
+        <arg line=" --host ${as.host.server}" />
+        <arg line=" --port ${as.port}" />
+        <arg line="create-jms-resource"/>
+        <arg line=" --restype ${jms.restype}" />
+        <arg line=" --enabled=true" />
+        <arg line=" --property ${jms.resource.property}" />
+        <arg line=" ${jms.resource.name}" />
+     </exec>
+ </target>
+
+ <target name="create-jms-connection-factory" 
+     description="creates jms connection factory">
+     <exec executable="${asadmin}">
+        <arg line=" --user ${as.user}" />
+        <arg line=" --passwordfile ${as.passwordfile}" />
+        <arg line=" --host ${as.host.server}" />
+        <arg line=" --port ${as.port}" />
+        <arg line="create-jms-resource"/>
+        <arg line=" --restype ${jms.restype}" />
+        <arg line=" --enabled=true" />
+        <arg line=" ${jms.resource.name}" />
+     </exec>
+ </target>
+
+  <target name="delete-jms-resource"
+      description="deletes jms resource" >
+      <exec executable="${asadmin}">
+          <arg line=" --user ${as.user}" />
+          <arg line=" --passwordfile ${as.passwordfile}" />
+          <arg line=" --host ${as.host.server}" />
+          <arg line=" --port ${as.port}" />
+          <arg line="delete-jms-resource"/>
+          <arg line=" ${jms.resource.name}" />
+      </exec>
+  </target>
+
+ <target name="show-jms-info" description="lists jms destinations, resources">
+    <exec executable="${asadmin}">
+      <arg line=" --user ${as.user}" />
+      <arg line=" --passwordfile ${as.passwordfile}" />
+      <arg line=" --host ${as.host.server}" />
+      <arg line=" --port ${as.port}" />
+      <arg line="list-jmsdest"/>
+    </exec>
+    <exec executable="${asadmin}">
+      <arg line=" --user ${as.user}" />
+      <arg line=" --passwordfile ${as.passwordfile}" />
+      <arg line=" --host ${as.host.server}" />
+      <arg line=" --port ${as.port}" />
+      <arg line="list-jms-resources"/>
+    </exec>
+ </target>
+
+</project>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Practicas de Sistemas Informaticos II -->
+<project name="Servicio de Pago con VISA" default="ayuda" basedir=".">
+
+	<property environment="env" />
+  <property file="build.properties" />
+        
+	<path id="compile.server.classpath">
+		<pathelement location="${as.lib}/javaee.jar"/>
+	</path>
+
+	<path id="compile.client.classpath">
+		<pathelement location="${as.lib}/javaee.jar"/>
+	</path>
+
+  <!-- Atributos de JMS -->
+	<import file="jms.xml" />
+
+	<target name="ayuda">
+		<echo>
+Compilacion:
+ant compilar-mdb
+ant empaquetar-mdb
+ant compilar-clientjms
+ant empaquetar-clientjms
+
+Despliegue:
+ant desplegar-mdb
+ant replegar-mdb
+
+Ejecucion del cliente:
+ant clientjms
+
+General:
+ant limpiar
+ant limpiar-todo
+		</echo>
+	</target>
+
+    <target name="todo">
+        <antcall target="setup-jms" />
+        <antcall target="mdb" />
+        <antcall target="clientjms" />
+    </target>
+    
+    <target name="casitodo">
+        <antcall target="mdb" />
+        <antcall target="clientjms" />
+    </target>    
+
+	<target name="mdb">
+        <antcall target="compilar-mdb" />
+        <antcall target="empaquetar-mdb" />
+        <antcall target="desplegar-mdb" />
+    </target>            
+
+	<target name="clientjms">
+        <antcall target="compilar-clientjms" />
+        <antcall target="empaquetar-clientjms" />
+  </target>            
+            
+	<target name="montar-jerarquia" description="crea los directorios del proyecto">
+		<mkdir dir="${build}" />
+		<mkdir dir="${build.clientjms}" />
+		<mkdir dir="${build.mdb}" />		
+		<mkdir dir="${dist}" />
+		<mkdir dir="${dist.clientjms}" />
+		<mkdir dir="${dist.mdb}" />
+	</target>
+  
+	<target name="compilar-clientjms" depends="montar-jerarquia" description="Compila el cliente">
+		<javac srcdir="${src.clientjms}" 
+		       destdir="${build.clientjms}" 
+		       includeantruntime="false"	       
+		       includes="${paquete}/**" 
+		       debug="on" >
+			<classpath refid="compile.client.classpath"/>
+		</javac>
+	</target>
+
+	<target name="empaquetar-clientjms" description="Genera un .war de la aplicacion web">
+	<!-- depends="preparar-meta-inf-clientjms" -->
+		<delete file="${dist.clientjms}/${clientjms-jar}" />
+		<jar jarfile="${dist.clientjms}/${clientjms-jar}" >
+			<fileset dir="${build.clientjms}" />
+      <manifest>
+         <attribute name="Main-Class" value="ssii2.VisaQueueMessageProducer"/>
+      </manifest>
+		</jar>
+	</target>
+	
+	<target name="compilar-mdb" depends="montar-jerarquia" description="Compila el servidor">
+		<javac srcdir="${src.mdb}" 
+		       destdir="${build.mdb}" 
+		       includeantruntime="false"		       
+		       includes="${paquete}/**" 
+		       debug="on" >
+			<classpath refid="compile.server.classpath"/>
+		</javac>
+	</target>
+
+	<target name="preparar-meta-inf-mdb" description="Copia los archivos necesarios al META-INF para crear el .jar del MDB">
+		<copy todir="${build.mdb}">
+    		  <fileset dir="${conf.mdb}"/>
+		</copy>
+	</target>
+
+	<target name="empaquetar-mdb" description="Genera un .jar del MDB" depends="preparar-meta-inf-mdb">
+		<delete file="${dist.mdb}/${mdb-jar}" />
+		<jar jarfile="${dist.mdb}/${mdb-jar}" >
+			<fileset dir="${build.mdb}" />
+		</jar>
+	</target>	
+
+	<target name="desplegar-mdb" description="Despliega el servidor de la aplicacion" >
+     <exec executable="${asadmin}">
+         <arg line=" --user ${as.user}" />
+         <arg line=" --passwordfile ${as.passwordfile}" />
+         <arg line=" --host ${as.host.mdb}" />
+         <arg line=" --port ${as.port}" />
+         <arg line=" deploy"/>
+         <arg line=" --name ${nombre}-mdb "/>
+         <arg line=" --target ${as.target} "/>
+         <arg line=" ${dist.mdb}/${mdb-jar}   "/>
+     </exec>
+
+  	</target>  	
+
+	<target name="replegar-mdb" description="Repliega la aplicacion" >
+     <exec executable="${asadmin}">
+         <arg line=" --user ${as.user}" />
+         <arg line=" --passwordfile ${as.passwordfile}" />
+         <arg line=" --host ${as.host.mdb}" />
+         <arg line=" --port ${as.port}" />
+         <arg line=" undeploy"/>
+         <arg line=" ${nombre}-mdb "/>
+     </exec>
+	</target>
+	
+	<target name="redesplegar" description="Repliega y vuelve a desplegar" >
+		<antcall target="replegar-mdb" />
+		<antcall target="desplegar-mdb" />
+	</target>
+
+	<target name="limpiar" 
+		description="Borra el directorio build">
+		<delete dir="${build}" />
+	</target>
+	  
+	<target name="limpiar-todo" 
+		description="Borra el directorio build y el directorio dist">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+</project>

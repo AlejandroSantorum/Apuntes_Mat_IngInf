@@ -1,0 +1,21 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1586391173494,1626,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,1622,0,0
+1586391177300,1077,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,1077,0,0
+1586391180503,52,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,51,0,0
+1586391182666,36,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,36,0,0
+1586391184797,25,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,24,0,0
+1586391186962,58,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,58,0,0
+1586391189164,8,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,8,0,0
+1586391192066,23,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,23,0,0
+1586391194193,17,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,16,0,0
+1586391196246,49,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,49,0,0
+1586391198553,18,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,16,0,0
+1586391200591,42,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,42,0,0
+1586391203444,5,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,5,0,0
+1586391205651,15,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,15,0,0
+1586391207883,22,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,21,0,0
+1586391210667,15,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,15,0,0
+1586391213562,8,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1986,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,8,0,0
+1586391216226,48,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1253,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,47,0,0
+1586391218729,13,/P1-base/comienzapago,200,OK,Consultas 1-1,text,true,,1987,0,1,1,http://10.1.7.2:8080/P1-base/comienzapago,13,0,0
+1586391221401,45,/P1-base/procesapago,200,OK,Consultas 1-1,text,true,,1254,0,1,1,http://10.1.7.2:8080/P1-base/procesapago,44,0,0

@@ -1,0 +1,4 @@
+Etiqueta,# Muestras,Media,Mediana,90% Line,95% Line,99% Line,Mín,Máx,% Error,Rendimiento,Kb/sec,Sent KB/sec
+/P1-base/comienzapago,10000,7,4,19,32,53,0,155,"0,000%","169,95819","330,11","0,00"
+/P1-base/procesapago,10000,14,10,29,41,63,3,1021,"0,000%","168,75928","206,81","0,00"
+Total,20000,11,7,25,37,60,0,1021,"0,000%","326,24831","516,74","0,00"

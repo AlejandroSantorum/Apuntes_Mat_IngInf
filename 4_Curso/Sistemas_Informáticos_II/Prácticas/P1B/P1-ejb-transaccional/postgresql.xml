@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<project name="postgresql-setup" default="setup-db" basedir=".">
+ <property environment="env" />
+
+ <property file="build.properties" />
+ <property file="postgresql.properties" />
+
+ <target name="setup-db" depends="create-resource-local, create-db" />
+ <target name="unsetup-db" depends="delete-pool-local, delete-resource-local, delete-db" />
+
+  <!-- Classpath de PostgreSQL -->
+  <path id="db.classpath">
+    <fileset dir=".">
+      <include name="postgresql-jdbc4.jar"/>
+    </fileset>
+  </path>
+
+ <target name="create-jdbc-connection-pool"
+    description="creates jdbc connection pool">
+    <fail unless="db.name" message="The property db.name must be set before invoking this target. Otherwise there is no database to use."/>
+    <fail unless="pool.name" message="The property pool.name must be set before invoking this target. Otherwise there is no pool to use with the jdbc resource."/>
+    <exec executable="${asadmin}">
+        <arg line=" --user ${as.user}" />
+        <arg line=" --passwordfile ${as.passwordfile}" />
+        <arg line=" --host ${db.client.host}" />
+        <arg line=" --port ${db.client.port}" />
+        <arg line=" create-jdbc-connection-pool"/>
+        <arg line=" --datasourceclassname ${db.datasource}" />
+        <arg line=" --restype javax.sql.ConnectionPoolDataSource " />
+        <arg line=" --property portNumber=${db.port}:serverName=${db.host}:User=${db.user}:Password=${db.password}:databaseName=${db.name}" />
+        <arg line="${db.pool.name} " />
+    </exec> 
+ </target>
+ 
+  <target name="create-jdbc-resource"
+    description="creates jdbc resource">
+    <fail unless="pool.name" message="The property pool.name must be set before invoking this target. Otherwise there is no pool to use with the jdbc resource."/>
+    <fail unless="jdbc.resource.name" message="The property jdbc.resource.name must be set before invoking this target. Otherwise there is no JDBC resource to create."/>
+     <exec executable="${asadmin}">
+        <arg line=" --user ${as.user}" />
+        <arg line=" --passwordfile ${as.passwordfile}" />
+        <arg line=" --host ${db.client.host}" />
+        <arg line=" --port ${db.client.port}" />
+        <arg line="create-jdbc-resource"/>
+        <arg line=" --connectionpoolid ${db.pool.name}" />
+        <arg line=" --enabled=true" />
+        <arg line=" ${db.jdbc.resource.name}" />
+    </exec>     
+  </target>
+
+  <target name="delete-jdbc-resource"
+    description="deletes jdbc resource">
+    <fail unless="jdbc.resource.name" message="The property jdbc.resource.name must be set before invoking this target. Otherwise there is no JDBC resource to delete."/>
+     <exec executable="${asadmin}">
+        <arg line=" --user ${as.user}" />
+        <arg line=" --passwordfile ${as.passwordfile}" />
+        <arg line=" --host ${db.client.host}" />
+        <arg line=" --port ${db.client.port}" />
+        <arg line="delete-jdbc-resource"/>
+        <arg line="${db.jdbc.resource.name}" />
+    </exec>
+  </target>
+
+  <target name="delete-jdbc-connection-pool"
+    description="deletes jdbc connection pool">
+    <fail unless="db.pool.name" message="The property db.pool.name must be set before invoking this target. Otherwise there is no JDBC pool to delete."/>
+     <exec executable="${asadmin}">
+        <arg line=" --user ${as.user}" />
+        <arg line=" --passwordfile ${as.passwordfile}" />
+        <arg line=" --host ${db.client.host}" />
+        <arg line=" --port ${db.client.port}" />
+        <arg line="delete-jdbc-connection-pool"/>
+        <arg line="${db.pool.name}" />
+    </exec>
+  </target>
+
+  <target name="create-db" depends="delete-db"
+  description="Crear la BD." >
+    <exec executable="${db.createdb}" >
+        <arg line=" -h ${db.host} "/>
+        <arg line=" -U ${db.user} " />
+        <arg line="${db.name}" />
+    </exec>
+    <sql driver="${db.driver}"
+         encoding="utf-8"
+         url="${db.url}"
+         userid="${db.user}"
+         password="${db.password}"
+         classpathref="db.classpath"
+         delimiter="${db.delimiter}"
+         autocommit="true"
+         onerror="abort" >
+      <transaction src="${db.create.src}"/>
+      <transaction src="${db.insert.src}"/>
+    </sql>    
+  </target>
+  
+  <target name="delete-db" description="Deletes the database tables." >
+    <echo>driver=${db.driver}</echo>
+    <echo>url=${db.url}</echo>
+    <echo>user=${db.user}</echo>
+    <echo>password=${db.password}</echo>
+    <!--
+    <sql driver="${db.driver}"
+         encoding="utf-8"
+         url="${db.url}"
+         userid="${db.user}"
+         password="${db.password}"
+         classpathref="db.classpath"
+         delimiter="${db.delimiter}"
+         autocommit="true"
+         onerror="continue" >       
+      <transaction src="${db.delete.src}"/>
+    </sql>
+    -->
+    <exec executable="${db.dropdb}">
+        <arg line=" -h ${db.host} "/>
+        <arg line=" -U ${db.user} " />
+        <arg line="${db.name}" />
+    </exec>
+  </target>
+  
+  <target name="create-pool-local">
+    <echo message="Registering jdbc-connection-pool ${db.pool.name}."/>
+    <echo>ds=${db.datasource}</echo>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="pool.name"     value="${db.pool.name}" />
+      <param name="db.serverName" value="${db.host}" />
+      <param name="ds.class"      value="${db.datasource}" />
+    </antcall>
+ </target>
+
+ <target name="create-resource-local" depends="create-pool-local">
+    <echo message="Registering jdbc resource ${db.jdbc.resource.name}."/>
+    <antcall target="create-jdbc-resource">
+      <param name="pool.name"            value="${db.pool.name}" />
+      <param name="jdbc.resource.name"   value="${db.jdbc.resource.name}" />
+    </antcall>
+ </target>
+
+  <target name="delete-resource-local">
+    <echo message="Deleting jdbc resource ${db.jdbc.resource.name}"/>
+    <antcall target="delete-jdbc-resource">
+      <param name="jdbc.resource.name" value="${db.jdbc.resource.name}" />
+    </antcall> 
+ </target>
+
+ <target name="delete-pool-local" depends="delete-resource-local">
+    <echo message="Deleting jdbc-connection-pool ${db.pool.name}."/>
+    <antcall target="delete-jdbc-connection-pool">
+      <param name="pool.name" value="${db.pool.name}" />
+    </antcall>
+ </target>
+
+</project>

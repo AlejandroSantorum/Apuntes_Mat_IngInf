@@ -1,0 +1,63 @@
+OpenSSH_5.3p1 Debian-3ubuntu7, OpenSSL 0.9.8k 25 Mar 2009
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Applying options for *
+debug1: Connecting to 10.1.7.2 [10.1.7.2] port 22.
+debug1: Connection established.
+debug1: identity file /home/si2/.ssh/identity type -1
+debug1: identity file /home/si2/.ssh/id_rsa type -1
+debug1: identity file /home/si2/.ssh/id_dsa type 2
+debug1: Checking blacklist file /usr/share/ssh/blacklist.DSA-1024
+debug1: Checking blacklist file /etc/ssh/blacklist.DSA-1024
+debug1: Remote protocol version 2.0, remote software version OpenSSH_5.3p1 Debian-3ubuntu7
+debug1: match: OpenSSH_5.3p1 Debian-3ubuntu7 pat OpenSSH*
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_5.3p1 Debian-3ubuntu7
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: server->client aes128-ctr hmac-md5 none
+debug1: kex: client->server aes128-ctr hmac-md5 none
+debug1: SSH2_MSG_KEX_DH_GEX_REQUEST(1024<1024<8192) sent
+debug1: expecting SSH2_MSG_KEX_DH_GEX_GROUP
+debug1: SSH2_MSG_KEX_DH_GEX_INIT sent
+debug1: expecting SSH2_MSG_KEX_DH_GEX_REPLY
+debug1: Host '10.1.7.2' is known and matches the RSA host key.
+debug1: Found key in /home/si2/.ssh/known_hosts:1
+debug1: ssh_rsa_verify: signature correct
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug1: SSH2_MSG_SERVICE_REQUEST sent
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,password
+debug1: Next authentication method: publickey
+debug1: Trying private key: /home/si2/.ssh/identity
+debug1: Trying private key: /home/si2/.ssh/id_rsa
+debug1: Offering public key: /home/si2/.ssh/id_dsa
+debug1: Server accepts key: pkalg ssh-dss blen 434
+debug1: read PEM private key done: type DSA
+debug1: Authentication succeeded (publickey).
+debug1: channel 0: new [client-session]
+debug1: Requesting no-more-sessions@openssh.com
+debug1: Entering interactive session.
+debug1: Sending environment.
+debug1: Sending env LANG = C
+Linux si2srv02 2.6.32-33-generic #72-Ubuntu SMP Fri Jul 29 21:08:37 UTC 2011 i686 GNU/Linux
+Ubuntu 10.04.3 LTS
+
+Welcome to Ubuntu!
+ * Documentation:  https://help.ubuntu.com/
+New release 'precise' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Last login: Thu Apr 30 09:41:21 2020 from 10.1.7.1
+Loading es
+si2@si2srv02:~$ exitdebug1: client_input_channel_req: channel 0 rtype exit-status reply 0
+debug1: client_input_channel_req: channel 0 rtype eow@openssh.com reply 0
+
+logout
+debug1: channel 0: free: client-session, nchannels 1
+debug1: fd 1 clearing O_NONBLOCK
+Connection to 10.1.7.2 closed.
+Transferred: sent 2848, received 3016 bytes, in 9.6 seconds
+Bytes per second: sent 297.4, received 315.0
+debug1: Exit status 0
