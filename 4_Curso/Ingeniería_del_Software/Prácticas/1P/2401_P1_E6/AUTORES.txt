@@ -1,0 +1,11 @@
+Autores:
+	· Carlos Molinero Alvarado
+	· Rafael Sánchez Sánchez
+	· Alejandro Santorum Varela
+	· Manuel Soto Jiménez
+Grupo: 2401
+Equipo: 6
+Práctica 1
+9 de marzo de 2020
+
+Observaciones: Se incluyen todos los documentos solicitados. Los documentos realizados en Google Sheets se añaden con dos extensiones distintas (excel y pdf), para que el lector utilice la opción más cómoda.

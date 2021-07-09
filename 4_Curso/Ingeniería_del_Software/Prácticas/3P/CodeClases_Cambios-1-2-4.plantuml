@@ -1,0 +1,209 @@
+@startuml
+skinparam {
+  classAttributeIconSize 0
+  ClassBorderColor Black
+  ClassBackgroundColor White
+  ClassFontStyle bold
+  'ClassFontName Courier
+  'ClassAttributeFontName Courier
+  ArrowColor Black
+  Shadowing false
+  'linetype ortho
+  'handwritten true
+  'nodesep 50
+  dpi 200
+}
+
+'legend right
+'<b>Design decisions:</b>
+'1. We move methods related to payments (signContract, reimburseLandlord, etc)
+'to a separate class from AirPNP. This class will contain the necessary
+'information to communicate with the external payments API.
+'2. We include two enumerated types which we do not link with arrows to the
+'classes they are used in to avoid excesive clutter in the diagram. We use them
+'as types instead.
+'end legend
+
+title Diagrama de clases para la logica y modelo de datos de Cometelotoo
+
+hide enum methods
+
+!pragma ratio 0.6
+
+enum EstadoPedido {
+    CREADO,
+    ENTREGADO,
+    REPARTO,
+    EN_ESPERA,
+    CANCELADO
+}
+
+enum Alergenos {
+
+}
+
+enum MedioTransporte {
+
+}
+
+class App << (S, #FF7700) >> {
+    + addUsuario(u : Usuario) : bool
+    + addLocal(l : Local) : bool
+    + addPedido(p : Pedido) : bool
+    + loginUsuario(name : string, password : string) : bool
+    + asignarRepartidor(p : Pedido) : bool
+    + calcularSegmentos(numSegm : int) : bool
+    + calcularSegmentos(minSegm : int, maxSegm : int) : bool
+    + getProductosRecomendados(usuario : Cliente) : Pedido[]
+    + calcularFacturaMensual(mes : string) : json
+}
+
+abstract class Producto {
+    - precio : float
+    - nombre : string
+}
+
+abstract class Item {
+
+    + addValoracion(v : Valoracion) : bool
+}
+
+abstract class Usuario {
+
+    + addNotificacion(n : String)
+}
+
+class Propietario {
+
+    + addLocal(l : Local) : bool
+}
+
+class Repartidor {
+    - telefonoMovil : string
+    - nif : string
+    - transporte : MedioTransporte
+    - precioKM : float
+    - franjaTrabajo : Lista<DateTime>
+    - codigoPostal : Lista<string>
+    - activo : boolean
+
+    + addPedido(p : Pedido) : bool
+    + completarPedido(p : Pedido) : bool
+}
+
+class Cliente {
+    - telefonoMovil : string
+    - domicilio : string
+    - tarjetaCredito : string
+
+    + addPedido(p : Pedido) : bool
+}
+
+class Administrador {
+
+}
+
+class Local {
+    - nombre : string
+    - cif : string
+    - telefono : string
+    - domicilio : string
+    - cuentaIBAN : string
+
+    + addItem(it : Item) : bool
+    + deleteItem(it : Item) : bool
+    ' + searchItem(info : ?) : Item
+}
+
+class Pedido {
+    - fecha : Date
+    - hora : Time
+    - precio : float
+
+    + addItem(it : Item) : bool
+    + deleteItem(it : Item) : bool
+    + calcularPrecio() : float
+    + calcularPrecioPorLocal() : float
+}
+
+class Menu {
+
+}
+
+class Ingrediente {
+    - nombre : string
+}
+
+class Propio {
+    - alergenos : Lista<Alergenos>
+}
+
+class Externo {
+    - nombreProveedor : string
+}
+
+class Cluster {
+  + calcularSegmentos(pedidosTotales : Pedido[], clientesTotales : Cliente[], numSegm : int) : bool
+  + calcularSegmentos(pedidosTotales : Pedido[], clientesTotales : Cliente[], minSegm : int, maxSegm : int) : int
+  + getSegmentoPorUsuario(cliente : Cliente) : Segment
+}
+
+class Segmento {
+}
+
+abstract class Valoracion {
+}
+
+class Comentario {
+    - comentario : string
+}
+
+class Puntuacion {
+    - estrellas : int
+}
+
+' Herencia
+Propietario --|> Usuario
+Repartidor --|> Usuario
+Cliente --|> Usuario
+Administrador --|> Usuario
+
+Propio --|> Producto
+Externo --|> Producto
+
+Producto --|> Item
+Menu --|> Item
+
+Comentario --|> Valoracion
+Puntuacion --|> Valoracion
+
+Propio o--> Ingrediente
+
+App *--> Pedido
+App *--> Usuario
+App *--> Local
+
+Menu o--> Item
+
+Local "1" o-- "0..*" Item
+
+Propietario "1" o-- "0..*" Local
+
+Repartidor "1" o-- "0..*" Pedido
+Repartidor "pedidoActual" --> Pedido
+
+Cliente "1" o-- "0..*" Pedido
+
+Pedido "1..*" o-- "0..*" Segmento : pedidos recomendados
+Cliente "1..*" o-- "1" Segmento : clientes pertenecientes al segmento
+
+Segmento "0..*" o-- "1" Cluster
+
+App --> Cluster
+
+Pedido "1..*" o--> Item
+
+Item *--> Valoracion
+Valoracion --> Cliente
+
+@enduml
