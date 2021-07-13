@@ -1,0 +1,7 @@
+4
+ a b
+b ac
+ab c
+cba 
+1
+3

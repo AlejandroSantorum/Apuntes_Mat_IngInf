@@ -1,0 +1,5 @@
+*.o
+stack_test
+cstate_test
+mtx_test
+translate_from_afnd
