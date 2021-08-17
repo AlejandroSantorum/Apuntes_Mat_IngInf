@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title_block %}
+    {{ title }}
+{% endblock %}
+
+{% block content_block %}
+    <form class="search-bar-container" action="{{ url_for('index') }}" method="post">
+        <!-- Search bar -->
+        <input id="search-bar" type="text" name="title">
+        <!-- Filter selector -->
+        <select class="filter-selector" name="category">
+            <option value="Ninguno">Ningún filtro</option>
+            <option value="Accion">Acción</option>
+            <option value="Aventuras">Aventuras</option>
+            <option value="Comedia">Comedia</option>
+            <option value="Drama">Drama</option>
+            <option value="Magia">Magia</option>
+            <option value="Thriller">Thriller</option>
+        </select>
+        <!-- Search button -->
+        <input class="search-button" type="submit" name="submit" value="Buscar">
+    </form>
+    <!-- Page title -->
+    <div class="search-title-container">
+        {% if search_query %}
+            <span id="search-title">{{ search_query }}</span>
+        {% else %}
+            <span id="search-title">ÚLTIMAS PELÍCULAS</span>
+        {% endif %}
+    </div>
+    <!-- Film container -->
+    <div class="films-container">
+
+        {% for film in films %}
+            <div class="cover-container">
+                <a href="{{ url_for('product', id=film.id) }}">
+                    <img class="cover" src={{ url_for('static', filename='img/'~film.poster) }} alt="{{ film.titulo }}">
+                    <span class="cover-title">{{ film.titulo }}</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

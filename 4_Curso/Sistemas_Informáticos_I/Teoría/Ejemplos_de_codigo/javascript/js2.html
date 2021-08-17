@@ -1,0 +1,16 @@
+<HTML> 
+     <HEAD> 
+	<SCRIPT type="text/javascript"> 
+	     function identificarBoton(evento) { 
+		if(evento.button==0 || evento.button==1){ 
+		     window.alert("Has hecho clic con el boton izquierdo") } 
+		else { 
+		     window.alert("Has hecho clic con el boton derecho") 
+		} 
+	     }
+	</SCRIPT> 
+</HEAD> 
+<BODY onmouseup="identificarBoton(event)" onclick="identificarBoton(event)"> 
+<H1>Haz click donde quieras!</H1> 
+</BODY> 
+</HTML> 

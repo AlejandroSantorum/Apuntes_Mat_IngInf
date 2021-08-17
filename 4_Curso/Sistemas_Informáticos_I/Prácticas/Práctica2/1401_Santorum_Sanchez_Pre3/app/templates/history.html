@@ -1,0 +1,37 @@
+<!--                                                                           >
+<   Authors:                                                                   >
+<       · Alejandro Santorum Varela - aleandro.santorum@estudiante.uam.es      >
+<       · Rafael Sanchez Sanchez - rsanchezs@estudiante.uam.es                 >
+<   File: history.html                                                         >
+<   Project: 1st assignment - Computer Systems I                               >
+<   Date: October 1, 2019                                                      >
+<                                                                            -->
+{% extends "base.html" %}
+
+{% block content_block %}
+<div class="history-container">
+    <span class="history-title">Historial</span>
+    <!-- History table -->
+    <table class="history-table">
+        <tbody>
+            {% for dh in history %}
+            <tr>
+                <td><img class="history-cover" src="../static/img/{{ dh.poster }}" alt="{{ dh.titulo }}"></td>
+                <td>
+                    <div class="history-info">
+                        <span class="buy-title">{{ dh.titulo }}</span>
+                        <span class="buy-subtitle">{{ dh.address }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="history-price">
+                        <span class="buy-title">{{ dh.price }}</span>
+                        <span class="buy-subtitle">{{ dh.date }}</span>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

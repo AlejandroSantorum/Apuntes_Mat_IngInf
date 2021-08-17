@@ -1,0 +1,48 @@
+<!--                                                                           >
+<   Authors:                                                                   >
+<       · Alejandro Santorum Varela - aleandro.santorum@estudiante.uam.es      >
+<       · Rafael Sanchez Sanchez - rsanchezs@estudiante.uam.es                 >
+<   File: product.html                                                         >
+<   Project: 2st assignment - Computer Systems I                               >
+<   Date: October 21, 2019                                                      >
+<                                                                            -->
+{% extends "base.html" %}
+
+{% block title_block %}
+    {{ title }}
+{% endblock %}
+
+{% block content_block %}
+    <div class="product-container">
+        <span class="film-title">{{ film.titulo }}</span>
+        <div class="product-info-container">
+            <img class="product-cover" src="https://orly-appstore.herokuapp.com/generate?title={{ film.titulo[:40] }}&top_text=DViDeo&author={{ film.director }}&image_code={{film.animal}}&theme={{film.theme}}&guide_text=&guide_text_placement=bottom_right" alt="{{ film.titulo }}">
+            <div class="product-info">
+                <div class="product-sinopsis">
+                    <h3>Sinopsis</h3>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </div>
+                <div class="product-others">
+                    <h3>Más información</h3>
+                    Año: {{ film.anio }} | Director: {{ film.director }} | {{ film.description }}
+                </div>
+                <h2 class="price-tag"> {{ film.precio }} €</h2>
+                {% if film.id in session['cart'] %}
+                    <form action="{{ url_for('product', id=film.id)}}" method="post">
+                        <input class="amount-input" type="number" name="amount" min=0 value="{{ session['cart'][film.id][0] }}">
+                        <input type="submit" name="submit" value="Actualizar cantidad" class="add-to-cart-button">
+                    </form>
+                {% else %}
+                    <form action="{{ url_for('product', id=film.id)}}" method="post">
+                        <input class="amount-input" type="number" name="amount" min=0 value="1">
+                        <input type="submit" name="submit" value="Añadir a la cesta" class="add-to-cart-button">
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

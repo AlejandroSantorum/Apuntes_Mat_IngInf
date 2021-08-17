@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <script type="text/javascript">
+            function validateForm(){
+                var err_msg = document.getElementById("val_err_msg");
+                var name = document.getElementById("name_input").value;
+                var age = document.getElementById("age_input").value;
+                var email = document.getElementById("email_input").value;
+                if (name.length < 2){
+                    console.log("Length")
+                    err_msg.innerText = 'El nombre debe tener una longitud mínima de dos caracteres';
+                    return false;
+                }
+                if (name.charAt(0) == " " || name.charAt(name.length-1) == " "){
+                    err_msg.innerText = 'No están permitidos los espacios al principio y final del nombre';
+                    return false;
+                }
+                if (isNaN(age)){
+                    err_msg.innerText = 'La edad debe ser un número válido';
+                    return false;
+                }
+                if (!email.includes("@")){
+                    err_msg.innerText = 'La dirección de email debe ser válida';
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
+        <title>Validacion JS</title>
+
+    </head>
+    <body>
+
+        <h1>Ejercicio de validación Javascript</h1>
+
+        <form name="miForm" method="post" onsubmit="return validateForm();" action="https://postman-echo.com/post">
+            <div id="val_err_msg" style="color:red"></div>
+            Nombre: <input type="text" id="name_input" name="name"> <br>
+            Edad: <input type="text" id="age_input" name="age"> <br>
+            E-mail <input type="text" id="email_input" name="email"> <br>
+            <input type="submit" name="" value="send_request">
+        </form>
+
+    </body>
+</html>

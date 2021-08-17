@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block script_block %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/register_form.js') }}"></script>
+{% endblock %}
+
+{% block title_block %}
+    Registro
+{% endblock %}
+
+{% block content_block %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    {{ message }}
+</div>
+{% endfor %}
+
+<form id="register_form" class="form-container" action="{{ url_for('register') }}" method="post" enctype = "multipart/form-data">
+    <div class="name-input">
+        <input id="nickname_register" type="text" name="nickname" placeholder="Nombre de Usuario (*)">
+            <p class="register-require" id="nick-require"></p>
+    </div>
+    <div class="pass-input">
+        <input id="password_register" type="password" name="password" placeholder="Contraseña (*)">
+        <div id="progress_bar" class="progress_bar"></div>
+        <p class="register-require" id="pass-require"></p>
+    </div>
+    <div class="mail-input">
+        <input id="mail_register" type="email" name="mail" placeholder="Correo electrónico (*)">
+    </div>
+    <div class="name-input">
+        <input id="name_register" type="text" name="name" placeholder="Nombre (*)">
+        <input id="surname_register" type="text" name="surname" placeholder="Apellido (*)">
+    </div>
+    <div class="address-input">
+        <input id="address_register" type="text" name="address" placeholder="Dirección (*)">
+        <input id="city_resgister" type="text" name="city" placeholder="Ciudad (*)">
+        <input id="region_register" type="text" name="region" placeholder="Región (*)">
+        <input id="country_register" type="text" name="country" placeholder="País (*)">
+    </div>
+    <div class="ccard-input">
+        <select class="filter-selector" name="card_type">
+            <option value="VISA">VISA</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="American">American</option>
+            <option value="Dinners">Dinners</option>
+        </select>
+        <input id="ccard_register" type="text" name="ccard" maxlength="16" placeholder="Tarjeta de crédito (*)">
+        <input id="expiry_register" type="text" name="expiry_date" pattern="((0[1-9]|1[0-2])[/]?)[0-9]{2}" placeholder="MM/YY"/>
+    </div>
+
+    <!-- <div class="photo-input">
+        Foto de perfil:
+        <input type="file" name="file" style="border: none;">
+    </div> -->
+    <input class="register-button" type="submit" name="submit" value="Registro">
+</form>
+{% endblock %}

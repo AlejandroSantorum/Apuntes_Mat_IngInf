@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            function par(){
+                console.log("hola");
+                var pares = document.getElementsByClassName("par");
+                for(i=0; i<pares.length; i++){
+                    pares[i].innerHTML = pares[i].innerHTML + '<div style="color: blue">Par</div>';
+                }
+            };
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    </head>
+
+    <body onload="par()">
+
+        <script>
+
+            function rojo(){
+                $("#contenedor").find("#contenedor").css("color", "red");
+            }
+
+            function impar(){
+                $(".impar").append('<div style="color: blue">Impar</div>');
+            }
+
+            $(document).ready(rojo).ready(impar);
+
+        </script>
+
+        <div id="contenedor">
+            <div id="contenedor" class="impar">
+                <div name="t1" id="t1_1">Texto 1.1</div>
+                <div name="t1" id="t1_2">Texto 1.2</div>
+            </div>
+                 <div class="par" name="t2">Texto 2</div>
+                 <div class="impar" name="t3">Texto 3</div>
+                 <div class="par" name="t4">Texto 4</div>
+                 <div class="impar" name="t5">Texto 5</div>
+                 <div class="par" name="t6">Texto 6</div>
+                 <div class="impar" name="t7">Texto 7</div>
+            <div class="par" id="contenedor" name="t8">
+                Texto 8
+                <div id="contenedor">
+                    <div name="t8" id="t8_1">Texto 8.1</div>
+                    <div name="t8" id="t8_2">Texto 8.2</div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

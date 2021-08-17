@@ -1,0 +1,145 @@
+<!--                                                                           >
+<   Authors:                                                                   >
+<       · Alejandro Santorum Varela - aleandro.santorum@estudiante.uam.es      >
+<       · Rafael Sanchez Sanchez - rsanchezs@estudiante.uam.es                 >
+<   File: search-result.html                                                   >
+<   Project: 1st assignment - Computer Systems I                               >
+<   Date: October 1, 2019                                                      >
+<                                                                            -->
+
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href={{ url_for('static', filename='css/main.css') }} type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>Rafa & Alejandro App</title>
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header class="main-header-footer header">
+            <div class="logo-container">
+                <a href="./logged-user.html">
+                    <img src="../static/img/logo.svg" alt="logo">
+                    <span class="logo-name">DViDeo</span>
+                </a>
+            </div>
+
+            <div class="login-panel-container">
+                <a href="../index.html">Cerrar sesión</a>
+            </div>
+        </header>
+
+        <!-- Side menu -->
+        <div class="side-menu">
+            <div class="user-container">
+                <div class="user-image">
+                    <img src="../static/img/profile.jpg" alt="kermit the frog">
+                </div>
+                <div class="username">
+                    KERMIT
+                </div>
+            </div>
+            <div class="option-container">
+                <div class="menu-option">
+                    <a href="#">PERFIL</a>
+                </div>
+                <div class="menu-option">
+                    <a href="history.html">HISTORIAL</a>
+                </div>
+                <div class="menu-option">
+                    <a href="#">CARRITO<i class="material-icons">shopping_cart</i></a>
+                </div>
+                <div class="menu-option">
+                    <a href="#">CONFIGURACIÓN</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content page -->
+        <div class="content-container">
+            <div class="search-bar-container">
+                <!-- Search bar -->
+                <input id="search-bar" type="text" name="search">
+                <!-- Filter selector -->
+                <select class="filter-selector" name="filters">
+                    <option value="nofilter">Ningún resultado</option>
+                    <option value="action">Acción</option>
+                    <option value="comedy">Comedia</option>
+                    <option value="drama">Drama</option>
+                    <option value="thriller">Thriller</option>
+                </select>
+                <!-- Search button -->
+                <a href="./search-result.html" class="search-button">Buscar</a>
+            </div>
+            <!-- Page title -->
+            <div class="search-title-container">
+                <span id="search-title">HARRY POTTER (8)</span>
+            </div>
+            <!-- Film container -->
+            <div class="films-container">
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="../static/img/hp1.jpg" alt="harry potter 1">
+                        <span>Harry Potter 1</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="../static/img/hp2.jpg" alt="harry potter 2">
+                        <span>Harry Potter 2</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="../static/img/hp3.jpg" alt="harry potter 3">
+                        <span>Harry Potter 3</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="../static/img/hp4.jpg" alt="harry potter 4">
+                        <span>Harry Potter 4</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="../static/img/hp5.jpg" alt="harry potter 5">
+                        <span>Harry Potter 5</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="../static/img/hp6.jpg" alt="harry potter 6">
+                        <span>Harry Potter 6</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="../static/img/hp7.jpg" alt="harry potter 7">
+                        <span>Harry Potter 7</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="product.html">
+                        <img class="cover" src="../static/img/hp8.jpg" alt="harry potter 8">
+                        <span>Harry Potter 8</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-header-footer footer">
+            <div class="githubs">
+                &copy;
+                <a href="https://www.github.com/AlejandroSantorum">Alejandro Santorum Varela</a>
+                &
+                <a href="https://www.github.com/lletfrix">Rafael Sánchez Sánchez</a>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!--                                                                           >
+<   Authors:                                                                   >
+<       · Alejandro Santorum Varela - aleandro.santorum@estudiante.uam.es      >
+<       · Rafael Sanchez Sanchez - rsanchezs@estudiante.uam.es                 >
+<   File: product.html                                                         >
+<   Project: 2st assignment - Computer Systems I                               >
+<   Date: October 21, 2019                                                      >
+<                                                                            -->
+{% extends "base.html" %}
+
+{% block title_block %}
+    {{ title }}
+{% endblock %}
+
+{% block content_block %}
+    <div class="product-container">
+        <span class="film-title">{{ film.titulo }}</span>
+        <div class="product-info-container">
+            <img class="product-cover" src={{ url_for('static', filename='img/'~film.poster) }} alt="{{ film.titulo }}">
+            <div class="product-info">
+                <div class="product-sinopsis">
+                    <h3>Sinopsis</h3>
+                    {{ film.sinopsis }}
+                </div>
+                <div class="product-others">
+                    <h3>Más información</h3>
+                    Año: {{ film.anio }} | Director: {{ film.director }} | Duración: {{ film.duracion }}
+                </div>
+                <h2 class="price-tag"> {{ film.precio }} </h2>
+                {% if film.id in session['cart'] %}
+                    <form action="{{ url_for('product', id=film.id)}}" method="post">
+                        <input class="amount-input" type="number" name="amount" min=0 value="{{ session['cart'][film.id] }}">
+                        <input type="submit" name="submit" value="Actualizar cantidad" class="add-to-cart-button">
+                    </form>
+                {% else %}
+                    <form action="{{ url_for('product', id=film.id)}}" method="post">
+                        <input class="amount-input" type="number" name="amount" min=0 value="1">
+                        <input type="submit" name="submit" value="Añadir a la cesta" class="add-to-cart-button">
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

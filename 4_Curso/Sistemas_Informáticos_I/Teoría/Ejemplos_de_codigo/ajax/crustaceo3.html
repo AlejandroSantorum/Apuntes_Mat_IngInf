@@ -1,0 +1,29 @@
+<!DOCTYPE htlm>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		function cargaRespuesta() {
+  			var xhttp = new XMLHttpRequest();
+  			xhttp.onreadystatechange = function() {
+    			if (xhttp.readyState == 4 && xhttp.status == 200) {
+     				document.getElementById("respuesta").innerHTML = xhttp.responseText;
+    			}
+  			}
+  			var dir = "respuesta2.php?comida=".concat(document.getElementById("comida").value);
+  			xhttp.open("GET", dir, true);
+  			xhttp.send();
+		}
+	</script>
+</head>
+<body>
+	<h1> El crustaceo crujiente - eFood</h1>
+	<form name="miFormulario">
+		Por favor, ingrese el plato de su elección
+		<input type="text" id="comida" size=30 value="" oninput="cargaRespuesta();">
+		<div id="respuesta" style="margin-top: 100px;">
+		</div>
+	</form>
+</body>
+</html>
+<html><head></head><body></body></html>

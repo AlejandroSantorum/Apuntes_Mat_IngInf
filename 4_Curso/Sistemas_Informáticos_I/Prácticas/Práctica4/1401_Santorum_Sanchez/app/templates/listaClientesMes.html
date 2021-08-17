@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>Lista clientes por mes</title>
+      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+      <style type="text/css">
+        table {
+                border-style: none;
+                border-collapse: collapse;
+        }
+        table th {
+                border-width: 1px;
+                padding: 1px;
+                border-style: solid;
+                border-color: gray;
+                background-color: rgb(230, 230, 220);
+        }
+        table td {
+                border-width: 1px;
+                padding: 1px;
+                border-style: solid;
+                border-color: gray;
+                background-color: rgb(255, 255, 240);
+        }
+      </style>
+  </head>
+  <body>
+    <h2>Lista de clientes por mes</h2>
+
+    {% if not fecha is string %}
+        <form action="" method="post">
+          Mes y año: 
+          <select name="mes">
+            <option value="01">Enero</option>
+            <option value="02">Febrero</option>
+            <option value="03">Marzo</option>
+            <option value="04" selected="selected">Abril</option>
+            <option value="05">Mayo</option>
+            <option value="06">Junio</option>
+            <option value="07">Julio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+          </select>
+          <select name="anio" value="2009">
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015" selected="selected">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+          </select>
+          <h4>Parámetros del listado:</h4>
+          <table>
+            <tr><td>Umbral mínimo:</td><td><input type="text" name="minimo" value="300"></td></tr>
+            <tr><td>Intervalo:</td><td><input type="text" name="intervalo" value="5"></td></tr>
+            <tr><td>Número máximo de entradas:</td><td><input type=text name="iter" value="1000"></td></tr>
+          </table>
+          <br>
+          <input type="checkbox" name="prepare">Usar prepare<br>
+          <input type="checkbox" name="break0"  checked>Parar si no hay clientes<br>
+          <br>
+          <input type="submit" name="fecha" value="Enviar">
+        </form>
+
+    {% else %}
+        <!-- Impresion de resultados en HTML -->
+        <p>Número de clientes distintos con pedidos 
+        por encima del valor indicado en el mes {{mes}}/{{anio}}.</p>
+
+        <table><tr><th>Mayor que (euros)</th><th>Número de clientes</th></tr>
+        {% for item in dbr %}
+           <tr><td>{{ item.umbral }}</td><td>{{ item.contador }}</td></tr>            
+        {% endfor %}
+        </table>
+        <p>Tiempo: {{ tiempo }} ms</p>
+        {% if use_prepare %}
+            <p><b>Usando prepare</b></p>
+        {% endif %}
+          
+        <p><a href={{ url_for('listaClientesMes') }}>Nueva consulta</a></p>
+
+    {% endif %}
+
+  </body>
+</html>

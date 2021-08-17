@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title_block %}
+    Perfil
+{% endblock %}
+
+{% block content_block %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    {{ message }}
+</div>
+{% endfor %}
+
+<form class="form-container" action="{{ url_for('profile') }}" method="post">
+    <span class="input-title">Dirección actual: {{ session.address }}</span>
+    <div class="address-input">
+        <input id="address" type="text" name="address" placeholder="Nueva dirección" maxlength="49">
+    </div>
+    <input class="register-button" type="submit" name="submit" value="Cambiar dirección">
+</form>
+<form class="form-container" action="{{ url_for('profile') }}" method="post">
+    <span class="input-title">Añadir saldo</span>
+    <div class="cash-input">
+        <input id="cash" type="text" name="cash" placeholder="Saldo">
+    </div>
+    <input class="register-button" type="submit" name="submit" value="Añadir saldo">
+</form>
+{% endblock %}

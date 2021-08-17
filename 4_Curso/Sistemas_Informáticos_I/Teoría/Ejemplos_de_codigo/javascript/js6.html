@@ -1,0 +1,27 @@
+<HTML> 
+   <HEAD> 
+	<STYLE> 
+	   .clase1{text-decoration:none;color:red;} 
+	   .clase2{text-decoration:none;color:green;} 
+	   .clase3{text-decoration:none;color:blue;} 
+	</STYLE> 
+   <SCRIPT type="text/javascript"> 
+	function cambiarEstilo(estilo){ 
+	   var lista=document.getElementById("miLista"); 
+	   var items=lista.getElementsByTagName("li"); 
+	   for(i=0; i<items.length; i++){
+	      items[i].getElementsByTagName("a")[0].setAttribute("class",estilo); 
+	   } 
+	} 
+</SCRIPT> 
+</HEAD> 
+
+   <BODY> 
+      <H1><UL id="miLista"> 
+	<LI><A href="javascript:cambiarEstilo('clase1');">Estilo1</A></LI> 
+	<LI><A href="javascript:cambiarEstilo('clase2');">Estilo2</A></LI> 
+	<LI><A href="javascript:cambiarEstilo('clase3');">Estilo3</A></LI> 
+      </UL></H1> 
+   </BODY> 
+</HTML> 
+

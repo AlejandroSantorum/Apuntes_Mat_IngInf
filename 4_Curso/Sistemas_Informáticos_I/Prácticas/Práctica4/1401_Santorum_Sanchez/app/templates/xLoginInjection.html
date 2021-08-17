@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+  <HEAD>
+    <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+    <TITLE>Ejemplo de SQL injection</TITLE>
+  </HEAD>
+
+  <BODY>
+    <h2> Ejemplo de SQL injection: Login</h2>
+
+    <form name="entrada" method="post" action={{ url_for('xLoginInjection') }}>
+      <table>
+      <tr><td>Nombre:</td><td><input type="text" name="login" value="gatsby"></td></tr>
+      <tr><td>Contraseña:</td><td><input type="password" name="pswd"></td></tr>
+      </table>
+      <input type="submit" value="login"/>
+    </form>
+
+    <h3>Resultado</h3>
+
+    {% if dbr is defined %}
+        {% if dbr is none %}
+            <p>Login inválido</p>
+        {% else %}
+          <p>Login correcto</p>
+          <ol>
+            <li>First Name: {{ dbr["firstname"] }} <br>Last Name: {{ dbr["lastname"] }} </li>
+          </ol>
+        {% endif %}
+    {% endif %}
+
+  </BODY>
+</HTML>

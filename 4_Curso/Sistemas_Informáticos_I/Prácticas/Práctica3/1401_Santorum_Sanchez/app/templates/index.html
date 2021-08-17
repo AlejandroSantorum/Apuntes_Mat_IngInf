@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title_block %}
+    {{ title }}
+{% endblock %}
+
+{% block content_block %}
+    <form class="search-bar-container" action="{{ url_for('index') }}" method="post">
+        <!-- Search bar -->
+        <input id="search-bar" type="text" name="title">
+        <!-- Filter selector -->
+        <select class="filter-selector" name="category">
+            <option value="Ninguno">Ningún filtro</option>
+            {% for g in genres %}
+                <option value="{{g}}">{{g}}</option>
+            {% endfor %}
+        </select>
+        <!-- Search button -->
+        <input class="search-button" type="submit" name="submit" value="Buscar">
+    </form>
+    <!-- Page title -->
+    <div class="search-title-container">
+        {% if search_query %}
+            <span id="search-title">{{ search_query }}</span>
+        {% else %}
+            <span id="search-title">ÚLTIMAS PELÍCULAS</span>
+        {% endif %}
+    </div>
+    <!-- Film container -->
+    <div class="films-container">
+
+        {% for film in films %}
+            <div class="cover-container">
+                <a href="{{ url_for('product', id=film.id) }}">
+                    <img class="cover" src="https://orly-appstore.herokuapp.com/generate?title={{ film.titulo[:40] }}&top_text=DViDeo&author={{ film.author }}&image_code={{film.animal}}&theme={{film.theme}}&guide_text=&guide_text_placement=bottom_right" alt={{ film.titulo }}">
+                    <span class="cover-title">{{ film.titulo }}</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

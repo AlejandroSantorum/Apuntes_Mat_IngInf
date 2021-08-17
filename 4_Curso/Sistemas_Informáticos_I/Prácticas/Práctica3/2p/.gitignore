@@ -1,0 +1,4 @@
+*.pyc
+clean_fakedb.py
+*.sh
+1401_*

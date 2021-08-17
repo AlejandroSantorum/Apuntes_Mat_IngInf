@@ -1,0 +1,20 @@
+<HTML> 
+     <HEAD> 
+	<SCRIPT type="text/javascript"> 
+	function factorial(n) { 
+	if (n < 2) { return 1}
+	else { return n * factorial(n-1)} 
+	} 
+	</SCRIPT> 
+     </HEAD> 
+     <BODY> 
+	<FORM> 
+	     Entrada:&nbsp; 
+	     <INPUT id="argumento" type="text" 
+		onchange="res=factorial(this.value); 
+		document.getElementById('resultado').value = res;"/> 
+	     <BR><BR> Salida:&nbsp; 
+	     <INPUT id=resultado type=text  /> 
+	</FORM> 
+     </BODY> 
+</HTML>

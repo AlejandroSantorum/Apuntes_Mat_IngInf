@@ -1,0 +1,106 @@
+<!--                                                                           >
+<   Authors:                                                                   >
+<       · Alejandro Santorum Varela - aleandro.santorum@estudiante.uam.es      >
+<       · Rafael Sanchez Sanchez - rsanchezs@estudiante.uam.es                 >
+<   File: index.html                                                           >
+<   Project: 1st assignment - Computer Systems I                               >
+<   Date: October 1, 2019                                                      >
+<                                                                            -->
+
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href={{ url_for('static', filename='css/main.css') }} type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/ajax_users.js') }}"></script>
+        <title>DViDeo - {% block title_block %}{% endblock %}</title>
+        {% block script_block %}{% endblock %}
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header class="main-header-footer header">
+            <div class="logo-container">
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='img/logo.svg')}}" alt="logo">
+                    <span class="logo-name">DViDeo</span>
+                </a>
+            </div>
+            {% if session['nickname'] %}
+            <form class="login-panel-container" action="{{ url_for('logout') }}" method="post">
+                <div id="users" class="number_users"></div>
+                <input type="submit" name="submit" value="Cerrar Sesión">
+            </form>
+            {% else %}
+            <div id="users" class="number_users"></div>
+            {% endif %}
+        </header>
+
+        <!-- Side menu -->
+        <div class="side-menu">
+            {% if not session['nickname'] %}
+                <div class="option-container">
+                    <div class="menu-option">
+                        <a href="{{ url_for('login') }}">INICIAR SESIÓN</a>
+                    </div>
+                    <div class="menu-option">
+                        <a href="{{ url_for('register') }}">REGISTRARSE</a>
+                    </div>
+                    <div class="menu-option">
+                        <a href="{{ url_for('cart') }}">CARRITO<i class="material-icons">shopping_cart</i></a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="user-container">
+                    {% if session['photo'] %}
+                    <div class="user-image">
+                        <img src={{ url_for('static', filename='img/'~session['slug_nick']~'/avatar.jpg') }} alt="avatar">
+                    </div>
+                    {% else %}
+                    <div class="user-image">
+                        <img src={{ url_for('static', filename='img/profile.jpg') }} alt="kermit the frog">
+                    </div>
+                    {% endif %}
+                    <div class="username">
+                        {{ session['nickname'] }}
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="menu-option">
+                        <a href="{{ url_for('profile') }}">PERFIL</a>
+                    </div>
+                    <div class="menu-option">
+                        <a href="{{ url_for('history') }}">HISTORIAL</a>
+                    </div>
+                    <div class="menu-option">
+                        <a href="{{ url_for('cart') }}">CARRITO<i class="material-icons">shopping_cart</i></a>
+                    </div>
+                    <div class="menu-option">
+                        <a href="{{ url_for('profile') }}" style="color: orange;">SALDO: {{ session['cash'] }}€</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Content page -->
+        <div class="content-container">
+            {% block content_block %}
+            {% endblock %}
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-header-footer footer">
+            <div class="githubs">
+                &copy;
+                <a href="https://www.github.com/AlejandroSantorum">Alejandro Santorum Varela</a>
+                &
+                <a href="https://www.github.com/lletfrix">Rafael Sánchez Sánchez</a>
+            </div>
+        </footer>
+
+    </body>
+</html>

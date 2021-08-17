@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title_block %}
+    Iniciar Sesión
+{% endblock %}
+
+{% block content_block %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    {{ message }}
+</div>
+{% endfor %}
+
+<form class="form-container" action="{{ url_for('login') }}" method="post">
+    <div class="name-input">
+        {% if last_email %}
+            <input id="email" type="email" value={{ last_email }} name="email" placeholder="E-mail">
+        {% else %}
+            <input id="email" type="email" name="email" placeholder="E-mail">
+        {% endif %}
+    </div>
+    <div class="pass-input">
+        <input id="password" type="password" name="password" placeholder="Contraseña">
+    </div>
+    <input class="register-button" type="submit" name="submit" value="Iniciar Sesión">
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ejemplo de SQL injection</title>
+  </head>
+  <body>
+    <h2> Ejemplo de SQL injection: Información en la BD</h2>
+      <form name="consultaanio" method="get" action={{ url_for('xSearchInjection') }} >
+        Películas del año: <input name="i_anio"/><br/>
+        <input type="submit" value="Mostrar"/>
+      </form>
+      {% if dbr is defined %}
+        <ol>
+        {% for linea in dbr %}
+          <li>{{ linea['movietitle'] }}</li>
+        {% endfor %}
+        </ol>
+      {% endif %}
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<HTML> 
+<HEAD> 
+<SCRIPT type="text/javascript"> 
+   function crearVentana(){ 
+	// Leemos el contenido HTML de la ventana 
+	var p=window.document.getElementById("ventanaEntrada"); 
+	// Creamos la ventana de entrada 
+	var v=window.open("","","width=300,height=200,menubar=no,		location=no,status=no,resizable=no"); 
+	var d=v.document; 
+	d.open(); 
+	d.write(p.innerHTML); 
+	d.close(); 
+   } 
+   function salir(texto){ 
+	window.document.getElementById("textoSalida").value = texto; 
+   } 
+</SCRIPT> 
+</HEAD>
+<BODY> 
+<DIV id="ventanaEntrada" style="display:none;"> 
+Introduce texto de entrada: 
+<BR> 
+<TEXTAREA id="textoEntrada" rows="8" cols="32"></TEXTAREA> 
+<BR> 
+<A href="javascript:opener.salir(window.document.getElementById	('textoEntrada').value); close();">Guardar</A> 
+<A href="javascript:opener.salir(''); close();">Borrar</A> 
+</DIV> 
+<DIV> 
+<A href="javascript:crearVentana();">Introducir texto...</A>  <HR> 
+</DIV> 
+<DIV> 
+Texto introducido: <BR> 
+<TEXTAREA id="textoSalida" rows="8" cols="32" readonly></TEXTAREA> 
+<HR> 
+</DIV> 
+</BODY> 
+</HTML>

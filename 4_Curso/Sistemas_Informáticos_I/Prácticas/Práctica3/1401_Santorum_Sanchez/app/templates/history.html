@@ -1,0 +1,44 @@
+<!--                                                                           >
+<   Authors:                                                                   >
+<       · Alejandro Santorum Varela - aleandro.santorum@estudiante.uam.es      >
+<       · Rafael Sanchez Sanchez - rsanchezs@estudiante.uam.es                 >
+<   File: history.html                                                         >
+<   Project: 1st assignment - Computer Systems I                               >
+<   Date: October 1, 2019                                                      >
+<                                                                            -->
+{% extends "base.html" %}
+
+{% block script_block %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/history_groups.js') }}"></script>
+{% endblock %}
+
+{% block content_block %}
+<div class="history-container">
+    <span class="history-title">Historial</span>
+    <!-- History table -->
+    <table class="history-table">
+            {% for date in history.keys() %}
+            <tbody id="body-{{ date }}">
+            <tr> <td class="buy-subtitle"> {{ date }} </td> <td> <input type="button" id="button-{{ date }}" name="show-group" value="Ocultar" class="history-button"> </td></tr>
+                {% for dh in history[date] %}
+                <tr class="history-product-info">
+                    <td><img class="history-cover" src="https://orly-appstore.herokuapp.com/generate?title={{ dh.titulo[:40] }}&top_text=DViDeo&author={{ dh.director }}&image_code={{dh.animal}}&theme={{dh.theme}}&guide_text=&guide_text_placement=bottom_right" alt="{{ dh.titulo }}"></td>
+                    <td>
+                        <div class="history-info">
+                            <span class="buy-title">{{ dh.titulo }}</span>
+                            <span class="buy-subtitle">{{ dh.address }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="history-price">
+                            <span class="buy-title">{{ dh.amount }} x {{ dh.price }}</span>
+                            <span class="buy-subtitle">{{ dh.date }}</span>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

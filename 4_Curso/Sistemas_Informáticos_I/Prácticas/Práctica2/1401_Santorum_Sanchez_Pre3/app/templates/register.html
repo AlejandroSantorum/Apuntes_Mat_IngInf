@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title_block %}
+    Registro
+{% endblock %}
+
+{% block content_block %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    {{ message }}
+</div>
+{% endfor %}
+
+<form class="form-container" action="{{ url_for('register') }}" method="post">
+    <div class="name-input">
+        <input id="nickname" type="text" name="nickname" placeholder="Nombre">
+    </div>
+    <div class="pass-input">
+        <input id="password" type="password" name="password" placeholder="Contraseña">
+    </div>
+    <div class="mail-input">
+        <input id="mail" type="email" name="mail" placeholder="Correo electrónico">
+    </div>
+    <div class="name-input">
+        <input id="ccard" type="text" name="ccard" placeholder="Tarjeta de crédito">
+    </div>
+    <input class="register-button" type="submit" name="submit" value="Registro">
+</form>
+{% endblock %}

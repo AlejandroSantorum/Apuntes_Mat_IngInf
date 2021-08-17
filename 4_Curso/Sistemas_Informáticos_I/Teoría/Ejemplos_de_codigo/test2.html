@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Examen junio 2017</title>
+    </head>
+
+    <script type="text/javascript">
+        function final_msg(){
+            var dia = document.getElementsByName("dia")[0].value;
+            var hora = document.getElementsByName("hora")[0].value;
+
+            var sentence2Text = document.getElementById("sentence2").innerText;
+            var aux1 = sentence2Text.indexOf(" desea");
+            var sentence2Text_aux = sentence2Text.substring(0, aux1);
+            var aux2 = sentence2Text.indexOf("para:");
+            sentence2Text_aux += " ha reservado con: "+sentence2Text.substring(aux2+("para:".length));
+            var new_html = "<div id='sentence3'>"+sentence2Text_aux+"</div><br>"
+            new_html += "Para el dia: "+dia+" y hora "+hora;
+
+            document.getElementById("mainFormDiv").innerHTML = new_html;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function date_form(){
+            var radios = document.getElementsByName("date_f");
+            for(i=0; i<radios.length; i++){
+                if (radios[i].checked) {
+                    var val = radios[i].value;
+                }
+            }
+
+            var sentenceText = document.getElementById("sentence").innerText;
+            var new_html = "<div id='sentence2'>"+sentenceText+" "+val+"</div><br>"
+            new_html += "<form onsubmit='final_msg()' method='post'>";
+            new_html += "Dia<input type='text' name='dia'><br>";
+            new_html += "Hora<input type='text' name='hora'><br>";
+            new_html += "<input type='submit' value='Siguiente'>";
+            new_html += "</form>";
+
+            document.getElementById("mainFormDiv").innerHTML = new_html;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function change_next_form(){
+            var name = document.getElementsByName("nombre")[0].value;
+            var num = document.getElementsByName("numero")[0].value;
+            console.log(num);
+            if (isNaN(num) || num=="") return; // Not a valid number
+
+            var new_html = "<div id='sentence'> El paciente "+name+" desea cita para:</div><br>";
+            new_html += "<form onsubmit='date_form()' method='post'>";
+            new_html += "Especialista<input type='radio' name='date_f' value='Especialista' checked><br>";
+            new_html += "Medicina General<input type='radio' name='date_f' value='Medicina General'><br>";
+            new_html += "Enfermeria<input type='radio' name='date_f' value='Enfermeria'><br>";
+            new_html += "<input type='submit' value='siguiente'>";
+            new_html += "</form>";
+            document.getElementById("mainFormDiv").innerHTML = new_html;
+        }
+    </script>
+
+    <body>
+
+        <h1>Reserva de cita médica - Inicio</h1>
+
+        <table>
+            <tr>
+                <td> <a href="#">Home</a> </td>
+                <td> <a href="#">About us</a> </td>
+                <td> <a href="#">Contacts</a> </td>
+            </tr>
+        </table>
+
+        <div id="mainFormDiv">
+            <form onsubmit="change_next_form()" method="post">
+                Nombre <input type="text" name="nombre"> <br>
+                Num. Seg. Social <input type="text" name="numero"> <br>
+                <input type="submit" value="Siguiente">
+            </form>
+        </div>
+
+    </body>
+
+</html>

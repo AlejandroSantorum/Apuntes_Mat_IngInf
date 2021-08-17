@@ -1,0 +1,110 @@
+<!--                                                                           >
+<   Authors:                                                                   >
+<       · Alejandro Santorum Varela - aleandro.santorum@estudiante.uam.es      >
+<       · Rafael Sanchez Sanchez - rsanchezs@estudiante.uam.es                 >
+<   File: index.html                                                           >
+<   Project: 1st assignment - Computer Systems I                               >
+<   Date: October 1, 2019                                                      >
+<                                                                            -->
+
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./css/main.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>Rafa & Alejandro App</title>
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header class="main-header-footer header">
+            <div class="logo-container">
+                <a href="./index.html">
+                    <img src="./img/logo.svg" alt="logo">
+                    <span class="logo-name">DViDeo</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Side menu -->
+        <div class="side-menu">
+            <div class="option-container">
+                <div class="menu-option">
+                    <a href="#">INICIAR SESIÓN</a>
+                </div>
+                <div class="menu-option">
+                    <a href="templates/register.html">REGISTRARSE</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content page -->
+        <div class="content-container">
+            <div class="search-bar-container">
+                <!-- Search bar -->
+                <input id="search-bar" type="text" name="search">
+                <!-- Filter selector -->
+                <select class="filter-selector" name="filters">
+                    <option value="nofilter">Ningún filtro</option>
+                    <option value="action">Acción</option>
+                    <option value="comedy">Comedia</option>
+                    <option value="drama">Drama</option>
+                    <option value="thriller">Thriller</option>
+                </select>
+                <!-- Search button -->
+                <a href="#" class="search-button">Buscar</a>
+            </div>
+            <!-- Page title -->
+            <div class="search-title-container">
+                <span id="search-title">ÚLTIMAS PELÍCULAS</span>
+            </div>
+            <!-- Film container -->
+            <div class="films-container">
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="./img/cars.jpg" alt="cars">
+                        <span>Cars</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="./img/hp8.jpg" alt="harry potter 8">
+                        <span>Harry Potter 8</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="./img/o13.jpg" alt="oceans 13">
+                        <span>Ocean's 13</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="./img/sw4.jpg" alt="stars wars 4">
+                        <span>Star Wars IV</span>
+                    </a>
+                </div>
+                <div class="cover-container">
+                    <a href="#">
+                        <img class="cover" src="./img/sw7.jpg" alt="star wars 7">
+                        <span>Star Wars VII</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-header-footer footer">
+            <div class="githubs">
+                &copy;
+                <a href="https://www.github.com/AlejandroSantorum">Alejandro Santorum Varela</a>
+                &
+                <a href="https://www.github.com/lletfrix">Rafael Sánchez Sánchez</a>
+            </div>
+        </footer>
+
+    </body>
+</html>

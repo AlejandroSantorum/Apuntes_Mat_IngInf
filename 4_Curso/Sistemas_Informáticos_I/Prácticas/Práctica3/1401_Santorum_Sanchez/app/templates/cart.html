@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title_block %}
+    Carrito
+{% endblock %}
+
+{% block content_block %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    {{ message }}
+</div>
+{% endfor %}
+
+<div class="history-container">
+    <span class="history-title">Cesta</span>
+
+    <table class="history-table">
+        <tbody>
+            {% for film in films %}
+            <tr>
+                <td><img class="history-cover" src="https://orly-appstore.herokuapp.com/generate?title={{ film.titulo[:40] }}&top_text=DViDeo&author={{ film.director }}&image_code={{film.animal}}&theme={{film.theme}}&guide_text=&guide_text_placement=bottom_right" alt="{{ film.titulo }}"></td>
+                <td>
+                    <div class="history-info">
+                        <span class="buy-title">{{ film.titulo }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="history-price">
+                        <span class="buy-title">{{film.amount}} x {{ film.precio }}€</span>
+                        <form action="{{ url_for('cart') }}" method="post">
+                            <input type="hidden" name="prod_id" value={{ film.id }}>
+                            <input class="delete-button" type="submit" name="submit" value="Eliminar">
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if films %}
+        {% if total != -1 %}
+            <div class="buy-totals">
+                <form action="{{ url_for('purchase') }}" method="post">
+                    <input type="submit" name="submit" value="COMPRAR ({{ total }}€)" class="purchase-button">
+                </form>
+            </div>
+        {% endif %}
+    {% else %}
+        <span class="buy-title">La cesta está vacía</span>
+    {% endif %}
+</div>
+{% endblock %}
