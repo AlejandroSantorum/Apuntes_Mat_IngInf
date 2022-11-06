@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module prob_real1_perc</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>prob_real1_perc</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/prob_real1_perc.py">/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/prob_real1_perc.py</a></font></td></tr></table>
+    <p><tt>Authors:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Alejandro&nbsp;Santorum&nbsp;Varela&nbsp;-&nbsp;alejandro.santorum@estudiante.uam.es<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Sergio&nbsp;Galán&nbsp;Martín&nbsp;-&nbsp;sergio.galanm@estudiante.uam.es<br>
+&nbsp;<br>
+File:&nbsp;prob_real1_perc.py<br>
+Date:&nbsp;Mar.&nbsp;12,&nbsp;2021<br>
+Project:&nbsp;Assignment&nbsp;1&nbsp;-&nbsp;Neurocomputation&nbsp;[EPS-UAM]<br>
+&nbsp;<br>
+Description:&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;script&nbsp;for&nbsp;real&nbsp;problem&nbsp;1&nbsp;perceptron&nbsp;exercise</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-exec_real1"><strong>exec_real1</strong></a>(alpha, threshold, num_reps, max_epoch)</dt><dd><tt>Trains&nbsp;Perceptron&nbsp;algorithms&nbsp;and&nbsp;trains&nbsp;it&nbsp;several&nbsp;times&nbsp;in&nbsp;order&nbsp;to&nbsp;get<br>
+mean&nbsp;MSE&nbsp;and&nbsp;mean&nbsp;accuracy.<br>
+&nbsp;<br>
+:param&nbsp;alpha:&nbsp;Learning&nbsp;parameter&nbsp;alpha<br>
+:param&nbsp;threshold:&nbsp;Threshold.&nbsp;The&nbsp;algorithm&nbsp;activation&nbsp;function&nbsp;depends&nbsp;on&nbsp;this&nbsp;threshold<br>
+:param&nbsp;num_reps:&nbsp;Number&nbsp;of&nbsp;simulations&nbsp;to&nbsp;calculate&nbsp;average&nbsp;values.<br>
+:param&nbsp;max_epoch:&nbsp;Maximum&nbsp;number&nbsp;of&nbsp;epochs.<br>
+:return:&nbsp;mean&nbsp;mse,&nbsp;std&nbsp;mse,&nbsp;mean&nbsp;accuracy,&nbsp;std&nbsp;accuracy</tt></dd></dl>
+ <dl><dt><a name="-read_input_params"><strong>read_input_params</strong></a>()</dt><dd><tt>Reads&nbsp;input&nbsp;arguments&nbsp;accordingly&nbsp;to&nbsp;the&nbsp;specified&nbsp;exercise.<br>
+&nbsp;<br>
+:return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;alpha:&nbsp;learning&nbsp;rate&nbsp;for&nbsp;perceptron&nbsp;algorithm.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;threshold:&nbsp;threshold&nbsp;for&nbsp;perceptron&nbsp;algorithm.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;num_reps:&nbsp;number&nbsp;of&nbsp;simulations&nbsp;to&nbsp;calculate&nbsp;mean&nbsp;MSE&nbsp;and/or&nbsp;accuracy.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;max_epoch:&nbsp;maximum&nbsp;number&nbsp;of&nbsp;epochs&nbsp;for&nbsp;perceptron&nbsp;algorithm.</tt></dd></dl>
+ <dl><dt><a name="-val_hyperparams"><strong>val_hyperparams</strong></a>(alphas=[0.01, 0.05, 0.1, 0.5, 1], ths=[0, 0.25, 0.5, 1])</dt><dd><tt>Executes&nbsp;GridSearch&nbsp;hyperparameter&nbsp;tuning&nbsp;accordingly&nbsp;to&nbsp;specified&nbsp;hyperparameters&nbsp;vectors.<br>
+&nbsp;<br>
+:param&nbsp;alphas:&nbsp;array&nbsp;of&nbsp;different&nbsp;alphas<br>
+:param&nbsp;ths:&nbsp;array&nbsp;of&nbsp;different&nbsp;thresholds.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ALPHAS</strong> = [0.01, 0.05, 0.1, 0.5, 1]<br>
+<strong>DEFAULT_ALPHA</strong> = 0.5<br>
+<strong>DEFAULT_EPOCH</strong> = 20<br>
+<strong>DEFAULT_NREPS</strong> = 10<br>
+<strong>DEFAULT_PERCENTAGE</strong> = 0.75<br>
+<strong>DEFAULT_TH</strong> = 0.0<br>
+<strong>FILE_PATH</strong> = 'test_files/problema_real1.txt'<br>
+<strong>THS</strong> = [0, 0.25, 0.5, 1]</td></tr></table>
+</body></html>

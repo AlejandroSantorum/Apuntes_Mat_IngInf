@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module NeuralNetwork</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>NeuralNetwork</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/NeuralNetwork.py">/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/NeuralNetwork.py</a></font></td></tr></table>
+    <p><tt>Authors:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Alejandro&nbsp;Santorum&nbsp;Varela&nbsp;-&nbsp;alejandro.santorum@estudiante.uam.es<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Sergio&nbsp;Galán&nbsp;Martín&nbsp;-&nbsp;sergio.galanm@estudiante.uam.es<br>
+&nbsp;<br>
+File:&nbsp;<a href="#NeuralNetwork">NeuralNetwork</a>.py<br>
+Date:&nbsp;Feb.&nbsp;20,&nbsp;2021<br>
+Project:&nbsp;Assignment&nbsp;1&nbsp;-&nbsp;Neurocomputation&nbsp;[EPS-UAM]<br>
+&nbsp;<br>
+Description:&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;implementation&nbsp;of&nbsp;class&nbsp;<a href="#NeuralNetwork">NeuralNetwork</a>,&nbsp;that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;a&nbsp;set&nbsp;of&nbsp;neurons&nbsp;and&nbsp;connections&nbsp;in&nbsp;order&nbsp;to&nbsp;approximate&nbsp;a&nbsp;general<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function,&nbsp;determined&nbsp;by&nbsp;its&nbsp;weights&nbsp;and&nbsp;input&nbsp;parameters.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="NeuralNetwork.html#NeuralNetwork">NeuralNetwork</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NeuralNetwork">class <strong>NeuralNetwork</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Implementation&nbsp;of&nbsp;class&nbsp;<a href="#NeuralNetwork">NeuralNetwork</a>,&nbsp;that&nbsp;is&nbsp;a&nbsp;set&nbsp;of&nbsp;neurons&nbsp;and<br>
+connections&nbsp;in&nbsp;order&nbsp;to&nbsp;approximate&nbsp;a&nbsp;general&nbsp;function,&nbsp;determined<br>
+by&nbsp;its&nbsp;weights&nbsp;and&nbsp;input&nbsp;parameters.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NeuralNetwork-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Constructor&nbsp;of&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;'<a href="#NeuralNetwork">NeuralNetwork</a>'.<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="NeuralNetwork-add"><strong>add</strong></a>(self, layer)</dt><dd><tt>Adds&nbsp;a&nbsp;layer&nbsp;to&nbsp;the&nbsp;network<br>
+&nbsp;<br>
+:param&nbsp;layer:&nbsp;layer&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;be&nbsp;added<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="NeuralNetwork-any_weight_update"><strong>any_weight_update</strong></a>(self)</dt><dd><tt>Checks&nbsp;whether&nbsp;any&nbsp;weight&nbsp;of&nbsp;any&nbsp;output&nbsp;connection&nbsp;of&nbsp;the&nbsp;neuron&nbsp;has&nbsp;been&nbsp;update.<br>
+&nbsp;<br>
+:return:&nbsp;Boolean.&nbsp;True&nbsp;if&nbsp;any&nbsp;connection&nbsp;has&nbsp;been&nbsp;updated,&nbsp;False&nbsp;otherwise</tt></dd></dl>
+
+<dl><dt><a name="NeuralNetwork-get_output"><strong>get_output</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;output&nbsp;values&nbsp;of&nbsp;every&nbsp;neuron&nbsp;in&nbsp;the&nbsp;neural&nbsp;network.<br>
+&nbsp;<br>
+:return:&nbsp;a&nbsp;list&nbsp;of&nbsp;output&nbsp;values</tt></dd></dl>
+
+<dl><dt><a name="NeuralNetwork-initialise"><strong>initialise</strong></a>()</dt><dd><tt>It&nbsp;initialises&nbsp;the&nbsp;NeuralNetowrks&nbsp;values.<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="NeuralNetwork-print_nn"><strong>print_nn</strong></a>(self)</dt><dd><tt>Prints&nbsp;the&nbsp;neural&nbsp;network&nbsp;by&nbsp;printing&nbsp;every&nbsp;layer.<br>
+&nbsp;<br>
+:return:&nbsp;returns&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="NeuralNetwork-propagate"><strong>propagate</strong></a>(self)</dt><dd><tt>Propagates&nbsp;the&nbsp;values&nbsp;of&nbsp;all&nbsp;the&nbsp;net's&nbsp;neurons<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="NeuralNetwork-trigger"><strong>trigger</strong></a>(self)</dt><dd><tt>Triggers&nbsp;the&nbsp;net's&nbsp;layers<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module NNClassifier</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>NNClassifier</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/NNClassifier.py">/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/NNClassifier.py</a></font></td></tr></table>
+    <p><tt>Authors:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Alejandro&nbsp;Santorum&nbsp;Varela&nbsp;-&nbsp;alejandro.santorum@estudiante.uam.es<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Sergio&nbsp;Galán&nbsp;Martín&nbsp;-&nbsp;sergio.galanm@estudiante.uam.es<br>
+&nbsp;<br>
+File:&nbsp;<a href="#NNClassifier">NNClassifier</a>.py<br>
+Date:&nbsp;Mar.&nbsp;11,&nbsp;2021<br>
+Project:&nbsp;Assignment&nbsp;1&nbsp;-&nbsp;Neurocomputation&nbsp;[EPS-UAM]<br>
+&nbsp;<br>
+Description:&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;implementation&nbsp;of&nbsp;abstract&nbsp;class&nbsp;<a href="#NNClassifier">NNClassifier</a>,&nbsp;whose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goal&nbsp;is&nbsp;to&nbsp;specify&nbsp;the&nbsp;design&nbsp;of&nbsp;future&nbsp;neural&nbsp;networks&nbsp;that&nbsp;have&nbsp;any&nbsp;learning&nbsp;procedure.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="NNClassifier.html#NNClassifier">NNClassifier</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NNClassifier">class <strong>NNClassifier</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Implementation&nbsp;of&nbsp;abstract&nbsp;class&nbsp;<a href="#NNClassifier">NNClassifier</a>,&nbsp;whose<br>
+goal&nbsp;is&nbsp;to&nbsp;specify&nbsp;the&nbsp;design&nbsp;of&nbsp;future&nbsp;neural&nbsp;networks&nbsp;that&nbsp;have&nbsp;any&nbsp;learning&nbsp;procedure.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NNClassifier-error"><strong>error</strong></a>(self, ytrue, ypred, metric='acc')</dt><dd><tt>It&nbsp;calculates&nbsp;the&nbsp;error&nbsp;of&nbsp;a&nbsp;prediction&nbsp;matrix&nbsp;given&nbsp;a&nbsp;target&nbsp;matrix.<br>
+The&nbsp;error&nbsp;can&nbsp;be&nbsp;measured&nbsp;in&nbsp;different&nbsp;ways,&nbsp;depending&nbsp;on&nbsp;the&nbsp;input<br>
+argument&nbsp;'metric'.<br>
+&nbsp;<br>
+:param&nbsp;ytrue:&nbsp;data&nbsp;matrix&nbsp;of&nbsp;target&nbsp;classes&nbsp;of&nbsp;size&nbsp;(n_test_examples,&nbsp;n_classes).<br>
+:param&nbsp;ypred:&nbsp;data&nbsp;matrix&nbsp;of&nbsp;predicted&nbsp;classes&nbsp;of&nbsp;size&nbsp;(n_test_examples,&nbsp;n_classes).<br>
+:param&nbsp;metric:&nbsp;metric&nbsp;to&nbsp;measure&nbsp;error.&nbsp;Default&nbsp;accuracy&nbsp;(classification).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;metric='acc':&nbsp;returns&nbsp;classification&nbsp;accuracy.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;metric='mse':&nbsp;returns&nbsp;Mean&nbsp;Squared&nbsp;Error.</tt></dd></dl>
+
+<dl><dt><a name="NNClassifier-predict"><strong>predict</strong></a>(self, xtest)</dt><dd><tt>Its&nbsp;functionality&nbsp;must&nbsp;be&nbsp;specified&nbsp;in&nbsp;inherited&nbsp;classes.<br>
+&nbsp;<br>
+:param&nbsp;xtest:&nbsp;data&nbsp;test&nbsp;matrix&nbsp;of&nbsp;size&nbsp;(n_test_examples,&nbsp;n_features).<br>
+:return:&nbsp;data&nbsp;matrix&nbsp;of&nbsp;predicted&nbsp;classes&nbsp;of&nbsp;size&nbsp;(n_test_examples,&nbsp;n_classes).</tt></dd></dl>
+
+<dl><dt><a name="NNClassifier-train"><strong>train</strong></a>(self, xtrain, ytrain)</dt><dd><tt>Its&nbsp;functionality&nbsp;must&nbsp;be&nbsp;specified&nbsp;in&nbsp;inherited&nbsp;classes.<br>
+&nbsp;<br>
+:param&nbsp;xtrain:&nbsp;data&nbsp;input&nbsp;matrix&nbsp;of&nbsp;size&nbsp;(n_examples,&nbsp;n_features).<br>
+:param&nbsp;ytrain:&nbsp;target&nbsp;matrix&nbsp;of&nbsp;size&nbsp;(n_examples,&nbsp;n_classes)<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__metaclass__</strong> = &lt;class 'abc.ABCMeta'&gt;<dd><tt>Metaclass&nbsp;for&nbsp;defining&nbsp;Abstract&nbsp;Base&nbsp;Classes&nbsp;(ABCs).<br>
+&nbsp;<br>
+Use&nbsp;this&nbsp;metaclass&nbsp;to&nbsp;create&nbsp;an&nbsp;ABC.&nbsp;&nbsp;An&nbsp;ABC&nbsp;can&nbsp;be&nbsp;subclassed<br>
+directly,&nbsp;and&nbsp;then&nbsp;acts&nbsp;as&nbsp;a&nbsp;mix-in&nbsp;class.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;register<br>
+unrelated&nbsp;concrete&nbsp;classes&nbsp;(even&nbsp;built-in&nbsp;classes)&nbsp;and&nbsp;unrelated<br>
+ABCs&nbsp;as&nbsp;'virtual&nbsp;subclasses'&nbsp;--&nbsp;these&nbsp;and&nbsp;their&nbsp;descendants&nbsp;will<br>
+be&nbsp;considered&nbsp;subclasses&nbsp;of&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;by&nbsp;the&nbsp;built-in<br>
+issubclass()&nbsp;function,&nbsp;but&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;won't&nbsp;show&nbsp;up&nbsp;in<br>
+their&nbsp;MRO&nbsp;(Method&nbsp;Resolution&nbsp;Order)&nbsp;nor&nbsp;will&nbsp;method<br>
+implementations&nbsp;defined&nbsp;by&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;be&nbsp;callable&nbsp;(not<br>
+even&nbsp;via&nbsp;super()).</tt></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

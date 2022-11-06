@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Layer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Layer</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/Layer.py">/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/Layer.py</a></font></td></tr></table>
+    <p><tt>Authors:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Alejandro&nbsp;Santorum&nbsp;Varela&nbsp;-&nbsp;alejandro.santorum@estudiante.uam.es<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Sergio&nbsp;Galán&nbsp;Martín&nbsp;-&nbsp;sergio.galanm@estudiante.uam.es<br>
+&nbsp;<br>
+File:&nbsp;<a href="#Layer">Layer</a>.py<br>
+Date:&nbsp;Feb.&nbsp;20,&nbsp;2021<br>
+Project:&nbsp;Assignment&nbsp;1&nbsp;-&nbsp;Neurocomputation&nbsp;[EPS-UAM]<br>
+&nbsp;<br>
+Description:&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;implementation&nbsp;of&nbsp;class&nbsp;<a href="#Layer">Layer</a>,&nbsp;whose&nbsp;goal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;to&nbsp;group&nbsp;several&nbsp;neurons&nbsp;allocated&nbsp;at&nbsp;the&nbsp;same&nbsp;depth&nbsp;of&nbsp;a&nbsp;neural<br>
+&nbsp;&nbsp;&nbsp;&nbsp;network.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Layer.html#Layer">Layer</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Layer">class <strong>Layer</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Implementation&nbsp;of&nbsp;class&nbsp;<a href="#Layer">Layer</a>,&nbsp;whose&nbsp;goal&nbsp;is&nbsp;to&nbsp;group&nbsp;several&nbsp;neurons<br>
+allocated&nbsp;at&nbsp;the&nbsp;same&nbsp;depth&nbsp;of&nbsp;a&nbsp;neural&nbsp;network.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Layer-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Constructor&nbsp;of&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;'<a href="#Layer">Layer</a>'.<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Layer-add"><strong>add</strong></a>(self, neuron)</dt><dd><tt>Add&nbsp;a&nbsp;neuron&nbsp;to&nbsp;the&nbsp;layer.<br>
+&nbsp;<br>
+:param&nbsp;neuron:&nbsp;neuron&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;insert&nbsp;in&nbsp;this&nbsp;layer.<br>
+:return:&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Layer-any_weight_update"><strong>any_weight_update</strong></a>(self)</dt><dd><tt>Checks&nbsp;whether&nbsp;any&nbsp;weight&nbsp;of&nbsp;any&nbsp;output&nbsp;connection&nbsp;of&nbsp;the&nbsp;neuron&nbsp;has&nbsp;been&nbsp;update.<br>
+&nbsp;<br>
+:return:&nbsp;Boolean.&nbsp;True&nbsp;if&nbsp;any&nbsp;connection&nbsp;has&nbsp;been&nbsp;updated,&nbsp;False&nbsp;otherwise</tt></dd></dl>
+
+<dl><dt><a name="Layer-connectLayer"><strong>connectLayer</strong></a>(self, layer, weight_mode)</dt><dd><tt>Connects&nbsp;a&nbsp;given&nbsp;layer&nbsp;to&nbsp;the&nbsp;current&nbsp;layer.<br>
+&nbsp;<br>
+:param&nbsp;layer:&nbsp;layer&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;connect&nbsp;with&nbsp;this&nbsp;layer.<br>
+:param&nbsp;weight_mode:&nbsp;weight&nbsp;mode&nbsp;to&nbsp;initialise&nbsp;weights.<br>
+:return:&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Layer-connectNeuron"><strong>connectNeuron</strong></a>(self, neuron, weight_mode)</dt><dd><tt>Connects&nbsp;a&nbsp;given&nbsp;neuron&nbsp;to&nbsp;the&nbsp;current&nbsp;layer.<br>
+&nbsp;<br>
+:param&nbsp;neuron:&nbsp;neuron&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;connect&nbsp;with&nbsp;this&nbsp;layer.<br>
+:param&nbsp;weight_mode:&nbsp;weight&nbsp;mode&nbsp;to&nbsp;initialise&nbsp;weights.<br>
+:return:&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Layer-initialise"><strong>initialise</strong></a>()</dt><dd><tt>It&nbsp;initialises&nbsp;the&nbsp;values&nbsp;of&nbsp;the&nbsp;neurons&nbsp;of&nbsp;the&nbsp;current&nbsp;<a href="#Layer">Layer</a>.<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Layer-print_layer"><strong>print_layer</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Layer-propagate"><strong>propagate</strong></a>(self)</dt><dd><tt>Propagates&nbsp;the&nbsp;values&nbsp;of&nbsp;the&nbsp;current&nbsp;layer&nbsp;neurons<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Layer-trigger"><strong>trigger</strong></a>(self)</dt><dd><tt>Triggers&nbsp;the&nbsp;current&nbsp;layer&nbsp;neurons<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>WeightMode</strong> = &lt;enum 'WeightMode'&gt;<dd><tt>Enumeration&nbsp;to&nbsp;describe&nbsp;layers&nbsp;weigth&nbsp;mode.</tt></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

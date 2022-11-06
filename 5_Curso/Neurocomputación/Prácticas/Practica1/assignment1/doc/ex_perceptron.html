@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module ex_perceptron</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ex_perceptron</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/ex_perceptron.py">/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/ex_perceptron.py</a></font></td></tr></table>
+    <p><tt>Authors:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Alejandro&nbsp;Santorum&nbsp;Varela&nbsp;-&nbsp;alejandro.santorum@estudiante.uam.es<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Sergio&nbsp;Galán&nbsp;Martín&nbsp;-&nbsp;sergio.galanm@estudiante.uam.es<br>
+&nbsp;<br>
+File:&nbsp;ex_perceptron.py<br>
+Date:&nbsp;Feb.&nbsp;28,&nbsp;2021<br>
+Project:&nbsp;Assignment&nbsp;1&nbsp;-&nbsp;Neurocomputation&nbsp;[EPS-UAM]<br>
+&nbsp;<br>
+Description:&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;script&nbsp;for&nbsp;perceptron&nbsp;exercise</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>(sets, alpha, threshold, max_epoch)</dt><dd><tt>Executes&nbsp;main&nbsp;functionality&nbsp;of&nbsp;the&nbsp;script,&nbsp;i.e.,&nbsp;trains&nbsp;Perceptron&nbsp;with&nbsp;given&nbsp;parameters&nbsp;and&nbsp;given&nbsp;data,<br>
+and&nbsp;prints&nbsp;it&nbsp;with&nbsp;the&nbsp;predictions.&nbsp;It&nbsp;also&nbsp;prints&nbsp;final&nbsp;overall&nbsp;MSE&nbsp;and&nbsp;saves&nbsp;a&nbsp;graph&nbsp;representing<br>
+the&nbsp;evolution&nbsp;per&nbsp;epoch&nbsp;of&nbsp;the&nbsp;MSE.<br>
+&nbsp;<br>
+:param&nbsp;sets:&nbsp;4-tuple&nbsp;containing&nbsp;train&nbsp;and&nbsp;tests&nbsp;sets&nbsp;read&nbsp;from&nbsp;specified&nbsp;datafile&nbsp;using&nbsp;given&nbsp;read&nbsp;mode.<br>
+:param&nbsp;alpha:&nbsp;learning&nbsp;rate<br>
+:param&nbsp;threshold:&nbsp;threshold<br>
+:param&nbsp;max_epoch:&nbsp;maximum&nbsp;number&nbsp;of&nbsp;epochs.<br>
+:return:&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-read_input_params"><strong>read_input_params</strong></a>()</dt><dd><tt>Reads&nbsp;input&nbsp;arguments&nbsp;accordingly&nbsp;to&nbsp;the&nbsp;specified&nbsp;exercise.<br>
+&nbsp;<br>
+:return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;read_mode:&nbsp;specified&nbsp;read&nbsp;mode&nbsp;to&nbsp;open&nbsp;data&nbsp;files.&nbsp;It&nbsp;can&nbsp;be&nbsp;1,&nbsp;2&nbsp;or&nbsp;3.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sets:&nbsp;4-tuple&nbsp;containing&nbsp;train&nbsp;and&nbsp;tests&nbsp;sets&nbsp;read&nbsp;from&nbsp;specified&nbsp;datafile&nbsp;using&nbsp;given&nbsp;read&nbsp;mode.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;alpha:&nbsp;learning&nbsp;rate&nbsp;for&nbsp;perceptron&nbsp;algorithm.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;threshold:&nbsp;threshold&nbsp;for&nbsp;perceptron&nbsp;algorithm.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;max_epoch:&nbsp;maximum&nbsp;number&nbsp;of&nbsp;epochs&nbsp;for&nbsp;perceptron&nbsp;algorithm.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>DEFAULT_ALPHA</strong> = 1.0<br>
+<strong>DEFAULT_EPOCH</strong> = 20<br>
+<strong>DEFAULT_TH</strong> = 0.2</td></tr></table>
+</body></html>

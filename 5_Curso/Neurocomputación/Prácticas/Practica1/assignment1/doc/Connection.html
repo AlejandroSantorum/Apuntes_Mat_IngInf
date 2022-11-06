@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Connection</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Connection</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/Connection.py">/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/Connection.py</a></font></td></tr></table>
+    <p><tt>Authors:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Alejandro&nbsp;Santorum&nbsp;Varela&nbsp;-&nbsp;alejandro.santorum@estudiante.uam.es<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Sergio&nbsp;Galán&nbsp;Martín&nbsp;-&nbsp;sergio.galanm@estudiante.uam.es<br>
+&nbsp;<br>
+File:&nbsp;<a href="#Connection">Connection</a>.py<br>
+Date:&nbsp;Feb.&nbsp;20,&nbsp;2021<br>
+Project:&nbsp;Assignment&nbsp;1&nbsp;-&nbsp;Neurocomputation&nbsp;[EPS-UAM]<br>
+&nbsp;<br>
+Description:&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;implementation&nbsp;of&nbsp;class&nbsp;<a href="#Connection">Connection</a>,&nbsp;whose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goal&nbsp;is&nbsp;to&nbsp;transfer&nbsp;information&nbsp;(weights,&nbsp;activations,&nbsp;etc.)&nbsp;through<br>
+&nbsp;&nbsp;&nbsp;&nbsp;different&nbsp;types&nbsp;of&nbsp;neural&nbsp;networks.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Connection.html#Connection">Connection</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Connection">class <strong>Connection</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Connection">Connection</a>(weight,&nbsp;neuron)<br>
+&nbsp;<br>
+Implementation&nbsp;of&nbsp;class&nbsp;<a href="#Connection">Connection</a>,&nbsp;whose&nbsp;goal&nbsp;is&nbsp;to&nbsp;transfer<br>
+information&nbsp;(weights,&nbsp;activations,&nbsp;etc.)&nbsp;through&nbsp;different&nbsp;types<br>
+of&nbsp;neural&nbsp;networks.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Connection-__init__"><strong>__init__</strong></a>(self, weight, neuron)</dt><dd><tt>Constructor&nbsp;of&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;'<a href="#Connection">Connection</a>'.<br>
+&nbsp;<br>
+:param&nbsp;weight:&nbsp;The&nbsp;weight&nbsp;of&nbsp;the&nbsp;connection<br>
+:param&nbsp;neuron:&nbsp;Neuron&nbsp;<a href="builtins.html#object">object</a>.&nbsp;The&nbsp;built&nbsp;connection&nbsp;ends&nbsp;at&nbsp;this&nbsp;neuron.<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Connection-any_weight_update"><strong>any_weight_update</strong></a>(self)</dt><dd><tt>Checks&nbsp;whether&nbsp;the&nbsp;weight&nbsp;of&nbsp;the&nbsp;connection&nbsp;has&nbsp;been&nbsp;modified&nbsp;or&nbsp;not.<br>
+&nbsp;<br>
+:return:&nbsp;Boolean.&nbsp;False&nbsp;if&nbsp;there&nbsp;has&nbsp;been&nbsp;no&nbsp;update,&nbsp;True&nbsp;otherwise</tt></dd></dl>
+
+<dl><dt><a name="Connection-print_connection"><strong>print_connection</strong></a>(self)</dt><dd><tt>Prints&nbsp;the&nbsp;<a href="#Connection">Connection</a>&nbsp;<a href="builtins.html#object">object</a>,&nbsp;identified&nbsp;by&nbsp;its&nbsp;former&nbsp;weight&nbsp;and&nbsp;its&nbsp;actual&nbsp;weight.<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Connection-propagate"><strong>propagate</strong></a>(self)</dt><dd><tt>Propagates&nbsp;the&nbsp;received&nbsp;value&nbsp;of&nbsp;the&nbsp;previous&nbsp;neuron&nbsp;to&nbsp;the&nbsp;neuron&nbsp;that&nbsp;the&nbsp;connection&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Connection-update_weight"><strong>update_weight</strong></a>(self, term)</dt><dd><tt>It&nbsp;updates&nbsp;the&nbsp;current&nbsp;connection&nbsp;weight.<br>
+&nbsp;<br>
+:param&nbsp;term:&nbsp;Float.&nbsp;New&nbsp;weight&nbsp;is&nbsp;calculated&nbsp;as:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new_weight&nbsp;=&nbsp;old_weight&nbsp;+&nbsp;term<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

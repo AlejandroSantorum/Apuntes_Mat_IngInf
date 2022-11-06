@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Perceptron</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Perceptron</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/Perceptron.py">/Users/santorum/Desktop/Neurocomputation_Assignments/assignment1/neuro_clfs/Perceptron.py</a></font></td></tr></table>
+    <p><tt>Authors:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Alejandro&nbsp;Santorum&nbsp;Varela&nbsp;-&nbsp;alejandro.santorum@estudiante.uam.es<br>
+&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;Sergio&nbsp;Galán&nbsp;Martín&nbsp;-&nbsp;sergio.galanm@estudiante.uam.es<br>
+&nbsp;<br>
+File:&nbsp;<a href="#Perceptron">Perceptron</a>.py<br>
+Date:&nbsp;Mar.&nbsp;10,&nbsp;2021<br>
+Project:&nbsp;Assignment&nbsp;1&nbsp;-&nbsp;Neurocomputation&nbsp;[EPS-UAM]<br>
+&nbsp;<br>
+Description:&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;implementation&nbsp;of&nbsp;class&nbsp;<a href="#Perceptron">Perceptron</a>,&nbsp;whose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goal&nbsp;is&nbsp;to&nbsp;execute&nbsp;perceptron&nbsp;learning&nbsp;algorithm.&nbsp;It&nbsp;inherits&nbsp;<a href="neuro_clfs.NNClassifier.html#NNClassifier">NNClassifier</a>&nbsp;class.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="neuro_clfs.NNClassifier.html#NNClassifier">neuro_clfs.NNClassifier.NNClassifier</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Perceptron.html#Perceptron">Perceptron</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Perceptron">class <strong>Perceptron</strong></a>(<a href="neuro_clfs.NNClassifier.html#NNClassifier">neuro_clfs.NNClassifier.NNClassifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Perceptron">Perceptron</a>(n_inputs,&nbsp;n_outputs,&nbsp;threshold=0.1,&nbsp;alpha=1.0,&nbsp;verbose=False,&nbsp;max_epoch=20)<br>
+&nbsp;<br>
+Implementation&nbsp;of&nbsp;class&nbsp;<a href="#Perceptron">Perceptron</a>,&nbsp;whose&nbsp;goal&nbsp;is&nbsp;to&nbsp;execute&nbsp;perceptron<br>
+learning&nbsp;algorithm.&nbsp;It&nbsp;inherits&nbsp;<a href="neuro_clfs.NNClassifier.html#NNClassifier">NNClassifier</a>&nbsp;class.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Perceptron.html#Perceptron">Perceptron</a></dd>
+<dd><a href="neuro_clfs.NNClassifier.html#NNClassifier">neuro_clfs.NNClassifier.NNClassifier</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Perceptron-__init__"><strong>__init__</strong></a>(self, n_inputs, n_outputs, threshold=0.1, alpha=1.0, verbose=False, max_epoch=20)</dt><dd><tt>Constructor&nbsp;of&nbsp;a&nbsp;new&nbsp;object&nbsp;'<a href="#Perceptron">Perceptron</a>'.<br>
+&nbsp;<br>
+:param&nbsp;n_inputs:&nbsp;Number&nbsp;of&nbsp;inputs&nbsp;of&nbsp;the&nbsp;neural&nbsp;network<br>
+:param&nbsp;n_outputs:&nbsp;Number&nbsp;of&nbsp;outputs&nbsp;of&nbsp;the&nbsp;neural&nbsp;network<br>
+:param&nbsp;alpha:&nbsp;(Optional)&nbsp;Learning&nbsp;parameter&nbsp;alpha.&nbsp;Default=0.1<br>
+:param&nbsp;threshold:&nbsp;(Optional)&nbsp;Threshold.&nbsp;The&nbsp;algorithm&nbsp;activation&nbsp;function&nbsp;depends&nbsp;on&nbsp;this&nbsp;threshold.&nbsp;Default=0.1<br>
+:param&nbsp;verbose:&nbsp;(Optional)&nbsp;If&nbsp;set&nbsp;to&nbsp;True,&nbsp;feedback&nbsp;of&nbsp;each&nbsp;epoch&nbsp;is&nbsp;printed.<br>
+:param&nbsp;max_epoch:&nbsp;(Optional)&nbsp;Maximum&nbsp;number&nbsp;of&nbsp;epochs.&nbsp;Default=20<br>
+:return:&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Perceptron-predict"><strong>predict</strong></a>(self, xtest)</dt><dd><tt>Input&nbsp;parameters&nbsp;and&nbsp;return&nbsp;explained&nbsp;in&nbsp;parent&nbsp;class.<br>
+&nbsp;<br>
+It&nbsp;predicts&nbsp;the&nbsp;network&nbsp;output&nbsp;accordingly&nbsp;its&nbsp;hyperparameters&nbsp;and&nbsp;fitting&nbsp;parameters.</tt></dd></dl>
+
+<dl><dt><a name="Perceptron-train"><strong>train</strong></a>(self, xtrain, ytrain)</dt><dd><tt>Input&nbsp;parameters&nbsp;and&nbsp;return&nbsp;explained&nbsp;in&nbsp;parent&nbsp;class.<br>
+&nbsp;<br>
+It&nbsp;trains&nbsp;the&nbsp;<a href="#Perceptron">Perceptron</a>&nbsp;object&nbsp;accordingly&nbsp;to&nbsp;perceptron&nbsp;algorithm.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="neuro_clfs.NNClassifier.html#NNClassifier">neuro_clfs.NNClassifier.NNClassifier</a>:<br>
+<dl><dt><a name="Perceptron-error"><strong>error</strong></a>(self, ytrue, ypred, metric='acc')</dt><dd><tt>It&nbsp;calculates&nbsp;the&nbsp;error&nbsp;of&nbsp;a&nbsp;prediction&nbsp;matrix&nbsp;given&nbsp;a&nbsp;target&nbsp;matrix.<br>
+The&nbsp;error&nbsp;can&nbsp;be&nbsp;measured&nbsp;in&nbsp;different&nbsp;ways,&nbsp;depending&nbsp;on&nbsp;the&nbsp;input<br>
+argument&nbsp;'metric'.<br>
+&nbsp;<br>
+:param&nbsp;ytrue:&nbsp;data&nbsp;matrix&nbsp;of&nbsp;target&nbsp;classes&nbsp;of&nbsp;size&nbsp;(n_test_examples,&nbsp;n_classes).<br>
+:param&nbsp;ypred:&nbsp;data&nbsp;matrix&nbsp;of&nbsp;predicted&nbsp;classes&nbsp;of&nbsp;size&nbsp;(n_test_examples,&nbsp;n_classes).<br>
+:param&nbsp;metric:&nbsp;metric&nbsp;to&nbsp;measure&nbsp;error.&nbsp;Default&nbsp;accuracy&nbsp;(classification).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;metric='acc':&nbsp;returns&nbsp;classification&nbsp;accuracy.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;metric='mse':&nbsp;returns&nbsp;Mean&nbsp;Squared&nbsp;Error.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="neuro_clfs.NNClassifier.html#NNClassifier">neuro_clfs.NNClassifier.NNClassifier</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="neuro_clfs.NNClassifier.html#NNClassifier">neuro_clfs.NNClassifier.NNClassifier</a>:<br>
+<dl><dt><strong>__metaclass__</strong> = &lt;class 'abc.ABCMeta'&gt;<dd><tt>Metaclass&nbsp;for&nbsp;defining&nbsp;Abstract&nbsp;Base&nbsp;Classes&nbsp;(ABCs).<br>
+&nbsp;<br>
+Use&nbsp;this&nbsp;metaclass&nbsp;to&nbsp;create&nbsp;an&nbsp;ABC.&nbsp;&nbsp;An&nbsp;ABC&nbsp;can&nbsp;be&nbsp;subclassed<br>
+directly,&nbsp;and&nbsp;then&nbsp;acts&nbsp;as&nbsp;a&nbsp;mix-in&nbsp;class.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;register<br>
+unrelated&nbsp;concrete&nbsp;classes&nbsp;(even&nbsp;built-in&nbsp;classes)&nbsp;and&nbsp;unrelated<br>
+ABCs&nbsp;as&nbsp;'virtual&nbsp;subclasses'&nbsp;--&nbsp;these&nbsp;and&nbsp;their&nbsp;descendants&nbsp;will<br>
+be&nbsp;considered&nbsp;subclasses&nbsp;of&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;by&nbsp;the&nbsp;built-in<br>
+issubclass()&nbsp;function,&nbsp;but&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;won't&nbsp;show&nbsp;up&nbsp;in<br>
+their&nbsp;MRO&nbsp;(Method&nbsp;Resolution&nbsp;Order)&nbsp;nor&nbsp;will&nbsp;method<br>
+implementations&nbsp;defined&nbsp;by&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;be&nbsp;callable&nbsp;(not<br>
+even&nbsp;via&nbsp;super()).</tt></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
